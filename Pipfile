@@ -1,0 +1,38 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+teamcity-messages = "*"
+pytest-cov = "*"
+pytest-sugar = "*"
+radon = "*"
+pylint = "*"
+nose = "*"
+pip-check = "*"
+pyflakes = "*"
+mccabe = "*"
+prospector = {extras = ["with-everything"]}
+python-taint = "*"
+pydocstyle = "*"
+py-find-injection = "*"
+pycycle = "*"
+pandoc = "*"
+bandit = "*"
+pynt = "*"
+pynt-contrib = "*"
+sphinx = "*"
+vulture = "*"
+mypy = "*"
+detect-secrets = "*"
+pipenv-to-requirements = "*"
+semantic-version = "*"
+checksumdir = "*"
+black = "*"
+
+[dev-packages]
+nose = "*"
+
+[requires]
+python_version = "3.6"

@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.build_state
+lint.txt
+mypy_errors.txt
+
+# this churns too much
+coverage
