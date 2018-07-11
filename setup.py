@@ -53,15 +53,12 @@ class UploadCommand(Command):
         self.status('Not uploading to PyPi, not tagging github…')
         self.status('Uploading the package to PyPi via Twine…')
 
-        # os.system('twine upload dist/*')
+        os.system('twine upload dist/*')
         self.status('Pushing git tags…')
         os.system('git tag v{0}'.format(about['__version__']))
         os.system('git push --tags')
         sys.exit()
 
-if about['__version__']=="0.0.0":
-    raise TypeError("Lost version!")
-print(about)
 setup(
     name=PROJECT_NAME,
     version=about['__version__'],
@@ -82,7 +79,7 @@ setup(
     extras_require={},
     include_package_data=True,
     license='MIT',
-    keywords="version",
+    keywords="version, build tools",
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.5',
@@ -92,6 +89,7 @@ setup(
     ],
     cmdclass={'upload': UploadCommand, },
     # setup_cfg=True,
-    setup_requires=['pbr'],
+    setup_requires=['pbr'
+                    ],
     pbr=True
 )
