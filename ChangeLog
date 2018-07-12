@@ -1,6 +1,7 @@
 CHANGES
 =======
 
+* build script passes
 * substantially done
 * fix pipenv
 * needs to be command line args driven
