@@ -1,151 +1,37 @@
-# coding=utf-8
 """
-Zero config alternative to bump version.
+Jiggle Version.
 
-# NO REGEX. Sometimes I wan't a tool, not a superflous brain teaser.
-# NO CONFIG. The tool shouldn't be more complex than writing a replacement.
-# You want to support something other than semantic version? Write your own.
-# NO FLOODING git with commits and tags.
-# WORKS OUT OF BOX FOR MOST COMMON SCENARIO: automated build bumping. Edit the damn strings by
-# hand if you need a major or minor. It is only 3 or so files.
+Usage:
+  jiggle_version --project=<project> --source=<source> [--debug=<debug>]
+  jiggle_version -h | --help
+  jiggle_version --version
 
-----
-Minor things:
-Homogenize version based on 1st found.
-Super strict parsing.
-
+Options:
+  --project=<project>  Project name, e.g. my_lib in src/my_lib
+  --source=<source>  Source folder. e.g. src/
+  -h --help     Show this screen.
+  --version     Show version.
+  --debug=<debug>  Show diagnostic info [default: False].
 """
-import os.path
 
-from semantic_version import Version
+from docopt import docopt
 
-
-class JiggleVersion:
-    """
-    Because OOP.
-    """
-
-    def __init__(self):
-        # type: () ->None
-        """
-        Entry point
-        """
-        self.PROJECT = "sample_lib"
-        self.SRC = "../"
-        if not os.path.isdir(self.SRC + self.PROJECT):
-            self.SRC = "../../"
-            if not os.path.isdir(self.SRC + self.PROJECT):
-                self.SRC = ""
-                if not os.path.isdir(self.SRC + self.PROJECT):
-                    raise TypeError("Can't find proj dir")
-        print("expecting " + self.SRC + self.PROJECT)
-        self.DEBUG = False
-        self.version = None  # type: Optional[Version]
-
-    def jiggle_source_code(self):
-        # type: () ->None
-        """
-        Update python source files
-        """
-        files = ["/__init__.py", "/__version__.py"]
-
-        for file_name in files:
-            to_write = []
-            with open(self.SRC + self.PROJECT + file_name, "r") as infile:
-                for line in infile:
-                    if line.strip().startswith("__version__"):
-                        if '"' not in line:
-                            print(file_name, line)
-                            raise TypeError("Please format your code with Black.")
-                        else:
-                            parts = line.split('"')
-                            if len(parts) != 3:
-                                raise TypeError(
-                                    'Version must be of form __version__ = "1.1.1"  with no comments'
-                                )
-                            next_version = self.version_to_write(parts[1])
-                        to_write.append('__version__ = "{0}"'.format(str(next_version)))
-                    else:
-                        to_write.append(line)
-
-            if self.DEBUG:
-                for line in to_write:
-                    print(line, end="")
-            else:
-                with open(self.SRC + self.PROJECT + file_name, "w") as outfile:
-                    outfile.writelines(to_write)
-
-    def validate_setup(self):
-        # type: () ->None
-        """
-        Don't put version constants into setup.py
-        """
-        with open(self.SRC + "setup.py", "r") as infile:
-            for line in infile:
-                if line.strip().replace(" ", "").startswith("version="):
-                    if not ("__version__" in line or "__init__" in line):
-                        print(line)
-                        raise TypeError(
-                            "Read the __version__.py or __init__.py don't add version in setup.py as constant"
-                        )
-
-    def version_to_write(self, found):
-        # type: (str) -> Version
-        """
-        Take 1st version string found.
-        :param found: possible version string
-        :return:
-        """
-        if self.version is None:
-            self.version = Version(found.strip(" "))
-        next_version = self.version.next_patch()
-        return next_version
-
-    def jiggle_config_file(self):
-        # type: () ->None
-        """
-        Update ini, cfg, conf
-        """
-        # setup.py related. setup.py itself should read __init__.py or __version__.py
-        to_write = []
-        other_files = ["/setup.cfg"]
-
-        self.validate_setup()
-
-        for file_name in other_files:
-            filepath = self.SRC + file_name
-            if os.path.isfile(filepath):
-                with open(filepath, "r") as infile:
-                    for line in infile:
-                        if "version =" in line or "version=" in line:
-                            parts = line.split("=")
-                            if len(parts) != 2:
-                                print(line)
-                                print(parts)
-                                raise TypeError("Must be of form version = 1.1.1")
-                            next_version = self.version_to_write(parts[1])
-                            to_write.append("version={0}\n".format(str(next_version)))
-                        else:
-                            to_write.append(line)
-
-                if self.DEBUG:
-                    for line in to_write:
-                        print(line, end="")
-                else:
-                    with open(self.SRC + file_name, "w") as outfile:
-                        outfile.writelines(to_write)
+from jiggle_version.jiggle_class import JiggleVersion
 
 
-def go():
-    # type: () ->None
+def go(project, source, debug): # type: (str, str, bool) ->None
     """
     Entry point
     :return:
     """
-    jiggler = JiggleVersion()
+    jiggler = JiggleVersion(project, source, debug)
     jiggler.jiggle_source_code()
     jiggler.jiggle_config_file()
 
+def process_docopts():
+    arguments = docopt(__doc__, version='Jiggle Version 1.0')
+    print(arguments)
+    go(project=arguments["--project"], source=arguments["--source"], debug=arguments["--debug"])
 
-if __name__ == "__main__":
-    pass
+if __name__ == '__main__':
+    process_docopts()

@@ -21,7 +21,8 @@ if sys.argv[-1] == "publish":
     os.system("python setup.py sdist bdist_wheel upload")
     sys.exit()
 required = [
-    'semantic_version'
+    'semantic_version',
+    'docopt'
 ]
 
 
@@ -71,6 +72,7 @@ setup(
     url='https://github.com/matthewdeanmartin/' + PROJECT_NAME,
     packages=find_packages(exclude=['test']),
     entry_points={
+         
         'console_scripts': [
             'jiggle_version=jiggle_version:main',
         ]

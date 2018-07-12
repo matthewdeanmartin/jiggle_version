@@ -108,3 +108,6 @@ mypy_errors.txt
 
 # this churns too much
 coverage
+
+# also churns too much
+sample_lib/**
