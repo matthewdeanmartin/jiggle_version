@@ -1,6 +1,10 @@
 CHANGES
 =======
 
+v1.0.13
+-------
+
+* bump ver
 * build script passes
 * substantially done
 * fix pipenv

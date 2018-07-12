@@ -7,6 +7,7 @@
     <orderEntry type="library" name="R Skeletons" level="application" />
     <orderEntry type="library" name="R User Library" level="project" />
     <orderEntry type="module" module-name="find_known_secrets" />
+    <orderEntry type="module" module-name="build_proving_ground" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />

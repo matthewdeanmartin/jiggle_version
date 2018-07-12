@@ -15,10 +15,12 @@ Homogenize version based on 1st found.
 Super strict parsing.
 
 """
+import logging
 import os.path
 
 from semantic_version import Version
 
+logger = logging.getLogger(__name__)
 
 class JiggleVersion:
     """
@@ -39,6 +41,9 @@ class JiggleVersion:
         self.version = None  # type: Optional[Version]
         self.create_configs = False
 
+        # for example, do we create __init__.py which changes behavior
+        self.create_all = False
+
     def jiggle_source_code(self):
         # type: () ->None
         """
@@ -51,7 +56,7 @@ class JiggleVersion:
             to_write = []
             filepath = self.SRC + self.PROJECT + file_name
             if not os.path.isfile(filepath):
-                if "__init__" in file_name:
+                if self.create_all and "__init__" in file_name:
                     print("Creating " + str(filepath))
                     self.create_init(filepath)
                 if "__version__" in filepath:
@@ -89,7 +94,10 @@ class JiggleVersion:
         """
         Don't put version constants into setup.py
         """
-        with open(self.SRC + "setup.py", "r") as infile:
+        setuppy = self.SRC + "setup.py"
+        if not os.path.isfile(setuppy):
+            return
+        with open(setuppy, "r") as infile:
             for line in infile:
                 if line.strip().replace(" ", "").startswith("version="):
                     if not ("__version__" in line or "__init__" in line):
@@ -155,9 +163,13 @@ version=0.0.1
 
         for file_name in other_files:
             filepath = self.SRC + file_name
-            if self.create_configs and not os.path.isfile(filepath):
+
+            # only create setup.cfg if we have setup.py
+            if self.create_configs and not os.path.isfile(filepath) and \
+                    os.path.isfile(self.SRC + "setup.py"):
                 print("Creating " + str(filepath))
                 self.create_setup_cfg(filepath)
+
             if os.path.isfile(filepath):
                 with open(filepath, "r") as infile:
                     for line in infile:

@@ -72,9 +72,9 @@ setup(
     url='https://github.com/matthewdeanmartin/' + PROJECT_NAME,
     packages=find_packages(exclude=['test']),
     entry_points={
-         
+
         'console_scripts': [
-            'jiggle_version=jiggle_version:main',
+            'jiggle_version=jiggle_version.main:process_docopts',
         ]
     },
     install_requires=required,
@@ -93,5 +93,5 @@ setup(
     # setup_cfg=True,
     setup_requires=['pbr'
                     ],
-    pbr=True
+    pbr=False
 )
