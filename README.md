@@ -36,5 +36,16 @@ with only the version number filled in.
 We make no particular effort to parse wild text. If your current number is so messed up that you need regex to ID it,
 then edit it by hand.
 
+Which Version Wins?
+------------------
+You can get a version from your git tag, from anyone of the existing .py or config files.
+
+I think the tagger should set tags based on what is in the __version__.py file. Forcing the user to check in, tag
+and so on before bumping a version is no fun.
+
+Conflics
+--------
+If you use pbr or bumpversion with jiggle_version you may have conflicts
+
 
 

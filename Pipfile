@@ -4,12 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+semantic-version = "*"
+
+[dev-packages]
+nose = "*"
+twine = "*"
 teamcity-messages = "*"
 pytest-cov = "*"
 pytest-sugar = "*"
 radon = "*"
 pylint = "*"
-nose = "*"
 pip-check = "*"
 pyflakes = "*"
 mccabe = "*"
@@ -27,13 +31,8 @@ vulture = "*"
 mypy = "*"
 detect-secrets = "*"
 pipenv-to-requirements = "*"
-semantic-version = "*"
 checksumdir = "*"
 black = "*"
-
-[dev-packages]
-nose = "*"
-twine = "*"
 
 [requires]
 python_version = "3.6"
