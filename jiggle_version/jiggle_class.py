@@ -25,22 +25,19 @@ class JiggleVersion:
     Because OOP.
     """
 
-    def __init__(self, project, source, debug): # type: (str, str, bool) ->None
+    def __init__(self, project, source, debug=False):  # type: (str, str, bool) ->None
         """
         Entry point
         """
-        self.PROJECT = "sample_lib"
-        self.SRC = "../"
+        self.PROJECT = project
+        self.SRC = source
         if not os.path.isdir(self.SRC + self.PROJECT):
-            self.SRC = "../../"
-            if not os.path.isdir(self.SRC + self.PROJECT):
-                self.SRC = ""
-                if not os.path.isdir(self.SRC + self.PROJECT):
-                    raise TypeError("Can't find proj dir")
+            raise TypeError("Can't find proj dir, consider using absolute")
         self.DEBUG = False
         print("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
         self.version = None  # type: Optional[Version]
+        self.create_configs = False
 
     def jiggle_source_code(self):
         # type: () ->None
@@ -50,8 +47,20 @@ class JiggleVersion:
         files = ["/__init__.py", "/__version__.py"]
 
         for file_name in files:
+
             to_write = []
-            with open(self.SRC + self.PROJECT + file_name, "r") as infile:
+            filepath = self.SRC + self.PROJECT + file_name
+            if not os.path.isfile(filepath):
+                if "__init__" in file_name:
+                    print("Creating " + str(filepath))
+                    self.create_init(filepath)
+                if "__version__" in filepath:
+                    print("Creating " + str(filepath))
+                    self.create_version(filepath)
+
+            if not os.path.isfile(filepath):
+                raise TypeError("Missing file " + filepath)
+            with open(filepath, "r") as infile:
                 for line in infile:
                     if line.strip().startswith("__version__"):
                         if '"' not in line:
@@ -105,6 +114,34 @@ class JiggleVersion:
             print("Updating from version {0} to {1}".format(str(self.version), str(next_version)))
         return next_version
 
+    def create_init(self, path):
+        source = """# coding=utf-8
+\"\"\"
+Version
+\"\"\"
+__version__ = \"0.0.0\"
+"""
+        with open(path, "w") as outfile:
+            outfile.write(source)
+
+    def create_version(self, path):
+        source = """# coding=utf-8
+\"\"\"
+Init
+\"\"\"
+__version__ = \"0.0.0\"
+"""
+        with open(path, "w") as outfile:
+            outfile.write(source)
+
+    def create_setup_cfg(self, path):
+        source = """[metadata]
+name = {0}
+version=0.0.1 
+""".format(self.PROJECT)
+        with open(path, "w") as outfile:
+            outfile.write(source)
+
     def jiggle_config_file(self):
         # type: () ->None
         """
@@ -118,6 +155,9 @@ class JiggleVersion:
 
         for file_name in other_files:
             filepath = self.SRC + file_name
+            if self.create_configs and not os.path.isfile(filepath):
+                print("Creating " + str(filepath))
+                self.create_setup_cfg(filepath)
             if os.path.isfile(filepath):
                 with open(filepath, "r") as infile:
                     for line in infile:

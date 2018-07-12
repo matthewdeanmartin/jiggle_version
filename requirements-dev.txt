@@ -10,4 +10,29 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
+bandit
+black
+checksumdir
+detect-secrets
+mccabe
+mypy
 nose
+pandoc
+pip-check
+pipenv-to-requirements
+prospector[with-everything]
+py-find-injection
+pycycle
+pydocstyle
+pyflakes
+pylint
+pynt
+pynt-contrib
+pytest-cov
+pytest-sugar
+python-taint
+radon
+sphinx
+teamcity-messages
+twine
+vulture

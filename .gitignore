@@ -110,4 +110,5 @@ mypy_errors.txt
 coverage
 
 # also churns too much
-sample_lib/**
+sample_src/sample_lib/*.py
+sample_src/*.cfg
