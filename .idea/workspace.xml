@@ -31,12 +31,7 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
-    </list>
+    <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +82,7 @@
           <entry key="sh" value="3" />
           <entry key="txt" value="24" />
           <entry key="yaml" value="3" />
-          <entry key="yml" value="4" />
+          <entry key="yml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -99,7 +94,7 @@
           <entry key="PLAIN_TEXT" value="31" />
           <entry key="Python" value="97" />
           <entry key="TOML file" value="11" />
-          <entry key="YAML" value="7" />
+          <entry key="YAML" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -137,8 +132,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="477" column="14" selection-start-line="477" selection-start-column="14" selection-end-line="477" selection-end-column="14" />
+            <state relative-caret-position="269">
+              <caret line="350" column="18" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -198,15 +202,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="279">
               <caret line="88" column="75" selection-start-line="88" selection-start-column="75" selection-end-line="88" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/detect-secrets-results.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -787,13 +782,6 @@
     <entry file="file://$PROJECT_DIR$/AUTHORS">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
@@ -832,13 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pipfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -860,10 +841,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="477" column="14" selection-start-line="477" selection-start-column="14" selection-end-line="477" selection-end-column="14" />
+        <state relative-caret-position="269">
+          <caret line="350" column="18" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="18" />
         </state>
       </provider>
     </entry>
