@@ -17,9 +17,14 @@ from semantic_version import Version
 
 PROJECT_NAME = "jiggle_version"
 SRC = '.'
-PYTHON = "python3.6"
+# for multitargeting
+PYTHON = "python"
 IS_DJANGO = False
-PIPENV = "pipenv run"
+IS_TRAVIS = 'TRAVIS' in os.environ
+if IS_TRAVIS:
+    PIPENV = ""
+else:
+    PIPENV = "pipenv run"
 GEM_FURY = ""
 
 CURRENT_HASH = None
@@ -336,15 +341,38 @@ def pip_check():
 
 
 @task()
+@skip_if_no_change("pip_check")
+def pip_check():
+    execute("pip", "check")
+    if PIPENV and not IS_TRAVIS:
+        execute("pipenv", "check")
+    execute("safety", "check", "-r", "requirements_dev.txt")
+
+
+@task(pip_check)
+def pin_dependencies():
+    execute(*("{0} pipenv_to_requirements".format(PIPENV).strip().split(" ")))
+
+@task()
 def compile_mark_down():
     with safe_cd(SRC):
-        execute("pipenv", "run", "pandoc", *("--from=markdown --to=rst --output=README.rst README.md".split(" ")))
+        if IS_TRAVIS:
+            command = "{0} pandoc --from=markdown --to=rst --output=README.rst README.md".format(PYTHON).strip().split(
+                " ")
+        else:
+            command = "{0} pandoc --from=markdown --to=rst --output=README.rst README.md".format(PIPENV).strip().split(
+                " ")
+        execute(*(command))
 
 
 @task()
 @skip_if_no_change("mypy")
 def mypy():
-    command = "{0} mypy {1} --ignore-missing-imports --strict".format(PIPENV, PROJECT_NAME).strip()
+    if IS_TRAVIS:
+        command = "{0} -m mypy {1} --ignore-missing-imports --strict".format(PYTHON, PROJECT_NAME).strip()
+    else:
+        command = "{0} mypy {1} --ignore-missing-imports --strict".format(PIPENV, PROJECT_NAME).strip()
+
     bash_process = subprocess.Popen(command.split(" "),
                                     # shell=True,
                                     stdout=subprocess.PIPE,
@@ -481,7 +509,12 @@ def echo(*args, **kwargs):
 @task()
 def dead_code():
     with safe_cd(SRC):
-        execute(*("{0} vulture {1}".format(PIPENV, PROJECT_NAME).strip().split(" ")))
+        if IS_TRAVIS:
+            command = "{0} vulture {1}".format(PYTHON, PROJECT_NAME)
+        else:
+            command = "{0} vulture {1}".format(PIPENV, PROJECT_NAME)
+
+        execute(*(command.strip().split(" ")))
 
 
 # Default task (if specified) is run when no task is specified in the command line
