@@ -35,8 +35,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version_self.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version_self.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +84,7 @@
           <entry key="ini" value="1" />
           <entry key="lock" value="2" />
           <entry key="md" value="4" />
-          <entry key="py" value="111" />
+          <entry key="py" value="114" />
           <entry key="sh" value="3" />
           <entry key="txt" value="27" />
           <entry key="yaml" value="5" />
@@ -98,7 +98,7 @@
           <entry key="Ini" value="7" />
           <entry key="Markdown" value="4" />
           <entry key="PLAIN_TEXT" value="34" />
-          <entry key="Python" value="111" />
+          <entry key="Python" value="114" />
           <entry key="TOML file" value="11" />
           <entry key="YAML" value="10" />
         </counts>
@@ -112,7 +112,7 @@
           <entry key="gitignore" value="139" />
           <entry key="ini" value="1" />
           <entry key="md" value="2169" />
-          <entry key="py" value="7353" />
+          <entry key="py" value="7473" />
           <entry key="sh" value="192" />
           <entry key="txt" value="2" />
           <entry key="yaml" value="4" />
@@ -126,7 +126,7 @@
           <entry key="Ini" value="38" />
           <entry key="Markdown" value="2169" />
           <entry key="PLAIN_TEXT" value="20" />
-          <entry key="Python" value="7387" />
+          <entry key="Python" value="7507" />
           <entry key="TOML file" value="23" />
           <entry key="YAML" value="37" />
         </counts>
@@ -137,19 +137,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.py">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="124" selection-end-column="19" />
+            <state relative-caret-position="306">
+              <caret line="17" selection-start-line="17" selection-end-line="19" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jiggle_version_self.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/subprocess.py">
+        <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/__future__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
-              <caret line="745" column="8" selection-start-line="745" selection-start-column="8" selection-end-line="745" selection-end-column="8" />
+              <caret line="125" selection-start-line="125" selection-end-line="125" />
             </state>
           </provider>
         </entry>
@@ -168,15 +177,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="182">
               <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../find_known_secrets/build.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="120" selection-start-line="120" selection-end-line="120" />
             </state>
           </provider>
         </entry>
@@ -217,11 +217,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.prospector/jiggle_version_style.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+            <state relative-caret-position="432">
+              <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -237,7 +237,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;rm</find>
       <find>jiggle</find>
       <find>pythonpath</find>
       <find>IS_TR</find>
@@ -267,6 +266,7 @@
       <find>subpro</find>
       <find>glob</find>
       <find>FileNotFoundError</find>
+      <find>print(</find>
     </findStrings>
     <dirStrings>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
@@ -288,7 +288,6 @@
         <option value="$PROJECT_DIR$/pylintrc.ini" />
         <option value="$PROJECT_DIR$/tests/test.py" />
         <option value="$PROJECT_DIR$/jiggle_version/__version__.py" />
-        <option value="$PROJECT_DIR$/jiggle_version_self.py" />
         <option value="$PROJECT_DIR$/sample_lib/__init__.py" />
         <option value="$PROJECT_DIR$/setup.cfg" />
         <option value="$PROJECT_DIR$/jiggle_version/__init__.py" />
@@ -324,6 +323,7 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" />
         <option value="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" />
+        <option value="$PROJECT_DIR$/jiggle_version_self.py" />
       </list>
     </option>
   </component>
@@ -657,9 +657,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sample_src/setup.cfg">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/../build_proving_ground/Pipfile">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -845,24 +842,10 @@
         <state relative-caret-position="-312" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version_self.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="49" column="12" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jiggle_version/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="17" selection-start-line="17" selection-end-line="19" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -945,8 +928,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.prospector/jiggle_version_style.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        <state relative-caret-position="432">
+          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/__future__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" selection-start-line="17" selection-end-line="19" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jiggle_version_self.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>

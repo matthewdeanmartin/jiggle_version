@@ -1,20 +1,12 @@
 # coding=utf-8
 """
-Zero config alternative to bump version.
+Stupider version of jiggle version that jiggle_version depends on.
 
-# NO REGEX. Sometimes I wan't a tool, not a superflous brain teaser.
-# NO CONFIG. The tool shouldn't be more complex than writing a replacement.
-# You want to support something other than semantic version? Write your own.
-# NO FLOODING git with commits and tags.
-# WORKS OUT OF BOX FOR MOST COMMON SCENARIO: automated build bumping. Edit the damn strings by
-# hand if you need a major or minor. It is only 3 or so files.
-
-----
-Minor things:
-Homogenize version based on 1st found.
-Super strict parsing.
-
+I didn't want a weird circular dependency.
 """
+from __future__ import print_function
+from __future__ import unicode_literals
+from __future__ import division
 import os.path
 
 from semantic_version import Version
