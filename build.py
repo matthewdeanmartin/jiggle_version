@@ -370,6 +370,9 @@ def compile_mark_down():
 @task()
 @skip_if_no_change("mypy")
 def mypy():
+    if sys.version_info < (3, 4):
+        print("Mypy doesn't work on python < 3.4")
+        return
     if IS_TRAVIS:
         command = "{0} -m mypy {1} --ignore-missing-imports --strict".format(PYTHON, PROJECT_NAME).strip()
     else:

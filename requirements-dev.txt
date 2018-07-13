@@ -15,7 +15,7 @@ black ; python_version >= '3.6'
 checksumdir
 detect-secrets
 mccabe
-mypy
+mypy ; python_version >= '3.4'
 nose
 pandoc
 pip-check
