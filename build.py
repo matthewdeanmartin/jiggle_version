@@ -199,7 +199,7 @@ def compile():
 def prospector():
     with safe_cd(SRC):
         command = "{0} prospector {1} --profile {1}_style --pylint-config-file=pylintrc.ini --profile-path=.prospector".format(
-            PIPENV, PROJECT_NAME)
+            PIPENV, PROJECT_NAME).strip().replace("  ", " ")
         print(command)
         execute(*(command
                   .split(" ")))
@@ -215,7 +215,7 @@ def detect_secrets():
 
     command = "detect-secrets --scan --base64-limit 4 --exclude .idea|.js|.min.js|.html|.xsd|" \
               "lock.json|synced_folders|.scss|Pipfile.lock|" \
-              "lint.txt|{0}".format(errors_file)
+              "lint.txt|{0}".format(errors_file).strip()
     print(command)
     bash_process = subprocess.Popen(command.split(" "),
                                     # shell=True,
