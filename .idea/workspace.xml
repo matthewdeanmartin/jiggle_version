@@ -35,14 +35,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__version__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_src/sample_lib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_src/sample_lib/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_src/sample_lib/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_src/sample_lib/__version__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +87,7 @@
           <entry key="py" value="111" />
           <entry key="sh" value="3" />
           <entry key="txt" value="27" />
-          <entry key="yaml" value="3" />
+          <entry key="yaml" value="5" />
           <entry key="yml" value="5" />
         </counts>
       </usages-collector>
@@ -106,7 +100,7 @@
           <entry key="PLAIN_TEXT" value="34" />
           <entry key="Python" value="111" />
           <entry key="TOML file" value="11" />
-          <entry key="YAML" value="8" />
+          <entry key="YAML" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -121,7 +115,7 @@
           <entry key="py" value="7353" />
           <entry key="sh" value="192" />
           <entry key="txt" value="2" />
-          <entry key="yaml" value="2" />
+          <entry key="yaml" value="4" />
           <entry key="yml" value="33" />
         </counts>
       </usages-collector>
@@ -134,7 +128,7 @@
           <entry key="PLAIN_TEXT" value="20" />
           <entry key="Python" value="7387" />
           <entry key="TOML file" value="23" />
-          <entry key="YAML" value="35" />
+          <entry key="YAML" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -161,15 +155,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../find_known_secrets/find_known_secrets/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="18">
@@ -183,15 +168,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="182">
               <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -223,11 +199,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
               <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.prospector/jiggle_version_style.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -300,7 +294,6 @@
         <option value="$PROJECT_DIR$/jiggle_version/__init__.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__init__.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/blag.py" />
-        <option value="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" />
         <option value="$PROJECT_DIR$/scripts/jiggle_version.py" />
         <option value="$PROJECT_DIR$/jiggle_version/__main__.py" />
         <option value="$PROJECT_DIR$/sample_src/setup.py" />
@@ -311,7 +304,6 @@
         <option value="$PROJECT_DIR$/../find_known_secrets/jiggle_version_self.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/test/test_main.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__main__.py" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" />
         <option value="$PROJECT_DIR$/../find_known_secrets/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/../find_known_secrets/.travis.yml.py" />
@@ -330,6 +322,8 @@
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/searcher.py" />
         <option value="$PROJECT_DIR$/test/test_main.py" />
         <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" />
+        <option value="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" />
       </list>
     </option>
   </component>
@@ -369,11 +363,21 @@
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+              <item name=".prospector" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
               <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
+              <item name=".prospector" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
@@ -653,13 +657,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sample_src/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample_src/setup.cfg">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -743,13 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -943,6 +933,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.prospector/jiggle_version_style.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
         </state>
       </provider>
     </entry>
