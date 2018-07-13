@@ -15,6 +15,10 @@ Homogenize version based on 1st found.
 Super strict parsing.
 
 """
+from __future__ import print_function
+from __future__ import unicode_literals
+from __future__ import division
+
 import logging
 import os.path
 from typing import List, Optional

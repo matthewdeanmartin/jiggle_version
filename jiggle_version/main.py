@@ -15,7 +15,9 @@ Options:
   --version     Show version.
   --debug=<debug>  Show diagnostic info [default: False].
 """
-
+from __future__ import print_function
+from __future__ import unicode_literals
+from __future__ import division
 import logging
 import os
 
