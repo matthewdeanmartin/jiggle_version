@@ -32,12 +32,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../find_known_secrets/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/Pipfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__version__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/requirements-dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/requirements-dev.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,18 +76,18 @@
           <entry key="AUTHORS" value="1" />
           <entry key="ChangeLog" value="1" />
           <entry key="LICENSE" value="2" />
-          <entry key="Pipfile" value="9" />
+          <entry key="Pipfile" value="11" />
           <entry key="cfg" value="6" />
           <entry key="coverage" value="1" />
           <entry key="gitignore" value="6" />
           <entry key="ini" value="1" />
           <entry key="lock" value="2" />
           <entry key="md" value="4" />
-          <entry key="py" value="96" />
+          <entry key="py" value="97" />
           <entry key="sh" value="3" />
           <entry key="txt" value="24" />
           <entry key="yaml" value="3" />
-          <entry key="yml" value="3" />
+          <entry key="yml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -100,21 +97,21 @@
           <entry key="Ini" value="7" />
           <entry key="Markdown" value="4" />
           <entry key="PLAIN_TEXT" value="31" />
-          <entry key="Python" value="96" />
-          <entry key="TOML file" value="9" />
-          <entry key="YAML" value="6" />
+          <entry key="Python" value="97" />
+          <entry key="TOML file" value="11" />
+          <entry key="YAML" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Pipfile" value="10" />
+          <entry key="Pipfile" value="21" />
           <entry key="Python Console" value="34" />
           <entry key="cfg" value="37" />
           <entry key="dummy" value="18" />
           <entry key="gitignore" value="139" />
           <entry key="ini" value="1" />
           <entry key="md" value="2169" />
-          <entry key="py" value="6803" />
+          <entry key="py" value="7027" />
           <entry key="sh" value="192" />
           <entry key="yaml" value="2" />
           <entry key="yml" value="33" />
@@ -127,8 +124,8 @@
           <entry key="Ini" value="38" />
           <entry key="Markdown" value="2169" />
           <entry key="PLAIN_TEXT" value="18" />
-          <entry key="Python" value="6837" />
-          <entry key="TOML file" value="10" />
+          <entry key="Python" value="7061" />
+          <entry key="TOML file" value="21" />
           <entry key="YAML" value="35" />
         </counts>
       </usages-collector>
@@ -137,20 +134,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-344">
-              <caret line="207" column="7" lean-forward="true" selection-start-line="207" selection-start-column="7" selection-end-line="207" selection-end-column="7" />
+            <state relative-caret-position="720">
+              <caret line="477" column="14" selection-start-line="477" selection-start-column="14" selection-end-line="477" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../find_known_secrets/build.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="200" column="41" lean-forward="true" selection-start-line="200" selection-start-column="41" selection-end-line="200" selection-end-column="41" />
+            <state relative-caret-position="244">
+              <caret line="184" column="8" selection-start-line="184" selection-start-column="8" selection-end-line="186" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/Pipfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/find_known_secrets/searcher.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pipfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="35" selection-start-line="35" selection-end-line="35" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -165,15 +198,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="279">
               <caret line="88" column="75" selection-start-line="88" selection-start-column="75" selection-end-line="88" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -207,9 +231,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>version</find>
-      <find>version=</find>
-      <find>pack</find>
       <find>prosp</find>
       <find>nose_</find>
       <find>80</find>
@@ -237,6 +258,9 @@
       <find>67</find>
       <find>create_missing</find>
       <find>prospe</find>
+      <find>blac</find>
+      <find>format</find>
+      <find>black</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -244,7 +268,7 @@
     </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../find_known_secrets" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -259,7 +283,6 @@
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__init__.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/blag.py" />
         <option value="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" />
-        <option value="$PROJECT_DIR$/Pipfile" />
         <option value="$PROJECT_DIR$/scripts/jiggle_version.py" />
         <option value="$PROJECT_DIR$/jiggle_version/__main__.py" />
         <option value="$PROJECT_DIR$/sample_src/setup.py" />
@@ -273,19 +296,20 @@
         <option value="$PROJECT_DIR$/../find_known_secrets/test/test_main.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__main__.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/main.py" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/searcher.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" />
         <option value="$PROJECT_DIR$/../find_known_secrets/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/../find_known_secrets/.travis.yml.py" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/Pipfile" />
         <option value="$PROJECT_DIR$/../find_known_secrets/.travis.yml" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/jiggle_version/main.py" />
         <option value="$PROJECT_DIR$/test/test_main.py" />
         <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
-        <option value="$PROJECT_DIR$/build.py" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/searcher.py" />
+        <option value="$PROJECT_DIR$/Pipfile" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/Pipfile" />
         <option value="$PROJECT_DIR$/../find_known_secrets/build.py" />
+        <option value="$PROJECT_DIR$/build.py" />
       </list>
     </option>
   </component>
@@ -321,33 +345,6 @@
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="sample_src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="sample_src" type="462c0819:PsiDirectoryNode" />
-              <item name="sample_lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="sample_lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
@@ -586,13 +583,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/jiggle_version.py" />
     <entry file="file://$PROJECT_DIR$/sample_src/sample_lib/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -734,13 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/find_known_secrets/searcher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="36" column="65" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../find_known_secrets/find_known_secrets/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -778,13 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="19" column="12" lean-forward="true" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChangeLog">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -810,13 +786,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AUTHORS">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
@@ -856,17 +825,45 @@
     <entry file="file://$PROJECT_DIR$/mypy_errors.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.py">
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/find_known_secrets/searcher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-344">
-          <caret line="207" column="7" lean-forward="true" selection-start-line="207" selection-start-column="7" selection-end-line="207" selection-end-column="7" />
+        <state relative-caret-position="270">
+          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="35" selection-start-line="35" selection-end-line="35" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../find_known_secrets/build.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="200" column="41" lean-forward="true" selection-start-line="200" selection-start-column="41" selection-end-line="200" selection-end-column="41" />
+        <state relative-caret-position="244">
+          <caret line="184" column="8" selection-start-line="184" selection-start-column="8" selection-end-line="186" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="477" column="14" selection-start-line="477" selection-start-column="14" selection-end-line="477" selection-end-column="14" />
         </state>
       </provider>
     </entry>

@@ -33,7 +33,7 @@ mypy = "*"
 detect-secrets = "*"
 pipenv-to-requirements = "*"
 checksumdir = "*"
-black = "*"
+black = {markers="python_version >= '3.6'"}
 
 [requires]
 python_version = "3.6"

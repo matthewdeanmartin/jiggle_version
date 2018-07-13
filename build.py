@@ -2,6 +2,7 @@
 """
 Stop gap build script until I find something better.
 """
+import sys
 import functools
 import glob
 import json
@@ -181,6 +182,9 @@ def clean():
 @task()
 @skip_if_no_change("formatting")
 def formatting():
+    if sys.version_info < (3, 6):
+        print("Black doesn't work on python 2")
+        return
     with safe_cd(SRC):
         command = "{0} black {1}".format(PIPENV, PROJECT_NAME).strip()
         print(command)
@@ -299,7 +303,10 @@ def nose_tests():
         execute_with_environment(command, env=my_env)
     else:
         my_env = config_pythonpath()
-        command = "{0} {1} -m nose {2}".format(PIPENV, PYTHON, "test").strip()
+        if IS_TRAVIS:
+            command = "{0} -m nose {1}".format(PYTHON, "test").strip()
+        else:
+            command = "{0} {1} -m nose {2}".format(PIPENV, PYTHON, "test").strip()
         print(command)
         execute_with_environment(command, env=my_env)
 
@@ -333,18 +340,10 @@ def docs():
     with safe_cd(SRC):
         with safe_cd("docs"):
             my_env = config_pythonpath()
-            execute_with_environment("pipenv run make html", env=my_env)
-
-
-@task()
-def pip_check():
-    print("pip_check always reruns")
-    with safe_cd(SRC):
-        execute("pipenv", "check")
-
+            command = "{0} make html".format(PIPENV).strip()
+            execute_with_environment(command, env=my_env)
 
 @task()
-@skip_if_no_change("pip_check")
 def pip_check():
     execute("pip", "check")
     if PIPENV and not IS_TRAVIS:
@@ -428,8 +427,8 @@ def package():
 
 @task(package)
 def gemfury():
-    # fury login
     """
+    fury login
     fury push dist/*.gz --as=YOUR_ACCT
     fury push dist/*.whl --as=YOUR_ACCT
     """
@@ -437,9 +436,6 @@ def gemfury():
                         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                         shell=False, check=True)
     print(cp.stdout)
-
-    # print(cp.stderr)
-    # print(cp.returncode)
 
     def get_packages():
         packages = []
