@@ -86,7 +86,7 @@ class JiggleVersion:
             with open(self.SRC + self.PROJECT + file_name, "w") as outfile:
                 outfile.writelines(to_write)
 
-    def create_missing(self, file_name, filepath):
+    def create_missing(self, file_name, filepath):  # type: (str,str)->None
         if not os.path.isfile(filepath):
             if self.create_all and "__init__" in file_name:
                 print("Creating " + str(filepath))

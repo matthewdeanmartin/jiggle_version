@@ -397,7 +397,7 @@ def mypy():
             else:
                 lint_file.writelines([line + "\n"])
 
-    num_lines = sum(1 for line in open(mypy_file))
+    num_lines = sum(1 for line in open(mypy_file) if line)
     if num_lines > 2:
         raise TypeError("Too many lines of mypy : {0}".format(num_lines))
 
