@@ -1,6 +1,10 @@
 # jiggle_version
 Opinionated, no config build version incrementer. No regex. Drop in and go.
 
+
+![Travis](https://img.shields.io/travis/USER/REPO.svg)
+
+
 Opinionated
 -----------
 There already are two ways to "do it the way you want to": 
