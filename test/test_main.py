@@ -1,4 +1,8 @@
 # coding=utf-8
+try:
+    FileNotFoundError
+except NameError:
+    FileNotFoundError = IOError
 import os
 
 from docopt import DocoptExit

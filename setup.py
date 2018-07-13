@@ -9,6 +9,11 @@ from shutil import rmtree
 
 from setuptools import find_packages  # , setup, Command
 
+try:
+    FileNotFoundError
+except NameError:
+    FileNotFoundError = IOError
+
 PROJECT_NAME = "jiggle_version"
 
 here = os.path.abspath(os.path.dirname(__file__))
