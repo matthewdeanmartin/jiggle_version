@@ -4,6 +4,11 @@ jiggle_version
 Opinionated, no config build version incrementer. No regex. Drop in and
 go.
 
+.. figure:: https://img.shields.io/travis/USER/REPO.svg
+   :alt: Travis
+
+   Travis
+
 Opinionated
 -----------
 

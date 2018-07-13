@@ -17,10 +17,15 @@ Super strict parsing.
 """
 import logging
 import os.path
+from typing import List, Optional
 
 from semantic_version import Version
 
 logger = logging.getLogger(__name__)
+
+# contrive usage so black doesn't remove the import
+_ = List, Optional
+
 
 class JiggleVersion:
     """
@@ -44,24 +49,16 @@ class JiggleVersion:
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
 
-    def jiggle_source_code(self):
-        # type: () ->None
+    def jiggle_source_code(self):  # type: () ->None
         """
         Update python source files
         """
         files = ["/__init__.py", "/__version__.py"]
 
         for file_name in files:
-
             to_write = []
             filepath = self.SRC + self.PROJECT + file_name
-            if not os.path.isfile(filepath):
-                if self.create_all and "__init__" in file_name:
-                    print("Creating " + str(filepath))
-                    self.create_init(filepath)
-                if "__version__" in filepath:
-                    print("Creating " + str(filepath))
-                    self.create_version(filepath)
+            self.create_missing(file_name, filepath)
 
             if not os.path.isfile(filepath):
                 raise TypeError("Missing file " + filepath)
@@ -85,12 +82,20 @@ class JiggleVersion:
             if self.DEBUG:
                 for line in to_write:
                     print(line, end="")
-            else:
-                with open(self.SRC + self.PROJECT + file_name, "w") as outfile:
-                    outfile.writelines(to_write)
 
-    def validate_setup(self):
-        # type: () ->None
+            with open(self.SRC + self.PROJECT + file_name, "w") as outfile:
+                outfile.writelines(to_write)
+
+    def create_missing(self, file_name, filepath):
+        if not os.path.isfile(filepath):
+            if self.create_all and "__init__" in file_name:
+                print("Creating " + str(filepath))
+                self.create_init(filepath)
+            if "__version__" in filepath:
+                print("Creating " + str(filepath))
+                self.create_version(filepath)
+
+    def validate_setup(self):  # type: () ->None
         """
         Don't put version constants into setup.py
         """
@@ -106,8 +111,7 @@ class JiggleVersion:
                             "Read the __version__.py or __init__.py don't add version in setup.py as constant"
                         )
 
-    def version_to_write(self, found):
-        # type: (str) -> Version
+    def version_to_write(self, found):  # type: (str) -> Version
         """
         Take 1st version string found.
         :param found: possible version string
@@ -115,14 +119,18 @@ class JiggleVersion:
         """
         first = False
         if self.version is None:
-            first =True
+            first = True
             self.version = Version(found.strip(" "))
         next_version = self.version.next_patch()
         if first:
-            print("Updating from version {0} to {1}".format(str(self.version), str(next_version)))
+            print(
+                "Updating from version {0} to {1}".format(
+                    str(self.version), str(next_version)
+                )
+            )
         return next_version
 
-    def create_init(self, path):
+    def create_init(self, path):  # type: (str) -> None
         source = """# coding=utf-8
 \"\"\"
 Version
@@ -132,7 +140,7 @@ __version__ = \"0.0.0\"
         with open(path, "w") as outfile:
             outfile.write(source)
 
-    def create_version(self, path):
+    def create_version(self, path):  # type: (str) -> None
         source = """# coding=utf-8
 \"\"\"
 Init
@@ -142,16 +150,17 @@ __version__ = \"0.0.0\"
         with open(path, "w") as outfile:
             outfile.write(source)
 
-    def create_setup_cfg(self, path):
+    def create_setup_cfg(self, path):  # type: (str) -> None
         source = """[metadata]
 name = {0}
 version=0.0.1 
-""".format(self.PROJECT)
+""".format(
+            self.PROJECT
+        )
         with open(path, "w") as outfile:
             outfile.write(source)
 
-    def jiggle_config_file(self):
-        # type: () ->None
+    def jiggle_config_file(self):  # type: () ->None
         """
         Update ini, cfg, conf
         """
@@ -165,8 +174,11 @@ version=0.0.1
             filepath = self.SRC + file_name
 
             # only create setup.cfg if we have setup.py
-            if self.create_configs and not os.path.isfile(filepath) and \
-                    os.path.isfile(self.SRC + "setup.py"):
+            if (
+                self.create_configs
+                and not os.path.isfile(filepath)
+                and os.path.isfile(self.SRC + "setup.py")
+            ):
                 print("Creating " + str(filepath))
                 self.create_setup_cfg(filepath)
 
@@ -192,13 +204,11 @@ version=0.0.1
                         outfile.writelines(to_write)
 
 
-def go():
-    # type: () ->None
+def go():  # type: () ->None
     """
     Entry point
     :return:
     """
-    jiggler = JiggleVersion()
+    jiggler = JiggleVersion("", "")
     jiggler.jiggle_source_code()
     jiggler.jiggle_config_file()
-

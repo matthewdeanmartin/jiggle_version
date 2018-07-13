@@ -36,12 +36,14 @@ def test_no_files():
     # doesn't exist
     jiggler = main.JiggleVersion(PROJECT, SRC, True)
     jiggler.create_configs = True
+    jiggler.create_all = True
     jiggler.jiggle_source_code()
     jiggler.jiggle_config_file()
 
     # and already exist
     jiggler = main.JiggleVersion(PROJECT, SRC, True)
     jiggler.create_configs = True
+    jiggler.create_all = True
     jiggler.jiggle_source_code()
     jiggler.jiggle_config_file()
 

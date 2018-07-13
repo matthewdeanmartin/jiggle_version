@@ -214,7 +214,7 @@ def detect_secrets():
     errors_file = "detect-secrets-results.txt"
 
     command = "detect-secrets --scan --base64-limit 4 --exclude .idea|.js|.min.js|.html|.xsd|" \
-              "lock.json|synced_folders|.scss|" \
+              "lock.json|synced_folders|.scss|Pipfile.lock|" \
               "lint.txt|{0}".format(errors_file)
     print(command)
     bash_process = subprocess.Popen(command.split(" "),
@@ -321,7 +321,7 @@ def coverage():
     print("Coverage tests always re-run")
     with safe_cd(SRC):
         my_env = config_pythonpath()
-        command = "{0} py.test {1} --cov={2} --cov-report html:coverage --cov-fail-under 67  --verbose".format(
+        command = "{0} py.test {1} --cov={2} --cov-report html:coverage --cov-fail-under 64  --verbose".format(
             PIPENV,
             "test", PROJECT_NAME)
         execute_with_environment(command, my_env)
