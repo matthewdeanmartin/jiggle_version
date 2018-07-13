@@ -29,12 +29,14 @@ def test_go():
 
 
 def test_no_files():
-    for file in [SRC + PROJECT + "__init__.py",
-                 SRC + PROJECT + "__version__.py",
+    for file in [SRC + PROJECT + "/__init__.py",
+                 SRC + PROJECT + "/__version__.py",
                  SRC + "setup.cfg"]:
         try:
             os.remove(file)
         except FileNotFoundError:
+            pass
+        except OSError:
             pass
 
     # doesn't exist

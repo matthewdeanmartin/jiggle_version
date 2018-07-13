@@ -35,8 +35,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version_self.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version_self.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../find_known_secrets/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +112,7 @@
           <entry key="gitignore" value="139" />
           <entry key="ini" value="1" />
           <entry key="md" value="2169" />
-          <entry key="py" value="7473" />
+          <entry key="py" value="7499" />
           <entry key="sh" value="192" />
           <entry key="txt" value="2" />
           <entry key="yaml" value="4" />
@@ -126,7 +126,7 @@
           <entry key="Ini" value="38" />
           <entry key="Markdown" value="2169" />
           <entry key="PLAIN_TEXT" value="20" />
-          <entry key="Python" value="7507" />
+          <entry key="Python" value="7533" />
           <entry key="TOML file" value="23" />
           <entry key="YAML" value="37" />
         </counts>
@@ -145,11 +145,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jiggle_version_self.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="216">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -166,8 +166,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" selection-start-line="1" selection-end-line="4" selection-end-column="31" />
+            <state relative-caret-position="145">
+              <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -181,11 +181,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../find_known_secrets/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="31" />
+            <state relative-caret-position="-726">
+              <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -193,8 +193,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.2/python_stubs/-410631406/builtins.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="2988" column="28" selection-start-line="2988" selection-start-column="28" selection-end-line="2988" selection-end-column="28" />
+            <state relative-caret-position="155">
+              <caret line="967" selection-start-line="967" selection-end-line="967" />
             </state>
           </provider>
         </entry>
@@ -237,8 +237,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jiggle</find>
-      <find>pythonpath</find>
       <find>IS_TR</find>
       <find>git_s</find>
       <find>detect</find>
@@ -265,22 +263,24 @@
       <find>with subprocess.Popen</find>
       <find>subpro</find>
       <find>glob</find>
-      <find>FileNotFoundError</find>
       <find>print(</find>
+      <find>FileNot</find>
+      <find>test_main.py</find>
+      <find>FileNotFoundError</find>
     </findStrings>
     <dirStrings>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt_contrib-0.2.0.dist-info</dir>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pyntcontrib</dir>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt-0.8.2.dist-info</dir>
-      <dir>$PROJECT_DIR$/jiggle_version</dir>
       <dir>$PROJECT_DIR$/../find_known_secrets/find_known_secrets</dir>
-      <dir>$PROJECT_DIR$/../find_known_secrets</dir>
+      <dir>$PROJECT_DIR$/jiggle_version</dir>
       <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/../find_known_secrets</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../find_known_secrets" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -317,13 +317,13 @@
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/main.py" />
         <option value="$PROJECT_DIR$/build.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/build.py" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/setup.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/searcher.py" />
-        <option value="$PROJECT_DIR$/test/test_main.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/.prospector/find_known_secrets_style.yaml" />
         <option value="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" />
         <option value="$PROJECT_DIR$/jiggle_version_self.py" />
+        <option value="$PROJECT_DIR$/test/test_main.py" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/setup.py" />
       </list>
     </option>
   </component>
@@ -884,31 +884,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.2/python_stubs/-410631406/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="2988" column="28" selection-start-line="2988" selection-start-column="28" selection-end-line="2988" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../find_known_secrets/find_known_secrets/searcher.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="61" column="10" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" selection-start-line="1" selection-end-line="4" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -949,8 +928,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jiggle_version_self.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="216">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.2/python_stubs/-410631406/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="967" selection-start-line="967" selection-end-line="967" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-726">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
         </state>
       </provider>
     </entry>
