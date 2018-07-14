@@ -10,10 +10,11 @@ Usage:
 
 Options:
   --project=<project>  Project name, e.g. my_lib in src/my_lib
-  --source=<source>  Source folder. e.g. src/
-  -h --help     Show this screen.
-  --version     Show version.
-  --debug=<debug>  Show diagnostic info [default: False].
+  --source=<source>    Source folder. e.g. src/
+  --version            Show version.
+  --debug=<debug>      Show diagnostic info [default: False].
+  -h --help            Show this screen.
+
 """
 from __future__ import print_function
 from __future__ import unicode_literals

@@ -1,8 +1,9 @@
 # jiggle_version
 Opinionated, no config build version incrementer. No regex. Drop in and go.
 
-
-![Travis](https://img.shields.io/travis/USER/REPO.svg)
+Badges
+------
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE) ![Read the Docs](https://img.shields.io/readthedocs/pip.svg) ![Travis](https://travis-ci.com/matthewdeanmartin/jiggle_version.svg?branch=master)
 
 
 Opinionated

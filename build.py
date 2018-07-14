@@ -349,6 +349,7 @@ def docs():
         with safe_cd("docs"):
             my_env = config_pythonpath()
             command = "{0} make html".format(PIPENV).strip()
+            print(command)
             execute_with_environment(command, env=my_env)
 
 @task()

@@ -9,8 +9,8 @@ Zero config alternative to bump version.
 # WORKS OUT OF BOX FOR MOST COMMON SCENARIO: automated build bumping. Edit the damn strings by
 # hand if you need a major or minor. It is only 3 or so files.
 
-----
 Minor things:
+-------------
 Homogenize version based on 1st found.
 Super strict parsing.
 

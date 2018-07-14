@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../build_proving_ground/.idea/build_proving_ground.iml" filepath="$PROJECT_DIR$/../build_proving_ground/.idea/build_proving_ground.iml" />
       <module fileurl="file://$PROJECT_DIR$/../find_known_secrets/.idea/find_known_secrets.iml" filepath="$PROJECT_DIR$/../find_known_secrets/.idea/find_known_secrets.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/jiggle_version.iml" filepath="$PROJECT_DIR$/.idea/jiggle_version.iml" />
     </modules>
