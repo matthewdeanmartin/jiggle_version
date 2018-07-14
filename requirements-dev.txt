@@ -33,6 +33,7 @@ pytest-sugar
 python-taint
 radon
 sphinx
+sphinx-rtd-theme
 teamcity-messages
 twine
 vulture

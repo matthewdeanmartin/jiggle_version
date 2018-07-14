@@ -4,10 +4,10 @@ jiggle_version
 Opinionated, no config build version incrementer. No regex. Drop in and
 go.
 
-.. figure:: https://img.shields.io/travis/USER/REPO.svg
-   :alt: Travis
+Badges
+------
 
-   Travis
+|MIT licensed| |Read the Docs| |Travis|
 
 Opinionated
 -----------
@@ -67,3 +67,9 @@ Conflics
 --------
 
 If you use pbr or bumpversion with jiggle_version you may have conflicts
+
+.. |MIT licensed| image:: https://img.shields.io/badge/license-MIT-blue.svg
+   :target: https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE
+.. |Read the Docs| image:: https://img.shields.io/readthedocs/pip.svg
+.. |Travis| image:: https://travis-ci.com/matthewdeanmartin/jiggle_version.svg?branch=master
+

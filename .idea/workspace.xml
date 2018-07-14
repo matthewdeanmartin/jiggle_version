@@ -35,19 +35,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/../find_known_secrets/build_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/init.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/make.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/source/conf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__version__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../find_known_secrets/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/detect-secrets-results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/detect-secrets-results.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements-dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements-dev.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,30 +90,30 @@
           <entry key="bat" value="1" />
           <entry key="cfg" value="6" />
           <entry key="coverage" value="1" />
-          <entry key="gitignore" value="6" />
+          <entry key="gitignore" value="7" />
           <entry key="ini" value="1" />
           <entry key="lock" value="2" />
-          <entry key="md" value="6" />
-          <entry key="py" value="131" />
-          <entry key="rst" value="6" />
+          <entry key="md" value="8" />
+          <entry key="py" value="132" />
+          <entry key="rst" value="8" />
           <entry key="sh" value="5" />
           <entry key="txt" value="27" />
           <entry key="yaml" value="5" />
-          <entry key="yml" value="6" />
+          <entry key="yml" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="5" />
-          <entry key="Git file" value="6" />
+          <entry key="Git file" value="7" />
           <entry key="Ini" value="7" />
           <entry key="Makefile" value="1" />
-          <entry key="Markdown" value="6" />
+          <entry key="Markdown" value="8" />
           <entry key="PLAIN_TEXT" value="36" />
-          <entry key="Python" value="131" />
-          <entry key="ReST" value="6" />
+          <entry key="Python" value="132" />
+          <entry key="ReST" value="8" />
           <entry key="TOML file" value="11" />
-          <entry key="YAML" value="11" />
+          <entry key="YAML" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -127,11 +124,11 @@
           <entry key="bat" value="14" />
           <entry key="cfg" value="37" />
           <entry key="dummy" value="18" />
-          <entry key="gitignore" value="139" />
+          <entry key="gitignore" value="143" />
           <entry key="ini" value="1" />
-          <entry key="md" value="2717" />
-          <entry key="py" value="8156" />
-          <entry key="rst" value="123" />
+          <entry key="md" value="2719" />
+          <entry key="py" value="8158" />
+          <entry key="rst" value="181" />
           <entry key="sh" value="237" />
           <entry key="txt" value="2" />
           <entry key="yaml" value="4" />
@@ -141,13 +138,13 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="237" />
-          <entry key="Git file" value="139" />
+          <entry key="Git file" value="143" />
           <entry key="Ini" value="38" />
           <entry key="Makefile" value="14" />
-          <entry key="Markdown" value="2717" />
+          <entry key="Markdown" value="2719" />
           <entry key="PLAIN_TEXT" value="34" />
-          <entry key="Python" value="8190" />
-          <entry key="ReST" value="123" />
+          <entry key="Python" value="8192" />
+          <entry key="ReST" value="181" />
           <entry key="TOML file" value="23" />
           <entry key="YAML" value="52" />
         </counts>
@@ -158,19 +155,61 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/conf.py">
+        <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
+            <state relative-caret-position="261">
               <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+            <state relative-caret-position="103">
+              <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="216">
+                <caret line="5" column="475" selection-start-line="5" selection-start-column="475" selection-end-line="5" selection-end-column="475" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="216">
+                <caret line="5" column="467" selection-start-line="5" selection-start-column="467" selection-end-line="5" selection-end-column="467" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="114" column="26" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -184,7 +223,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/modules.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/find_known_secrets.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst">
           <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
@@ -200,7 +249,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>prospe</find>
       <find>blac</find>
       <find>format</find>
       <find>black</find>
@@ -230,6 +278,7 @@
       <find>docs</find>
       <find>jiggle</find>
       <find>keno</find>
+      <find>if line.strip().replace(&quot; &quot;, &quot;&quot;).startswith(&quot;version=&quot;):</find>
     </findStrings>
     <dirStrings>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
@@ -238,19 +287,18 @@
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt-0.8.2.dist-info</dir>
       <dir>$PROJECT_DIR$/../find_known_secrets/find_known_secrets</dir>
       <dir>$PROJECT_DIR$/jiggle_version</dir>
-      <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/../find_known_secrets</dir>
       <dir>$PROJECT_DIR$/../find_known_secrets/docs</dir>
       <dir>$PROJECT_DIR$/docs</dir>
+      <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../find_known_secrets" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pylintrc.ini" />
         <option value="$PROJECT_DIR$/tests/test.py" />
         <option value="$PROJECT_DIR$/jiggle_version/__version__.py" />
         <option value="$PROJECT_DIR$/sample_lib/__init__.py" />
@@ -261,7 +309,6 @@
         <option value="$PROJECT_DIR$/scripts/jiggle_version.py" />
         <option value="$PROJECT_DIR$/jiggle_version/__main__.py" />
         <option value="$PROJECT_DIR$/sample_src/setup.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/../build_proving_ground/setup.py" />
         <option value="$PROJECT_DIR$/test/go.sh" />
         <option value="$PROJECT_DIR$/../find_known_secrets/test/test.py" />
@@ -287,20 +334,22 @@
         <option value="$PROJECT_DIR$/../find_known_secrets/foo.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/build.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/build_utils.py" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/README.md" />
         <option value="$PROJECT_DIR$/build.py" />
         <option value="$PROJECT_DIR$/docs/make.bat" />
         <option value="$PROJECT_DIR$/docs/Makefile" />
         <option value="$PROJECT_DIR$/docs/init.sh" />
-        <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
         <option value="$PROJECT_DIR$/jiggle_version/main.py" />
         <option value="$PROJECT_DIR$/docs/source/jiggle_version.rst" />
         <option value="$PROJECT_DIR$/docs/source/index.rst" />
         <option value="$PROJECT_DIR$/../find_known_secrets/docs/source/conf.py" />
         <option value="$PROJECT_DIR$/docs/source/conf.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/docs/init.sh" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/docs/source/find_known_secrets.rst" />
         <option value="$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst" />
+        <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/README.md" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -317,7 +366,6 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="345" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="832" />
@@ -335,16 +383,6 @@
           <expand>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -563,7 +601,7 @@
       <window_info anchor="bottom" id="Inspection Results" weight="0.32995495" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.5160391" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.34867504" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34867504" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39932507" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -572,7 +610,7 @@
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="TeamCity" order="10" weight="0.23012552" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.40446305" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.40446305" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.32962447" />
@@ -603,19 +641,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lint.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChangeLog">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -634,13 +659,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mypy_errors.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
@@ -818,28 +836,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="90">
-            <caret line="5" selection-start-line="5" selection-end-line="6" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../find_known_secrets/README.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="176">
-            <caret line="17" selection-start-line="17" selection-end-line="17" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -866,13 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -913,8 +904,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/modules.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/find_known_secrets.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="216">
+            <caret line="5" column="475" selection-start-line="5" selection-start-column="475" selection-end-line="5" selection-end-column="475" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="216">
+            <caret line="5" column="467" selection-start-line="5" selection-start-column="467" selection-end-line="5" selection-end-column="467" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="114" column="26" selection-start-line="114" selection-start-column="26" selection-end-line="114" selection-end-column="26" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

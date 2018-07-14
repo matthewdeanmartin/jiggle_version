@@ -106,7 +106,7 @@ class JiggleVersion:
         setuppy = self.SRC + "setup.py"
         if not os.path.isfile(setuppy):
             return
-        with open(setuppy, "r") as infile:
+        with open(setuppy, "r", encoding="utf8") as infile:
             for line in infile:
                 if line.strip().replace(" ", "").startswith("version="):
                     if not ("__version__" in line or "__init__" in line):
