@@ -35,6 +35,7 @@ pipenv-to-requirements = "*"
 checksumdir = "*"
 black = {markers="python_version >= '3.6'"}
 sphinx-rtd-theme = "*"
+python-coveralls = "*"
 
 [requires]
 python_version = "3.6"

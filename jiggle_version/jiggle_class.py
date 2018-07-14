@@ -204,7 +204,9 @@ version=0.0.1
                     for line in to_write:
                         print(line, end="")
                 else:
-                    with io.open(self.SRC + file_name, "w", encoding="utf-8") as outfile:
+                    with io.open(
+                        self.SRC + file_name, "w", encoding="utf-8"
+                    ) as outfile:
                         outfile.writelines(to_write)
 
 

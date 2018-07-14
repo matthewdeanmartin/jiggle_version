@@ -7,7 +7,7 @@ go.
 Badges
 ------
 
-|MIT licensed| |Read the Docs| |Travis|
+|MIT licensed| |Read the Docs| |Travis| |Coverage Status|
 
 Opinionated
 -----------
@@ -72,4 +72,5 @@ If you use pbr or bumpversion with jiggle_version you may have conflicts
    :target: https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE
 .. |Read the Docs| image:: https://img.shields.io/readthedocs/pip.svg
 .. |Travis| image:: https://travis-ci.com/matthewdeanmartin/jiggle_version.svg?branch=master
-
+.. |Coverage Status| image:: https://coveralls.io/repos/github/matthewdeanmartin/jiggle_version/badge.svg?branch=master
+   :target: https://coveralls.io/github/matthewdeanmartin/jiggle_version?branch=master
