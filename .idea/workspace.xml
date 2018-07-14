@@ -36,25 +36,18 @@
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
       <change afterPath="$PROJECT_DIR$/../find_known_secrets/build_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/init.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/make.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/init.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/make.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/source/conf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../find_known_secrets/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/Pipfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/build.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/find_known_secrets/__version__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jiggle_version.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jiggle_version.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,9 +97,9 @@
           <entry key="ini" value="1" />
           <entry key="lock" value="2" />
           <entry key="md" value="6" />
-          <entry key="py" value="129" />
-          <entry key="rst" value="5" />
-          <entry key="sh" value="4" />
+          <entry key="py" value="131" />
+          <entry key="rst" value="6" />
+          <entry key="sh" value="5" />
           <entry key="txt" value="27" />
           <entry key="yaml" value="5" />
           <entry key="yml" value="6" />
@@ -114,14 +107,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="4" />
+          <entry key="Bash" value="5" />
           <entry key="Git file" value="6" />
           <entry key="Ini" value="7" />
           <entry key="Makefile" value="1" />
           <entry key="Markdown" value="6" />
           <entry key="PLAIN_TEXT" value="36" />
-          <entry key="Python" value="129" />
-          <entry key="ReST" value="5" />
+          <entry key="Python" value="131" />
+          <entry key="ReST" value="6" />
           <entry key="TOML file" value="11" />
           <entry key="YAML" value="11" />
         </counts>
@@ -137,9 +130,9 @@
           <entry key="gitignore" value="139" />
           <entry key="ini" value="1" />
           <entry key="md" value="2717" />
-          <entry key="py" value="8021" />
-          <entry key="rst" value="103" />
-          <entry key="sh" value="219" />
+          <entry key="py" value="8156" />
+          <entry key="rst" value="123" />
+          <entry key="sh" value="237" />
           <entry key="txt" value="2" />
           <entry key="yaml" value="4" />
           <entry key="yml" value="48" />
@@ -147,14 +140,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="219" />
+          <entry key="Bash" value="237" />
           <entry key="Git file" value="139" />
           <entry key="Ini" value="38" />
           <entry key="Makefile" value="14" />
           <entry key="Markdown" value="2717" />
           <entry key="PLAIN_TEXT" value="34" />
-          <entry key="Python" value="8055" />
-          <entry key="ReST" value="103" />
+          <entry key="Python" value="8190" />
+          <entry key="ReST" value="123" />
           <entry key="TOML file" value="23" />
           <entry key="YAML" value="52" />
         </counts>
@@ -165,37 +158,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.py">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/conf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="354" column="7" selection-start-line="354" selection-start-column="7" selection-end-line="354" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/make.bat">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="18" column="55" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+            <state relative-caret-position="486">
+              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -203,42 +169,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="113" selection-start-line="113" selection-end-line="113" />
+            <state relative-caret-position="261">
+              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/init.sh">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/init.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="18">
-              <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+              <caret line="1" column="57" selection-start-line="1" selection-start-column="57" selection-end-line="1" selection-end-column="57" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/modules.rst">
-          <provider selected="true" editor-type-id="restructured-text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/jiggle_version.rst">
-          <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+        <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst">
           <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
       </file>
@@ -253,7 +200,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>create_missing</find>
       <find>prospe</find>
       <find>blac</find>
       <find>format</find>
@@ -281,8 +227,9 @@
       <find>exc</find>
       <find>FileNotFoundError</find>
       <find>TypeE</find>
-      <find>keno</find>
       <find>docs</find>
+      <find>jiggle</find>
+      <find>keno</find>
     </findStrings>
     <dirStrings>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
@@ -293,10 +240,12 @@
       <dir>$PROJECT_DIR$/jiggle_version</dir>
       <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/../find_known_secrets</dir>
+      <dir>$PROJECT_DIR$/../find_known_secrets/docs</dir>
+      <dir>$PROJECT_DIR$/docs</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../find_known_secrets" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -343,12 +292,15 @@
         <option value="$PROJECT_DIR$/build.py" />
         <option value="$PROJECT_DIR$/docs/make.bat" />
         <option value="$PROJECT_DIR$/docs/Makefile" />
-        <option value="$PROJECT_DIR$/docs/source/conf.py" />
         <option value="$PROJECT_DIR$/docs/init.sh" />
         <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
         <option value="$PROJECT_DIR$/jiggle_version/main.py" />
         <option value="$PROJECT_DIR$/docs/source/jiggle_version.rst" />
         <option value="$PROJECT_DIR$/docs/source/index.rst" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/docs/source/conf.py" />
+        <option value="$PROJECT_DIR$/docs/source/conf.py" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/docs/init.sh" />
+        <option value="$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst" />
       </list>
     </option>
   </component>
@@ -393,29 +345,26 @@
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="doctrees" type="462c0819:PsiDirectoryNode" />
+              <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+              <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
               <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -441,11 +390,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../find_known_secrets/docs" />
       <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$/test" />
       <recent name="$PROJECT_DIR$/../find_known_secrets" />
       <recent name="$PROJECT_DIR$/sample_lib" />
-      <recent name="$PROJECT_DIR$/../find_known_secrets/find_known_secrets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/sample_src" />
@@ -463,7 +412,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Bash.init.sh">
+  <component name="RunManager" selected="Bash.init.sh (1)">
     <configuration name="go.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="bash" />
@@ -471,6 +420,16 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/go.sh" />
+      <option name="PARAMETERS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="init.sh (1)" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <module name="find_known_secrets" />
+      <option name="INTERPRETER_OPTIONS" value="bash" />
+      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../find_known_secrets/docs" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../find_known_secrets/docs/init.sh" />
       <option name="PARAMETERS" value="" />
       <method v="2" />
     </configuration>
@@ -482,28 +441,6 @@
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/docs/init.sh" />
       <option name="PARAMETERS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="jiggle_version" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/jiggle_version" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/jiggle_version/main.py" />
-      <option name="PARAMETERS" value="here" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="Nosetests for test_main.test_docops" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
@@ -556,18 +493,18 @@
     </configuration>
     <list>
       <item itemvalue="Bash.go.sh" />
-      <item itemvalue="Python.main" />
       <item itemvalue="Python tests.Nosetests in test_main.py" />
       <item itemvalue="Python tests.Nosetests for test_main.test_docops" />
       <item itemvalue="Bash.init.sh" />
+      <item itemvalue="Bash.init.sh (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Bash.init.sh (1)" />
         <item itemvalue="Bash.init.sh" />
         <item itemvalue="Python tests.Nosetests for test_main.test_docops" />
         <item itemvalue="Python tests.Nosetests in test_main.py" />
         <item itemvalue="Bash.go.sh" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -626,7 +563,7 @@
       <window_info anchor="bottom" id="Inspection Results" weight="0.32995495" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.5160391" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34867504" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.34867504" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39932507" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -635,7 +572,7 @@
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="TeamCity" order="10" weight="0.23012552" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.40446305" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.40446305" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.32962447" />
@@ -666,17 +603,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/lint.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/jiggle_version_self.py" />
-    <entry file="file://$PROJECT_DIR$/../find_known_secrets/mypy_errors.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../find_known_secrets/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -936,13 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/init.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -971,6 +890,30 @@
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/init.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="57" selection-start-line="1" selection-start-column="57" selection-end-line="1" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
   </component>

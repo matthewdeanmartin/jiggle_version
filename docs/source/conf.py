@@ -25,7 +25,7 @@ import jiggle_version
 
 # -- Project information -----------------------------------------------------
 
-project = 'keno'
+project = 'jiggle_version'
 copyright = '2018, Matthew Martin'
 author = 'Matthew Martin'
 
