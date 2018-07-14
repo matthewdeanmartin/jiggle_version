@@ -18,7 +18,7 @@ Super strict parsing.
 from __future__ import print_function
 from __future__ import unicode_literals
 from __future__ import division
-
+import io
 import logging
 import os.path
 from typing import List, Optional
@@ -106,7 +106,7 @@ class JiggleVersion:
         setuppy = self.SRC + "setup.py"
         if not os.path.isfile(setuppy):
             return
-        with open(setuppy, "r", encoding="utf8") as infile:
+        with io.open(setuppy, "r", encoding="utf8") as infile:
             for line in infile:
                 if line.strip().replace(" ", "").startswith("version="):
                     if not ("__version__" in line or "__init__" in line):
@@ -141,7 +141,7 @@ Version
 \"\"\"
 __version__ = \"0.0.0\"
 """
-        with open(path, "w") as outfile:
+        with io.open(path, "w", encoding="utf-8") as outfile:
             outfile.write(source)
 
     def create_version(self, path):  # type: (str) -> None
@@ -151,7 +151,7 @@ Init
 \"\"\"
 __version__ = \"0.0.0\"
 """
-        with open(path, "w") as outfile:
+        with io.open(path, "w", encoding="utf-8") as outfile:
             outfile.write(source)
 
     def create_setup_cfg(self, path):  # type: (str) -> None
@@ -161,7 +161,7 @@ version=0.0.1
 """.format(
             self.PROJECT
         )
-        with open(path, "w") as outfile:
+        with io.open(path, "w", encoding="utf-8") as outfile:
             outfile.write(source)
 
     def jiggle_config_file(self):  # type: () ->None
@@ -187,7 +187,7 @@ version=0.0.1
                 self.create_setup_cfg(filepath)
 
             if os.path.isfile(filepath):
-                with open(filepath, "r") as infile:
+                with io.open(filepath, "r", encoding="utf-8") as infile:
                     for line in infile:
                         if "version =" in line or "version=" in line:
                             parts = line.split("=")
@@ -204,7 +204,7 @@ version=0.0.1
                     for line in to_write:
                         print(line, end="")
                 else:
-                    with open(self.SRC + file_name, "w") as outfile:
+                    with io.open(self.SRC + file_name, "w", encoding="utf-8") as outfile:
                         outfile.writelines(to_write)
 
 
