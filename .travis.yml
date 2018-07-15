@@ -16,3 +16,5 @@ install:
 
 # command to run tests
 script: pynt package
+after_success:
+  - coveralls
