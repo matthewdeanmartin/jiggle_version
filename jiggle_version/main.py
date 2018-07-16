@@ -34,7 +34,12 @@ def go(project, source, debug):  # type: (str, str, bool) ->None
     Entry point
     :return:
     """
+    print()
+    print("Starting version jiggler...")
     jiggler = JiggleVersion(project, source, debug)
+    if not jiggler.validate_current_versions():
+        print("Versions not in sync, won't continue")
+        exit(-1)
     jiggler.jiggle_source_code()
     jiggler.jiggle_config_file()
 
