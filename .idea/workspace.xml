@@ -37,13 +37,7 @@
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__version__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/file_makers.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_makers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/pep440.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/pep440.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +88,7 @@
           <entry key="ini" value="2" />
           <entry key="lock" value="2" />
           <entry key="md" value="11" />
-          <entry key="py" value="149" />
+          <entry key="py" value="150" />
           <entry key="rst" value="8" />
           <entry key="sh" value="6" />
           <entry key="txt" value="51" />
@@ -110,7 +104,7 @@
           <entry key="Makefile" value="1" />
           <entry key="Markdown" value="11" />
           <entry key="PLAIN_TEXT" value="60" />
-          <entry key="Python" value="149" />
+          <entry key="Python" value="150" />
           <entry key="ReST" value="8" />
           <entry key="TOML file" value="13" />
           <entry key="YAML" value="14" />
@@ -126,7 +120,7 @@
           <entry key="dummy" value="18" />
           <entry key="gitignore" value="143" />
           <entry key="ini" value="2" />
-          <entry key="md" value="7442" />
+          <entry key="md" value="12932" />
           <entry key="py" value="12081" />
           <entry key="rst" value="181" />
           <entry key="sh" value="239" />
@@ -141,7 +135,7 @@
           <entry key="Git file" value="143" />
           <entry key="Ini" value="39" />
           <entry key="Makefile" value="14" />
-          <entry key="Markdown" value="7442" />
+          <entry key="Markdown" value="12932" />
           <entry key="PLAIN_TEXT" value="36" />
           <entry key="Python" value="12115" />
           <entry key="ReST" value="181" />
@@ -157,13 +151,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="412" column="29" lean-forward="true" selection-start-line="412" selection-start-column="29" selection-end-line="412" selection-end-column="29" />
+            <state relative-caret-position="251">
+              <caret line="152" column="37" lean-forward="true" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="219">
@@ -177,14 +171,23 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-1238">
-                <caret line="65" column="13" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
+              <first_editor relative-caret-position="-1338">
+                <caret line="168" column="155" selection-start-line="168" selection-start-column="155" selection-end-line="168" selection-end-column="155" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -211,11 +214,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sample_src/version.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="287">
@@ -227,8 +225,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lint.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-420">
-              <caret line="3" column="31" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="31" />
+            <state relative-caret-position="-438">
+              <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -253,11 +251,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>environ</find>
-      <find>json</find>
-      <find>compile</find>
-      <find>def compile</find>
-      <find>python3</find>
       <find>print(line, end=&quot;&quot;)</find>
       <find>with subprocess.Popen</find>
       <find>subpro</find>
@@ -281,8 +274,13 @@
       <find>verstion</find>
       <find>.txt</find>
       <find>version.txt</find>
-      <find>str(</find>
       <find>lines of</find>
+      <find>str(</find>
+      <find>Versio</find>
+      <find>cmp-v</find>
+      <find>git</find>
+      <find>bumpv</find>
+      <find>PEP</find>
     </findStrings>
     <dirStrings>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
@@ -343,7 +341,6 @@
         <option value="$PROJECT_DIR$/../find_known_secrets/Pipfile" />
         <option value="$PROJECT_DIR$/../find_known_secrets/requirements-dev.txt" />
         <option value="$PROJECT_DIR$/../find_known_secrets/README.md" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test/sample_lib/__version__.py" />
         <option value="$PROJECT_DIR$/sample_src/sample_lib/__version__.py" />
         <option value="$PROJECT_DIR$/jiggle_version/main.py" />
@@ -354,6 +351,7 @@
         <option value="$PROJECT_DIR$/jiggle_version/file_makers.py" />
         <option value="$PROJECT_DIR$/build.py" />
         <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -369,11 +367,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="309" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="3372" />
     <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="832" />
+    <option name="width" value="1920" />
+    <option name="height" value="1001" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -394,6 +392,10 @@
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -594,10 +596,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="6" y="24" width="1440" height="832" extended-state="6" />
+    <frame x="3372" y="23" width="1920" height="1001" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19670959" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14643237" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.32995495" />
@@ -612,7 +614,7 @@
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="TeamCity" order="10" weight="0.23012552" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.45048815" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.31264108" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.32962447" />
@@ -813,13 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="102" column="1" lean-forward="true" selection-end-line="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jiggle_version/__version__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -892,16 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-1238">
-            <caret line="65" column="13" selection-start-line="65" selection-start-column="13" selection-end-line="65" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample_src/version.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -921,8 +906,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lint.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-420">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="31" />
+        <state relative-caret-position="-438">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -943,13 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="412" column="29" lean-forward="true" selection-start-line="412" selection-start-column="29" selection-end-line="412" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mypy_errors.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -957,6 +935,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="113" column="66" selection-start-line="113" selection-start-column="66" selection-end-line="113" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="152" column="37" lean-forward="true" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-1338">
+            <caret line="168" column="155" selection-start-line="168" selection-start-column="155" selection-end-line="168" selection-end-column="155" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
