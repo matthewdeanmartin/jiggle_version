@@ -22,7 +22,7 @@ from __future__ import unicode_literals
 import io
 import logging
 import os.path
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Any
 
 from semantic_version import Version
 
@@ -37,7 +37,7 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 # contrive usage so black doesn't remove the import
-_ = List, Optional, Dict
+_ = List, Optional, Dict, Any
 
 
 class JiggleVersion:
@@ -81,7 +81,7 @@ class JiggleVersion:
 
         self.text_files = [os.path.join(self.SRC, "version.txt")]
 
-    def validate_current_versions(self):
+    def validate_current_versions(self): # type: () -> bool
         """
         Can a version be found? Are all versions currently the same? Are they valid sem ver?
         :return:
@@ -106,7 +106,7 @@ class JiggleVersion:
                 return True
             return False
 
-    def merge_two_dicts(self, x, y):
+    def merge_two_dicts(self, x, y): # type: Dict[Any, Any]
         """
         Merge dictionaries. This is for python 2 compat.
         :param x:

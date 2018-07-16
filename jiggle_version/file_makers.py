@@ -18,7 +18,7 @@ _ = List, Optional
 
 
 class FileMaker(object):
-    def __init__(self, project):
+    def __init__(self, project): # type:  (str) -> None
         self.project = project
 
     def create_init(self, path):  # type: (str) -> None
