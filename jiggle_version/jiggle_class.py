@@ -2,17 +2,7 @@
 """
 Zero config alternative to bump version.
 
-# NO REGEX. Sometimes I wan't a tool, not a superflous brain teaser.
-# NO CONFIG. The tool shouldn't be more complex than writing a replacement.
-# You want to support something other than semantic version? Write your own.
-# NO FLOODING git with commits and tags.
-# WORKS OUT OF BOX FOR MOST COMMON SCENARIO: automated build bumping. Edit the damn strings by
-# hand if you need a major or minor. It is only 3 or so files.
-
-Minor things:
--------------
-Homogenize version based on 1st found.
-Super strict parsing.
+see README.md for philosophy & design decisions
 
 """
 from __future__ import division
@@ -27,6 +17,7 @@ from typing import List, Optional, Dict, Any
 from semantic_version import Version
 
 from jiggle_version.file_makers import FileMaker
+from jiggle_version.utils import merge_two_dicts, first_value_in_dict
 
 try:
     import configparser
@@ -54,12 +45,20 @@ class JiggleVersion:
         """
         Entry point
         """
+        if not project:
+            raise TypeError("Can't continue, no project name")
+
+        if source is None:
+            raise TypeError(
+                'Can\'t continue, source directory is None, should be ""\ for current dir'
+            )
+
         self.PROJECT = project
         self.SRC = source
         if not os.path.isdir(self.SRC + self.PROJECT):
             raise TypeError("Can't find proj dir, consider using absolute")
         self.DEBUG = False
-        print("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
+        logger.info("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
         self.version = None  # type: Optional[Version]
         self.create_configs = False
@@ -80,11 +79,20 @@ class JiggleVersion:
         for file in self.source_files:
             replacement.append(os.path.join(self.project_root, file))
         self.source_files = replacement
-        print(self.source_files)
 
         self.config_files = [os.path.join(self.SRC, "setup.cfg")]
 
         self.text_files = [os.path.join(self.SRC, "version.txt")]
+
+    def find_any_valid_verision(self):  # type: () -> str
+        """
+        Find version candidates, return first (or any, since they aren't ordered)
+
+        Blow up if versions are not homogeneous
+        :return:
+        """
+        versions = self.all_current_versions()
+        return unicode(first_value_in_dict(versions))
 
     def validate_current_versions(self):  # type: () -> bool
         """
@@ -94,60 +102,51 @@ class JiggleVersion:
         versions = self.all_current_versions()
         for ver, version in versions.items():
             if "Invalid Semantic Version" in version:
-                print(
+                logger.error(
                     "Invalid versions, can't compare them, can't determine if in sync"
                 )
                 return False
+
         if not versions:
-            print("Found no versions, will use default 0.1.0")
+            logger.warning("Found no versions, will use default 0.1.0")
             return True
+
         if not self.all_versions_equal_sem_ver(versions):
-            print("Found various versions, how can we rationally pick?")
-            print(versions)
-            return False
-        else:
-            for key, version in versions.items():
-                print("Found version : {0}".format(version))
-                return True
+            logger.error("Found various versions, how can we rationally pick?")
+            logger.error(unicode(versions))
             return False
 
-    def merge_two_dicts(self, x, y):  # type: () -> Dict[Any, Any]
-        """
-        Merge dictionaries. This is for python 2 compat.
-        :param x:
-        :param y:
-        :return:
-        """
-        z = x.copy()  # start with x's keys and values
-        z.update(y)  # modifies z with y's keys and values & returns None
-        return z
+        for key, version in versions.items():
+            logger.debug("Found version : {0}".format(version))
+            return True
+        return False
 
     def all_current_versions(self):  # type: () ->Dict[str,str]
         """
         Track down all the versions & compile into one dictionary
         :return:
         """
-        versions = {}
+        versions = {}  # type: Dict[str,str]
         for file in self.source_files:
 
             if not os.path.isfile(file):
                 continue
             vers = self.find_dunder_version_in_file(file)
 
-            versions = self.merge_two_dicts(versions, vers)
+            versions = merge_two_dicts(versions, vers)
             more_vers = self.read_metadata()
 
-            versions = self.merge_two_dicts(versions, more_vers)
+            versions = merge_two_dicts(versions, more_vers)
             even_more_vers = self.read_text()
 
-            versions = self.merge_two_dicts(versions, even_more_vers)
-        copy = {}
+            versions = merge_two_dicts(versions, even_more_vers)
+        copy = {}  # type: Dict[str,str]
         for key, version in versions.items():
             try:
                 _ = Version(version)
                 copy[key] = version
             except ValueError:
-                print("Invalid Semantic Version " + version)
+                logger.error("Invalid Semantic Version " + version)
                 copy[key] = "Invalid Semantic Version : " + unicode(version)
         return copy
 
@@ -166,8 +165,8 @@ class JiggleVersion:
                 try:
                     semver = Version(version)
                 except ValueError:
-                    print("Invalid version at:")
-                    print(key, version)
+                    logger.error("Invalid version at:")
+                    logger.error(unicode((key, version)))
                     return False
                 continue
             try:
@@ -212,7 +211,7 @@ class JiggleVersion:
             for line in infile:
                 if line.strip().startswith("__version__"):
                     if '"' not in line:
-                        print(full_path, line)
+                        logger.error(unicode((full_path, line)))
                         raise TypeError(
                             "Couldn't find double quote (\") Please format your code, maybe with Black."
                         )
@@ -240,7 +239,7 @@ class JiggleVersion:
                 for line in infile:
                     if line.strip().startswith("__version__"):
                         if '"' not in line:
-                            print(file_name, line)
+                            logger.error(unicode((file_name, line)))
                             raise TypeError(
                                 "Couldn't find double quote (\") Please format your code, maybe with Black."
                             )
@@ -257,10 +256,6 @@ class JiggleVersion:
                     else:
                         to_write.append(line)
 
-            if self.DEBUG:
-                for line in to_write:
-                    print(line, end="")
-
             with open(file_name, "w") as outfile:
                 outfile.writelines(to_write)
 
@@ -273,12 +268,12 @@ class JiggleVersion:
         """
         if not os.path.isfile(filepath):
             if self.create_all and "__init__" in file_name:
-                print("Creating " + unicode(filepath))
+                logger.info("Creating " + unicode(filepath))
                 self.file_maker.create_init(filepath)
                 if not os.path.isfile(filepath):
                     raise TypeError("Missing file " + filepath)
             if "__version__" in filepath:
-                print("Creating " + unicode(filepath))
+                logger.info("Creating " + unicode(filepath))
                 self.file_maker.create_version(filepath)
                 if not os.path.isfile(filepath):
                     raise TypeError("Missing file " + filepath)
@@ -295,7 +290,7 @@ class JiggleVersion:
                 # BUG: this doesn't stick to [metadata] & will touch other sections
                 if line.strip().replace(" ", "").startswith("version="):
                     if not ("__version__" in line or "__init__" in line):
-                        print(line)
+                        logger.error(line)
                         raise TypeError(
                             "Read the __version__.py or __init__.py don't add version in setup.py as constant"
                         )
@@ -312,7 +307,7 @@ class JiggleVersion:
             self.version = Version(found.strip(" "))
         next_version = self.version.next_patch()
         if first:
-            print(
+            logger.info(
                 "Updating from version {0} to {1}".format(
                     unicode(self.version), unicode(next_version)
                 )
@@ -338,7 +333,7 @@ class JiggleVersion:
                 and not os.path.isfile(filepath)
                 and os.path.isfile(self.SRC + "setup.py")
             ):
-                print("Creating " + unicode(filepath))
+                logger.info("Creating " + unicode(filepath))
                 self.file_maker.create_setup_cfg(filepath)
 
             if os.path.isfile(filepath):
@@ -347,19 +342,18 @@ class JiggleVersion:
                         if "version =" in line or "version=" in line:
                             parts = line.split("=")
                             if len(parts) != 2:
-                                print(line)
-                                print(parts)
-                                raise TypeError("Must be of form version = 1.1.1")
+                                logger.error(line)
+                                logger.error(parts)
+                                logger.error("Must be of form version = 1.1.1")
+                                print("Must be of form version = 1.1.1")
+                                exit(-1)
+                                return
                             next_version = self.version_to_write(parts[1])
                             to_write.append(
                                 "version={0}\n".format(unicode(next_version))
                             )
                         else:
                             to_write.append(line)
-
-                if self.DEBUG:
-                    for line in to_write:
-                        print(line, end="")
 
                 with io.open(self.SRC + file_name, "w", encoding="utf-8") as outfile:
                     outfile.writelines(to_write)
@@ -374,16 +368,3 @@ class JiggleVersion:
                 next_version = self.version_to_write("0.0.0")
                 outfile.writelines([unicode(next_version)])
                 outfile.close()
-
-
-def go():  # type: () ->None
-    """
-    Entry point
-    :return:
-    """
-    jiggler = JiggleVersion("", "")
-    if not jiggler.validate_current_versions():
-        print("Versions not in sync, won't continue")
-        exit(-1)
-    jiggler.jiggle_source_code()
-    jiggler.jiggle_config_file()

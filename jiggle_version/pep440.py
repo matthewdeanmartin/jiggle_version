@@ -47,7 +47,7 @@ loose440re = re.compile(tpl_string_re.format(posint=posint, postdev=(posint + "?
 pep440re = re.compile(string_re)
 
 
-def is_canonical(version, loosedev=False):  # type: (str, bool) -> Bool
+def is_canonical(version, loosedev=False):  # type: (str, bool) -> bool
     """
     Return whether or not the version string is canonical according to Pep 440
     """

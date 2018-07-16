@@ -110,6 +110,6 @@ mypy_errors.txt
 coverage
 
 # also churns too much
-sample_src/sample_lib/*.py
-sample_src/*.cfg
+sample_projects/sample_src/sample_lib/*.py
+sample_projects/sample_src/*.cfg
 detect-secrets-results.txt

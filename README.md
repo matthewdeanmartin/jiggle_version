@@ -241,11 +241,11 @@ Design Decisions
     - User supplied ad-hoc 
     - Opaque strings (no way to auto-bump)
     - Other, e.g. Microsoft versions, for cross platform deployment
-- How do you record the new versin?
+- How do you record the new version?
     - Update files
     - Update VCS (commit, push, tag, etc)
 - How do you integrat with other build steps?
-    - stand alone
+    - standalone
     - bump version along with other steps, like packaging and pushing to pypi
 
     
