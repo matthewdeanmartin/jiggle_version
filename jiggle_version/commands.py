@@ -13,6 +13,7 @@ from __future__ import unicode_literals
 import logging
 import sys
 
+from jiggle_version.find_version_class import FindVersion
 from jiggle_version.jiggle_class import JiggleVersion
 
 if sys.version_info.major == 3:
@@ -28,7 +29,8 @@ def bump_version(project, source, debug):  # type: (str, str, bool) ->None
     print()
     print("Starting version jiggler...")
     jiggler = JiggleVersion(project, source, debug)
-    if not jiggler.validate_current_versions():
+
+    if not jiggler.version_finder.validate_current_versions():
         logger.error("Versions not in sync, won't continue")
         exit(-1)
     jiggler.jiggle_source_code()
@@ -41,7 +43,7 @@ def find_version(project, source, debug):  # type: (str, str, bool) ->None
     :return:
     """
     # quiet! no noise
-    jiggler = JiggleVersion(project, source, debug)
+    jiggler = FindVersion(project, source, debug)
     if not jiggler.validate_current_versions():
         # This is a failure.
         logger.error("Versions not in sync, won't continue")

@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 semantic-version = "*"
 docopt = "*"
+parver = "*"
+cmp-version = "*"
 
 [dev-packages]
 nose = "*"

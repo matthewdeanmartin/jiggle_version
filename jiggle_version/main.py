@@ -10,8 +10,9 @@ Usage:
   jiggle_version --version
 
 Options:
-  here                 No config version bumping.
+  here                 No config version bumping, edits source code and stops.
   find_version         Just tell me next version, like this jiggle_version find>version.txt
+  --schema             pep440, semversion, guess
   --project=<project>  Project name, e.g. my_lib in src/my_lib
   --source=<source>    Source folder. e.g. src/
   --version            Show version of jiggle_version, not your apps.

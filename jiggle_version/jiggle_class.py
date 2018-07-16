@@ -17,6 +17,7 @@ from typing import List, Optional, Dict, Any
 from semantic_version import Version
 
 from jiggle_version.file_makers import FileMaker
+from jiggle_version.find_version_class import FindVersion
 from jiggle_version.utils import merge_two_dicts, first_value_in_dict
 
 try:
@@ -36,7 +37,7 @@ logger = logging.getLogger(__name__)
 _ = List, Optional, Dict, Any
 
 
-class JiggleVersion:
+class JiggleVersion(object):
     """
     Because OOP.
     """
@@ -66,6 +67,7 @@ class JiggleVersion:
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
         self.file_maker = FileMaker(self.PROJECT)
+        self.version_finder = FindVersion(project, source, debug)
 
         # the files we will attempt to manage
         self.project_root = os.path.join(self.SRC, self.PROJECT)
@@ -83,146 +85,6 @@ class JiggleVersion:
         self.config_files = [os.path.join(self.SRC, "setup.cfg")]
 
         self.text_files = [os.path.join(self.SRC, "version.txt")]
-
-    def find_any_valid_verision(self):  # type: () -> str
-        """
-        Find version candidates, return first (or any, since they aren't ordered)
-
-        Blow up if versions are not homogeneous
-        :return:
-        """
-        versions = self.all_current_versions()
-        return unicode(first_value_in_dict(versions))
-
-    def validate_current_versions(self):  # type: () -> bool
-        """
-        Can a version be found? Are all versions currently the same? Are they valid sem ver?
-        :return:
-        """
-        versions = self.all_current_versions()
-        for ver, version in versions.items():
-            if "Invalid Semantic Version" in version:
-                logger.error(
-                    "Invalid versions, can't compare them, can't determine if in sync"
-                )
-                return False
-
-        if not versions:
-            logger.warning("Found no versions, will use default 0.1.0")
-            return True
-
-        if not self.all_versions_equal_sem_ver(versions):
-            logger.error("Found various versions, how can we rationally pick?")
-            logger.error(unicode(versions))
-            return False
-
-        for key, version in versions.items():
-            logger.debug("Found version : {0}".format(version))
-            return True
-        return False
-
-    def all_current_versions(self):  # type: () ->Dict[str,str]
-        """
-        Track down all the versions & compile into one dictionary
-        :return:
-        """
-        versions = {}  # type: Dict[str,str]
-        for file in self.source_files:
-
-            if not os.path.isfile(file):
-                continue
-            vers = self.find_dunder_version_in_file(file)
-
-            versions = merge_two_dicts(versions, vers)
-            more_vers = self.read_metadata()
-
-            versions = merge_two_dicts(versions, more_vers)
-            even_more_vers = self.read_text()
-
-            versions = merge_two_dicts(versions, even_more_vers)
-        copy = {}  # type: Dict[str,str]
-        for key, version in versions.items():
-            try:
-                _ = Version(version)
-                copy[key] = version
-            except ValueError:
-                logger.error("Invalid Semantic Version " + version)
-                copy[key] = "Invalid Semantic Version : " + unicode(version)
-        return copy
-
-    def all_versions_equal_sem_ver(self, versions):  # type: (Dict[str,str]) -> bool
-        """
-        Verify that all the versions are the same.
-        :param versions:
-        :return:
-        """
-        if len(versions) <= 1:
-            return True
-
-        semver = None
-        for key, version in versions.items():
-            if semver is None:
-                try:
-                    semver = Version(version)
-                except ValueError:
-                    logger.error("Invalid version at:")
-                    logger.error(unicode((key, version)))
-                    return False
-                continue
-            try:
-                version_as_version = Version(version)
-            except ValueError:
-                return False
-            if version_as_version != semver:
-                return False
-        return True
-
-    def read_text(self):  # type: () ->Dict[str,str]
-        """
-        Get version out of ad-hoc version.txt
-        :return:
-        """
-        if not os.path.isfile(self.text_files[0]):
-            return {}
-        with open(self.text_files[0], "r") as infile:
-            text = infile.readline()
-        return {self.text_files[0]: text.strip(" \n")}
-
-    def read_metadata(self):  # type: () ->Dict[str,str]
-        """
-        Get version out of a .ini file (or .cfg)
-        :return:
-        """
-        config = configparser.ConfigParser()
-        config.read(self.config_files[0])
-        try:
-            return {"setup.cfg": config["metadata"]["version"]}
-        except KeyError:
-            return {}
-
-    def find_dunder_version_in_file(self, full_path):  # type: (str)-> Dict[str,str]
-        """
-        Find __version__ in a source file
-        :param full_path:
-        :return:
-        """
-        versions = {}
-        with open(full_path, "r") as infile:
-            for line in infile:
-                if line.strip().startswith("__version__"):
-                    if '"' not in line:
-                        logger.error(unicode((full_path, line)))
-                        raise TypeError(
-                            "Couldn't find double quote (\") Please format your code, maybe with Black."
-                        )
-                    else:
-                        parts = line.split('"')
-                        if len(parts) != 3:
-                            raise TypeError(
-                                'Version must be of form __version__ = "1.1.1"  with no comments'
-                            )
-                        versions[full_path] = parts[1]
-        return versions
 
     def jiggle_source_code(self):  # type: () ->None
         """

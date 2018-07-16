@@ -117,6 +117,40 @@ Conflicts
 --------
 If you use pbr or bumpversion with jiggle_version you may have conflicts. All-in-one tools are most likely to conflict.
 
+
+Design Decisions
+----------------
+- What version is canonical? 
+    - User supplied. (No. This should be zero touch.) 
+    - Discovered in source (Yes, preferably)
+    - Discovered in pip/pip package/pypi (Yes, but as fallback.)
+    - VCS supplied, e.g. git/mercurial, etc (Yes, but as fallback)
+- What is the next version?
+    - User supplies. (No. This should be zero touch. Maybe option for bumping minor/major)
+    - Search for it, increment it (Yes)
+    - Provide default, e.g. 0.1.0 (Yes)
+- How do you parse the version?
+    - User supplied regex (ha, ha, wait... some libs do this. No!) 
+    - ast (i.e. eval the source code) (Yes, via 3rd party lib)
+    - string parsing (Yes, via 3rd party lib)
+    - library supplied regex (Yes, via 3rd party lib)
+- How do you interpret the version or compare versions?
+    - [PEP 440](https://www.python.org/dev/peps/pep-0440/) Yes.
+    - Semantic Version - Yes.
+    - User supplied ad-hoc-  (No.)
+    - Opaque strings (no way to auto-bump) (No.)
+    - Other, e.g. Microsoft versions, for cross platform deployment. (No.)
+- How do you record the new version?
+    - Update files. (Yes.)
+    - Update VCS (commit, push, tag, etc). (Yes via option)
+- How do you integrate with other build steps?
+    - standalone. (Yes.)
+    - bump version along with other steps, like packaging and pushing to pypi. (Option for git tagging.)
+  
+
+
+
+
 How are other people solving this problem?
 ------------------------------------------
 
@@ -217,36 +251,4 @@ Django
 [django-fe-version](https://pypi.org/project/django-fe-version/) Adds a /version/ endpoint to your web app.
 
 [django-project-version](https://pypi.org/project/django-project-version/) same..
-
-
-Design Decisions
-----------------
-- What version is canonical? 
-    - User supplied 
-    - Discovered in source
-    - Discovered in pip/pip package/pypi
-    - VCS supplied, e.g. git/mercurial, etc
-- What is the next version?
-    - User supplies
-    - Search for it, increment it
-    - Provide default, e.g. 0.1.0
-- How do you parse the version?
-    - User supplied regex (ha, ha, wait... some libs do this)
-    - ast (i.e. eval the source code)
-    - string parsing
-    - library supplied regex
-- How do you interpret the version or compare versions?
-    - [PEP 440](https://www.python.org/dev/peps/pep-0440/)
-    - Semantic Version
-    - User supplied ad-hoc 
-    - Opaque strings (no way to auto-bump)
-    - Other, e.g. Microsoft versions, for cross platform deployment
-- How do you record the new version?
-    - Update files
-    - Update VCS (commit, push, tag, etc)
-- How do you integrat with other build steps?
-    - standalone
-    - bump version along with other steps, like packaging and pushing to pypi
-
-    
 
