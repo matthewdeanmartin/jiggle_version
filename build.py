@@ -408,9 +408,10 @@ def mypy():
             else:
                 lint_file.writelines([line + "\n"])
 
-    num_lines = sum(1 for line in open(mypy_file) if line)
-    if num_lines > 2:
-        raise TypeError("Too many lines of mypy : {0}".format(num_lines))
+    num_lines = sum(1 for line in open(mypy_file) if line and line.strip(" \n"))
+    max_lines = 2
+    if num_lines > max_lines:
+        raise TypeError("Too many lines of mypy : {0}, max {1}".format(num_lines, max_lines))
 
 
 @task()

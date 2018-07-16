@@ -34,6 +34,11 @@ except ImportError:
     # Python 2.x fallback
     import ConfigParser as configparser
 
+import sys
+
+if sys.version_info.major == 3:
+    unicode = str
+
 logger = logging.getLogger(__name__)
 
 # contrive usage so black doesn't remove the import
@@ -81,7 +86,7 @@ class JiggleVersion:
 
         self.text_files = [os.path.join(self.SRC, "version.txt")]
 
-    def validate_current_versions(self): # type: () -> bool
+    def validate_current_versions(self):  # type: () -> bool
         """
         Can a version be found? Are all versions currently the same? Are they valid sem ver?
         :return:
@@ -106,7 +111,7 @@ class JiggleVersion:
                 return True
             return False
 
-    def merge_two_dicts(self, x, y): # type: Dict[Any, Any]
+    def merge_two_dicts(self, x, y):  # type: () -> Dict[Any, Any]
         """
         Merge dictionaries. This is for python 2 compat.
         :param x:
@@ -143,7 +148,7 @@ class JiggleVersion:
                 copy[key] = version
             except ValueError:
                 print("Invalid Semantic Version " + version)
-                copy[key] = "Invalid Semantic Version : " + str(version)
+                copy[key] = "Invalid Semantic Version : " + unicode(version)
         return copy
 
     def all_versions_equal_sem_ver(self, versions):  # type: (Dict[str,str]) -> bool
@@ -246,7 +251,9 @@ class JiggleVersion:
                                     'Version must be of form __version__ = "1.1.1"  with no comments'
                                 )
                             next_version = self.version_to_write(parts[1])
-                        to_write.append('__version__ = "{0}"'.format(str(next_version)))
+                        to_write.append(
+                            '__version__ = "{0}"'.format(unicode(next_version))
+                        )
                     else:
                         to_write.append(line)
 
@@ -266,12 +273,12 @@ class JiggleVersion:
         """
         if not os.path.isfile(filepath):
             if self.create_all and "__init__" in file_name:
-                print("Creating " + str(filepath))
+                print("Creating " + unicode(filepath))
                 self.file_maker.create_init(filepath)
                 if not os.path.isfile(filepath):
                     raise TypeError("Missing file " + filepath)
             if "__version__" in filepath:
-                print("Creating " + str(filepath))
+                print("Creating " + unicode(filepath))
                 self.file_maker.create_version(filepath)
                 if not os.path.isfile(filepath):
                     raise TypeError("Missing file " + filepath)
@@ -307,7 +314,7 @@ class JiggleVersion:
         if first:
             print(
                 "Updating from version {0} to {1}".format(
-                    str(self.version), str(next_version)
+                    unicode(self.version), unicode(next_version)
                 )
             )
         return next_version
@@ -331,7 +338,7 @@ class JiggleVersion:
                 and not os.path.isfile(filepath)
                 and os.path.isfile(self.SRC + "setup.py")
             ):
-                print("Creating " + str(filepath))
+                print("Creating " + unicode(filepath))
                 self.file_maker.create_setup_cfg(filepath)
 
             if os.path.isfile(filepath):
@@ -344,7 +351,9 @@ class JiggleVersion:
                                 print(parts)
                                 raise TypeError("Must be of form version = 1.1.1")
                             next_version = self.version_to_write(parts[1])
-                            to_write.append("version={0}\n".format(str(next_version)))
+                            to_write.append(
+                                "version={0}\n".format(unicode(next_version))
+                            )
                         else:
                             to_write.append(line)
 
@@ -363,7 +372,7 @@ class JiggleVersion:
                     raise TypeError("Can't write version")
                 # BUG: wrong version!
                 next_version = self.version_to_write("0.0.0")
-                outfile.writelines([str(next_version)])
+                outfile.writelines([unicode(next_version)])
                 outfile.close()
 
 

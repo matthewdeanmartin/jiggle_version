@@ -2,4 +2,4 @@
 """
 Opinionated version incrementing
 """
-__version__ = "1.0.29"
+__version__ = "1.0.31"
