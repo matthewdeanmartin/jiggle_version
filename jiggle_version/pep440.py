@@ -28,21 +28,24 @@
 ###############################################################################
 import re
 
-posint = '(0|[1-9]\d*)'
+posint = "(0|[1-9]\d*)"
 
 # 0!0.0.0rc0.post0.dev0
 
-tpl_string_re = ('^' # Start
-            '([1-9]\d*!)?'        # [N!]
-            '{posint}'            # N
-            '(\.{posint})*'        # (.N)*
-            '((a|b|rc){posint})?' # [{a|b|rc}N]
-            '(\.post{posint})?'  # [.postN]
-            '(\.dev{postdev})?'   # [.devN]
-            '$')
+tpl_string_re = (
+    "^"  # Start
+    "([1-9]\d*!)?"  # [N!]
+    "{posint}"  # N
+    "(\.{posint})*"  # (.N)*
+    "((a|b|rc){posint})?"  # [{a|b|rc}N]
+    "(\.post{posint})?"  # [.postN]
+    "(\.dev{postdev})?"  # [.devN]
+    "$"
+)
 string_re = tpl_string_re.format(posint=posint, postdev=posint)
-loose440re = re.compile(tpl_string_re.format(posint=posint, postdev=(posint+'?')))
+loose440re = re.compile(tpl_string_re.format(posint=posint, postdev=(posint + "?")))
 pep440re = re.compile(string_re)
+
 
 def is_canonical(version, loosedev=False):
     """
@@ -52,6 +55,9 @@ def is_canonical(version, loosedev=False):
         return loose440re.match(version) is not None
     return pep440re.match(version) is not None
 
+
 def assert_valid(version):
     if not is_canonical(version):
-        raise AssertionError("Version string {!r} does not match PEP 440 specification".format(version))
+        raise AssertionError(
+            "Version string {!r} does not match PEP 440 specification".format(version)
+        )

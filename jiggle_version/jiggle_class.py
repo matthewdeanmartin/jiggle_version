@@ -66,10 +66,11 @@ class JiggleVersion:
         # the files we will attempt to manage
         self.project_root = os.path.join(self.SRC, self.PROJECT)
 
-        self.source_files = ["__init__.py",  # required.
-                             "__version__.py",  # required.
-                             "_version.py"  # optional
-                             ]
+        self.source_files = [
+            "__init__.py",  # required.
+            "__version__.py",  # required.
+            "_version.py",  # optional
+        ]
         replacement = []
         for file in self.source_files:
             replacement.append(os.path.join(self.project_root, file))
@@ -81,10 +82,16 @@ class JiggleVersion:
         self.text_files = [os.path.join(self.SRC, "version.txt")]
 
     def validate_current_versions(self):
+        """
+        Can a version be found? Are all versions currently the same? Are they valid sem ver?
+        :return:
+        """
         versions = self.all_current_versions()
         for ver, version in versions.items():
             if "Invalid Semantic Version" in version:
-                print("Invalid versions, can't compare them, can't determine if in sync")
+                print(
+                    "Invalid versions, can't compare them, can't determine if in sync"
+                )
                 return False
         if not versions:
             print("Found no versions, will use default 0.1.0")
@@ -100,11 +107,21 @@ class JiggleVersion:
             return False
 
     def merge_two_dicts(self, x, y):
+        """
+        Merge dictionaries. This is for python 2 compat.
+        :param x:
+        :param y:
+        :return:
+        """
         z = x.copy()  # start with x's keys and values
         z.update(y)  # modifies z with y's keys and values & returns None
         return z
 
     def all_current_versions(self):  # type: () ->Dict[str,str]
+        """
+        Track down all the versions & compile into one dictionary
+        :return:
+        """
         versions = {}
         for file in self.source_files:
 
@@ -130,7 +147,11 @@ class JiggleVersion:
         return copy
 
     def all_versions_equal_sem_ver(self, versions):  # type: (Dict[str,str]) -> bool
-
+        """
+        Verify that all the versions are the same.
+        :param versions:
+        :return:
+        """
         if len(versions) <= 1:
             return True
 
@@ -153,6 +174,10 @@ class JiggleVersion:
         return True
 
     def read_text(self):  # type: () ->Dict[str,str]
+        """
+        Get version out of ad-hoc version.txt
+        :return:
+        """
         if not os.path.isfile(self.text_files[0]):
             return {}
         with open(self.text_files[0], "r") as infile:
@@ -160,6 +185,10 @@ class JiggleVersion:
         return {self.text_files[0]: text.strip(" \n")}
 
     def read_metadata(self):  # type: () ->Dict[str,str]
+        """
+        Get version out of a .ini file (or .cfg)
+        :return:
+        """
         config = configparser.ConfigParser()
         config.read(self.config_files[0])
         try:
@@ -167,7 +196,12 @@ class JiggleVersion:
         except KeyError:
             return {}
 
-    def find_dunder_version_in_file(self, full_path):  # type: (str)- > Dict[str,str]
+    def find_dunder_version_in_file(self, full_path):  # type: (str)-> Dict[str,str]
+        """
+        Find __version__ in a source file
+        :param full_path:
+        :return:
+        """
         versions = {}
         with open(full_path, "r") as infile:
             for line in infile:
@@ -175,7 +209,8 @@ class JiggleVersion:
                     if '"' not in line:
                         print(full_path, line)
                         raise TypeError(
-                            "Couldn't find double quote (\") Please format your code, maybe with Black.")
+                            "Couldn't find double quote (\") Please format your code, maybe with Black."
+                        )
                     else:
                         parts = line.split('"')
                         if len(parts) != 3:
@@ -202,7 +237,8 @@ class JiggleVersion:
                         if '"' not in line:
                             print(file_name, line)
                             raise TypeError(
-                                "Couldn't find double quote (\") Please format your code, maybe with Black.")
+                                "Couldn't find double quote (\") Please format your code, maybe with Black."
+                            )
                         else:
                             parts = line.split('"')
                             if len(parts) != 3:
@@ -222,6 +258,12 @@ class JiggleVersion:
                 outfile.writelines(to_write)
 
     def create_missing(self, file_name, filepath):  # type: (str,str)->None
+        """
+        Check for file, decide if needed, call to create
+        :param file_name:
+        :param filepath:
+        :return:
+        """
         if not os.path.isfile(filepath):
             if self.create_all and "__init__" in file_name:
                 print("Creating " + str(filepath))
@@ -310,16 +352,12 @@ class JiggleVersion:
                     for line in to_write:
                         print(line, end="")
 
-                with io.open(
-                        self.SRC + file_name, "w", encoding="utf-8"
-                ) as outfile:
+                with io.open(self.SRC + file_name, "w", encoding="utf-8") as outfile:
                     outfile.writelines(to_write)
 
         version_txt = self.SRC + "/version.txt"
         if os.path.isfile(version_txt) or self.create_configs:
-            with io.open(
-                    version_txt, "w", encoding="utf-8"
-            ) as outfile:
+            with io.open(version_txt, "w", encoding="utf-8") as outfile:
                 # BUG will blow up if not already set
                 if self.version is None or self.version == "":
                     raise TypeError("Can't write version")
