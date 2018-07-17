@@ -10,5 +10,8 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
+cmp-version
 docopt
+parver
 semantic-version
+versio

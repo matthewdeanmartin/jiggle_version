@@ -117,40 +117,6 @@ Conflicts
 --------
 If you use pbr or bumpversion with jiggle_version you may have conflicts. All-in-one tools are most likely to conflict.
 
-
-Design Decisions
-----------------
-- What version is canonical? 
-    - User supplied. (No. This should be zero touch.) 
-    - Discovered in source (Yes, preferably)
-    - Discovered in pip/pip package/pypi (Yes, but as fallback.)
-    - VCS supplied, e.g. git/mercurial, etc (Yes, but as fallback)
-- What is the next version?
-    - User supplies. (No. This should be zero touch. Maybe option for bumping minor/major)
-    - Search for it, increment it (Yes)
-    - Provide default, e.g. 0.1.0 (Yes)
-- How do you parse the version?
-    - User supplied regex (ha, ha, wait... some libs do this. No!) 
-    - ast (i.e. eval the source code) (Yes, via 3rd party lib)
-    - string parsing (Yes, via 3rd party lib)
-    - library supplied regex (Yes, via 3rd party lib)
-- How do you interpret the version or compare versions?
-    - [PEP 440](https://www.python.org/dev/peps/pep-0440/) Yes.
-    - Semantic Version - Yes.
-    - User supplied ad-hoc-  (No.)
-    - Opaque strings (no way to auto-bump) (No.)
-    - Other, e.g. Microsoft versions, for cross platform deployment. (No.)
-- How do you record the new version?
-    - Update files. (Yes.)
-    - Update VCS (commit, push, tag, etc). (Yes via option)
-- How do you integrate with other build steps?
-    - standalone. (Yes.)
-    - bump version along with other steps, like packaging and pushing to pypi. (Option for git tagging.)
-  
-
-
-
-
 How are other people solving this problem?
 ------------------------------------------
 
@@ -164,7 +130,6 @@ How are other people solving this problem?
 | __ | [python-git-version](https://github.com/aebrahim/python-git-version)       |    ___ |
 | [git-bump-version](https://pypi.org/project/git-bump-version/) | [git_bump_version](https://github.com/silent-snowman/git_bump_version)       |    ___ |
 | [pyver](https://pypi.org/project/pyver/) | [pyver](https://github.com/clearclaw/pyver) | ___ |
-
 | [vdt.version](https://pypi.org/project/vdt.version/) | [vdt.version](https://github.com/devopsconsulting/vdt.version) | ___ |
 
 
@@ -197,6 +162,12 @@ These all either run `git describe --tags` to find a version or `git tag %` to b
 - Other VCS
     - [mercurial_update_version](https://pypi.org/project/mercurial_update_version/) Merucrial holds your canonical version. Not going to test...I don't use
     
+
+| PyPi        | Source Code     | Docs  |
+| ------------- |-------------| -----|
+| __      | [changes](https://github.com/michaeljoseph/changes) | ___ |
+| [pylease](https://pypi.org/project/pylease/) | [repo here](https://github.com/bagrat/pylease)| ___ |
+| [metapensiero.tool.bump_version](https://pypi.org/project/metapensiero.tool.bump_version/) | [metapensiero.tool.bump_version](https://pypi.org/project/metapensiero.tool.bump_version/) | ___ |
 
  Source Centric
  --------------
@@ -233,15 +204,15 @@ Version Finders
 ---------------
 
 - VCS centric
- - [version_hunter](https://pypi.org/project/version-hunter/) Seems to be more focused on finding a version from a source code tree & not in bumping it.
+  - [version_hunter](https://pypi.org/project/version-hunter/) Seems to be more focused on finding a version from a source code tree & not in bumping it.
 
- - [git-version](https://pypi.org/project/git-version/) Version finding from your git repo
+  - [git-version](https://pypi.org/project/git-version/) Version finding from your git repo
  
- - [tcversioner](https://pypi.org/project/tcversioner/) Find version via vcs tag. Writes version.txt
+  - [tcversioner](https://pypi.org/project/tcversioner/) Find version via vcs tag. Writes version.txt
 
 - Source Tree centric
- - [get_version](https://pypi.org/project/get_version/) Searches source tree? Local pip package?
- - [bernardomg.version-extractor](https://pypi.org/project/bernardomg.version-extractor/) Extract version from source code. 2 functions (microlib) that find __version__ inside of __init__.py
+  - [get_version](https://pypi.org/project/get_version/) Searches source tree? Local pip package?
+  - [bernardomg.version-extractor](https://pypi.org/project/bernardomg.version-extractor/) Extract version from source code. 2 functions (microlib) that find __version__ inside of __init__.py
  - Other-
     - [package_version pypi](https://pypi.org/project/package-version/) - [package_version](https://github.com/Yuav/python-package-version) Assume pypi has your canoncial version, use pip to find the last version to bump.
     - [setuptools-requirements-vcs-version](https://github.com/danielbrownridge/setuptools-requirements-vcs-version) Find version in requirements.txt found by searching git url! Not sure what scenario this is for.

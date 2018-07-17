@@ -40,7 +40,7 @@ _ = List, Optional, Dict, Any
 
 def validate_found_project(candidates):  # type: (List[str]) -> None
     """
-
+    Should be only 1 project
     :param candidates:
     :return:
     """
@@ -58,6 +58,11 @@ def validate_found_project(candidates):  # type: (List[str]) -> None
 
 
 def console_trace(level):  # type: (int)->None
+    """
+    Stop using print(), messes up `jiggle_version find` command
+    :param level:
+    :return:
+    """
     # set up logging to file - see previous section for more details
     logging.basicConfig(
         level=level,
@@ -78,13 +83,17 @@ def console_trace(level):  # type: (int)->None
 
 
 def process_docopts():  # type: ()->None
+    """
+    Just process the command line options and commands
+    :return:
+    """
     arguments = docopt(__doc__, version="Jiggle Version 1.0")
     logger.debug(arguments)
     candidates = find_project()
     if candidates:
         project_name = candidates[0]
     else:
-        project_name = None
+        project_name = ""
 
     if arguments["here"]:
         if arguments["--debug"]:

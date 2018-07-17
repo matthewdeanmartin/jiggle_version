@@ -18,7 +18,14 @@ _ = List, Optional
 
 
 class FileMaker(object):
+    """
+    Just wrties files.
+    """
     def __init__(self, project):  # type:  (str) -> None
+        """
+        Initialize
+        :param project:
+        """
         self.project = project
 
     def create_init(self, path):  # type: (str) -> None
@@ -52,6 +59,11 @@ __version__ = \"0.0.0\"
             outfile.write(source)
 
     def create_setup_cfg(self, path):  # type: (str) -> None
+        """
+        Just setup.cfg
+        :param path:
+        :return:
+        """
         source = """[metadata]
 name = {0}
 version=0.0.1 

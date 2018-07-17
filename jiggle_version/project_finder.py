@@ -12,6 +12,10 @@ _ = List
 
 
 def find_project():  # type: () -> List[str]
+    """
+    Get all candidate projects
+    :return:
+    """
     folders = files = [f for f in os.listdir(".") if os.path.isdir(f)]
     found = 0
     candidates = []

@@ -204,10 +204,11 @@ How are other people solving this problem?
 | org/project/pyver/>`_ | b.com/clearclaw/pyver |                       |
 | _                     | >`__                  |                       |
 +-----------------------+-----------------------+-----------------------+
-
-| `vdt.version <https://pypi.org/project/vdt.version/>`__ \|
-  `vdt.version <https://github.com/devopsconsulting/vdt.version>`__ \|
-  \__\_ \|
+| `vdt.version <https:/ | `vdt.version <https:/ | \__\_                 |
+| /pypi.org/project/vdt | /github.com/devopscon |                       |
+| .version/>`__         | sulting/vdt.version>` |                       |
+|                       | __                    |                       |
++-----------------------+-----------------------+-----------------------+
 
 Git Centric
 -----------
@@ -287,6 +288,25 @@ These all either run ``git describe --tags`` to find a version or
       Merucrial holds your canonical version. Not going to test…I don’t
       use
 
++-----------------------+-----------------------+-----------------------+
+| PyPi                  | Source Code           | Docs                  |
++=======================+=======================+=======================+
+| \_\_                  | `changes <https://git | \__\_                 |
+|                       | hub.com/michaeljoseph |                       |
+|                       | /changes>`__          |                       |
++-----------------------+-----------------------+-----------------------+
+| `pylease <https://pyp | `repo                 | \__\_                 |
+| i.org/project/pylease | here <https://github. |                       |
+| />`__                 | com/bagrat/pylease>`_ |                       |
+|                       | _                     |                       |
++-----------------------+-----------------------+-----------------------+
+| `metapensiero.tool.bu | `metapensiero.tool.bu | \__\_                 |
+| mp_version <https://p | mp_version <https://p |                       |
+| ypi.org/project/metap | ypi.org/project/metap |                       |
+| ensiero.tool.bump_ver | ensiero.tool.bump_ver |                       |
+| sion/>`__             | sion/>`__             |                       |
++-----------------------+-----------------------+-----------------------+
+
 +-----------------------------------------------------------------------+
 | Source Centric                                                        |
 +=======================================================================+
@@ -353,22 +373,25 @@ Version Finders
 ---------------
 
 -  VCS centric
--  `version_hunter <https://pypi.org/project/version-hunter/>`__ Seems
-   to be more focused on finding a version from a source code tree & not
-   in bumping it.
 
--  `git-version <https://pypi.org/project/git-version/>`__ Version
-   finding from your git repo
+   -  `version_hunter <https://pypi.org/project/version-hunter/>`__
+      Seems to be more focused on finding a version from a source code
+      tree & not in bumping it.
 
--  `tcversioner <https://pypi.org/project/tcversioner/>`__ Find version
-   via vcs tag. Writes version.txt
+   -  `git-version <https://pypi.org/project/git-version/>`__ Version
+      finding from your git repo
+
+   -  `tcversioner <https://pypi.org/project/tcversioner/>`__ Find
+      version via vcs tag. Writes version.txt
 
 -  Source Tree centric
--  `get_version <https://pypi.org/project/get_version/>`__ Searches
-   source tree? Local pip package?
--  `bernardomg.version-extractor <https://pypi.org/project/bernardomg.version-extractor/>`__
-   Extract version from source code. 2 functions (microlib) that find
-   **version** inside of **init**.py
+
+   -  `get_version <https://pypi.org/project/get_version/>`__ Searches
+      source tree? Local pip package?
+   -  `bernardomg.version-extractor <https://pypi.org/project/bernardomg.version-extractor/>`__
+      Extract version from source code. 2 functions (microlib) that find
+      **version** inside of **init**.py
+
 -  Other-
 
    -  `package_version
@@ -388,48 +411,6 @@ a /version/ endpoint to your web app.
 
 `django-project-version <https://pypi.org/project/django-project-version/>`__
 same..
-
-Design Decisions
-----------------
-
--  What version is canonical?
-
-   -  User supplied
-   -  Discovered in source
-   -  Discovered in pip/pip package/pypi
-   -  VCS supplied, e.g. git/mercurial, etc
-
--  What is the next version?
-
-   -  User supplies
-   -  Search for it, increment it
-   -  Provide default, e.g. 0.1.0
-
--  How do you parse the version?
-
-   -  User supplied regex (ha, ha, wait… some libs do this)
-   -  ast (i.e. eval the source code)
-   -  string parsing
-   -  library supplied regex
-
--  How do you interpret the version or compare versions?
-
-   -  `PEP 440 <https://www.python.org/dev/peps/pep-0440/>`__
-   -  Semantic Version
-   -  User supplied ad-hoc
-   -  Opaque strings (no way to auto-bump)
-   -  Other, e.g. Microsoft versions, for cross platform deployment
-
--  How do you record the new version?
-
-   -  Update files
-   -  Update VCS (commit, push, tag, etc)
-
--  How do you integrat with other build steps?
-
-   -  standalone
-   -  bump version along with other steps, like packaging and pushing to
-      pypi
 
 .. |MIT licensed| image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE

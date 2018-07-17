@@ -295,7 +295,7 @@ def lint():
                         and "---------------------" not in line
                         and "Your code has been rated at" not in line)
         if num_lines > cutoff:
-            raise TypeError("Too many lines of lint : {0}".format(num_lines))
+            raise TypeError("Too many lines of lint : {0}, max {1}".format(num_lines, cutoff))
 
 
 @task(lint)

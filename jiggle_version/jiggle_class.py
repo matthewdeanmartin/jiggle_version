@@ -39,7 +39,7 @@ _ = List, Optional, Dict, Any
 
 class JiggleVersion(object):
     """
-    Because OOP.
+    Coordinates code, writes versions
     """
 
     def __init__(self, project, source, debug=False):  # type: (str, str, bool) ->None
