@@ -5,6 +5,20 @@ Badges
 ------
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE) ![Read the Docs](https://img.shields.io/readthedocs/pip.svg) ![Travis](https://travis-ci.com/matthewdeanmartin/jiggle_version.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/matthewdeanmartin/jiggle_version/badge.svg?branch=master)](https://coveralls.io/github/matthewdeanmartin/jiggle_version?branch=master) [![BCH compliance](https://bettercodehub.com/edge/badge/matthewdeanmartin/jiggle_version?branch=master)](https://bettercodehub.com/)
 
+Problem to be solved
+-------------------
+There are up to 1/2 dozen places to update a version string. You scoff, 'Can't be!' But for a mature code base, it is
+because so many tools expect version strings in different places:
+
+- __init__.py has __version__.py
+- so does __version__.py
+- so does the setup function in setup.py
+- so does the setup.cfg if you are doing cofig driven setup.py
+- your git repo might need a tag matching the library version
+- you might need a plain text version.txt
+
+You will need to find the current version, bump the most minor part- which varies depending on if you are using pep440, semantic version or something else, update all the placed where you could update and
+re-do this as often as each build and at least as often as each package and push to pypi. 
 
 Opinionated
 -----------
