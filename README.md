@@ -22,17 +22,18 @@ re-do this as often as each build and at least as often as each package and push
 
 Opinionated
 -----------
-It is a design smell that a library opens with asking you a lot of questions or to fill in a lot of twitchy config before simple scenarious work.
+A library should have one working, no-options, no questions asked scenario, e.g.
+
+    jiggle_library here
+    # find, bump & update version strings in source code
 
 An opinionated library has an opinion about the right way to do it. That said, if the library can discover existing conventions, it should discover them and used them.
 
-Other libraries with different opinions exist, see below.
+The following contraints enable "drop in and go"
 
 No Config, No Regex
 -------------------
 If the config is more complex than re-writing the code from scratch, there is something wrong with a library.
-
-These contraints enable "drop in and go"
 
 Don't contaminate the package
 -----------------------------
@@ -63,14 +64,16 @@ or
 
 Don't force the developer to create irrelevant things
 --------
-For example, if there is no README.md, don't make me create one.
+For example, if there is no README.md, don't make me create one. 
 
 Don't update natural language files
 -----
 There is no way to do this without programming-like configuration. Your README.md might say, "In versions 0.1.0 there were bugs and in 2.0.0 they were fixed." There is no way to update that string with a zero-config app.
 
-Build Incremeter
+Automatically Bump "Minor"/"Path"/"Build", let user manually update "Major"
 ----------------
+It should be uncommon to need record a big version change. You can do that manually. It would require AI to bump anything but the patch/build number.
+
  - Major - The change is big.
  - Minor - The change breaks compatibility. This might be detectable with a unit test runner,  or maybe even by detecting
 changes to public interfaces (not that such a concept exists in python) but otherwise is too hard for machines.
@@ -79,15 +82,15 @@ number.
 
 Files Targeted
 --------------
-/\_\_init\_\_.py  - \_\_version\_\_ = "1.1.1"
+/\_\_init\_\_.py  - `\_\_version\_\_ = "1.1.1"`
 
-/\_\_version\_\_.py - \_\_version\_\_ = "1.1.1"
+/\_\_version\_\_.py - `\_\_version\_\_ = "1.1.1"`
 
 TODO: _version.py - I think this is a place to pipe a version string from a version control system that isn't expected to be executable? Not sure. It is a common convention. Versioneer puts library code here.
 
 TODO: version.txt - Some tools put/expect just the version string here.
 
-/setup.cfg  version=1.1.1
+/setup.cfg  `version=1.1.1`
 
 We take the first of these, increment the patch, and re-write those 3 files. If they don't exist, they will be created
 with only the version number filled in.
@@ -106,31 +109,50 @@ Flipside Question
 -----------------
 What version am I depending on? If you want to check the version of a dependency, you might be better off doing feature detection, i.e. check if name of some function exists and then use it.
 
+    # Don't
+    if some_lib.__version__ > Version("1.1.1"):
+        some_lib.some_method()
+    
+    # Do
+    try:
+       some_lib.some_method
+    except:
+       some_method = fallback
+
 Which Version Wins?
 ------------------
 You can get a version from your git tag, from anyone of the existing .py or config files.
 
-I think the tagger should set tags based on what is in the \_\_version\_\_.py file. Forcing the user to check in, tag
-and so on before bumping a version is no fun.
+jiggle_version at the moment demands that all found versions match before bumping. There is no rational way to decide which version of a list of candidates is better.
 
+
+Conflicts with Build Libraries
+--------
+If you use certain libraries, e.g. pbr, with jiggle_version you may have conflicts. All-in-one tools are most likely to conflict.
 
 Relevant PEPs
 -------------
-
-Semantic Version - https://semver.org/ - Outside of python-world, this is catching on.
+[Semantic Version](https://semver.org/) Outside of python-world, this is catching on. I *think* SemVer is a subset of PEP 440.
  
-345 - https://www.python.org/dev/peps/pep-0345/#version
+[440](https://www.python.org/dev/peps/pep-0440/) - Pythons most mature words on versions.
 
-386 - SUPERCEDED https://www.python.org/dev/peps/pep-0386/
+Some other peps that mention versions tangentially: [345](https://www.python.org/dev/peps/pep-0345/#version) and [396](https://www.python.org/dev/peps/pep-0396/#specification). 386 is superceded.
 
-396- https://www.python.org/dev/peps/pep-0396/#specification
 
-440 - https://www.python.org/dev/peps/pep-0440/ - Most libraries use this.
+Parsing the complex Version Object
+----------------------------------
+There are many libraries for dealing with the version string as a rich structured object with meaningful parts and a PEP to conform to. jiggle_version itself relies on semantic_version.
 
-Conflicts
---------
-If you use pbr or bumpversion with jiggle_version you may have conflicts. All-in-one tools are most likely to conflict.
-
+- Semantic Version Centric
+    - [semantic_version](https://pypi.org/project/semantic_version/)
+- Pep 440 Centric
+    - [Versio](https://pypi.org/project/Versio/) Supports PEP 440, 2 ad-hoc simple schemes and Perl versions. version.bump(). Micro-library- 2 files.
+    - [pep440](https://pypi.org/project/pep440/) Is the version string pep440 valid. Microlib, 2 functions, 1 file.
+    - [parver](https://pypi.org/project/parver/) PEP 440 centric. Version.bump_release() to increment
+    - dist_utils.version - Has a version parsing and comparing object.
+- Other
+    - [cmp-version](https://pypi.org/project/cmp_version/) - Command line interface only(?) Release-General-Epoch scheme.
+    
 How are other people solving this problem?
 ------------------------------------------
 
@@ -199,20 +221,6 @@ These all either run `git describe --tags` to find a version or `git tag %` to b
     - [incremental](https://pypi.org/project/incremental/) `_version.py` updator. If I understand, this lib becomes a dependency of your release app, i.e. it isn't just a build dependency. Pep440 only. Usage `python -m incremental.update my_module --patch`
 
 
-Parsing the complex Version Object
-----------------------------------
-There are many libraries for dealing with the version string as a rich structured object with meaningful parts and a PEP to conform to. jiggle_version itself relies on semantic_version.
-
-- Semantic Version Centric
-    - [semantic_version](https://pypi.org/project/semantic_version/)
-- Pep 440 Centric
-    - [Versio](https://pypi.org/project/Versio/) Supports PEP 440, 2 ad-hoc simple schemes and Perl versions. version.bump(). Micro-library- 2 files.
-    - [pep440](https://pypi.org/project/pep440/) Is the version string pep440 valid. Microlib, 2 functions, 1 file.
-    - [parver](https://pypi.org/project/parver/) PEP 440 centric. Version.bump_release() to increment
-    - dist_utils.version - Has a version parsing and comparing object.
-- Other
-    - [cmp-version](https://pypi.org/project/cmp_version/) - Command line interface only(?) Release-General-Epoch scheme.
-    
 
 Version Finders
 ---------------
