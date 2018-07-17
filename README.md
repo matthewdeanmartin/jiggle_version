@@ -10,14 +10,14 @@ Problem to be solved
 There are up to 1/2 dozen places to update a version string. You scoff, 'Can't be!' But for a mature code base, it is
 because so many tools expect version strings in different places:
 
-- __init__.py has __version__.py
-- so does __version__.py
+- \_\_init\_\_.py has \_\_version\_\_.py
+- so does \_\_version\_\_.py
 - so does the setup function in setup.py
 - so does the setup.cfg if you are doing cofig driven setup.py
 - your git repo might need a tag matching the library version
 - you might need a plain text version.txt
 
-You will need to find the current version, bump the most minor part- which varies depending on if you are using pep440, semantic version or something else, update all the placed where you could update and
+You will need to find the current version, bump the most minor part- which varies depending on if you are using pep440, semantic version or something else, update all the places where you could update and
 re-do this as often as each build and at least as often as each package and push to pypi. 
 
 Opinionated
@@ -36,7 +36,7 @@ These contraints enable "drop in and go"
 
 Don't contaminate the package
 -----------------------------
-Other than creating __init__.py, __version__.py, etc, no code should contaminate the users setup.py, nor package folder. No code should have to run in __version__.py or the like, for example, nothing like `__version__ = run_git_command_to_find_version()`, it should be equal to a constant. The use of jiggle_version should not increase the number of dependencies.
+Other than creating \_\_init\_\_.py, \_\_version\_\_.py, etc, no code should contaminate the users setup.py, nor package folder. No code should have to run in \_\_version\_\_.py or the like, for example, nothing like `\_\_version\_\_ = run_git_command_to_find_version()`, it should be equal to a constant. The use of jiggle_version should not increase the number of dependencies.
 
 Provide a vendorization option
 ------
@@ -79,9 +79,9 @@ number.
 
 Files Targeted
 --------------
-/__init__.py  - __version__ = "1.1.1"
+/\_\_init\_\_.py  - \_\_version\_\_ = "1.1.1"
 
-/__version__.py - __version__ = "1.1.1"
+/\_\_version\_\_.py - \_\_version\_\_ = "1.1.1"
 
 TODO: _version.py - I think this is a place to pipe a version string from a version control system that isn't expected to be executable? Not sure. It is a common convention. Versioneer puts library code here.
 
@@ -110,7 +110,7 @@ Which Version Wins?
 ------------------
 You can get a version from your git tag, from anyone of the existing .py or config files.
 
-I think the tagger should set tags based on what is in the __version__.py file. Forcing the user to check in, tag
+I think the tagger should set tags based on what is in the \_\_version\_\_.py file. Forcing the user to check in, tag
 and so on before bumping a version is no fun.
 
 
@@ -152,15 +152,15 @@ Git Centric
 These all either run `git describe --tags` to find a version or `git tag %` to bump a version.
 
  - Git/VCS centric - setup.py plugins
-    - [python-versioneer](https://github.com/warner/python-versioneer) Git tags hold canonical version. Setup.py plugin command. `versioneer install`. Vendorizes itself to your souce tree. Edit `setup.py` and `setup.cfg`. Run `python versioneer.py setup` This adds a lot of code to your source tree. Has bug where it only works if the version code file is _version.py. This was just very twitchy to setup. Library code has to run to get the version, e.g. ` python -c "import ver_test1; print(ver_test1.__version__)"` Personally, I don't like how this library infects the production release. I'd rather my build dependencies gone by final release.
+    - [python-versioneer](https://github.com/warner/python-versioneer) Git tags hold canonical version. Setup.py plugin command. `versioneer install`. Vendorizes itself to your souce tree. Edit `setup.py` and `setup.cfg`. Run `python versioneer.py setup` This adds a lot of code to your source tree. Has bug where it only works if the version code file is _version.py. This was just very twitchy to setup. Library code has to run to get the version, e.g. ` python -c "import ver_test1; print(ver_test1.\_\_version\_\_)"` Personally, I don't like how this library infects the production release. I'd rather my build dependencies gone by final release.
     - [setupext-gitversion](https://pypi.org/project/setupext-gitversion/) Git tag driven version bumping. Pep440. Requires [git_version] section in setup.cfg, add `from setupext import gitversion` and wire up a plug-in, then to run, `python setup.py git_version` I couldn't evaluate further because it blew up inspecting my git repo.
 
 - Git/VCS centric
-    - [python-git-version](https://github.com/aebrahim/python-git-version) Git holds canonical version. Library is expected to be vendorized (copied next to your setup.py). Code runs in __version__. ` python version.py` returns version found in tag. EXxecute with `python setup.py sdist` - as far as I can tell, it specifies the package version and doesn't expect to be used from code after deployment. 
+    - [python-git-version](https://github.com/aebrahim/python-git-version) Git holds canonical version. Library is expected to be vendorized (copied next to your setup.py). Code runs in \_\_version\_\_. ` python version.py` returns version found in tag. EXxecute with `python setup.py sdist` - as far as I can tell, it specifies the package version and doesn't expect to be used from code after deployment. 
 
     - [pyver](https://pypi.org/project/pyver/) SUPERCEDED BY *versioneer* Pep440. Expects tag to already exist. Invoked in setup.py, used for package version.
 
-    - [katversion](https://pypi.org/project/katversion/) Implemented as setup.py 'extension'. Expects __init__.py to exist. Ignores __init__.py and does not update the __version__ value. Does update package version with string drived from git tags and history.
+    - [katversion](https://pypi.org/project/katversion/) Implemented as setup.py 'extension'. Expects \_\_init\_\_.py to exist. Ignores \_\_init\_\_.py and does not update the \_\_version\_\_ value. Does update package version with string drived from git tags and history.
 
     - [zest releaser](http://zestreleaser.readthedocs.io/en/latest/) - VCS driven versionbump command
     
@@ -171,7 +171,7 @@ These all either run `git describe --tags` to find a version or `git tag %` to b
     - bumpversion & bump2version - I don't know how this works. Frustration trying to get bumpversion to work at all drove me to create jiggle-version. bump2version is a fork for fixing bugs because bumpversion is/was dormant. Not linking until the maintainers return 6 hours of my life that they stole.
     
 - Only Git Tags
-    - [git-bump-version](https://pypi.org/project/git-bump-version/) Command line `git_bump_version` searches for last tag and tags current. Blows up on "v1.2.3" As far as I can tell, this code is agnostic to what your source code is, i.e. it doesn't edit __version__.py, etc.
+    - [git-bump-version](https://pypi.org/project/git-bump-version/) Command line `git_bump_version` searches for last tag and tags current. Blows up on "v1.2.3" As far as I can tell, this code is agnostic to what your source code is, i.e. it doesn't edit \_\_version\_\_.py, etc.
 
 - Other VCS
     - [mercurial_update_version](https://pypi.org/project/mercurial_update_version/) Merucrial holds your canonical version. Not going to test...I don't use
@@ -187,7 +187,7 @@ These all either run `git describe --tags` to find a version or `git tag %` to b
  --------------
  Source centric version bumpers read and update .py or config files. They do not necessarily require or expect you to have source control tagging going on.
  
-  - Source Centric -- `__init__.py` or `__version__.py`
+  - Source Centric -- `\_\_init\_\_.py` or `\_\_version\_\_.py`
     - [changes](https://github.com/michaeljoseph/changes) - Does many release related things. `changes my_module bump_version` to bump version, but this code will not run unless readme.md exists, etc. Detect version from source. Does not suggest new version, you must manually type it.
     - [pylease](https://pypi.org/project/pylease/) Version bumper, release tool [repo here](https://github.com/bagrat/pylease) Not python 3 compatible (blows up on CondigParser on pip install)
 
@@ -226,7 +226,7 @@ Version Finders
 
 - Source Tree centric
   - [get_version](https://pypi.org/project/get_version/) Searches source tree? Local pip package?
-  - [bernardomg.version-extractor](https://pypi.org/project/bernardomg.version-extractor/) Extract version from source code. 2 functions (microlib) that find __version__ inside of __init__.py
+  - [bernardomg.version-extractor](https://pypi.org/project/bernardomg.version-extractor/) Extract version from source code. 2 functions (microlib) that find \_\_version\_\_ inside of \_\_init\_\_.py
  - Other-
     - [package_version pypi](https://pypi.org/project/package-version/) - [package_version](https://github.com/Yuav/python-package-version) Assume pypi has your canoncial version, use pip to find the last version to bump.
     - [setuptools-requirements-vcs-version](https://github.com/danielbrownridge/setuptools-requirements-vcs-version) Find version in requirements.txt found by searching git url! Not sure what scenario this is for.
