@@ -23,6 +23,7 @@ from jiggle_version.find_version_class import FindVersion
 from jiggle_version.is_this_okay import check
 from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import die, JiggleVersionException
+from jiggle_version.file_opener import FileOpener
 
 try:
     import configparser
@@ -46,10 +47,11 @@ class JiggleVersion(object):
     Coordinates code, writes versions
     """
 
-    def __init__(self, project, source, debug=False):  # type: (str, str, bool) ->None
+    def __init__(self, project, source,file_opener, debug=False):  # type: (str, str, FileOpener, bool) ->None
         """
         Entry point
         """
+        self.file_opener = file_opener
         if not project:
             logger.warning("No module name, can only update certain files.")
             # raise JiggleVersionException("Can't continue, no project name")
@@ -76,7 +78,7 @@ class JiggleVersion(object):
         self.DEBUG = False
         # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
-        self.version_finder = FindVersion(self.PROJECT, self.SRC)
+        self.version_finder = FindVersion(self.PROJECT, self.SRC, self.file_opener)
         try:
             self.current_version, self.version, self.schema = version_object_and_next(
                 self.version_finder.find_any_valid_version()
@@ -99,8 +101,9 @@ class JiggleVersion(object):
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
         self.file_maker = FileMaker(self.PROJECT)
-        self.version_finder = FindVersion(project, source, debug)
+        self.version_finder = FindVersion(project, source, file_opener, debug)
         self.file_inventory = FileInventory(project, source)
+
 
     def leading_whitespace(self, line):
         string = ""
@@ -123,7 +126,7 @@ class JiggleVersion(object):
             if not os.path.isfile(file_name):
                 continue
 
-            with io.open(file_name, "r", encoding="utf-8") as infile:
+            with self.file_opener.open_this(file_name, "r") as infile:
                 for line in infile:
                     leading_white = self.leading_whitespace(line)
                     ends_with_comma = line.strip(" \t\n").endswith(",")
@@ -170,7 +173,9 @@ class JiggleVersion(object):
                     if not found:
                         to_write.append(line)
 
-            check(io.open(file_name, "r", encoding="utf-8").read(), "".join(to_write))
+            check(
+                self.file_opener.open_this(file_name, "r").read(), "".join(to_write)
+            )
             with open(file_name, "w") as outfile:
                 outfile.writelines(to_write)
                 changed += 1
@@ -202,7 +207,7 @@ class JiggleVersion(object):
         setuppy = self.SRC + "setup.py"
         if not os.path.isfile(setuppy):
             return
-        with io.open(setuppy, "r", encoding="utf8") as infile:
+        with self.file_opener.open_this(setuppy, "r") as infile:
             for line in infile:
                 # BUG: this doesn't stick to [metadata] & will touch other sections
                 if line.strip().replace(" ", "").startswith("version="):
@@ -226,7 +231,7 @@ class JiggleVersion(object):
 
         encoding = chardet.detect(io.open(setup_py, "rb").read())
         # logger.warning("guessing encoding " + str(encoding))
-        with io.open(setup_py, "r", encoding=encoding["encoding"]) as infile:
+        with self.file_opener.open_this(setup_py, "r") as infile:
             for line in infile:
                 leading_white = self.leading_whitespace(line)
                 simplified_line = (
@@ -269,7 +274,7 @@ class JiggleVersion(object):
 
         if need_rewrite:
             check(
-                io.open(setup_py, "r", encoding=encoding["encoding"]).read(),
+                self.file_opener.open_this(setup_py, "r").read(),
                 "".join(lines_to_write),
             )
             with io.open(setup_py, "w", encoding=encoding["encoding"]) as outfile:
@@ -324,7 +329,7 @@ class JiggleVersion(object):
 
             if os.path.isfile(filepath):
                 need_rewrite = False
-                with io.open(filepath, "r", encoding="utf-8") as infile:
+                with self.file_opener.open_this(filepath, "r") as infile:
                     for line in infile:
                         if "version =" in line or "version=" in line:
                             parts = line.split("=")

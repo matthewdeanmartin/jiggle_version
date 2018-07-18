@@ -3,7 +3,6 @@
 Finds project by folder & source inspection.  Enables zero config by not
 asking the user something we can probably infer.
 
-# TODO: package_dir={'': 'src'},
 """
 import ast
 import os
@@ -15,12 +14,13 @@ from typing import List, Optional
 
 # so formatter doesn't remove.
 from setuptools import find_packages
-
+from jiggle_version.file_inventory import FileInventory
 from jiggle_version.utils import die, first_value_in_dict, JiggleVersionException
+from jiggle_version.file_opener import FileOpener
 
 logger = logging.getLogger(__name__)
 
-_ = List, Optional
+_ = List, Optional, FileInventory
 if sys.version_info.major == 3:
     unicode = str
 
@@ -30,8 +30,8 @@ class ModuleFinder(object):
     Finds modules in a folder.
     """
 
-    def __init__(self):  # type: () -> None
-        pass
+    def __init__(self, file_opener):  # type: (FileOpener) -> None
+        self.file_opener = file_opener
 
     def read_file(self, file):  # type: (str) -> Optional[str]
         """
@@ -41,16 +41,8 @@ class ModuleFinder(object):
         """
         setup_source = None
         if os.path.isfile("setup.py"):
-            try:
-                with io.open("setup.py", "r", encoding="utf-8") as setup_py:
-                    setup_source = setup_py.read()
-            except UnicodeDecodeError:
-                encoding = chardet.detect(io.open("setup.py", "rb").read())
-                # logger.warning("guessing encoding " + str(encoding))
-                with io.open(
-                    "setup.py", "r", encoding=encoding["encoding"]
-                ) as setup_py:
-                    setup_source = setup_py.read()
+            with self.file_opener.open_this("setup.py", "r") as setup_py:
+                setup_source = setup_py.read()
         return setup_source
 
     def setup_py_source(self):  # type: () -> Optional[str]
@@ -172,7 +164,7 @@ class ModuleFinder(object):
                         continue
 
                 candidates.append(folder)
-        # TODO: parse setup.py
+
         # TODO: parse setup.cfg
         if not candidates:
             candidates = candidates + self.find_single_file_project()
@@ -237,7 +229,7 @@ class ModuleFinder(object):
             if not "." in file:
                 candidate = files
                 try:
-                    firstline = open(file, "r").readline()
+                    firstline = self.file_opener.open_this(file, "r").readline()
                     if (
                         firstline.startswith("#")
                         and "python" in firstline

@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="foo",
-    version = "1.1.7",
+    version = "1.1.12",
     description="foo",
     long_description="foo\n",
     long_description_content_type="text/markdown",

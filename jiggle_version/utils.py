@@ -14,7 +14,7 @@ class JiggleVersionException(Exception):
     """
 
 
-def die(code, why):  # type: (str,str)->None
+def die(code, why):  # type: (int,str)->None
     """
     In release, exit process. In development, throw with useful message.
     :param code:

@@ -27,6 +27,7 @@ from jiggle_version.utils import (
     first_value_in_dict,
     JiggleVersionException,
 )
+from jiggle_version.file_opener import FileOpener
 
 try:
     import configparser
@@ -88,12 +89,13 @@ class FindVersion(object):
     Because OOP.
     """
 
-    def __init__(self, project, source, debug=False):  # type: (str, str, bool) ->None
+    def __init__(self, project, source, file_opener, debug=False):  # type: (str, str, FileOpener, bool) ->None
         """
         Entry point
         """
         # if not project:
         #     raise JiggleVersionException("Can't continue, no project name")
+        self.file_opener = file_opener
 
         if source is None:
             raise JiggleVersionException(
@@ -276,9 +278,7 @@ class FindVersion(object):
             else:
                 return found
 
-        encoding = chardet.detect(io.open("setup.py", "rb").read())
-        logger.debug(unicode(encoding))
-        with io.open(setup_py, "r", encoding=encoding["encoding"]) as infile:
+        with self.file_opener.open_this(setup_py, "r") as infile:
             for line in infile:
                 simplified_line = line.replace(" ", "").replace("'", '"')
                 if sum([1 for x in simplified_line if x == ","]) > 1:
@@ -313,7 +313,7 @@ class FindVersion(object):
         for file in self.file_inventory.text_files:
             if not os.path.isfile(file):
                 continue
-            with open(file, "r") as infile:
+            with self.file_opener.open_this(file, "r") as infile:
                 text = infile.readline()
             found[file] = text.strip(" \n")
         return found
@@ -337,9 +337,8 @@ class FindVersion(object):
         :return:
         """
         versions = {}
-        encoding = chardet.detect(io.open(full_path, "rb").read())
-        # logger.warning("guessing encoding " + str(encoding))
-        with io.open(full_path, "r", encoding=encoding["encoding"]) as infile:
+
+        with self.file_opener.open_this(full_path, "r") as infile:
             for line in infile:
                 simplified_line = line.replace("'", '"')
                 if simplified_line.strip().startswith("__version__"):
@@ -364,7 +363,7 @@ class FindVersion(object):
         setuppy = self.SRC + "setup.py"
         if not os.path.isfile(setuppy):
             return
-        with io.open(setuppy, "r", encoding="utf8") as infile:
+        with self.file_opener.open_this(setuppy, "r") as infile:
             for line in infile:
                 # BUG: this doesn't stick to [metadata] & will touch other sections
                 if line.strip().replace(" ", "").startswith("version="):

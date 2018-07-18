@@ -31,6 +31,7 @@ from typing import List, Optional, Dict, Any
 from docopt import docopt
 
 from jiggle_version.commands import bump_version, find_version
+from jiggle_version.file_opener import FileOpener
 from jiggle_version.project_finder import ModuleFinder
 
 logger = logging.getLogger(__name__)
@@ -82,7 +83,9 @@ def process_docopts():  # type: ()->None
     """
     arguments = docopt(__doc__, version="Jiggle Version 1.0")
     logger.debug(arguments)
-    module_finder = ModuleFinder()
+
+    f = FileOpener()
+    module_finder = ModuleFinder(f)
 
     candidates = module_finder.find_project()
     if candidates:

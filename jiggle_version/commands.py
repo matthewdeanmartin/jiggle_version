@@ -10,7 +10,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-
+from jiggle_version.file_inventory import FileInventory
+from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_version_class import FindVersion
 from jiggle_version.jiggle_class import JiggleVersion
 
@@ -29,8 +30,10 @@ def bump_version(project, source, debug):  # type: (str, str, bool) ->None
     Entry point
     :return:
     """
+    file_opener = FileOpener()
     # logger.debug("Starting version jiggler...")
-    jiggler = JiggleVersion(project, source, debug)
+    jiggler = JiggleVersion(project, source, file_opener,  debug)
+
     logger.debug(
         "Current, next : {0} -> {1} : {2}".format(
             jiggler.current_version, jiggler.version, jiggler.schema
@@ -51,7 +54,8 @@ def find_version(project, source, debug):  # type: (str, str, bool) ->None
     :return:
     """
     # quiet! no noise
-    finder = FindVersion(project, source, debug)
+    file_opener = FileOpener()
+    finder = FindVersion(project, source, file_opener, debug)
     if not finder.validate_current_versions():
         # This is a failure.
         logger.debug(str(finder.all_current_versions()))

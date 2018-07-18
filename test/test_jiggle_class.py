@@ -2,6 +2,8 @@
 """
 Tests
 """
+from jiggle_version.file_opener import FileOpener
+
 try:
     FileNotFoundError
 except NameError:
@@ -24,10 +26,12 @@ various = {
 
 def test_go():
     # what ev, who knows if these file even exist
+
+    f = FileOpener()
     for key, value in various.items():
         try:
             os.chdir(value)
-            jiggler = JiggleVersion(key, "", True)
+            jiggler = JiggleVersion(key, "",f, True)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
             assert changed>0
@@ -46,18 +50,18 @@ def test_no_files():
             pass
         except OSError:
             pass
-
+    f = FileOpener()
     # put app in dir with setup.py. Easier!
     try:
         os.chdir(SRC)
         # doesn't exist
-        jiggler = JiggleVersion(PROJECT, "", True)
+        jiggler = JiggleVersion(PROJECT, "",f, True)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()
 
         # and already exist
-        jiggler = JiggleVersion(PROJECT, "", True)
+        jiggler = JiggleVersion(PROJECT, "",f, True)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()

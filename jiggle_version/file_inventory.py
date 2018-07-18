@@ -2,7 +2,18 @@
 """
 Make dupe file lists go away.
 """
+import io
+import logging
 import os
+import sys
+from typing import List, Optional, Any
+
+import chardet
+
+_ = List, Optional, Any
+if sys.version_info.major == 3:
+    unicode = str
+logger = logging.getLogger(__name__)
 
 
 class FileInventory(object):

@@ -9,6 +9,7 @@ import random
 import sys
 
 from jiggle_version.commands import bump_version
+from jiggle_version.file_opener import FileOpener
 from jiggle_version.main import console_trace
 from jiggle_version.project_finder import ModuleFinder
 from jiggle_version.utils import JiggleVersionException
@@ -18,6 +19,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 things = [x for x in os.listdir("packages")]
 random.shuffle(things)
 console_trace(logging.DEBUG)
+
+f = FileOpener()
 for dir in things:
     if "abjad" in dir:
         # weird encoding
@@ -32,7 +35,7 @@ for dir in things:
     try:
         os.chdir("packages/{0}".format(dir))
         try:
-            module_finder = ModuleFinder()
+            module_finder = ModuleFinder(f)
             candidates = module_finder.find_project()
             print(candidates)
         except JiggleVersionException as jve:
