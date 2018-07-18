@@ -84,8 +84,9 @@ class JiggleVersion(object):
         except Exception as ex:
             # Can't find a version
             candidates = self.version_finder.all_current_versions()
-            message = (unicode(ex) +
-                " Can't find a recognizable version, won't be able to bump anything. "
+            message = (
+                unicode(ex)
+                + " Can't find a recognizable version, won't be able to bump anything. "
                 + str(candidates)
             )
             logger.error(message)
@@ -148,18 +149,22 @@ class JiggleVersion(object):
                                     # logger.warn(
                                     #     "weird source, not 3 parts " + unicode((file_name, line, simplified_line)))
                                     continue
-                                if parts[2].strip(" \t") not in [",",""]:
-                                    raise JiggleVersionException("Can't parse this yet (stuff after version) " + line)
+                                if parts[2].strip(" \t") not in [",", ""]:
+                                    raise JiggleVersionException(
+                                        "Can't parse this yet (stuff after version) "
+                                        + line
+                                    )
                                 found = True
                                 # preserve leading whitespace
                                 comma = ""
                                 if ends_with_comma:
                                     comma = ","
-                                to_write.append('{0}{1} = "{2}"{3}\n'.format(
+                                to_write.append(
+                                    '{0}{1} = "{2}"{3}\n'.format(
                                         leading_white,
                                         version_token,
                                         unicode(self.version_to_write()),
-                                        comma
+                                        comma,
                                     )
                                 )
                     if not found:
@@ -228,9 +233,13 @@ class JiggleVersion(object):
                     line.replace(" ", "").replace("'", '"').replace("\t", "")
                 )
                 if 'version="' in simplified_line:
-                    if len([x for x in simplified_line if x =="="])>1:
-                        raise JiggleVersionException("Don't have a way of parsing this yet. " + line)
-                    source = leading_white + 'version = "{0}"'.format(unicode(self.version_to_write()))
+                    if len([x for x in simplified_line if x == "="]) > 1:
+                        raise JiggleVersionException(
+                            "Don't have a way of parsing this yet. " + line
+                        )
+                    source = leading_white + 'version = "{0}"'.format(
+                        unicode(self.version_to_write())
+                    )
                     if "," in simplified_line:
                         source += ","
 
@@ -260,7 +269,8 @@ class JiggleVersion(object):
 
         if need_rewrite:
             check(
-                io.open(setup_py, "r", encoding=encoding["encoding"]).read(), "".join(lines_to_write)
+                io.open(setup_py, "r", encoding=encoding["encoding"]).read(),
+                "".join(lines_to_write),
             )
             with io.open(setup_py, "w", encoding=encoding["encoding"]) as outfile:
 

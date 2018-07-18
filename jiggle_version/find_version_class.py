@@ -22,7 +22,11 @@ from semantic_version import Version
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
 from jiggle_version.schema_guesser import version_object_and_next
-from jiggle_version.utils import merge_two_dicts, first_value_in_dict, JiggleVersionException
+from jiggle_version.utils import (
+    merge_two_dicts,
+    first_value_in_dict,
+    JiggleVersionException,
+)
 
 try:
     import configparser
@@ -59,12 +63,12 @@ def version_by_ast(file):  # type: (str) -> str
 here = os.path.abspath(os.path.dirname(__file__))
 
 
-def read(*parts):
+def read(*parts): # type: (Any)->str
     with codecs.open(os.path.join(here, *parts), "r") as fp:
         return fp.read()
 
 
-def find_version_by_regex(*file_paths):
+def find_version_by_regex(*file_paths):# type: (Any)->str
     """
     find_version("package", "__init__.py")
     :param file_paths:
@@ -130,7 +134,7 @@ class FindVersion(object):
         :return:
         """
         versions = self.all_current_versions()
-        if len(versions) >1:
+        if len(versions) > 1:
             if not self.all_versions_equal(versions):
                 if not self.all_versions_equal(versions):
                     almost_same = self.almost_the_same_version(
@@ -138,7 +142,9 @@ class FindVersion(object):
                     )
                     if almost_same:
                         # TODO: disable with strict option
-                        logger.warning("Version very by a patch level, will use greater.")
+                        logger.warning(
+                            "Version very by a patch level, will use greater."
+                        )
                         return unicode(almost_same)
 
         if not versions.keys():
@@ -268,7 +274,9 @@ class FindVersion(object):
             if self.strict:
                 logger.debug(os.getcwd())
                 logger.debug(os.listdir(os.getcwd()))
-                raise JiggleVersionException("Can't find setup.py : {0}, path :{1}".format(setup_py, self.SRC))
+                raise JiggleVersionException(
+                    "Can't find setup.py : {0}, path :{1}".format(setup_py, self.SRC)
+                )
             else:
                 return found
 
@@ -393,4 +401,3 @@ class FindVersion(object):
                 )
             )
         return self.version
-

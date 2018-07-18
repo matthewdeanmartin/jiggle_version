@@ -45,28 +45,23 @@ def console_trace(level):  # type: (int)->None
     :param level:
     :return:
     """
-    logging.config.dictConfig({
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'standard': {
-            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
-        },
-    },
-    'handlers': {
-        'default': {
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        '': {
-            'handlers': ['default'],
-            'level': 'DEBUG',
-            'propagate': True
+    logging.config.dictConfig(
+        {
+            "version": 1,
+            "disable_existing_loggers": False,
+            "formatters": {
+                "standard": {
+                    "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+                }
+            },
+            "handlers": {
+                "default": {"level": "DEBUG", "class": "logging.StreamHandler"}
+            },
+            "loggers": {
+                "": {"handlers": ["default"], "level": "DEBUG", "propagate": True}
+            },
         }
-    }
-})
+    )
     # logger.debug("Does this work?")
 
     # # define a Handler which writes INFO messages or higher to the sys.stderr
@@ -102,7 +97,9 @@ def process_docopts():  # type: ()->None
         guess_src_dir = module_finder.extract_package_dir()
         if not guess_src_dir:
             guess_src_dir = ""
-        bump_version(project=project_name, source=guess_src_dir, debug=arguments["--debug"])
+        bump_version(
+            project=project_name, source=guess_src_dir, debug=arguments["--debug"]
+        )
     elif arguments["find"]:
         # Only show errors. Rest of extraneous console output messes up this:
         # jiggle_version find>version.txt

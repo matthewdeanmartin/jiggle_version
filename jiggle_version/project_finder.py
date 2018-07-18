@@ -10,6 +10,7 @@ import os
 import io
 import logging
 import chardet
+import sys
 from typing import List, Optional
 
 # so formatter doesn't remove.
@@ -20,7 +21,8 @@ from jiggle_version.utils import die, first_value_in_dict, JiggleVersionExceptio
 logger = logging.getLogger(__name__)
 
 _ = List, Optional
-
+if sys.version_info.major == 3:
+    unicode = str
 
 class ModuleFinder(object):
     def __init__(self):  # type: () -> None
@@ -35,17 +37,17 @@ class ModuleFinder(object):
             except UnicodeDecodeError:
                 encoding = chardet.detect(io.open("setup.py", "rb").read())
                 # logger.warning("guessing encoding " + str(encoding))
-                with io.open("setup.py", "r", encoding=encoding["encoding"]) as setup_py:
+                with io.open(
+                    "setup.py", "r", encoding=encoding["encoding"]
+                ) as setup_py:
                     setup_source = setup_py.read()
         return setup_source
 
     def setup_py_source(self):  # type: () -> Optional[str]
         source = self.read_file("setup.py")
         if not source:
-            source = self.read_file("setup") # rare case
+            source = self.read_file("setup")  # rare case
         return source
-
-
 
     def name_from_setup_py(self):  # type: () -> str
         source = self.setup_py_source()
@@ -58,7 +60,7 @@ class ModuleFinder(object):
                     return simplified_row.split('"')[1]
         return ""
 
-    def extract_package_dir(self): # type: () -> Optional[str]
+    def extract_package_dir(self):  # type: () -> Optional[str]
         # package_dir={'': 'lib'},
         source = self.setup_py_source()
         if not source:
@@ -66,34 +68,33 @@ class ModuleFinder(object):
             return None
         if "package_dir" in source:
             for line in source.split("\n"):
-                simplified_line = line.strip(" ,").replace("'","\"")
+                simplified_line = line.strip(" ,").replace("'", '"')
                 if "package_dir" in simplified_line:
                     parts = simplified_line.split("=")
                     dict_src = parts[1].strip(" \t")
                     if not dict_src.endswith("}"):
-                        raise JiggleVersionException("Either this is hard to parse or we have 2+ src foldrs")
+                        raise JiggleVersionException(
+                            "Either this is hard to parse or we have 2+ src foldrs"
+                        )
                     try:
                         paths_dict = ast.literal_eval(dict_src)
                     except ValueError as ve:
-                        logger.error(source +": " + dict_src)
+                        logger.error(source + ": " + dict_src)
                         return ""
-
 
                     if "" in paths_dict:
                         candidate = paths_dict[""]
                         if os.path.isdir(candidate):
-                            return candidate
-                    if len(paths_dict) ==1:
-                        candidate =  first_value_in_dict(paths_dict)
+                            return unicode(candidate)
+                    if len(paths_dict) == 1:
+                        candidate = first_value_in_dict(paths_dict)
                         if os.path.isdir(candidate):
-                            return candidate
+                            return unicode(candidate)
                     else:
-                        raise JiggleVersionException("Have path_dict, but has more than one path.")
+                        raise JiggleVersionException(
+                            "Have path_dict, but has more than one path."
+                        )
         return None
-
-
-
-
 
     def via_find_packages(self):  # type: () -> List[str]
         packages = []

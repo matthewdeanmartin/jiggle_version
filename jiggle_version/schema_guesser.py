@@ -18,7 +18,7 @@ disutils.version
 """
 import sys
 import logging
-from typing import Any, Tuple, Optional
+from typing import Any, Tuple, Optional, Union
 
 import parver
 import semantic_version
@@ -30,11 +30,12 @@ from versio.version_scheme import (
 )
 
 from jiggle_version.utils import JiggleVersionException
+
 if sys.version_info.major == 3:
     unicode = str
 logger = logging.getLogger(__name__)
 
-_ = Any, Tuple, Optional
+_ = Any, Tuple, Optional, Union
 versio_version.Version.supported_version_schemes = [
     Pep440VersionScheme,
     Simple4VersionScheme,
@@ -43,7 +44,7 @@ versio_version.Version.supported_version_schemes = [
 
 def version_object_and_next(
     string
-):  # type: (str) -> Tuple[Union[semantic_version.Version,parver.Version, versio.Version],Union[semantic_version.Version, parver.Version, versio.Version],str]
+):  # type: (str) -> Tuple[Union[semantic_version.Version,parver.Version, versio_version.Version],Union[semantic_version.Version, parver.Version, versio_version.Version],str]
     if string == "" or string is None:
         raise JiggleVersionException("No version string, can only use default logic.")
 
