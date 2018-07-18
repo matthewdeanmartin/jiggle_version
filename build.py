@@ -285,7 +285,7 @@ def lint():
 
             raise TypeError("Fatal lint errors : {0}".format(fatal_errors))
 
-        cutoff = 85
+        cutoff = 100
         num_lines = sum(1 for line in open(lint_output_file_name)
                         if "*************" not in line
                         and "---------------------" not in line
@@ -405,7 +405,7 @@ def mypy():
                 lint_file.writelines([line + "\n"])
 
     num_lines = sum(1 for line in open(mypy_file) if line and line.strip(" \n"))
-    max_lines = 2
+    max_lines = 25
     if num_lines > max_lines:
         raise TypeError("Too many lines of mypy : {0}, max {1}".format(num_lines, max_lines))
 
