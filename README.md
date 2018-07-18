@@ -87,6 +87,22 @@ Don't update natural language files
 -----
 There is no way to do this without programming-like configuration. Your README.md might say, "In versions 0.1.0 there were bugs and in 2.0.0 they were fixed." There is no way to update that string with a zero-config app.
 
+Don't execute anything at post-deployment runtime
+--------
+Nothing succeeds as reliably as assigning a constant.
+
+No matter how clever or well tested your code is, executing code
+as post-deployment runtime is an additional dependency and failure point.
+
+`__version__.py`:
+```
+version = query_pyi()
+version = query_package_metadata()
+version = search_for_and_read_text_or_config()
+```
+
+
+
 Automatically Bump "Minor"/"Path"/"Build", let user manually update "Major"
 ----------------
 It should be uncommon to need record a big version change. You can do that manually. It would require AI to bump anything but the patch/build number.
@@ -159,6 +175,8 @@ Relevant PEPs
 [Semantic Version](https://semver.org/) Outside of python-world, this is catching on. I *think* SemVer is a subset of PEP 440.
  
 [440](https://www.python.org/dev/peps/pep-0440/) - Pythons most mature words on versions.
+
+[PyPA's Advice](https://packaging.python.org/guides/single-sourcing-package-version/)
 
 Some other peps that mention versions tangentially: [345](https://www.python.org/dev/peps/pep-0345/#version) and [396](https://www.python.org/dev/peps/pep-0396/#specification) which is deferred. 386 is superceded.
 

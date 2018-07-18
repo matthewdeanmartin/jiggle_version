@@ -8,6 +8,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import re
+import codecs
 import ast
 import io
 import logging
@@ -37,12 +39,39 @@ logger = logging.getLogger(__name__)
 # contrive usage so black doesn't remove the import
 _ = List, Optional, Dict, Any
 
-
+# don't do this.
+# execfile('...sample/version.py')
 def version_by_ast(file): # type: (str) -> str
+    """
+    Safer way to 'execute' python code to get a simple value
+    :param file:
+    :return:
+    """
     with open(file) as input_file:
         for line in input_file:
             if line.startswith("__version__"):
                 return ast.parse(line).body[0].value.s
+# ----
+# https://packaging.python.org/guides/single-sourcing-package-version/
+here = os.path.abspath(os.path.dirname(__file__))
+
+def read(*parts):
+    with codecs.open(os.path.join(here, *parts), 'r') as fp:
+        return fp.read()
+
+def find_version_by_regex(*file_paths):
+    """
+    find_version("package", "__init__.py")
+    :param file_paths:
+    :return:
+    """
+    version_file = read(*file_paths)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
+                              version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
+# ----
 
 
 class FindVersion(object):
