@@ -26,8 +26,11 @@ if sys.argv[-1] == "publish":
     os.system("python setup.py sdist bdist_wheel upload")
     sys.exit()
 required = [
-    'semantic_version',
-    'docopt'
+    'docopt', # command line parser
+    'semantic_version', # sem ver parser
+    'cmp-version',
+    'parver', # pep440 parser
+    'versio' # pep440 parser
 ]
 
 

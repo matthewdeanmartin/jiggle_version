@@ -10,7 +10,11 @@ def execute_get_text(command):
             command,
             stderr=subprocess.STDOUT,
             shell=True)
+        print(result)
     except subprocess.CalledProcessError as err:
+        print(err)
+        print(err.stdout)
+        print(err.stderr)
         raise
 
     return result.decode('utf-8')
