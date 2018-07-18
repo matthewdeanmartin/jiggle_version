@@ -20,6 +20,10 @@ class FileInventory(object):
         self.src = src
 
         # the files we will attempt to manage
+        # This path expects a package with 1 module in a folder
+        # not an edge case like setup.py only or file only module
+        # or multiple modules in one package
+        # or submodules that you might want to version
         self.project_root = os.path.join(self.src, self.project)
 
         self.source_files = [
@@ -31,12 +35,15 @@ class FileInventory(object):
             "__meta__.py",  # uncommon
         ]
         replacement = []
-        for file in self.source_files:
-            replacement.append(os.path.join(self.project_root, file))
+        if os.path.isdir(self.project_root):
+            for file in self.source_files:
+                replacement.append(os.path.join(self.project_root, file))
+
         self.source_files = replacement
 
         self.config_files = [os.path.join(self.src, "setup.cfg")]
 
+        self.default_text_file = [os.path.join(self.src, "VERSION.txt")]
         self.text_files = [
             os.path.join(self.src, "version.txt"),
             os.path.join(self.src, "VERSION.txt"),

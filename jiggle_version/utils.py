@@ -9,15 +9,25 @@ _ = List, Optional, Dict, Any
 
 
 class JiggleVersionException(Exception):
-    pass
+    """
+    Jiggle version can't continue. Different from a bug in jiggle version
+    """
 
 
-def die(code, why): # type: (str,str)->None
+def die(code, why):  # type: (str,str)->None
+    """
+    In release, exit process. In development, throw with useful message.
+    :param code:
+    :param why:
+    :return:
+    """
     if code != 0:
         # Development
-        # raise JiggleVersionException("Can't continue: " + why)
-        # prod
-        exit(code)
+        if False:
+            raise JiggleVersionException("Can't continue: " + why)
+        else:
+            # prod
+            exit(code)
 
 
 def first_value_in_dict(x):  # type: (Dict[Any, Any]) -> Any
@@ -26,7 +36,7 @@ def first_value_in_dict(x):  # type: (Dict[Any, Any]) -> Any
     :param x:
     :return:
     """
-    for key, value in x.items():
+    for key, _ in x.items():
         return x[key]
     raise KeyError()
 

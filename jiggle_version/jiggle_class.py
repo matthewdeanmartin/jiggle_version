@@ -281,7 +281,7 @@ class JiggleVersion(object):
 
     def version_to_write(self):  # type: () -> Version
         """
-        :return:
+        Should refactor to plain attribute
         """
         return self.version
 
@@ -351,10 +351,22 @@ class JiggleVersion(object):
         return changed
 
     def jiggle_text_file(self):  # type: () -> int
+        """
+        Update ver strings in a non-python, ordinary text file in root of package (next to setup.py).
+        :return:
+        """
         changed = 0
 
+        files_to_update = []
         for version_txt in self.file_inventory.text_files:
-            if os.path.isfile(version_txt) or self.create_configs:
+            if os.path.isfile(version_txt):
+                files_to_update.append(version_txt)
+
+        if not files_to_update and self.create_configs:
+            files_to_update = self.file_inventory.default_text_file
+
+        for version_txt in files_to_update:
+            if os.path.isfile(version_txt):
                 with io.open(version_txt, "w", encoding="utf-8") as outfile:
                     if self.version is None or self.version == "":
                         raise JiggleVersionException("Can't write version")

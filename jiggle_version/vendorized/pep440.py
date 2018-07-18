@@ -57,6 +57,9 @@ def is_canonical(version, loosedev=False):  # type: (str, bool) -> bool
 
 
 def assert_valid(version):  # type: (str) -> None
+    """
+    Validate and throw
+    """
     if not is_canonical(version):
         raise AssertionError(
             "Version string {!r} does not match PEP 440 specification".format(version)

@@ -91,7 +91,7 @@ def process_docopts():  # type: ()->None
         project_name = ""
 
     if arguments["here"]:
-        if arguments["--debug"]:
+        if arguments["--debug"] == "True":
             console_trace(logging.DEBUG)
         module_finder.validate_found_project(candidates)
         guess_src_dir = module_finder.extract_package_dir()

@@ -67,11 +67,16 @@ class BuildState(object):
         global CURRENT_HASH
         directory = self.where
 
-        if CURRENT_HASH is None:
-            CURRENT_HASH = dirhash(directory, 'md5', ignore_hidden=True,
-                                   excluded_files=[".coverage", "lint.txt"],
-                                   excluded_extensions="pyc")
+        #if CURRENT_HASH is None:
+        print("hashing " + directory)
+        print(os.listdir(directory))
+        CURRENT_HASH = dirhash(directory, 'md5', ignore_hidden=True,
+                               # changing these exclusions can cause dirhas to skip EVERYTHING
+                               excluded_files=[".coverage", "lint.txt"],
+                               excluded_extensions=[".pyc"]
+                               )
 
+        print("Searching " + self.state_file_name)
         if os.path.isfile(self.state_file_name):
             with open(self.state_file_name, "r+") as file:
                 last_hash = file.read()
@@ -80,11 +85,14 @@ class BuildState(object):
                     file.write(CURRENT_HASH)
                     file.truncate()
                     return True
-        else:
-            with open(self.state_file_name, "w") as file:
-                file.write(CURRENT_HASH)
-                return True
-        return False
+                else:
+                    return False
+
+        # no previous file, by definition not the same.
+        with open(self.state_file_name, "w") as file:
+            file.write(CURRENT_HASH)
+            return True
+
 
 
 def oh_never_mind(what):

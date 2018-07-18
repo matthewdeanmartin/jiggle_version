@@ -15,18 +15,25 @@ here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "sample_lib"
 SRC = here + "/../sample_projects/sample_src/"
 
+various = {
+    PROJECT: SRC,
+    "setup_only": here + "/../sample_projects/setup_only/",
+    "file_module_src":  here + "/../sample_projects/file_module_src/",
+    "double_module":  here + "/../sample_projects/double_module/",
+}
 
 def test_go():
     # what ev, who knows if these file even exist
-    try:
-        os.chdir(SRC)
-        jiggler = JiggleVersion(PROJECT, "", True)
-        jiggler.create_configs = True
-        changed = jiggler.jiggle_all()
-
-    finally:
-        os.chdir("../../test")
-    assert changed > 0
+    for key, value in various.items():
+        try:
+            os.chdir(value)
+            jiggler = JiggleVersion(key, "", True)
+            jiggler.create_configs = True
+            changed = jiggler.jiggle_all()
+            assert changed>0
+        finally:
+            os.chdir("../../test")
+        assert changed > 0
 
 
 def test_no_files():

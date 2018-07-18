@@ -24,11 +24,21 @@ _ = List, Optional
 if sys.version_info.major == 3:
     unicode = str
 
+
 class ModuleFinder(object):
+    """
+    Finds modules in a folder.
+    """
+
     def __init__(self):  # type: () -> None
         pass
 
     def read_file(self, file):  # type: (str) -> Optional[str]
+        """
+        Read any file, deal with encoding.
+        :param file:
+        :return:
+        """
         setup_source = None
         if os.path.isfile("setup.py"):
             try:
@@ -44,12 +54,20 @@ class ModuleFinder(object):
         return setup_source
 
     def setup_py_source(self):  # type: () -> Optional[str]
+        """
+        Read setup.py to string
+        :return:
+        """
         source = self.read_file("setup.py")
         if not source:
             source = self.read_file("setup")  # rare case
         return source
 
     def name_from_setup_py(self):  # type: () -> str
+        """
+        Extract likley module name from setup.py args
+        :return:
+        """
         source = self.setup_py_source()
         if not source:
             return ""
@@ -61,6 +79,10 @@ class ModuleFinder(object):
         return ""
 
     def extract_package_dir(self):  # type: () -> Optional[str]
+        """
+        Get the package_dir dictionary from source
+        :return:
+        """
         # package_dir={'': 'lib'},
         source = self.setup_py_source()
         if not source:
@@ -97,6 +119,10 @@ class ModuleFinder(object):
         return None
 
     def via_find_packages(self):  # type: () -> List[str]
+        """
+        Use find_packages code to find modules. Can find LOTS of modules.
+        :return:
+        """
         packages = []
         source = self.setup_py_source()
         if not source:

@@ -8,19 +8,19 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import chardet
-import re
-import codecs
+import sys
 import ast
+import codecs
 import io
 import logging
 import os.path
+import re
 from typing import List, Optional, Dict, Any
 
+import chardet
 from semantic_version import Version
 
 from jiggle_version.file_inventory import FileInventory
-from jiggle_version.file_makers import FileMaker
 from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import (
     merge_two_dicts,
@@ -34,7 +34,6 @@ except ImportError:
     # Python 2.x fallback
     import ConfigParser as configparser
 
-import sys
 
 if sys.version_info.major == 3:
     unicode = str
@@ -63,12 +62,12 @@ def version_by_ast(file):  # type: (str) -> str
 here = os.path.abspath(os.path.dirname(__file__))
 
 
-def read(*parts): # type: (Any)->str
+def read(*parts):  # type: (Any)->str
     with codecs.open(os.path.join(here, *parts), "r") as fp:
         return fp.read()
 
 
-def find_version_by_regex(*file_paths):# type: (Any)->str
+def find_version_by_regex(*file_paths):  # type: (Any)->str
     """
     find_version("package", "__init__.py")
     :param file_paths:
@@ -246,16 +245,13 @@ class FindVersion(object):
         for key, version in versions.items():
             if semver is None:
                 try:
-                    semver, next_sem_ver, schema = version_object_and_next(version)
+                    _ = version_object_and_next(version)
                 except ValueError:
-                    logger.error("Invalid version at:")
-                    logger.error(unicode((key, version)))
+                    logger.error("Invalid version at:" + unicode((key, version)))
                     return False
                 continue
             try:
-                version_as_version, next_version, schema = version_object_and_next(
-                    version
-                )
+                version_as_version, _, __ = version_object_and_next(version)
             except:
                 return False
             if version_as_version != semver:

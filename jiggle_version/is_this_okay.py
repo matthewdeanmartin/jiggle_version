@@ -16,7 +16,7 @@ def check(src, dst):  # type: (str,str)->None
     """
     was_bad = False
     try:
-        src_ast = ast.parse(src)
+        _ = ast.parse(src)
     except Exception as exc:
         was_bad = True
         major, minor = sys.version_info[:2]
@@ -29,9 +29,10 @@ def check(src, dst):  # type: (str,str)->None
         )
 
     try:
-        dst_ast = ast.parse(dst)
+        _ = ast.parse(dst)
     except Exception as exc:
         if was_bad:
+            # I didn't make it worse.
             pass
         else:
             logger.error(dst)
