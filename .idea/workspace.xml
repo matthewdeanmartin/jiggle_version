@@ -35,8 +35,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/fetch_raw_data/bump_all.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fetch_raw_data/decomp.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fetch_raw_data/get_file.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jiggle_version/file_inventory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jiggle_version/is_this_okay.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test_pep440.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test_version_schemes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fetch_raw_data/pypi_versions.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetch_raw_data/pypi_versions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/commands.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/file_makers.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_makers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/find_version_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/find_version_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/project_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/project_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/schema_guesser.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/schema_guesser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylintrc.ini" beforeDir="false" afterPath="$PROJECT_DIR$/pylintrc.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_command_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_command_line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_jiggle_class.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,26 +75,35 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_entry_point.coverage" NAME="Nosetests for test_main.test_entry_point Coverage Results" MODIFIED="1531703973960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$0805nexter.coverage" NAME="0805nexter Coverage Results" MODIFIED="1531854550274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fetch_raw_data/packages/0805nexter-1.2.0" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_main_py__1_.coverage" NAME="Nosetests in test_main.py (1) Coverage Results" MODIFIED="1531421703594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../find_known_secrets/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test.coverage" NAME="Nosetests in test Coverage Results" MODIFIED="1531772356783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test.coverage" NAME="Nosetests in test Coverage Results" MODIFIED="1531861645547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_py.coverage" NAME="Nosetests in test_main.py Coverage Results" MODIFIED="1531342337308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_schema_guesser_py.coverage" NAME="Nosetests in test_schema_guesser.py Coverage Results" MODIFIED="1531783198012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$main.coverage" NAME="main Coverage Results" MODIFIED="1531418544419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_pep440_test_pep440.coverage" NAME="Nosetests for test_pep440.test_pep440 Coverage Results" MODIFIED="1531883312608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_main_py.coverage" NAME="Nosetests in test_main.py Coverage Results" MODIFIED="1531772353170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_command_line_py.coverage" NAME="Nosetests in test_command_line.py Coverage Results" MODIFIED="1531842478764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_process_docopts.coverage" NAME="Nosetests for test_main.test_process_docopts Coverage Results" MODIFIED="1531412730979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$schema_guesser.coverage" NAME="schema_guesser Coverage Results" MODIFIED="1531782752155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
+    <SUITE FILE_PATH="coverage/jiggle_version$jiggle_class.coverage" NAME="jiggle_class Coverage Results" MODIFIED="1531684289842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
+    <SUITE FILE_PATH="coverage/jiggle_version$setup.coverage" NAME="setup Coverage Results" MODIFIED="1531868731530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fetch_raw_data/packages/a00k5pgrtn-0.1" />
+    <SUITE FILE_PATH="coverage/jiggle_version$test.coverage" NAME="test Coverage Results" MODIFIED="1531337056519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_docops.coverage" NAME="Nosetests for test_main.test_docops Coverage Results" MODIFIED="1531421542242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../find_known_secrets/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$find_version_by_package.coverage" NAME="find_version_by_package Coverage Results" MODIFIED="1531777620668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_entry_point.coverage" NAME="Nosetests for test_main.test_entry_point Coverage Results" MODIFIED="1531703973960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_jiggle_class_test_go.coverage" NAME="Nosetests for test_jiggle_class.test_go Coverage Results" MODIFIED="1531850187013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_version_schemes_test_four_part_again.coverage" NAME="Nosetests for test_version_schemes.test_four_part_again Coverage Results" MODIFIED="1531882902099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$pypi_versions.coverage" NAME="pypi_versions Coverage Results" MODIFIED="1531865394775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fetch_raw_data" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_version_schemes_test_four_part.coverage" NAME="Nosetests for test_version_schemes.test_four_part Coverage Results" MODIFIED="1531882969650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$bump_all.coverage" NAME="bump_all Coverage Results" MODIFIED="1531888219858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fetch_raw_data" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_no_files.coverage" NAME="Nosetests for test_main.test_no_files Coverage Results" MODIFIED="1531412360995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_print_versions.coverage" NAME="Nosetests for test_main.test_print_versions Coverage Results" MODIFIED="1531412704825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_go.coverage" NAME="Nosetests for test_main.test_go Coverage Results" MODIFIED="1531411981844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_main_py.coverage" NAME="Nosetests in test_main.py Coverage Results" MODIFIED="1531772353170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_command_line_py.coverage" NAME="Nosetests in test_command_line.py Coverage Results" MODIFIED="1531772188732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_process_docopts.coverage" NAME="Nosetests for test_main.test_process_docopts Coverage Results" MODIFIED="1531412730979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_version_schemes_py.coverage" NAME="Nosetests in test_version_schemes.py Coverage Results" MODIFIED="1531881717770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$__main__.coverage" NAME="__main__ Coverage Results" MODIFIED="1531340439178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
-    <SUITE FILE_PATH="coverage/jiggle_version$schema_guesser.coverage" NAME="schema_guesser Coverage Results" MODIFIED="1531782752155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_find_version_py.coverage" NAME="Nosetests in test_find_version.py Coverage Results" MODIFIED="1531782424056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$jiggle_class.coverage" NAME="jiggle_class Coverage Results" MODIFIED="1531684289842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
-    <SUITE FILE_PATH="coverage/jiggle_version$test.coverage" NAME="test Coverage Results" MODIFIED="1531337056519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/jiggle_version$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1531347427567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../find_known_secrets/find_known_secrets" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_docops.coverage" NAME="Nosetests for test_main.test_docops Coverage Results" MODIFIED="1531421542242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../find_known_secrets/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$find_version_by_package.coverage" NAME="find_version_by_package Coverage Results" MODIFIED="1531777620668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1636503142">
@@ -80,54 +119,68 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="0805nexter" value="1" />
+          <entry key="1pass" value="1" />
+          <entry key="2112" value="1" />
+          <entry key="4chandownloader" value="1" />
           <entry key="AUTHORS" value="1" />
           <entry key="ChangeLog" value="1" />
           <entry key="LICENSE" value="3" />
           <entry key="Makefile" value="1" />
+          <entry key="PKG-INFO" value="11" />
           <entry key="Pipfile" value="13" />
+          <entry key="Procfile" value="1" />
+          <entry key="VERSION" value="2" />
+          <entry key="accolade" value="1" />
           <entry key="bat" value="1" />
-          <entry key="cfg" value="10" />
+          <entry key="cfg" value="24" />
           <entry key="coverage" value="1" />
+          <entry key="fela" value="1" />
           <entry key="gitignore" value="7" />
-          <entry key="ini" value="3" />
-          <entry key="lock" value="2" />
-          <entry key="md" value="14" />
-          <entry key="py" value="209" />
-          <entry key="rst" value="8" />
-          <entry key="sh" value="7" />
-          <entry key="txt" value="57" />
+          <entry key="html" value="4" />
+          <entry key="in" value="1" />
+          <entry key="ini" value="5" />
+          <entry key="lock" value="3" />
+          <entry key="md" value="25" />
+          <entry key="py" value="549" />
+          <entry key="rst" value="13" />
+          <entry key="sh" value="14" />
+          <entry key="txt" value="68" />
+          <entry key="version" value="1" />
           <entry key="yaml" value="5" />
-          <entry key="yml" value="9" />
+          <entry key="yml" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="7" />
+          <entry key="Bash" value="14" />
           <entry key="Git file" value="7" />
-          <entry key="Ini" value="13" />
+          <entry key="HTML" value="4" />
+          <entry key="Ini" value="29" />
           <entry key="Makefile" value="1" />
-          <entry key="Markdown" value="14" />
-          <entry key="PLAIN_TEXT" value="66" />
-          <entry key="Python" value="209" />
-          <entry key="ReST" value="8" />
+          <entry key="Markdown" value="25" />
+          <entry key="PLAIN_TEXT" value="94" />
+          <entry key="Python" value="554" />
+          <entry key="ReST" value="13" />
           <entry key="TOML file" value="13" />
-          <entry key="YAML" value="14" />
+          <entry key="YAML" value="18" />
+          <entry key="yarn.lock" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Makefile" value="14" />
           <entry key="Pipfile" value="25" />
-          <entry key="Python Console" value="34" />
+          <entry key="Python Console" value="118" />
           <entry key="bat" value="14" />
-          <entry key="cfg" value="41" />
+          <entry key="cfg" value="43" />
           <entry key="dummy" value="18" />
           <entry key="gitignore" value="143" />
-          <entry key="ini" value="3" />
-          <entry key="md" value="15207" />
-          <entry key="py" value="17379" />
+          <entry key="ini" value="8" />
+          <entry key="md" value="16193" />
+          <entry key="py" value="27936" />
           <entry key="rst" value="181" />
-          <entry key="sh" value="239" />
+          <entry key="sh" value="310" />
           <entry key="txt" value="5" />
           <entry key="yaml" value="4" />
           <entry key="yml" value="88" />
@@ -135,13 +188,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="239" />
+          <entry key="Bash" value="310" />
           <entry key="Git file" value="143" />
-          <entry key="Ini" value="44" />
+          <entry key="Ini" value="51" />
           <entry key="Makefile" value="14" />
-          <entry key="Markdown" value="15207" />
+          <entry key="Markdown" value="16193" />
           <entry key="PLAIN_TEXT" value="37" />
-          <entry key="Python" value="17413" />
+          <entry key="Python" value="28054" />
           <entry key="ReST" value="181" />
           <entry key="TOML file" value="25" />
           <entry key="YAML" value="92" />
@@ -151,12 +204,21 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="3" selection-end-column="3" />
+            <state relative-caret-position="125">
+              <caret line="287" column="19" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/commands.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="38" column="72" selection-start-line="38" selection-start-column="72" selection-end-line="38" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -164,8 +226,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lint.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-189">
-              <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+            <state relative-caret-position="1077">
+              <caret line="74" column="44" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -173,47 +235,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pylintrc.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="68" column="912" selection-start-line="68" selection-start-column="912" selection-end-line="68" selection-end-column="912" />
+            <state relative-caret-position="171">
+              <caret line="68" column="926" selection-start-line="68" selection-start-column="926" selection-end-line="68" selection-end-column="926" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_schema_guesser.py">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="11" selection-end-line="22" />
+            <state relative-caret-position="-1">
+              <caret line="123" column="58" selection-start-line="123" selection-start-column="58" selection-end-line="123" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_taggint.py">
+        <entry file="file://$PROJECT_DIR$/mypy_errors.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="18">
-              <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="136">
-                <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
-              </first_editor>
-              <second_editor />
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fetch_raw_data/pypi_versions.py">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/find_version_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="-4797">
+              <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/is_this_okay.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-207">
+              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -221,27 +280,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jiggle_version/schema_guesser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="80" column="36" selection-end-line="85" />
-              <folding>
-                <marker date="1531791668000" expanded="true" signature="2158:2159" ph="..." />
-              </folding>
+            <state relative-caret-position="216">
+              <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/utils.py">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/project_finder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-60">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="-3231">
+              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/__main__.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -255,36 +306,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>if line.strip().replace(&quot; &quot;, &quot;&quot;).startswith(&quot;version=&quot;):</find>
-      <find>encodin</find>
-      <find>open(</find>
-      <find>cover</find>
-      <find>config</find>
-      <find>creat</find>
-      <find>verstion</find>
-      <find>.txt</find>
-      <find>version.txt</find>
-      <find>lines of</find>
-      <find>Versio</find>
-      <find>cmp-v</find>
-      <find>git</find>
-      <find>bumpv</find>
-      <find>PEP</find>
-      <find>str(</find>
-      <find>next_</find>
-      <find>[0]</find>
-      <find>merge</find>
-      <find>Will expect jiggle_version</find>
-      <find>Will expect</find>
-      <find>print(</find>
-      <find>find_any_valid_verision</find>
-      <find>((</find>
+      <find>accept-header-match</find>
+      <find>setup</find>
+      <find>Found no project</find>
+      <find>Active-SQLAlchemy</find>
+      <find>adafruit-circuitpython</find>
+      <find>scm</find>
+      <find>weird</find>
+      <find>acdh-django-zotero</find>
+      <find>addic7ed</find>
+      <find>a2d_diary</find>
+      <find>py</find>
+      <find>accoladepraccli</find>
+      <find>split</find>
+      <find>&quot;,&quot;</find>
+      <find>&quot;\n&quot;.</find>
+      <find>.join(</find>
+      <find>acumos</find>
+      <find>dminschUtils</find>
+      <find>Can't find project, must have .py file</find>
+      <find>advocate</find>
+      <find>.append(</find>
+      <find>AaronOS_Messaging</find>
       <find>create</find>
+      <find>adhocracy-pysqlite</find>
+      <find>acdh-django-zoter</find>
+      <find>acaptain</find>
       <find>version</find>
-      <find>Version Fin</find>
-      <find>versio</find>
-      <find>oo many</find>
-      <find>__</find>
+      <find>&quot;vers</find>
+      <find>addic7ed.com identifiers</find>
+      <find>version.py</find>
     </findStrings>
     <dirStrings>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
@@ -295,9 +346,16 @@
       <dir>$PROJECT_DIR$/../find_known_secrets</dir>
       <dir>$PROJECT_DIR$/../find_known_secrets/docs</dir>
       <dir>$PROJECT_DIR$/docs</dir>
-      <dir>$PROJECT_DIR$/jiggle_version</dir>
       <dir>$PROJECT_DIR$</dir>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/setuptools</dir>
+      <dir>$PROJECT_DIR$/fetch_raw_data/packages/199Fix-1.1.2</dir>
+      <dir>$PROJECT_DIR$/fetch_raw_data/packages/abcpmc-0.1.2/docs</dir>
+      <dir>$PROJECT_DIR$/fetch_raw_data</dir>
+      <dir>$PROJECT_DIR$/fetch_raw_data/packages/abilian-sbe-0.4.11</dir>
+      <dir>$PROJECT_DIR$/</dir>
+      <dir>$PROJECT_DIR$/fetch_raw_data/packages/addic7ed-cli-1.4.5</dir>
+      <dir>$PROJECT_DIR$/fetch_raw_data/packages</dir>
+      <dir>$PROJECT_DIR$/jiggle_version</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -306,37 +364,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/foo.py" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/build.py" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/build_utils.py" />
-        <option value="$PROJECT_DIR$/docs/make.bat" />
-        <option value="$PROJECT_DIR$/docs/Makefile" />
-        <option value="$PROJECT_DIR$/docs/init.sh" />
-        <option value="$PROJECT_DIR$/docs/source/jiggle_version.rst" />
-        <option value="$PROJECT_DIR$/docs/source/index.rst" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/docs/source/conf.py" />
-        <option value="$PROJECT_DIR$/docs/source/conf.py" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/docs/init.sh" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/docs/source/find_known_secrets.rst" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/docs/source/index.rst" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/.travis.yml" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/Pipfile" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/requirements-dev.txt" />
-        <option value="$PROJECT_DIR$/../find_known_secrets/README.md" />
         <option value="$PROJECT_DIR$/sample_src/sample_lib/__version__.py" />
         <option value="$PROJECT_DIR$/test/go.sh" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/jiggle_version/utils.py" />
-        <option value="$PROJECT_DIR$/test/test_command_line.py" />
         <option value="$PROJECT_DIR$/test/sample_lib/__version__.py" />
         <option value="$PROJECT_DIR$/test/test_main.py" />
-        <option value="$PROJECT_DIR$/test/test_jiggle_class.py" />
         <option value="$PROJECT_DIR$/jiggle_version/pep440.py" />
         <option value="$PROJECT_DIR$/mypy_errors.txt" />
-        <option value="$PROJECT_DIR$/jiggle_version/find_version_class.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/commands.py" />
         <option value="$PROJECT_DIR$/jiggle_version/vendorized/versio/__init__.py" />
         <option value="$PROJECT_DIR$/jiggle_version/vendorized/versio/comparable_mixin.py" />
         <option value="$PROJECT_DIR$/jiggle_version/vendorized/versio/version_scheme.py" />
@@ -345,18 +380,41 @@
         <option value="$PROJECT_DIR$/setup.cfg" />
         <option value="$PROJECT_DIR$/jiggle_version/__init__.py" />
         <option value="$PROJECT_DIR$/jiggle_version/__version__.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/schema_guesser.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" />
         <option value="$PROJECT_DIR$/jiggle_version/file_makers.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/main.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/project_finder.py" />
-        <option value="$PROJECT_DIR$/build.py" />
-        <option value="$PROJECT_DIR$/pylintrc.ini" />
         <option value="$PROJECT_DIR$/test/test_schema_guesser.py" />
         <option value="$PROJECT_DIR$/test/test_taggint.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/get_file.sh" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/example.txt" />
+        <option value="$PROJECT_DIR$/test/test_command_line.py" />
+        <option value="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" />
+        <option value="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__version__.py" />
+        <option value="$PROJECT_DIR$/sample_projects/sample_src/setup.cfg" />
+        <option value="$PROJECT_DIR$/sample_projects/sample_src/setup.py" />
+        <option value="$PROJECT_DIR$/test/test_jiggle_class.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/packages/0805nexter-1.2.0/0805nexter.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/decomp.sh" />
         <option value="$PROJECT_DIR$/fetch_raw_data/pypi_versions.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/packages/a00k5pgrtn-0.1/setup.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/main.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/file_inventory.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/versio/version.py" />
+        <option value="$PROJECT_DIR$/test/test_version_schemes.py" />
+        <option value="$PROJECT_DIR$/test/test_pep440.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/bump_all.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/packages/acumos-0.7.0/acumos/__version__.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/packages/acumos-0.7.0/acumos/_version.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/packages/acdh-django-zotero-0.1.3/bib/__version__.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/packages/acdh-django-zotero-0.1.3/bib/__init__.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/project_finder.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/is_this_okay.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/schema_guesser.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/find_version_class.py" />
+        <option value="$PROJECT_DIR$/jiggle_version/commands.py" />
+        <option value="$PROJECT_DIR$/pylintrc.ini" />
+        <option value="$PROJECT_DIR$/build.py" />
       </list>
     </option>
   </component>
@@ -399,43 +457,22 @@
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="find_known_secrets" type="462c0819:PsiDirectoryNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+              <item name="sample_projects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.6 (jiggle_version-UwCgYoJ3) &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.6 (jiggle_version-UwCgYoJ3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="python3.6" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.6 (jiggle_version-UwCgYoJ3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="python3.6" type="462c0819:PsiDirectoryNode" />
-              <item name="distutils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.6 (jiggle_version-UwCgYoJ3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="python3.6" type="462c0819:PsiDirectoryNode" />
-              <item name="importlib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 3.6 (jiggle_version-UwCgYoJ3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="python3.6" type="462c0819:PsiDirectoryNode" />
-              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -446,6 +483,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
     <property name="run.code.analysis.last.selected.profile" value="aPython2to3Only" />
@@ -460,11 +498,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/fetch_raw_data" />
       <recent name="$PROJECT_DIR$/../find_known_secrets/docs" />
       <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$/test" />
       <recent name="$PROJECT_DIR$/../find_known_secrets" />
-      <recent name="$PROJECT_DIR$/sample_lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/jiggle_version/vendorized" />
@@ -484,8 +522,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Nosetests in test_schema_guesser.py">
-    <configuration name="find_version_by_package" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.bump_all">
+    <configuration name="bump_all" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -493,12 +531,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/jiggle_version" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/fetch_raw_data" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/fetch_raw_data/bump_all.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -507,29 +545,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="schema_guesser" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="jiggle_version" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/jiggle_version" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/jiggle_version/schema_guesser.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Nosetests in test" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_pep440.test_pep440" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -541,11 +557,11 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;test_pep440.test_pep440&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests in test_find_version.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test_version_schemes.test_four_part" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -557,8 +573,24 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_find_version.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;test_version_schemes.test_four_part&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Nosetests for test_version_schemes.test_four_part_again" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <module name="jiggle_version" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_version_schemes.test_four_part_again&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Nosetests in test_main.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
@@ -577,7 +609,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests in test_schema_guesser.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests in test_version_schemes.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -589,24 +621,24 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_schema_guesser.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_version_schemes.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python tests.Nosetests in test" />
-      <item itemvalue="Python.find_version_by_package" />
-      <item itemvalue="Python.schema_guesser" />
-      <item itemvalue="Python tests.Nosetests in test_find_version.py" />
-      <item itemvalue="Python tests.Nosetests in test_schema_guesser.py" />
+      <item itemvalue="Python.bump_all" />
+      <item itemvalue="Python tests.Nosetests in test_version_schemes.py" />
+      <item itemvalue="Python tests.Nosetests for test_version_schemes.test_four_part" />
+      <item itemvalue="Python tests.Nosetests for test_version_schemes.test_four_part_again" />
+      <item itemvalue="Python tests.Nosetests for test_pep440.test_pep440" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Nosetests in test_schema_guesser.py" />
-        <item itemvalue="Python.schema_guesser" />
-        <item itemvalue="Python tests.Nosetests in test_find_version.py" />
-        <item itemvalue="Python.find_version_by_package" />
-        <item itemvalue="Python tests.Nosetests in test" />
+        <item itemvalue="Python.bump_all" />
+        <item itemvalue="Python tests.Nosetests for test_pep440.test_pep440" />
+        <item itemvalue="Python tests.Nosetests for test_version_schemes.test_four_part" />
+        <item itemvalue="Python tests.Nosetests for test_version_schemes.test_four_part_again" />
+        <item itemvalue="Python tests.Nosetests in test_version_schemes.py" />
       </list>
     </recent_temporary>
   </component>
@@ -624,49 +656,48 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_test_main_py - 2018.07.16 at 16h 19m 13s.xml">
-      <configuration name="Nosetests in test_main.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_version_schemes_test_four_part - 2018.07.17 at 22h 51m 14s.xml">
+      <configuration name="Nosetests for test_version_schemes.test_four_part" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.07.16 at 16h 19m 17s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_version_schemes_test_four_part - 2018.07.17 at 22h 52m 35s.xml">
+      <configuration name="Nosetests for test_version_schemes.test_four_part" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_find_version_py - 2018.07.16 at 19h 06m 15s.xml">
-      <configuration name="Nosetests in test_find_version.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_version_schemes_test_four_part - 2018.07.17 at 23h 00m 37s.xml">
+      <configuration name="Nosetests for test_version_schemes.test_four_part" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_find_version_py - 2018.07.16 at 19h 07m 04s.xml">
-      <configuration name="Nosetests in test_find_version.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_version_schemes_test_four_part_again - 2018.07.17 at 23h 00m 42s.xml">
+      <configuration name="Nosetests for test_version_schemes.test_four_part_again" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_schema_guesser_py - 2018.07.16 at 19h 15m 06s.xml">
-      <configuration name="Nosetests in test_schema_guesser.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_version_schemes_test_four_part_again - 2018.07.17 at 23h 01m 42s.xml">
+      <configuration name="Nosetests for test_version_schemes.test_four_part_again" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_schema_guesser_py - 2018.07.16 at 19h 15m 19s.xml">
-      <configuration name="Nosetests in test_schema_guesser.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_version_schemes_test_four_part - 2018.07.17 at 23h 02m 17s.xml">
+      <configuration name="Nosetests for test_version_schemes.test_four_part" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_schema_guesser_py - 2018.07.16 at 19h 18m 34s.xml">
-      <configuration name="Nosetests in test_schema_guesser.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_version_schemes_test_four_part - 2018.07.17 at 23h 02m 50s.xml">
+      <configuration name="Nosetests for test_version_schemes.test_four_part" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_schema_guesser_py - 2018.07.16 at 19h 19m 12s.xml">
-      <configuration name="Nosetests in test_schema_guesser.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_pep440_test_pep440 - 2018.07.17 at 23h 08m 16s.xml">
+      <configuration name="Nosetests for test_pep440.test_pep440" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_schema_guesser_py - 2018.07.16 at 19h 19m 24s.xml">
-      <configuration name="Nosetests in test_schema_guesser.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_pep440_test_pep440 - 2018.07.17 at 23h 08m 33s.xml">
+      <configuration name="Nosetests for test_pep440.test_pep440" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_test_schema_guesser_py - 2018.07.16 at 19h 19m 58s.xml">
-      <configuration name="Nosetests in test_schema_guesser.py" configurationId="tests" />
+    <history-entry file="Nosetests_for_test_version_schemes_test_four_part - 2018.07.18 at 00h 48m 46s.xml">
+      <configuration name="Nosetests for test_version_schemes.test_four_part" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="832" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="831" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19670959" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3383405" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.32995495" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.4006772" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.38075313" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.49232915" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.6480447" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34497207" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4594972" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -674,10 +705,10 @@
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="TeamCity" order="10" weight="0.23012552" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.34449095" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.36452514" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Python Console" order="14" weight="0.32962447" />
+      <window_info anchor="bottom" id="Python Console" order="14" weight="0.3282123" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -686,6 +717,34 @@
       <window_info anchor="right" id="R Packages" order="5" />
       <window_info anchor="right" id="Database" order="6" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19275825" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.32995495" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.4006772" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.38075313" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.49232915" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Mypy Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TeamCity" order="11" weight="0.23012552" />
+      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.36549374" />
+      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Python Console" order="15" weight="0.32962447" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="R Graphics" order="4" />
+      <window_info anchor="right" id="R Packages" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -702,231 +761,329 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fetch_raw_data/pypi_versions.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/jiggle_version/jiggle_class.py</url>
-          <line>231</line>
-          <option name="timeStamp" value="3" />
+          <line>181</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fetch_raw_data/bump_all.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fetch_raw_data/pypi_versions.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/fetch_raw_data/packages/a00k5pgrtn-0.1/setup.py</url>
+          <line>3</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/versio/version.py</url>
+          <line>190</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/versio/version.py</url>
+          <line>156</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/jiggle_version/find_version_class.py</url>
+          <line>65</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="url.split(&quot;/&quot;)[-2]" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>url.split(&quot;/&quot;)[-2]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>url.split(&quot;/&quot;)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/setup.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/addic7ed-1.1.5/setup.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/addic7ed-cli-1.4.5/addic7ed_cli/version.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="45" />
+        <state relative-caret-position="-1452" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/addic7ed-1.1.5/addic7ed/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="47" column="23" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample_projects/sample_src/setup.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample_projects/sample_src/setup.cfg">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__version__.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/a2d_diary-0.1.5/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        <state relative-caret-position="339">
+          <caret line="57" column="13" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample_projects/sample_src/version.txt">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/a2d_diary-0.1.5/a2d_diary/__main__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/logging/__init__.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/a2d_diary-0.1.5/a2d_diary/__version__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/a2d_diary-0.1.5/PKG-INFO">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="1324" column="8" selection-start-line="1324" selection-start-column="8" selection-end-line="1324" selection-end-column="8" />
+        <state relative-caret-position="18">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_command_line.sh">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/a2d_diary-0.1.5/a2d_diary/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
+        <state relative-caret-position="36">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/subprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="400" column="4" selection-start-line="400" selection-start-column="4" selection-end-line="400" selection-end-column="4" />
+        <state relative-caret-position="75">
+          <caret line="708" selection-start-line="708" selection-end-line="708" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_main.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/accoladepraccli-2.5/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="36">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_command_line.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/bump_all.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding>
-            <marker date="1531772119000" expanded="true" signature="386:387" ph="..." />
-          </folding>
+        <state relative-caret-position="166">
+          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/sample_lib/__version__.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acumos-0.7.0/acumos/wrapped.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acumos-0.7.0/acumos/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-145" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acumos-0.7.0/acumos/__version__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/sample_lib/__init__.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acumos-0.7.0/acumos/_version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acumos-0.7.0/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-265" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/adminschUtils-0.2.5/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/advocate-0.6.2/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/advocate-0.6.2/advocate/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activityio-0.0.3/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activityio-0.0.3/setup.cfg">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activitysim-0.7/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activitysim-0.7/activitysim/__version__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activitysim-0.7/activitysim/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activitysim-0.7/activitysim/abm/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activitysim-0.7/activitysim/abm/misc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1837" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activitysim-0.7/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activitysim-0.7/activitysim/abm/test/test_misc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-883" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/activitysim-0.7/activitysim/abm/test/test_pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5218" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/AaronOS_Messaging-0.1.1/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/AaronOS_Messaging-0.1.1/__version__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/adhocracy-pysqlite-2.6.3/cross_bdist_wininst.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5852" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/adhocracy-pysqlite-2.6.3/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3620">
+          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/adi.bookmark-0.2/setup.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acdh-django-zotero-0.1.3/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acdh-django-zotero-0.1.3/bib/__version__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/commands.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="32" column="59" lean-forward="true" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/distutils/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/setuptools/version.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/setuptools/package_index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6365">
-          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/vendorized/pep440.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="49" column="67" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/vendorized/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/vendorized/versio/version_scheme.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="219" column="6" selection-start-line="219" selection-start-column="6" selection-end-line="219" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/vendorized/versio/version.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="211" selection-start-line="211" selection-end-line="211" />
-          <folding>
-            <element signature="e#2154#3758#0" />
-            <element signature="e#3807#5735#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/distutils/version.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="343" selection-start-line="343" selection-end-line="343" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/vendorized/versio/__init__.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acdh-django-zotero-0.1.3/bib/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="21" selection-start-column="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/vendorized/versio/comparable_mixin.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acaptain-00.00.01/acaptain/command_line.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1764">
-          <caret line="98" column="65" selection-start-line="98" selection-start-column="65" selection-end-line="98" selection-end-column="65" />
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_jiggle_class.py">
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acaptain-00.00.01/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="25" selection-end-line="50" />
+        <state relative-caret-position="-338" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/acaptain-00.00.01/acaptain/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-638" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/addic7ed-cli-1.4.5/addic7ed_cli/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3906">
+          <caret line="217" column="60" lean-forward="true" selection-start-line="217" selection-start-column="60" selection-end-line="217" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/parver/_version.py">
+    <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4728">
-          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
+        <state relative-caret-position="-1">
+          <caret line="123" column="58" selection-start-line="123" selection-start-column="58" selection-end-line="123" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/parver/_parse.py">
+    <entry file="file://$PROJECT_DIR$/jiggle_version/project_finder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="210" selection-start-line="210" selection-end-line="210" />
+        <state relative-caret-position="-3231">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_find_version.py">
+    <entry file="file://$PROJECT_DIR$/jiggle_version/is_this_okay.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="25" column="25" selection-end-line="25" selection-end-column="38" />
-          <folding>
-            <marker date="1531782424000" expanded="true" signature="516:517" ph="..." />
-          </folding>
+        <state relative-caret-position="-207">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/importlib/_bootstrap.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/importlib/__init__.py">
+    <entry file="file://$PROJECT_DIR$/jiggle_version/schema_guesser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
+        <state relative-caret-position="216">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pipenv/vendor/pipdeptree.py">
+    <entry file="file://$PROJECT_DIR$/jiggle_version/find_version_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="120" column="17" selection-start-line="120" selection-start-column="17" selection-end-line="120" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/__version__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        <state relative-caret-position="-4797">
+          <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -937,123 +1094,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/file_makers.py">
+    <entry file="file://$PROJECT_DIR$/jiggle_version/commands.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="65" column="11" lean-forward="true" selection-start-line="65" selection-start-column="11" selection-end-line="65" selection-end-column="11" />
-          <folding>
-            <marker date="1531792032000" expanded="true" signature="438:443" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/find_version_by_package.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-318">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/find_version_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3582">
-          <caret line="199" column="29" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="41" column="37" selection-start-line="41" selection-start-column="37" selection-end-line="41" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="86" column="54" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
-          <folding>
-            <marker date="1531792032000" expanded="true" signature="1874:1968" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/project_finder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/schema_guesser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="80" column="36" selection-end-line="85" />
-          <folding>
-            <marker date="1531791668000" expanded="true" signature="2158:2159" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/__main__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lint.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-189">
-          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+        <state relative-caret-position="122">
+          <caret line="38" column="72" selection-start-line="38" selection-start-column="72" selection-end-line="38" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pylintrc.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="68" column="912" selection-start-line="68" selection-start-column="912" selection-end-line="68" selection-end-column="912" />
+        <state relative-caret-position="171">
+          <caret line="68" column="926" selection-start-line="68" selection-start-column="926" selection-end-line="68" selection-end-column="926" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_schema_guesser.py">
+    <entry file="file://$PROJECT_DIR$/lint.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_taggint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
+        <state relative-caret-position="1077">
+          <caret line="74" column="44" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fetch_raw_data/pypi_versions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="136">
-            <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
-          </first_editor>
-          <second_editor />
+        <state relative-caret-position="125">
+          <caret line="287" column="19" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="19" />
         </state>
       </provider>
     </entry>

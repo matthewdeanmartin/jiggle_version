@@ -30,31 +30,12 @@ from typing import List, Optional, Dict, Any
 from docopt import docopt
 
 from jiggle_version.commands import bump_version, find_version
-from jiggle_version.project_finder import find_project
+from jiggle_version.project_finder import ModuleFinder
 
 logger = logging.getLogger(__name__)
 
 # contrive usage so formatter doesn't remove the import
 _ = List, Optional, Dict, Any
-
-
-def validate_found_project(candidates):  # type: (List[str]) -> None
-    """
-    Should be only 1 project
-    :param candidates:
-    :return:
-    """
-    if len(candidates) > 1:
-        logger.error("Found multiple possible projects : " + str(candidates))
-        exit(-1)
-        return
-    if not candidates:
-        logger.error(
-            "Found no project. Expected a folder in current directory to contain a __init__.py "
-            "file. Use --source, --project for other scenarios"
-        )
-        exit(-1)
-        return
 
 
 def console_trace(level):  # type: (int)->None
@@ -89,7 +70,8 @@ def process_docopts():  # type: ()->None
     """
     arguments = docopt(__doc__, version="Jiggle Version 1.0")
     logger.debug(arguments)
-    candidates = find_project()
+    module_finder = ModuleFinder()
+    candidates = module_finder.find_project()
     if candidates:
         project_name = candidates[0]
     else:
@@ -98,7 +80,7 @@ def process_docopts():  # type: ()->None
     if arguments["here"]:
         if arguments["--debug"]:
             console_trace(logging.DEBUG)
-        validate_found_project(candidates)
+        module_finder.validate_found_project(candidates)
         bump_version(project=project_name, source="", debug=arguments["--debug"])
     elif arguments["find"]:
         # Only show errors. Rest of extraneous console output messes up this:
@@ -109,14 +91,14 @@ def process_docopts():  # type: ()->None
         else:
             console_trace(logging.ERROR)
         if not arguments["--project"]:
-            validate_found_project(candidates)
+            module_finder.validate_found_project(candidates)
         find_version(project=project_name, source="", debug=arguments["--debug"])
 
     else:
         if arguments["--debug"] == "True":
             console_trace(logging.DEBUG)
         if not arguments["--project"]:
-            validate_found_project(candidates)
+            module_finder.validate_found_project(candidates)
         bump_version(
             project=arguments["--project"],
             source=arguments["--source"],

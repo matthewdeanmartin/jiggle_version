@@ -20,8 +20,8 @@ def test_go():
     # what ev, who knows if these file even exist
     jiggler = JiggleVersion(PROJECT, SRC, True)
     jiggler.create_configs = True
-    jiggler.jiggle_source_code()
-    jiggler.jiggle_config_file()
+    changed = jiggler.jiggle_all()
+    assert changed > 0
 
 
 def test_no_files():
@@ -39,12 +39,10 @@ def test_no_files():
     jiggler = JiggleVersion(PROJECT, SRC, True)
     jiggler.create_configs = True
     jiggler.create_all = True
-    jiggler.jiggle_source_code()
-    jiggler.jiggle_config_file()
+    jiggler.jiggle_all()
 
     # and already exist
     jiggler = JiggleVersion(PROJECT, SRC, True)
     jiggler.create_configs = True
     jiggler.create_all = True
-    jiggler.jiggle_source_code()
-    jiggler.jiggle_config_file()
+    jiggler.jiggle_all()

@@ -21,6 +21,7 @@ class FileMaker(object):
     """
     Just wrties files.
     """
+
     def __init__(self, project):  # type:  (str) -> None
         """
         Initialize

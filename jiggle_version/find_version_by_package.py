@@ -16,6 +16,11 @@ import pkg_resources
 
 _ = Any
 
+# These are not expected unless you unzip a package and do development on *that* code base.
+# TODO- Parent folder, e.g. mypackage-1.2.3
+# TODO- PKG-INFO
+
+
 def pkg_resources_version(package):  # type: (str) -> str
     """
     Look up version from current package. This will read from egg folder if not pip installed.
@@ -29,7 +34,9 @@ def pkg_resources_version(package):  # type: (str) -> str
 
 
 # from pipdeptree.py
-def guess_version_by_running_live_package(pkg_key, default="?"): # type: (str,str) -> Any
+def guess_version_by_running_live_package(
+    pkg_key, default="?"
+):  # type: (str,str) -> Any
     """Guess the version of a pkg when pip doesn't provide it
 
     :param str pkg_key: key of the package

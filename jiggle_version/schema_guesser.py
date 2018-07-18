@@ -1,85 +1,84 @@
 # # coding=utf-8
-# """
-# Take a string, guess the schema.
-#
-# IDEA: Each library gets to try to parse string in this order:
-#
-# sem_ver - because I *think* any bumped sem ver is a valid pep440
-# pep440 - just because we are assuming python world.
-#
-# If the above can't do it, try:
-#
-# par ver
-#
-# cmp ver
-#
-# disutils.version
-#
-# """
-#
-# from distutils.version import Version, LooseVersion, StrictVersion
-#
-# from versio.version import Version, VersionScheme, Pep440VersionScheme
-# from versio.version_scheme import (
-#     Simple3VersionScheme,
-#     Simple4VersionScheme,
-#     Simple5VersionScheme,
-#     Pep440VersionScheme,
-#     PerlVersionScheme,
-#     VersionSplitScheme,
-# )
-#
-# import parver
-# import semantic_version
-# from typing import Any, Tuple, Optional
-#
-# _ = Any, Tuple, Optional
-#
-#
-# def guess_schema(
-#     version_string, scheme
-# ):  # type:(str,Optional[VersionScheme]) -> Tuple[str,str,str]
-#     semver = semantic_version.validate(version_string)
-#     print(semver)
-#     versio_ver = "failed"
-#     try:
-#         versio_ver = Version(version_str=version_string, scheme=scheme)
-#     except AttributeError as ae:
-#         try:
-#             print(scheme.name, str(ae))
-#         except:
-#             print(str(scheme), str(ae))
-#
-#     except TypeError as te:
-#         print(scheme.name, s)
-#
-#     parver_reuslt = "failed"
-#     try:
-#         parver_reuslt = parver.Version.parse(version=version_string)
-#     except parver.ParseError as pe:
-#         print(version_string, str(pe))
-#
-#     return semver, versio_ver, parver_reuslt
-#
-#
-# # par ver
-#
-# # sem ver
-#
-# # cmp-version
-#
-# if __name__ == "__main__":
-#     for scheme in [
-#         Pep440VersionScheme,
-#         Simple5VersionScheme,
-#         Simple4VersionScheme,
-#         Simple3VersionScheme,
-#         PerlVersionScheme,
-#     ]:
-#         for s in ["1.1", "1.1.1", "1.1.1b", "1.1.1beta", "1.1.1.1", "pre-1.1.1"]:
-#             try:
-#                 print(guess_schema(s, scheme=scheme))
-#             except AttributeError as ae:
-#                 print(scheme.name, str(ae))
-#             except TypeError as te:
-#                 print(scheme.name, s)
+"""
+Take a string, guess the schema.
+
+IDEA: Each library gets to try to parse string in this order:
+
+sem_ver - because I *think* any bumped sem ver is a valid pep440
+pep440 - just because we are assuming python world.
+
+If the above can't do it, try:
+
+par ver
+
+cmp ver
+
+disutils.version
+
+"""
+
+import logging
+from typing import Any, Tuple, Optional
+
+import parver
+import semantic_version
+from versio import version as versio_version
+from versio.version_scheme import (
+    Pep440VersionScheme,
+    VersionScheme,
+    Simple4VersionScheme,
+)
+
+logger = logging.getLogger(__name__)
+
+_ = Any, Tuple, Optional
+versio_version.Version.supported_version_schemes = [
+    Pep440VersionScheme,
+    Simple4VersionScheme,
+]
+
+
+def version_object_and_next(
+    string
+): # type: (str) -> Tuple[Union[semantic_version.Version,parver.Version, versio.Version],Union[semantic_version.Version, parver.Version, versio.Version],str]
+    if string == "" or string is None:
+        raise TypeError("No version string, can only use default logic.")
+
+    if string[0] == "v":
+        string = string[1:]
+    if len(string.split(".")) == 1:
+        # convert 2 part to 3 part.
+        string = string + ".0.0"
+    elif len(string.split(".")) == 2:
+        # convert 2 part to 3 part, e.g. 1.1 -> 1.1.0
+        string = string + ".0"
+
+    try:
+        version = semantic_version.Version(string)
+        next_version = version.next_patch()
+        _ = semantic_version.Version(str(string))
+        return version, next_version, "semantic_version"
+    except:
+        print(string)
+        try:
+            version = parver.Version.parse(string)
+            next_version = version.bump_dev()
+            _ = parver.Version.parse(str(next_version))
+            return version, next_version, "pep440 (parver)"
+        except:
+            try:
+
+                print(string)
+                # Version.supported_version_schemes = [Pep440VersionScheme, Simple4VersionScheme]
+                version = versio_version.Version(string, scheme=Simple4VersionScheme)
+                version.bump()
+                return (
+                    versio_version.Version(string, scheme=Simple4VersionScheme),
+                    version,
+                    "simple-4 part (versio)",
+                )
+            except:
+                print(string)
+                # versio only does pep440 by default
+                # print(versio.version.Version.supported_version_schemes)
+                raise

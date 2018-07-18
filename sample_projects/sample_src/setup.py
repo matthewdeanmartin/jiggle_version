@@ -8,10 +8,9 @@ PROJECT_NAME = "sample_lib"
 
 here = os.path.abspath(os.path.dirname(__file__))
 about = {}
-with open(os.path.join(here, PROJECT_NAME, "__version__.py")) as f:
-    exec(f.read(), about)
+version = "0.1.23"
 
 setup(
     name=PROJECT_NAME,
-    version=about['__version__'],
+    version = "0.1.23"
 )

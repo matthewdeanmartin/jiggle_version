@@ -5,11 +5,14 @@ Opinionated, no config build version incrementer. No regex. Drop in and go.
     
     cd src
     # should run from same folder with setup.py
+    # or parent folder of my_project/__init__.py
     
     jiggle_library here
     # find, bump & update version strings in source code
     
     git --tag $(jiggle_library find)
+
+Depends on cmp-version, docopt, parver, semantic-version, versio, which your application is unlikely to depend on.
 
 Badges
 ------
@@ -20,7 +23,7 @@ Problem to be solved
 There are up to 1/2 dozen places to update a version string. You scoff, 'Can't be!' But for a mature code base, it is
 because so many tools expect version strings in different places:
 
-- \_\_init\_\_.py has \_\_version\_\_.py
+- \_\_init\_\_.py has \_\_version\_\_
 - so does \_\_version\_\_.py
 - so does the setup function in setup.py
 - so does the setup.cfg if you are doing cofig driven setup.py
@@ -37,7 +40,7 @@ A library should have one working, no-options, no questions asked scenario, e.g.
     jiggle_library here
     # find, bump & update version strings in source code
 
-An opinionated library has an opinion about the right way to do it. That said, if the library can discover existing conventions, it should discover them and used them.
+An opinionated library has an opinion about the right way to do it. That said, if the library can discover existing conventions, it should discover them and use them.
 
 The following contraints enable "drop in and go"
 
@@ -51,17 +54,21 @@ Other than creating \_\_init\_\_.py, \_\_version\_\_.py, etc, no code should con
 
 Provide a vendorization option
 ------
-It should be an effortless & license-compatible way to just copy this next to setup.py
+It should be an effortless & license-compatible way to just copy this next to setup.py.
+
+This isn't achieved yet.
 
 Don't do too many things unrelated to versioning
 ------------------------------------------------
-Don't run tests, create manifests, etc.
+Don't run tests, create manifests, create a package, force checkins & tags, etc.
 
 Provide a multiple interfaces
 ------
-- Command line - e.g. `jiggle_version here`
-- import - e.g. `import jiggle_version; jiggle_version.go()`
-- setup plugin - e.g. 'setup.py jiggle_version', e.g.
+A build tool shouldn't assume any particular build system.
+
+- _Bash:_ Command line - e.g. `jiggle_version here`
+- _python_: import - e.g. `import jiggle_version; jiggle_version.go()`
+- _setup.py_: plugin - e.g. 'setup.py jiggle_version', e.g.
 
 
     setup_requires=['jiggle_version'],
@@ -92,13 +99,13 @@ number.
 
 Files Targeted
 --------------
-/\_\_init\_\_.py  - `\_\_version\_\_ = "1.1.1"`
+/\_\_init\_\_.py  - `__version__ = "1.1.1"`
 
-/\_\_version\_\_.py - `\_\_version\_\_ = "1.1.1"`
+/\_\_version\_\_.py - `__version__ = "1.1.1"`
 
 TODO: _version.py - I think this is a place to pipe a version string from a version control system that isn't expected to be executable? Not sure. It is a common convention. Versioneer puts library code here.
 
-TODO: version.txt - Some tools put/expect just the version string here.
+TODO: version.txt - Some tools put/expect just the version string here. It works well with bash & doesn't require a parser of any sort.
 
 /setup.cfg  `version=1.1.1`
 
@@ -140,13 +147,20 @@ Conflicts with Build Libraries
 --------
 If you use certain libraries, e.g. pbr, with jiggle_version you may have conflicts. All-in-one tools are most likely to conflict.
 
+Weird Edge Cases
+----------------
+Multi-module packages
+Submodules
+Packages with no python
+
+
 Relevant PEPs
 -------------
 [Semantic Version](https://semver.org/) Outside of python-world, this is catching on. I *think* SemVer is a subset of PEP 440.
  
 [440](https://www.python.org/dev/peps/pep-0440/) - Pythons most mature words on versions.
 
-Some other peps that mention versions tangentially: [345](https://www.python.org/dev/peps/pep-0345/#version) and [396](https://www.python.org/dev/peps/pep-0396/#specification). 386 is superceded.
+Some other peps that mention versions tangentially: [345](https://www.python.org/dev/peps/pep-0345/#version) and [396](https://www.python.org/dev/peps/pep-0396/#specification) which is deferred. 386 is superceded.
 
 
 Parsing the complex Version Object
@@ -207,7 +221,9 @@ These all either run `git describe --tags` to find a version or `git tag %` to b
 
 - Other VCS
     - [mercurial_update_version](https://pypi.org/project/mercurial_update_version/) Merucrial holds your canonical version. Not going to test...I don't use
+    - [setuptools_scm](https://pypi.org/project/setuptools_scm/) Git & mercurial. Gets version from tag.  Add this to setup() in setup.py :`use_scm_version=True, setup_requires=['setuptools_scm'],` No version strings in source at all & package still builds to /dist/ with expected version.
     
+        
 
 | PyPi        | Source Code     | Docs  |
 | ------------- |-------------| -----|
@@ -229,7 +245,6 @@ These all either run `git describe --tags` to find a version or `git tag %` to b
 `
   - Source Centric - `setup.py`, e.g. `python setup.py --version`
     - [incremental](https://pypi.org/project/incremental/) `_version.py` updator. If I understand, this lib becomes a dependency of your release app, i.e. it isn't just a build dependency. Pep440 only. Usage `python -m incremental.update my_module --patch`
-
 
 
 Version Finders

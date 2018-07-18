@@ -1,7 +1,3 @@
-# coding=utf-8
-"""
-Stop gap build script until I find something better.
-"""
 from __future__ import print_function
 from __future__ import unicode_literals
 from __future__ import division
@@ -289,7 +285,7 @@ def lint():
 
             raise TypeError("Fatal lint errors : {0}".format(fatal_errors))
 
-        cutoff = 69
+        cutoff = 85
         num_lines = sum(1 for line in open(lint_output_file_name)
                         if "*************" not in line
                         and "---------------------" not in line

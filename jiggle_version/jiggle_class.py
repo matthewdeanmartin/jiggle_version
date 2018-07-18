@@ -16,9 +16,11 @@ from typing import List, Optional, Dict, Any
 
 from semantic_version import Version
 
+from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
 from jiggle_version.find_version_class import FindVersion
-from jiggle_version.utils import merge_two_dicts, first_value_in_dict
+from jiggle_version.is_this_okay import check
+from jiggle_version.schema_guesser import version_object_and_next
 
 try:
     import configparser
@@ -47,7 +49,8 @@ class JiggleVersion(object):
         Entry point
         """
         if not project:
-            raise TypeError("Can't continue, no project name")
+            logger.warning("No module name, can only update certain files.")
+            # raise TypeError("Can't continue, no project name")
 
         if source is None:
             raise TypeError(
@@ -56,70 +59,95 @@ class JiggleVersion(object):
 
         self.PROJECT = project
         self.SRC = source
-        if not os.path.isdir(self.SRC + self.PROJECT):
-            raise TypeError("Can't find proj dir, consider using absolute")
-        self.DEBUG = False
-        logger.info("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
-        self.version = None  # type: Optional[Version]
+        self.is_folder_project = os.path.isdir(os.path.join(self.SRC, self.PROJECT))
+        self.is_file_project = os.path.isfile(
+            os.path.join(self.SRC, self.PROJECT) + ".py"
+        )
+        if not self.is_folder_project and not self.is_file_project:
+            logger.warning(
+                "Can't find module, typically a packages has a .py file or folder with module name : "
+                + unicode(self.SRC + self.PROJECT)
+                + " - can only update setup.py and text files."
+            )
+
+        self.DEBUG = False
+        # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
+
+        self.version_finder = FindVersion(self.PROJECT, self.SRC)
+        try:
+            self.current_version, self.version, self.schema = version_object_and_next(
+                self.version_finder.find_any_valid_version()
+            )
+        except:
+            # Can't find a version
+            candidates = self.version_finder.all_current_versions()
+            message = (
+                "Can't find a recognizable version, won't be able to bump anything. "
+                + str(candidates)
+            )
+            logger.error(message)
+            exit(-1)
+            return
+            # self.current_version , self.version = None, None
+
         self.create_configs = False
 
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
         self.file_maker = FileMaker(self.PROJECT)
         self.version_finder = FindVersion(project, source, debug)
+        self.file_inventory = FileInventory(project, source)
 
-        # the files we will attempt to manage
-        self.project_root = os.path.join(self.SRC, self.PROJECT)
-
-        self.source_files = [
-            "__init__.py",  # required.
-            "__version__.py",  # required.
-            "_version.py",  # optional
-        ]
-        replacement = []
-        for file in self.source_files:
-            replacement.append(os.path.join(self.project_root, file))
-        self.source_files = replacement
-
-        self.config_files = [os.path.join(self.SRC, "setup.cfg")]
-
-        self.text_files = [os.path.join(self.SRC, "version.txt")]
-
-    def jiggle_source_code(self):  # type: () ->None
+    def jiggle_source_code(self):  # type: () ->int
         """
         Update python source files
         """
-
-        for file_name in self.source_files:
+        changed = 0
+        for file_name in self.file_inventory.source_files:
             to_write = []
             self.create_missing(file_name, file_name)
             if not os.path.isfile(file_name):
                 continue
 
-            with open(file_name, "r") as infile:
+            with io.open(file_name, "r", encoding="utf-8") as infile:
                 for line in infile:
-                    if line.strip().startswith("__version__"):
-                        if '"' not in line:
-                            logger.error(unicode((file_name, line)))
-                            raise TypeError(
-                                "Couldn't find double quote (\") Please format your code, maybe with Black."
-                            )
-                        else:
-                            parts = line.split('"')
-                            if len(parts) != 3:
-                                raise TypeError(
-                                    'Version must be of form __version__ = "1.1.1"  with no comments'
+                    simplified_line = (
+                        line.strip()
+                        .replace(" ", "")
+                        .replace("'", '"')
+                        .replace("\n", "")
+                    )
+                    found = False
+                    for version_token in ["__version__", "VERSION", "version"]:
+                        if simplified_line.startswith(version_token + '="'):
+                            if '"' not in simplified_line:
+                                pass
+                                # logger.warn("weird source,no double quote " + unicode((file_name, line, simplified_line)))
+                                # raise TypeError(
+                                #     "Couldn't find double quote (\") Please format your code, maybe with Black."
+                                # )
+                                # to_write.append(line)
+                            else:
+                                parts = simplified_line.split('"')
+                                if len(parts) != 3:
+                                    # logger.warn(
+                                    #     "weird source, not 3 parts " + unicode((file_name, line, simplified_line)))
+                                    continue
+                                found = True
+                                to_write.append(
+                                    '{0} = "{1}"\n'.format(
+                                        version_token, unicode(self.version_to_write())
+                                    )
                                 )
-                            next_version = self.version_to_write(parts[1])
-                        to_write.append(
-                            '__version__ = "{0}"'.format(unicode(next_version))
-                        )
-                    else:
+                    if not found:
                         to_write.append(line)
 
+            check(io.open(file_name, "r", encoding="utf-8").read(), "".join(to_write))
             with open(file_name, "w") as outfile:
                 outfile.writelines(to_write)
+                changed += 1
+        return changed
 
     def create_missing(self, file_name, filepath):  # type: (str,str)->None
         """
@@ -129,12 +157,12 @@ class JiggleVersion(object):
         :return:
         """
         if not os.path.isfile(filepath):
-            if self.create_all and "__init__" in file_name:
+            if self.create_all and "__init__" in file_name and not self.is_file_project:
                 logger.info("Creating " + unicode(filepath))
                 self.file_maker.create_init(filepath)
                 if not os.path.isfile(filepath):
                     raise TypeError("Missing file " + filepath)
-            if "__version__" in filepath:
+            if "__version__" in filepath and not self.is_file_project and self.PROJECT:
                 logger.info("Creating " + unicode(filepath))
                 self.file_maker.create_version(filepath)
                 if not os.path.isfile(filepath):
@@ -142,7 +170,7 @@ class JiggleVersion(object):
 
     def validate_setup(self):  # type: () ->None
         """
-        Don't put version constants into setup.py
+        Okay, lots of people only have their version in setup.py as a constant.
         """
         setuppy = self.SRC + "setup.py"
         if not os.path.isfile(setuppy):
@@ -157,34 +185,93 @@ class JiggleVersion(object):
                             "Read the __version__.py or __init__.py don't add version in setup.py as constant"
                         )
 
-    def version_to_write(self, found):  # type: (str) -> Version
+    def jiggle_setup_py(self):  # type: () -> int
         """
-        Take 1st version string found.
-        :param found: possible version string
+        Edit a version = "1.2.3" or version="1.2.3",
         :return:
         """
-        first = False
-        if self.version is None:
-            first = True
-            self.version = Version(found.strip(" "))
-        next_version = self.version.next_patch()
-        if first:
-            logger.info(
-                "Updating from version {0} to {1}".format(
-                    unicode(self.version), unicode(next_version)
+        changed = 0
+        setup_py = os.path.join(self.SRC, "setup.py")
+        if not os.path.isfile(setup_py):
+            return changed
+        lines_to_write = []
+        need_rewrite = False
+        with io.open(setup_py, "r", encoding="utf-8") as infile:
+            for line in infile:
+                simplified_line = (
+                    line.replace(" ", "").replace("'", '"').replace("\t", "")
                 )
-            )
-        return next_version
+                if 'version="' in simplified_line:
+                    source = 'version = "{0}"'.format(unicode(self.version_to_write()))
+                    if "," in simplified_line:
+                        source += ","
+                    if line.startswith("    "):
+                        source = "    " + source
+                    need_rewrite = True
+                    lines_to_write.append(source + "\n")
+                elif simplified_line.startswith('__version__="'):
+                    if '"' not in simplified_line:
+                        # logger.warn("weird source,no double quote " + unicode((setup_py, line, simplified_line)))
+                        # raise TypeError(
+                        #     "Couldn't find double quote (\") Please format your code, maybe with Black."
+                        # )
+                        lines_to_write.append(line)
+                    else:
+                        parts = simplified_line.split('"')
+                        if len(parts) != 3:
+                            # logger.warn(
+                            #     "weird source, not 3 parts " + unicode((setup_py, line, simplified_line)))
+                            continue
+                        lines_to_write.append(
+                            '__version__ = "{0}"\n'.format(
+                                unicode(self.version_to_write())
+                            )
+                        )
+                        need_rewrite = True
+                else:
+                    lines_to_write.append(line)
 
-    def jiggle_config_file(self):  # type: () ->None
+        if need_rewrite:
+            check(
+                io.open(setup_py, "r", encoding="utf-8").read(), "".join(lines_to_write)
+            )
+            with io.open(setup_py, "w", encoding="utf-8") as outfile:
+
+                outfile.writelines(lines_to_write)
+                outfile.close()
+                changed += 1
+        return changed
+
+    def version_to_write(self):  # type: () -> Version
+        """
+        :return:
+        """
+        return self.version
+
+    def jiggle_all(self):  # type: () -> int
+        """
+        All possible files
+        :return:
+        """
+        changed = 0
+        changed += self.jiggle_text_file()
+        changed += self.jiggle_source_code()
+        changed += self.jiggle_config_file()
+        changed += self.jiggle_setup_py()
+        assert changed > 0, "Failed to change anything."
+        return changed
+
+    def jiggle_config_file(self):  # type: () ->int
         """
         Update ini, cfg, conf
         """
+        changed = 0
         # setup.py related. setup.py itself should read __init__.py or __version__.py
         to_write = []
         other_files = ["/setup.cfg"]
 
-        self.validate_setup()
+        # Okay, lets just update if found
+        # self.validate_setup()
 
         for file_name in other_files:
             filepath = self.SRC + file_name
@@ -199,6 +286,7 @@ class JiggleVersion(object):
                 self.file_maker.create_setup_cfg(filepath)
 
             if os.path.isfile(filepath):
+                need_rewrite = False
                 with io.open(filepath, "r", encoding="utf-8") as infile:
                     for line in infile:
                         if "version =" in line or "version=" in line:
@@ -209,24 +297,31 @@ class JiggleVersion(object):
                                 logger.error("Must be of form version = 1.1.1")
                                 print("Must be of form version = 1.1.1")
                                 exit(-1)
-                                return
-                            next_version = self.version_to_write(parts[1])
+                                return changed
+
                             to_write.append(
-                                "version={0}\n".format(unicode(next_version))
+                                "version={0}\n".format(unicode(self.version_to_write()))
                             )
+                            need_rewrite = True
                         else:
                             to_write.append(line)
+                if need_rewrite:
+                    with io.open(
+                        self.SRC + file_name, "w", encoding="utf-8"
+                    ) as outfile:
+                        outfile.writelines(to_write)
+                    changed += 1
+        return changed
 
-                with io.open(self.SRC + file_name, "w", encoding="utf-8") as outfile:
-                    outfile.writelines(to_write)
+    def jiggle_text_file(self):  # type: () -> int
+        changed = 0
 
-        version_txt = self.SRC + "/version.txt"
-        if os.path.isfile(version_txt) or self.create_configs:
-            with io.open(version_txt, "w", encoding="utf-8") as outfile:
-                # BUG will blow up if not already set
-                if self.version is None or self.version == "":
-                    raise TypeError("Can't write version")
-                # BUG: wrong version!
-                next_version = self.version_to_write("0.0.0")
-                outfile.writelines([unicode(next_version)])
-                outfile.close()
+        for version_txt in self.file_inventory.text_files:
+            if os.path.isfile(version_txt) or self.create_configs:
+                with io.open(version_txt, "w", encoding="utf-8") as outfile:
+                    if self.version is None or self.version == "":
+                        raise TypeError("Can't write version")
+                    outfile.writelines([unicode(self.version_to_write())])
+                    outfile.close()
+                    changed += 1
+        return changed

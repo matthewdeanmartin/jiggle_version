@@ -10,11 +10,13 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import logging
-import sys
 
 from jiggle_version.find_version_class import FindVersion
 from jiggle_version.jiggle_class import JiggleVersion
+
+import logging
+import sys
+
 
 if sys.version_info.major == 3:
     unicode = str
@@ -26,15 +28,18 @@ def bump_version(project, source, debug):  # type: (str, str, bool) ->None
     Entry point
     :return:
     """
-    print()
-    print("Starting version jiggler...")
+    # logger.debug("Starting version jiggler...")
     jiggler = JiggleVersion(project, source, debug)
-
+    logger.debug(
+        "Current, next : {0} -> {1} : {2}".format(
+            jiggler.current_version, jiggler.version, jiggler.schema
+        )
+    )
     if not jiggler.version_finder.validate_current_versions():
+        logger.debug(str(jiggler.version_finder.all_current_versions()))
         logger.error("Versions not in sync, won't continue")
         exit(-1)
-    jiggler.jiggle_source_code()
-    jiggler.jiggle_config_file()
+    jiggler.jiggle_all()
 
 
 def find_version(project, source, debug):  # type: (str, str, bool) ->None
@@ -43,14 +48,15 @@ def find_version(project, source, debug):  # type: (str, str, bool) ->None
     :return:
     """
     # quiet! no noise
-    jiggler = FindVersion(project, source, debug)
-    if not jiggler.validate_current_versions():
+    finder = FindVersion(project, source, debug)
+    if not finder.validate_current_versions():
         # This is a failure.
+        logger.debug(str(finder.all_current_versions()))
         logger.error("Versions not in sync, won't continue")
         exit(-1)
-    version = jiggler.find_any_valid_verision()
+    version = finder.find_any_valid_version()
     if version:
-        print(jiggler.version_to_write(unicode(version)))
+        print(finder.version_to_write(unicode(version)))
     else:
         logger.error("Failed to find version")
         exit(-1)

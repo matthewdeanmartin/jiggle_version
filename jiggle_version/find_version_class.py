@@ -1,11 +1,14 @@
 # coding=utf-8
 """
 Just discover version and if possible, the schema.
+
+TODO: __version_info__ = (3, 0, 0, 'a0')
 """
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import ast
 import io
 import logging
 import os.path
@@ -13,7 +16,9 @@ from typing import List, Optional, Dict, Any
 
 from semantic_version import Version
 
+from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
+from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import merge_two_dicts, first_value_in_dict
 
 try:
@@ -33,6 +38,13 @@ logger = logging.getLogger(__name__)
 _ = List, Optional, Dict, Any
 
 
+def version_by_ast(file): # type: (str) -> str
+    with open(file) as input_file:
+        for line in input_file:
+            if line.startswith("__version__"):
+                return ast.parse(line).body[0].value.s
+
+
 class FindVersion(object):
     """
     Because OOP.
@@ -42,8 +54,8 @@ class FindVersion(object):
         """
         Entry point
         """
-        if not project:
-            raise TypeError("Can't continue, no project name")
+        # if not project:
+        #     raise TypeError("Can't continue, no project name")
 
         if source is None:
             raise TypeError(
@@ -52,36 +64,29 @@ class FindVersion(object):
 
         self.PROJECT = project
         self.SRC = source
-        if not os.path.isdir(self.SRC + self.PROJECT):
-            raise TypeError("Can't find proj dir, consider using absolute")
+        self.is_folder_project = os.path.isdir(os.path.join(self.SRC, self.PROJECT))
+        self.is_file_project = os.path.isfile(
+            os.path.join(self.SRC, self.PROJECT) + ".py"
+        )
+        if not self.is_folder_project and not self.is_file_project:
+            logger.warning(
+                "Can't find module, typically a packages has a .py file or folder with module name : "
+                + unicode(self.SRC + self.PROJECT)
+                + " - can only update setup.py and text files."
+            )
+
         self.DEBUG = False
-        logger.info("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
+        # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
         self.version = None  # type: Optional[Version]
         self.create_configs = False
 
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
-        self.file_maker = FileMaker(self.PROJECT)
 
-        # the files we will attempt to manage
-        self.project_root = os.path.join(self.SRC, self.PROJECT)
+        self.file_inventory = FileInventory(self.PROJECT, self.SRC)
 
-        self.source_files = [
-            "__init__.py",  # required.
-            "__version__.py",  # required.
-            "_version.py",  # optional
-        ]
-        replacement = []
-        for file in self.source_files:
-            replacement.append(os.path.join(self.project_root, file))
-        self.source_files = replacement
-
-        self.config_files = [os.path.join(self.SRC, "setup.cfg")]
-
-        self.text_files = [os.path.join(self.SRC, "version.txt")]
-
-    def find_any_valid_verision(self):  # type: () -> str
+    def find_any_valid_version(self):  # type: () -> str
         """
         Find version candidates, return first (or any, since they aren't ordered)
 
@@ -89,6 +94,9 @@ class FindVersion(object):
         :return:
         """
         versions = self.all_current_versions()
+        if not versions.keys():
+            raise TypeError("Noooo! Must find a value")
+            return "0.1.0"
         return unicode(first_value_in_dict(versions))
 
     def validate_current_versions(self):  # type: () -> bool
@@ -108,13 +116,12 @@ class FindVersion(object):
             logger.warning("Found no versions, will use default 0.1.0")
             return True
 
-        if not self.all_versions_equal_sem_ver(versions):
+        if not self.all_versions_equal(versions):
             logger.error("Found various versions, how can we rationally pick?")
             logger.error(unicode(versions))
             return False
 
         for key, version in versions.items():
-            logger.debug("Found version : {0}".format(version))
             return True
         return False
 
@@ -124,30 +131,34 @@ class FindVersion(object):
         :return:
         """
         versions = {}  # type: Dict[str,str]
-        for file in self.source_files:
+        for file in self.file_inventory.source_files:
 
             if not os.path.isfile(file):
                 continue
             vers = self.find_dunder_version_in_file(file)
-
             versions = merge_two_dicts(versions, vers)
-            more_vers = self.read_metadata()
 
+        for finder in [self.read_metadata, self.read_text, self.read_setup_py]:
+            more_vers = finder()
             versions = merge_two_dicts(versions, more_vers)
-            even_more_vers = self.read_text()
 
-            versions = merge_two_dicts(versions, even_more_vers)
         copy = {}  # type: Dict[str,str]
         for key, version in versions.items():
             try:
-                _ = Version(version)
+                _ = version_object_and_next(version)
                 copy[key] = version
-            except ValueError:
-                logger.error("Invalid Semantic Version " + version)
-                copy[key] = "Invalid Semantic Version : " + unicode(version)
+            except:
+                logger.error(
+                    "Invalid Version Schema - not Semantic Version, not Pep 440 -  "
+                    + version
+                )
+                copy[key] = (
+                    "Invalid Version Schema - not Semantic Version, not Pep 440 : "
+                    + unicode(version)
+                )
         return copy
 
-    def all_versions_equal_sem_ver(self, versions):  # type: (Dict[str,str]) -> bool
+    def all_versions_equal(self, versions):  # type: (Dict[str,str]) -> bool
         """
         Verify that all the versions are the same.
         :param versions:
@@ -160,30 +171,72 @@ class FindVersion(object):
         for key, version in versions.items():
             if semver is None:
                 try:
-                    semver = Version(version)
+                    semver, next_sem_ver, schema = version_object_and_next(version)
                 except ValueError:
                     logger.error("Invalid version at:")
                     logger.error(unicode((key, version)))
                     return False
                 continue
             try:
-                version_as_version = Version(version)
-            except ValueError:
+                version_as_version, next_version, schema = version_object_and_next(
+                    version
+                )
+            except:
                 return False
             if version_as_version != semver:
                 return False
         return True
+
+    def read_setup_py(self):  # type: ()-> Dict[str,str]
+        """
+        Extract from setup.py's setup() arg list.
+        :return:
+        """
+        found = {}
+        setup_py = os.path.join(self.SRC, "setup.py")
+
+        if not os.path.isfile(setup_py):
+            return found
+
+        with io.open(setup_py, "r", encoding="utf-8") as infile:
+            for line in infile:
+                simplified_line = line.replace(" ", "").replace("'", '"')
+                if sum([1 for x in simplified_line if x == ","]) > 1:
+                    comma_parts = simplified_line.split(",")
+                    for part in comma_parts:
+
+                        if "version" in part:
+                            simplified_line = part
+
+                # could be more than 1!
+                if 'version="' in simplified_line:
+                    version = simplified_line.split('"')[1]
+                    if not version:
+                        logging.warn("Can't find all of version string " + line)
+                        continue
+                    found[setup_py] = version
+                    continue
+                if '__version__="' in simplified_line:
+                    version = simplified_line.split('"')[1]
+                    if not version:
+                        logging.warn("Can't find all of version string " + line)
+                        continue
+                    found[setup_py] = version
+        return found
 
     def read_text(self):  # type: () ->Dict[str,str]
         """
         Get version out of ad-hoc version.txt
         :return:
         """
-        if not os.path.isfile(self.text_files[0]):
-            return {}
-        with open(self.text_files[0], "r") as infile:
-            text = infile.readline()
-        return {self.text_files[0]: text.strip(" \n")}
+        found = {}
+        for file in self.file_inventory.text_files:
+            if not os.path.isfile(file):
+                continue
+            with open(file, "r") as infile:
+                text = infile.readline()
+            found[file] = text.strip(" \n")
+        return found
 
     def read_metadata(self):  # type: () ->Dict[str,str]
         """
@@ -191,7 +244,7 @@ class FindVersion(object):
         :return:
         """
         config = configparser.ConfigParser()
-        config.read(self.config_files[0])
+        config.read(self.file_inventory.config_files[0])
         try:
             return {"setup.cfg": config["metadata"]["version"]}
         except KeyError:
@@ -206,18 +259,19 @@ class FindVersion(object):
         versions = {}
         with open(full_path, "r") as infile:
             for line in infile:
-                if line.strip().startswith("__version__"):
-                    if '"' not in line:
-                        logger.error(unicode((full_path, line)))
-                        raise TypeError(
-                            "Couldn't find double quote (\") Please format your code, maybe with Black."
-                        )
+                simplified_line = line.replace("'", '"')
+                if simplified_line.strip().startswith("__version__"):
+                    if '"' not in simplified_line:
+                        pass
+                        # logger.debug("Weird version string, no double quote : " + unicode((full_path, line, simplified_line)))
                     else:
-                        parts = line.split('"')
+                        if '"' in simplified_line:
+                            parts = simplified_line.split('"')
+                        else:
+                            parts = simplified_line.split("'")
                         if len(parts) != 3:
-                            raise TypeError(
-                                'Version must be of form __version__ = "1.1.1"  with no comments'
-                            )
+                            # logger.debug("Weird string, more than 3 parts : " + unicode((full_path, line, simplified_line)))
+                            continue
                         versions[full_path] = parts[1]
         return versions
 
@@ -247,12 +301,17 @@ class FindVersion(object):
         first = False
         if self.version is None:
             first = True
-            self.version = Version(found.strip(" "))
-        next_version = self.version.next_patch()
+            try:
+                self.current_version, self.version, self.schema = version_object_and_next(
+                    found.strip(" ")
+                )
+            except:
+                raise TypeError("Shouldn't throw here.")
+
         if first:
             logger.info(
                 "Updating from version {0} to {1}".format(
-                    unicode(self.version), unicode(next_version)
+                    unicode(self.version), unicode(self.version)
                 )
             )
-        return next_version
+        return self.version
