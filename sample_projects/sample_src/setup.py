@@ -8,9 +8,9 @@ PROJECT_NAME = "sample_lib"
 
 here = os.path.abspath(os.path.dirname(__file__))
 about = {}
-version = "0.1.23"
+version = "0.1.58"
 
 setup(
     name=PROJECT_NAME,
-    version = "0.1.23"
+    version = "0.1.58"
 )

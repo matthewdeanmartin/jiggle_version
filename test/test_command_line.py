@@ -2,7 +2,15 @@
 """
 Tests
 """
+import os
+import sys
 import subprocess
+here = os.path.abspath(os.path.dirname(__file__))
+PROJECT = "jiggle_version"
+SRC = here + "/.."
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 
 def execute_get_text(command):
     try:
@@ -21,7 +29,10 @@ def execute_get_text(command):
 
 
 def test_find_version():
-
-    result = execute_get_text("python -m jiggle_version find")
-    print(result)
-    assert result
+    try:
+        os.chdir(SRC)
+        result = execute_get_text("python -m jiggle_version find")
+        print(result)
+        assert result
+    finally:
+        os.chdir("test")

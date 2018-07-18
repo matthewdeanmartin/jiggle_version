@@ -23,11 +23,13 @@ def execute_get_text(command, dir):
 
 things = [x for x in os.listdir("packages")]
 random.shuffle(things)
+
 for dir in things:
     if dir.endswith(".gz") or dir.endswith(".zip"):
         continue
     if ".DS_Store" in dir:
         continue
+
     command = "python3 -m jiggle_version here"
     print("---{0}---".format(dir))
     try:

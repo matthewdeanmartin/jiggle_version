@@ -9,10 +9,13 @@ import ast
 import os
 import io
 import logging
+import chardet
 from typing import List, Optional
 
 # so formatter doesn't remove.
 from setuptools import find_packages
+
+from jiggle_version.utils import die, first_value_in_dict, JiggleVersionException
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +23,7 @@ _ = List, Optional
 
 
 class ModuleFinder(object):
-    def __init__(self): # type: () -> None
+    def __init__(self):  # type: () -> None
         pass
 
     def read_file(self, file):  # type: (str) -> Optional[str]
@@ -30,14 +33,21 @@ class ModuleFinder(object):
                 with io.open("setup.py", "r", encoding="utf-8") as setup_py:
                     setup_source = setup_py.read()
             except UnicodeDecodeError:
-                with io.open("setup.py", "r", encoding="ascii") as setup_py:
+                encoding = chardet.detect(io.open("setup.py", "rb").read())
+                # logger.warning("guessing encoding " + str(encoding))
+                with io.open("setup.py", "r", encoding=encoding["encoding"]) as setup_py:
                     setup_source = setup_py.read()
         return setup_source
 
     def setup_py_source(self):  # type: () -> Optional[str]
-        return self.read_file("setup.py")
+        source = self.read_file("setup.py")
+        if not source:
+            source = self.read_file("setup") # rare case
+        return source
 
-    def name_from_setup_py(self): # type: () -> str
+
+
+    def name_from_setup_py(self):  # type: () -> str
         source = self.setup_py_source()
         if not source:
             return ""
@@ -48,7 +58,44 @@ class ModuleFinder(object):
                     return simplified_row.split('"')[1]
         return ""
 
-    def via_find_packages(self):# type: () -> List[str]
+    def extract_package_dir(self): # type: () -> Optional[str]
+        # package_dir={'': 'lib'},
+        source = self.setup_py_source()
+        if not source:
+            # this happens when the setup.py file is missing
+            return None
+        if "package_dir" in source:
+            for line in source.split("\n"):
+                simplified_line = line.strip(" ,").replace("'","\"")
+                if "package_dir" in simplified_line:
+                    parts = simplified_line.split("=")
+                    dict_src = parts[1].strip(" \t")
+                    if not dict_src.endswith("}"):
+                        raise JiggleVersionException("Either this is hard to parse or we have 2+ src foldrs")
+                    try:
+                        paths_dict = ast.literal_eval(dict_src)
+                    except ValueError as ve:
+                        logger.error(source +": " + dict_src)
+                        return ""
+
+
+                    if "" in paths_dict:
+                        candidate = paths_dict[""]
+                        if os.path.isdir(candidate):
+                            return candidate
+                    if len(paths_dict) ==1:
+                        candidate =  first_value_in_dict(paths_dict)
+                        if os.path.isdir(candidate):
+                            return candidate
+                    else:
+                        raise JiggleVersionException("Have path_dict, but has more than one path.")
+        return None
+
+
+
+
+
+    def via_find_packages(self):  # type: () -> List[str]
         packages = []
         source = self.setup_py_source()
         if not source:
@@ -135,7 +182,7 @@ class ModuleFinder(object):
     # packages=find_packages('src'),
     # packages=['ajax_select'],
 
-    def find_malformed_single_file_project(self):# type: () -> List[str]
+    def find_malformed_single_file_project(self):  # type: () -> List[str]
         """
         Take first non-setup.py python file. What a mess.
         :return:
@@ -176,7 +223,7 @@ class ModuleFinder(object):
         # default.
         return candidates
 
-    def find_single_file_project(self):# type: () -> List[str]
+    def find_single_file_project(self):  # type: () -> List[str]
         """
         Find well formed singler file project
         :return:
@@ -205,8 +252,9 @@ class ModuleFinder(object):
         :return:
         """
         if len(candidates) > 1:
-            logger.error("Found multiple possible projects : " + str(candidates))
-            exit(-1)
+            message = "Found multiple possible projects : " + str(candidates)
+            logger.error(message)
+            die(-1, message)
             return
         if not candidates:
             # we can still update setup.py
@@ -214,5 +262,5 @@ class ModuleFinder(object):
                 "Found no project. Expected a folder in current directory to contain a __init__.py "
                 "file. Use --source, --project for other scenarios"
             )
-            # exit(-1)
+            # die(-1)
             # return

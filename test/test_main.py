@@ -2,6 +2,8 @@
 """
 Tests
 """
+from jiggle_version.utils import JiggleVersionException
+
 try:
     FileNotFoundError
 except NameError:
@@ -23,10 +25,6 @@ def test_print_versions():
     print(init.__version__)
     print(v2)
 
-
-
-
-
 def test_process_docopts():
     try:
         main.process_docopts()
@@ -35,4 +33,14 @@ def test_process_docopts():
 
 
 def test_entry_point():
-    main.bump_version(PROJECT, SRC, True)
+    # put app in dir with setup.py. Easier!
+    try:
+        os.chdir(SRC)
+        main.bump_version(PROJECT, "", True)
+    except JiggleVersionException as jve:
+        print(os.getcwd())
+        raise
+    finally:
+        os.chdir("../../test")
+
+

@@ -17,6 +17,7 @@ from jiggle_version.jiggle_class import JiggleVersion
 import logging
 import sys
 
+from jiggle_version.utils import die
 
 if sys.version_info.major == 3:
     unicode = str
@@ -36,10 +37,12 @@ def bump_version(project, source, debug):  # type: (str, str, bool) ->None
         )
     )
     if not jiggler.version_finder.validate_current_versions():
+
         logger.debug(str(jiggler.version_finder.all_current_versions()))
         logger.error("Versions not in sync, won't continue")
-        exit(-1)
-    jiggler.jiggle_all()
+        die(-1,"Versions not in sync, won't continue")
+    changed = jiggler.jiggle_all()
+    logger.debug("Changed {0} files".format(changed))
 
 
 def find_version(project, source, debug):  # type: (str, str, bool) ->None
@@ -53,10 +56,11 @@ def find_version(project, source, debug):  # type: (str, str, bool) ->None
         # This is a failure.
         logger.debug(str(finder.all_current_versions()))
         logger.error("Versions not in sync, won't continue")
-        exit(-1)
+        die(-1,"Versions not in sync, won't continue")
+
     version = finder.find_any_valid_version()
     if version:
         print(finder.version_to_write(unicode(version)))
     else:
         logger.error("Failed to find version")
-        exit(-1)
+        die(-1, "Failed to find version")

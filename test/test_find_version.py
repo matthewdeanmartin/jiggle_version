@@ -19,8 +19,14 @@ SRC = here + "/../sample_projects/sample_src/"
 
 
 def test_find_version():
-    # what ev, who knows if these file even exist
-    _ = find_version(PROJECT, SRC, True)
+    try:
+        os.chdir(SRC)
+        # what ev, who knows if these file even exist
+        _ = find_version(PROJECT, "sample_src", True)
+    finally:
+        os.chdir("../../test")
+
+
 
 def test_find_version_by_package():
     _ = pkg_resources_version(PROJECT)

@@ -78,6 +78,9 @@ or
 
     cmdclass=jiggle_version_command,
 
+Don't argue over a patch version
+------
+If multiple versions are detected, but are close, e.g. 1.2.3 and 1.2.4, just use 1.2.4.  This is the most common real world sync problem.
 
 Don't force the developer to create irrelevant things
 --------

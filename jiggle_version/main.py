@@ -25,6 +25,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import logging
+import logging.config
 from typing import List, Optional, Dict, Any
 
 from docopt import docopt
@@ -44,14 +45,30 @@ def console_trace(level):  # type: (int)->None
     :param level:
     :return:
     """
-    # set up logging to file - see previous section for more details
-    logging.basicConfig(
-        level=level,
-        format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
-        datefmt="%m-%d %H:%M",
-        # filename='/temp/myapp.log',
-        # filemode='w'
-    )
+    logging.config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'default': {
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['default'],
+            'level': 'DEBUG',
+            'propagate': True
+        }
+    }
+})
+    # logger.debug("Does this work?")
+
     # # define a Handler which writes INFO messages or higher to the sys.stderr
     # console = logging.StreamHandler()
     # console.setLevel(level)
@@ -71,6 +88,7 @@ def process_docopts():  # type: ()->None
     arguments = docopt(__doc__, version="Jiggle Version 1.0")
     logger.debug(arguments)
     module_finder = ModuleFinder()
+
     candidates = module_finder.find_project()
     if candidates:
         project_name = candidates[0]
@@ -81,15 +99,19 @@ def process_docopts():  # type: ()->None
         if arguments["--debug"]:
             console_trace(logging.DEBUG)
         module_finder.validate_found_project(candidates)
-        bump_version(project=project_name, source="", debug=arguments["--debug"])
+        guess_src_dir = module_finder.extract_package_dir()
+        if not guess_src_dir:
+            guess_src_dir = ""
+        bump_version(project=project_name, source=guess_src_dir, debug=arguments["--debug"])
     elif arguments["find"]:
         # Only show errors. Rest of extraneous console output messes up this:
         # jiggle_version find>version.txt
 
         if arguments["--debug"] == "True":
             console_trace(logging.DEBUG)
-        else:
-            console_trace(logging.ERROR)
+        # else:
+        #     console_trace(logging.ERROR)
+
         if not arguments["--project"]:
             module_finder.validate_found_project(candidates)
         find_version(project=project_name, source="", debug=arguments["--debug"])

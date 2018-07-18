@@ -7,6 +7,15 @@ from typing import List, Optional, Dict, Any
 # contrive usage so black doesn't remove the import
 _ = List, Optional, Dict, Any
 
+class JiggleVersionException(Exception):
+    pass
+
+def die(code, why):
+    if code != 0:
+        # Development
+        raise JiggleVersionException("Can't continue: " + why)
+        # prod
+        # exit(code)
 
 def first_value_in_dict(x):  # type: (Dict[Any, Any]) -> Any
     """

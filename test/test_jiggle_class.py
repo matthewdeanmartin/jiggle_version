@@ -18,9 +18,14 @@ SRC = here + "/../sample_projects/sample_src/"
 
 def test_go():
     # what ev, who knows if these file even exist
-    jiggler = JiggleVersion(PROJECT, SRC, True)
-    jiggler.create_configs = True
-    changed = jiggler.jiggle_all()
+    try:
+        os.chdir(SRC)
+        jiggler = JiggleVersion(PROJECT, "", True)
+        jiggler.create_configs = True
+        changed = jiggler.jiggle_all()
+
+    finally:
+        os.chdir("../../test")
     assert changed > 0
 
 
@@ -35,14 +40,21 @@ def test_no_files():
         except OSError:
             pass
 
-    # doesn't exist
-    jiggler = JiggleVersion(PROJECT, SRC, True)
-    jiggler.create_configs = True
-    jiggler.create_all = True
-    jiggler.jiggle_all()
+    # put app in dir with setup.py. Easier!
+    try:
+        os.chdir(SRC)
+        # doesn't exist
+        jiggler = JiggleVersion(PROJECT, "", True)
+        jiggler.create_configs = True
+        jiggler.create_all = True
+        jiggler.jiggle_all()
 
-    # and already exist
-    jiggler = JiggleVersion(PROJECT, SRC, True)
-    jiggler.create_configs = True
-    jiggler.create_all = True
-    jiggler.jiggle_all()
+        # and already exist
+        jiggler = JiggleVersion(PROJECT, "", True)
+        jiggler.create_configs = True
+        jiggler.create_all = True
+        jiggler.jiggle_all()
+
+    finally:
+        os.chdir("../../test")
+

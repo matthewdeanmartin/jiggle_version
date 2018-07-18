@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def check(src, dst): # type: (str,str)->None
+def check(src, dst):  # type: (str,str)->None
     """
     Code take from black formatter. Just want to see if this is still python.
     :param src:

@@ -30,7 +30,8 @@ required = [
     'semantic_version', # sem ver parser
     'cmp-version',
     'parver', # pep440 parser
-    'versio' # pep440 parser
+    'versio', # pep440 parser
+    'chardet' # for reading source code files
 ]
 
 

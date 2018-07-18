@@ -9,6 +9,7 @@ docopt = "*"
 parver = "*"
 cmp-version = "*"
 versio = "*"
+chardet = "*"
 
 [dev-packages]
 nose = "*"

@@ -14,6 +14,7 @@ import logging
 import os.path
 from typing import List, Optional, Dict, Any
 
+import chardet
 from semantic_version import Version
 
 from jiggle_version.file_inventory import FileInventory
@@ -21,6 +22,7 @@ from jiggle_version.file_makers import FileMaker
 from jiggle_version.find_version_class import FindVersion
 from jiggle_version.is_this_okay import check
 from jiggle_version.schema_guesser import version_object_and_next
+from jiggle_version.utils import die, JiggleVersionException
 
 try:
     import configparser
@@ -50,10 +52,10 @@ class JiggleVersion(object):
         """
         if not project:
             logger.warning("No module name, can only update certain files.")
-            # raise TypeError("Can't continue, no project name")
+            # raise JiggleVersionException("Can't continue, no project name")
 
         if source is None:
-            raise TypeError(
+            raise JiggleVersionException(
                 'Can\'t continue, source directory is None, should be ""\ for current dir'
             )
 
@@ -79,15 +81,15 @@ class JiggleVersion(object):
             self.current_version, self.version, self.schema = version_object_and_next(
                 self.version_finder.find_any_valid_version()
             )
-        except:
+        except Exception as ex:
             # Can't find a version
             candidates = self.version_finder.all_current_versions()
-            message = (
-                "Can't find a recognizable version, won't be able to bump anything. "
+            message = (unicode(ex) +
+                " Can't find a recognizable version, won't be able to bump anything. "
                 + str(candidates)
             )
             logger.error(message)
-            exit(-1)
+            die(-1, message)
             return
             # self.current_version , self.version = None, None
 
@@ -98,6 +100,16 @@ class JiggleVersion(object):
         self.file_maker = FileMaker(self.PROJECT)
         self.version_finder = FindVersion(project, source, debug)
         self.file_inventory = FileInventory(project, source)
+
+    def leading_whitespace(self, line):
+        string = ""
+        for char in line:
+            if char in " \t":
+                string += char
+                continue
+            else:
+                return string
+        return string
 
     def jiggle_source_code(self):  # type: () ->int
         """
@@ -112,6 +124,8 @@ class JiggleVersion(object):
 
             with io.open(file_name, "r", encoding="utf-8") as infile:
                 for line in infile:
+                    leading_white = self.leading_whitespace(line)
+                    ends_with_comma = line.strip(" \t\n").endswith(",")
                     simplified_line = (
                         line.strip()
                         .replace(" ", "")
@@ -124,7 +138,7 @@ class JiggleVersion(object):
                             if '"' not in simplified_line:
                                 pass
                                 # logger.warn("weird source,no double quote " + unicode((file_name, line, simplified_line)))
-                                # raise TypeError(
+                                # raise JiggleVersionException(
                                 #     "Couldn't find double quote (\") Please format your code, maybe with Black."
                                 # )
                                 # to_write.append(line)
@@ -134,10 +148,18 @@ class JiggleVersion(object):
                                     # logger.warn(
                                     #     "weird source, not 3 parts " + unicode((file_name, line, simplified_line)))
                                     continue
+                                if parts[2].strip(" \t") not in [",",""]:
+                                    raise JiggleVersionException("Can't parse this yet (stuff after version) " + line)
                                 found = True
-                                to_write.append(
-                                    '{0} = "{1}"\n'.format(
-                                        version_token, unicode(self.version_to_write())
+                                # preserve leading whitespace
+                                comma = ""
+                                if ends_with_comma:
+                                    comma = ","
+                                to_write.append('{0}{1} = "{2}"{3}\n'.format(
+                                        leading_white,
+                                        version_token,
+                                        unicode(self.version_to_write()),
+                                        comma
                                     )
                                 )
                     if not found:
@@ -161,12 +183,12 @@ class JiggleVersion(object):
                 logger.info("Creating " + unicode(filepath))
                 self.file_maker.create_init(filepath)
                 if not os.path.isfile(filepath):
-                    raise TypeError("Missing file " + filepath)
+                    raise JiggleVersionException("Missing file " + filepath)
             if "__version__" in filepath and not self.is_file_project and self.PROJECT:
                 logger.info("Creating " + unicode(filepath))
                 self.file_maker.create_version(filepath)
                 if not os.path.isfile(filepath):
-                    raise TypeError("Missing file " + filepath)
+                    raise JiggleVersionException("Missing file " + filepath)
 
     def validate_setup(self):  # type: () ->None
         """
@@ -181,7 +203,7 @@ class JiggleVersion(object):
                 if line.strip().replace(" ", "").startswith("version="):
                     if not ("__version__" in line or "__init__" in line):
                         logger.error(line)
-                        raise TypeError(
+                        raise JiggleVersionException(
                             "Read the __version__.py or __init__.py don't add version in setup.py as constant"
                         )
 
@@ -196,23 +218,28 @@ class JiggleVersion(object):
             return changed
         lines_to_write = []
         need_rewrite = False
-        with io.open(setup_py, "r", encoding="utf-8") as infile:
+
+        encoding = chardet.detect(io.open(setup_py, "rb").read())
+        # logger.warning("guessing encoding " + str(encoding))
+        with io.open(setup_py, "r", encoding=encoding["encoding"]) as infile:
             for line in infile:
+                leading_white = self.leading_whitespace(line)
                 simplified_line = (
                     line.replace(" ", "").replace("'", '"').replace("\t", "")
                 )
                 if 'version="' in simplified_line:
-                    source = 'version = "{0}"'.format(unicode(self.version_to_write()))
+                    if len([x for x in simplified_line if x =="="])>1:
+                        raise JiggleVersionException("Don't have a way of parsing this yet. " + line)
+                    source = leading_white + 'version = "{0}"'.format(unicode(self.version_to_write()))
                     if "," in simplified_line:
                         source += ","
-                    if line.startswith("    "):
-                        source = "    " + source
+
                     need_rewrite = True
                     lines_to_write.append(source + "\n")
                 elif simplified_line.startswith('__version__="'):
                     if '"' not in simplified_line:
                         # logger.warn("weird source,no double quote " + unicode((setup_py, line, simplified_line)))
-                        # raise TypeError(
+                        # raise JiggleVersionException(
                         #     "Couldn't find double quote (\") Please format your code, maybe with Black."
                         # )
                         lines_to_write.append(line)
@@ -233,9 +260,9 @@ class JiggleVersion(object):
 
         if need_rewrite:
             check(
-                io.open(setup_py, "r", encoding="utf-8").read(), "".join(lines_to_write)
+                io.open(setup_py, "r", encoding=encoding["encoding"]).read(), "".join(lines_to_write)
             )
-            with io.open(setup_py, "w", encoding="utf-8") as outfile:
+            with io.open(setup_py, "w", encoding=encoding["encoding"]) as outfile:
 
                 outfile.writelines(lines_to_write)
                 outfile.close()
@@ -258,7 +285,7 @@ class JiggleVersion(object):
         changed += self.jiggle_source_code()
         changed += self.jiggle_config_file()
         changed += self.jiggle_setup_py()
-        assert changed > 0, "Failed to change anything."
+        # assert changed > 0, "Failed to change anything."
         return changed
 
     def jiggle_config_file(self):  # type: () ->int
@@ -268,19 +295,19 @@ class JiggleVersion(object):
         changed = 0
         # setup.py related. setup.py itself should read __init__.py or __version__.py
         to_write = []
-        other_files = ["/setup.cfg"]
+        other_files = ["setup.cfg"]
 
         # Okay, lets just update if found
         # self.validate_setup()
 
         for file_name in other_files:
-            filepath = self.SRC + file_name
+            filepath = os.path.join(self.SRC, file_name)
 
             # only create setup.cfg if we have setup.py
             if (
                 self.create_configs
                 and not os.path.isfile(filepath)
-                and os.path.isfile(self.SRC + "setup.py")
+                and os.path.isfile("setup.py")
             ):
                 logger.info("Creating " + unicode(filepath))
                 self.file_maker.create_setup_cfg(filepath)
@@ -296,7 +323,7 @@ class JiggleVersion(object):
                                 logger.error(parts)
                                 logger.error("Must be of form version = 1.1.1")
                                 print("Must be of form version = 1.1.1")
-                                exit(-1)
+                                die(-1, "Can't parse " + str(line))
                                 return changed
 
                             to_write.append(
@@ -320,7 +347,7 @@ class JiggleVersion(object):
             if os.path.isfile(version_txt) or self.create_configs:
                 with io.open(version_txt, "w", encoding="utf-8") as outfile:
                     if self.version is None or self.version == "":
-                        raise TypeError("Can't write version")
+                        raise JiggleVersionException("Can't write version")
                     outfile.writelines([unicode(self.version_to_write())])
                     outfile.close()
                     changed += 1

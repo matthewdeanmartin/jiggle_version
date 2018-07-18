@@ -8,6 +8,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import chardet
 import re
 import codecs
 import ast
@@ -21,7 +22,7 @@ from semantic_version import Version
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
 from jiggle_version.schema_guesser import version_object_and_next
-from jiggle_version.utils import merge_two_dicts, first_value_in_dict
+from jiggle_version.utils import merge_two_dicts, first_value_in_dict, JiggleVersionException
 
 try:
     import configparser
@@ -41,7 +42,7 @@ _ = List, Optional, Dict, Any
 
 # don't do this.
 # execfile('...sample/version.py')
-def version_by_ast(file): # type: (str) -> str
+def version_by_ast(file):  # type: (str) -> str
     """
     Safer way to 'execute' python code to get a simple value
     :param file:
@@ -51,13 +52,17 @@ def version_by_ast(file): # type: (str) -> str
         for line in input_file:
             if line.startswith("__version__"):
                 return ast.parse(line).body[0].value.s
+
+
 # ----
 # https://packaging.python.org/guides/single-sourcing-package-version/
 here = os.path.abspath(os.path.dirname(__file__))
 
+
 def read(*parts):
-    with codecs.open(os.path.join(here, *parts), 'r') as fp:
+    with codecs.open(os.path.join(here, *parts), "r") as fp:
         return fp.read()
+
 
 def find_version_by_regex(*file_paths):
     """
@@ -66,11 +71,12 @@ def find_version_by_regex(*file_paths):
     :return:
     """
     version_file = read(*file_paths)
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
-                              version_file, re.M)
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
     if version_match:
         return version_match.group(1)
     raise RuntimeError("Unable to find version string.")
+
+
 # ----
 
 
@@ -84,10 +90,10 @@ class FindVersion(object):
         Entry point
         """
         # if not project:
-        #     raise TypeError("Can't continue, no project name")
+        #     raise JiggleVersionException("Can't continue, no project name")
 
         if source is None:
-            raise TypeError(
+            raise JiggleVersionException(
                 'Can\'t continue, source directory is None, should be ""\ for current dir'
             )
 
@@ -104,6 +110,7 @@ class FindVersion(object):
                 + " - can only update setup.py and text files."
             )
 
+        self.strict = True
         self.DEBUG = False
         # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
@@ -123,10 +130,39 @@ class FindVersion(object):
         :return:
         """
         versions = self.all_current_versions()
+        if len(versions) >1:
+            if not self.all_versions_equal(versions):
+                if not self.all_versions_equal(versions):
+                    almost_same = self.almost_the_same_version(
+                        [x for x in versions.values()]
+                    )
+                    if almost_same:
+                        # TODO: disable with strict option
+                        logger.warning("Version very by a patch level, will use greater.")
+                        return unicode(almost_same)
+
         if not versions.keys():
-            raise TypeError("Noooo! Must find a value")
+            raise JiggleVersionException("Noooo! Must find a value")
             return "0.1.0"
         return unicode(first_value_in_dict(versions))
+
+    def almost_the_same_version(
+        self, version_list
+    ):  # type: (List[str]) -> Optional[str]
+        version_list = list(set(version_list))
+
+        sem_ver_list = list(
+            set([unicode(Version(x)) for x in version_list])
+        )  # type: List[Version]
+        if len(sem_ver_list) == 2:
+            if (
+                sem_ver_list[0] == unicode(Version(sem_ver_list[1]).next_patch())
+                or unicode(Version(sem_ver_list[0]).next_patch()) == sem_ver_list[1]
+            ):
+                if sem_ver_list[0] > sem_ver_list[1]:
+                    return unicode(sem_ver_list[0])
+                return unicode(sem_ver_list[1])
+        return None
 
     def validate_current_versions(self):  # type: () -> bool
         """
@@ -146,6 +182,10 @@ class FindVersion(object):
             return True
 
         if not self.all_versions_equal(versions):
+            if self.almost_the_same_version([x for x in versions.values()]):
+                # TODO: disable with strict option
+                logger.warning("Version very by a patch level, will use greater.")
+                return True
             logger.error("Found various versions, how can we rationally pick?")
             logger.error(unicode(versions))
             return False
@@ -222,12 +262,19 @@ class FindVersion(object):
         :return:
         """
         found = {}
-        setup_py = os.path.join(self.SRC, "setup.py")
+        setup_py = os.path.join("setup.py")
 
         if not os.path.isfile(setup_py):
-            return found
+            if self.strict:
+                logger.debug(os.getcwd())
+                logger.debug(os.listdir(os.getcwd()))
+                raise JiggleVersionException("Can't find setup.py : {0}, path :{1}".format(setup_py, self.SRC))
+            else:
+                return found
 
-        with io.open(setup_py, "r", encoding="utf-8") as infile:
+        encoding = chardet.detect(io.open("setup.py", "rb").read())
+        logger.debug(unicode(encoding))
+        with io.open(setup_py, "r", encoding=encoding["encoding"]) as infile:
             for line in infile:
                 simplified_line = line.replace(" ", "").replace("'", '"')
                 if sum([1 for x in simplified_line if x == ","]) > 1:
@@ -286,7 +333,9 @@ class FindVersion(object):
         :return:
         """
         versions = {}
-        with open(full_path, "r") as infile:
+        encoding = chardet.detect(io.open(full_path, "rb").read())
+        # logger.warning("guessing encoding " + str(encoding))
+        with io.open(full_path, "r", encoding=encoding["encoding"]) as infile:
             for line in infile:
                 simplified_line = line.replace("'", '"')
                 if simplified_line.strip().startswith("__version__"):
@@ -317,7 +366,7 @@ class FindVersion(object):
                 if line.strip().replace(" ", "").startswith("version="):
                     if not ("__version__" in line or "__init__" in line):
                         logger.error(line)
-                        raise TypeError(
+                        raise JiggleVersionException(
                             "Read the __version__.py or __init__.py don't add version in setup.py as constant"
                         )
 
@@ -335,7 +384,7 @@ class FindVersion(object):
                     found.strip(" ")
                 )
             except:
-                raise TypeError("Shouldn't throw here.")
+                raise JiggleVersionException("Shouldn't throw here.")
 
         if first:
             logger.info(
@@ -344,3 +393,4 @@ class FindVersion(object):
                 )
             )
         return self.version
+

@@ -111,6 +111,12 @@ or
 
     cmdclass=jiggle_version_command,
 
+Don’t argue over a patch version
+--------------------------------
+
+If multiple versions are detected, but are close, e.g. 1.2.3 and 1.2.4,
+just use 1.2.4. This is the most common real world sync problem.
+
 Don’t force the developer to create irrelevant things
 -----------------------------------------------------
 
@@ -123,6 +129,22 @@ There is no way to do this without programming-like configuration. Your
 README.md might say, “In versions 0.1.0 there were bugs and in 2.0.0
 they were fixed.” There is no way to update that string with a
 zero-config app.
+
+Don’t execute anything at post-deployment runtime
+-------------------------------------------------
+
+Nothing succeeds as reliably as assigning a constant.
+
+No matter how clever or well tested your code is, executing code as
+post-deployment runtime is an additional dependency and failure point.
+
+``__version__.py``:
+
+::
+
+    version = query_pyi()
+    version = query_package_metadata()
+    version = search_for_and_read_text_or_config()
 
 Automatically Bump “Minor”/“Path”/“Build”, let user manually update “Major”
 ---------------------------------------------------------------------------
@@ -219,6 +241,9 @@ is catching on. I *think* SemVer is a subset of PEP 440.
 
 `440 <https://www.python.org/dev/peps/pep-0440/>`__ - Pythons most
 mature words on versions.
+
+`PyPA’s
+Advice <https://packaging.python.org/guides/single-sourcing-package-version/>`__
 
 Some other peps that mention versions tangentially:
 `345 <https://www.python.org/dev/peps/pep-0345/#version>`__ and
