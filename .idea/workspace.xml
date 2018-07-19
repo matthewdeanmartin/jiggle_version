@@ -36,7 +36,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/file_inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_inventory.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_command_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_command_line.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -119,7 +118,7 @@
           <entry key="ini" value="6" />
           <entry key="lock" value="3" />
           <entry key="md" value="32" />
-          <entry key="py" value="688" />
+          <entry key="py" value="690" />
           <entry key="rst" value="13" />
           <entry key="setup" value="1" />
           <entry key="sh" value="15" />
@@ -138,7 +137,7 @@
           <entry key="Makefile" value="1" />
           <entry key="Markdown" value="32" />
           <entry key="PLAIN_TEXT" value="120" />
-          <entry key="Python" value="693" />
+          <entry key="Python" value="695" />
           <entry key="ReST" value="13" />
           <entry key="TOML file" value="13" />
           <entry key="YAML" value="18" />
@@ -156,7 +155,7 @@
           <entry key="gitignore" value="199" />
           <entry key="ini" value="12" />
           <entry key="md" value="16835" />
-          <entry key="py" value="35472" />
+          <entry key="py" value="35536" />
           <entry key="rst" value="181" />
           <entry key="sh" value="310" />
           <entry key="txt" value="5" />
@@ -172,7 +171,7 @@
           <entry key="Makefile" value="14" />
           <entry key="Markdown" value="16835" />
           <entry key="PLAIN_TEXT" value="59" />
-          <entry key="Python" value="35590" />
+          <entry key="Python" value="35654" />
           <entry key="ReST" value="181" />
           <entry key="TOML file" value="25" />
           <entry key="YAML" value="92" />
@@ -183,14 +182,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="71" column="10" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test_command_line.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="330">
+              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
               <folding>
-                <marker date="1531958405000" expanded="true" signature="966:967" ph="..." />
+                <marker date="1531958650000" expanded="true" signature="1203:1204" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test_find_version.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="17" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -235,31 +252,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fetch_raw_data/bump_all_directly.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jiggle_version/file_opener.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="151">
               <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-344">
-              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="86" selection-end-column="20" />
-              <folding>
-                <marker date="1531956006000" expanded="true" signature="1408:1421" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -393,7 +389,6 @@
         <option value="$PROJECT_DIR$/jiggle_version/vendorized/pep440.py" />
         <option value="$PROJECT_DIR$/jiggle_version/schema_guesser.py" />
         <option value="$PROJECT_DIR$/pylintrc.ini" />
-        <option value="$PROJECT_DIR$/build.py" />
         <option value="$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/checksumdir/__init__.py" />
         <option value="$PROJECT_DIR$/jiggle_version/utils.py" />
         <option value="$PROJECT_DIR$/fetch_raw_data/bump_all_directly.py" />
@@ -405,6 +400,7 @@
         <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
         <option value="$PROJECT_DIR$/jiggle_version/project_finder.py" />
         <option value="$PROJECT_DIR$/jiggle_version/file_inventory.py" />
+        <option value="$PROJECT_DIR$/build.py" />
         <option value="$PROJECT_DIR$/test/test_command_line.py" />
       </list>
     </option>
@@ -690,7 +686,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.32995495" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.49022347" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.2932961" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.5069832" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.45810056" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -833,9 +829,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sample_projects/setup_only/69.egg-info/SOURCES.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample_projects/setup_only/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -999,13 +992,6 @@
         <state relative-caret-position="-135" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="72" column="27" lean-forward="true" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/checksumdir/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
@@ -1129,12 +1115,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="71" column="10" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_find_version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="17" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_command_line.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="330">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
           <folding>
-            <marker date="1531958405000" expanded="true" signature="966:967" ph="..." />
+            <marker date="1531958650000" expanded="true" signature="1203:1204" ph="..." />
           </folding>
         </state>
       </provider>

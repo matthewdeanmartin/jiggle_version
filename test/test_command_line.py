@@ -33,6 +33,16 @@ def execute_get_text(command):
 
     return result.decode('utf-8')
 
+def test_where_am_i():
+    try:
+        os.chdir(SRC)
+        print(os.getcwd())
+        result = execute_get_text("pwd")
+        print(result)
+        assert result == "jiggle_version"
+    finally:
+        os.chdir("test")
+
 def test_self_version():
     try:
         os.chdir(SRC)
@@ -51,3 +61,13 @@ def test_find_version():
         assert result
     finally:
         os.chdir("test")
+
+def test_find_modify():
+    try:
+        SRC = here + "/../sample_projects/sample_src/"
+        os.chdir(SRC)
+        result = execute_get_text("python -m jiggle_version here")
+        print(result)
+        assert result
+    finally:
+        os.chdir("../../")
