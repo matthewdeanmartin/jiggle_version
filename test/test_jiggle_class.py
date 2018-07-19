@@ -12,7 +12,7 @@ except NameError:
 import os
 
 from jiggle_version.jiggle_class import JiggleVersion
-
+initial_pwd= os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "sample_lib"
 SRC = here + "/../sample_projects/sample_src/"
@@ -36,7 +36,7 @@ def test_go():
             changed = jiggler.jiggle_all()
             assert changed>0
         finally:
-            os.chdir("../../test")
+            os.chdir(initial_pwd)
         assert changed > 0
 
 
@@ -67,5 +67,5 @@ def test_no_files():
         jiggler.jiggle_all()
 
     finally:
-        os.chdir("../../test")
+        os.chdir(initial_pwd)
 

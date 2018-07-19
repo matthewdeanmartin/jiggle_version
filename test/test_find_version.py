@@ -12,7 +12,7 @@ except NameError:
 import os
 
 from jiggle_version.commands import find_version
-
+initial_pwd= os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "sample_lib"
 SRC = here + "/../sample_projects/sample_src/"
@@ -24,7 +24,7 @@ def test_find_version():
         # what ev, who knows if these file even exist
         _ = find_version(PROJECT, "sample_src", True)
     finally:
-        os.chdir("../../test")
+        os.chdir(initial_pwd)
 
 
 

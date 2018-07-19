@@ -5,6 +5,7 @@ Tests
 import os
 import sys
 import subprocess
+initial_pwd= os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "jiggle_version"
 SRC = here + "/.."
@@ -51,7 +52,7 @@ def test_self_version():
         print(result)
         assert result
     finally:
-        os.chdir("test")
+        os.chdir(initial_pwd)
 
 # broken - either everywhere or on 2.7. No clues.
 # def test_find_version():

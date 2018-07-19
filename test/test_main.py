@@ -14,7 +14,7 @@ try:
 except NameError:
     FileNotFoundError = IOError
 import os
-
+initial_pwd= os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "sample_lib"
 SRC = here + "/../sample_projects/sample_src/"
@@ -45,7 +45,7 @@ def test_process_docopts_fake_it():
         print(os.getcwd())
         raise
     finally:
-        os.chdir("../../test")
+        os.chdir(initial_pwd)
 
 
 def test_entry_point():
@@ -57,6 +57,6 @@ def test_entry_point():
         print(os.getcwd())
         raise
     finally:
-        os.chdir("../../test")
+        os.chdir(initial_pwd)
 
 
