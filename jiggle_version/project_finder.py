@@ -3,7 +3,15 @@
 Finds project by folder & source inspection.  Enables zero config by not
 asking the user something we can probably infer.
 
-TODO: support     packages=["aca"],
+
+TODO: confounds two concepts:
+    package - 1, has 1 version from setup.py/setup.cfg (might be same as central module)
+    modules -
+        0 - setup.py only, degenerate case or it is just not really a python dist (maybe jquery!)
+        1 - easy scenario
+        2+ - could each have own version
+        2+ - but 1 is the central module and the rest are unversionsed test/demo/examples/etc
+
 """
 from __future__ import division
 from __future__ import print_function
@@ -67,11 +75,12 @@ class ModuleFinder(object):
         if not source:
             return ""
         for row in source.split("\n"):
-            if "name=" in row:
+            if "packages=" in row:
                 simplified_row = row.replace(" ", "").replace("'", '"').strip(" \t\n")
                 if '"' in simplified_row:
                     return simplified_row.split('"')[1]
-            if "packages=" in row:
+
+            if "name=" in row:
                 simplified_row = row.replace(" ", "").replace("'", '"').strip(" \t\n")
                 if '"' in simplified_row:
                     return simplified_row.split('"')[1]
@@ -88,12 +97,12 @@ class ModuleFinder(object):
             # this happens when the setup.py file is missing
             return None
         if "package_dir" in source:
-            line = source.replace("\n","")
+            line = source.replace("\n", "")
             line = source.split("package_dir")[1]
             fixed = ""
             for char in line:
                 fixed += char
-                if char =="}":
+                if char == "}":
                     break
             line = fixed
 
@@ -183,12 +192,8 @@ class ModuleFinder(object):
         # TODO: parse setup.cfg
         if not candidates:
             candidates = candidates + self.find_single_file_project()
-            # if not candidates:
-            #     print(setup)
         if not candidates:
             candidates = candidates + self.find_malformed_single_file_project()
-            # if not candidates:
-            #     print(setup)
 
         candidates = list(set([x for x in candidates if x]))
 
@@ -198,7 +203,15 @@ class ModuleFinder(object):
             candidates = list(set([x for x in candidates if x]))
 
         if len(candidates) > 1:
-            for unlikely in ["test", "tests", "example", "demo", "test_files"]:
+            for unlikely in [
+                "test",
+                "tests",
+                "example",
+                "examples",
+                "demo",
+                "demos",
+                "test_files",
+            ]:
                 if unlikely in candidates:
                     logger.warning("Assuming {0} is not the project".format(unlikely))
                     candidates.remove(unlikely)

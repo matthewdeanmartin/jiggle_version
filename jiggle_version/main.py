@@ -49,7 +49,7 @@ def console_trace(level):  # type: (int)->None
     logging.config.dictConfig(
         {
             "version": 1,
-            "disable_existing_loggers": True, # try to silence chardet
+            "disable_existing_loggers": True,  # try to silence chardet
             "formatters": {
                 "standard": {
                     "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"

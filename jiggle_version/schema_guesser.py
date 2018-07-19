@@ -49,14 +49,15 @@ def version_object_and_next(
     :param string:
     :return:
     """
-    if retries>2:
-        raise JiggleVersionException("Can't parse, ran out of retries: " + unicode(string))
+    if retries > 2:
+        raise JiggleVersionException(
+            "Can't parse, ran out of retries: " + unicode(string)
+        )
     if string == "" or string is None:
         raise JiggleVersionException("No version string, can only use default logic.")
 
     if string[0] == "v":
         string = string[1:]
-
 
     try:
         version = semantic_version.Version(string)
@@ -85,9 +86,9 @@ def version_object_and_next(
                 # let above libs try first before we do primitive clean up work
                 retries += 1
                 if "a" in string:
-                    return version_object_and_next(string.replace("a",".a"), retries)
+                    return version_object_and_next(string.replace("a", ".a"), retries)
                 elif "b" in string:
-                    return version_object_and_next(string.replace("b",".b"), retries)
+                    return version_object_and_next(string.replace("b", ".b"), retries)
                 elif len(string.split(".")) == 1:
                     # convert 2 part to 3 part.
                     return version_object_and_next(string + ".0.0", retries)

@@ -42,7 +42,7 @@ class FileInventory(object):
             "version.py",  # uncommon
             "__about__.py",  # uncommon
             "__meta__.py",  # uncommon
-            "__pkg__.py", # rare
+            "__pkg__.py",  # rare
         ]
         replacement = []
         if os.path.isdir(self.project_root):

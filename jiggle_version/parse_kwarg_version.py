@@ -78,7 +78,7 @@ def find_version_by_string_lib(line):  # type: (str,str)->Optional[str]
             # logger.debug("Weird version string, no double quote : " + unicode((full_path, line, simplified_line)))
         else:
             if "=" in simplified_line:
-                post_equals= simplified_line.split("=")[0]
+                post_equals = simplified_line.split("=")[0]
                 if '"' in post_equals:
                     parts = post_equals.split('"')
 

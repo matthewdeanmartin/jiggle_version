@@ -23,10 +23,14 @@ your application is unlikely to depend on.
 Badges
 ------
 
-|MIT licensed| |Read the Docs| |Travis| |Coverage Status| |BCH
-compliance| |Known Vulnerabilities|
+How’s it doing?
 
-|PyPI| |GitHub release|
+|Read the Docs| |Travis| |Coverage Status| |BCH compliance| |Known
+Vulnerabilities| |Total Alerts| |CodeFactor|
+
+Where’s the bits?
+
+|PyPI version| |GitHub release| |MIT licensed|
 
 Problem to be solved
 --------------------
@@ -511,8 +515,6 @@ a /version/ endpoint to your web app.
 `django-project-version <https://pypi.org/project/django-project-version/>`__
 same..
 
-.. |MIT licensed| image:: https://img.shields.io/badge/license-MIT-blue.svg
-   :target: https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE
 .. |Read the Docs| image:: https://img.shields.io/readthedocs/pip.svg
 .. |Travis| image:: https://travis-ci.com/matthewdeanmartin/jiggle_version.svg?branch=master
 .. |Coverage Status| image:: https://coveralls.io/repos/github/matthewdeanmartin/jiggle_version/badge.svg?branch=master
@@ -521,6 +523,12 @@ same..
    :target: https://bettercodehub.com/
 .. |Known Vulnerabilities| image:: https://snyk.io/test/github/matthewdeanmartin/jiggle_version/badge.svg?targetFile=requirements.txt
    :target: https://snyk.io/test/github/matthewdeanmartin/jiggle_version?targetFile=requirements.txt
-.. |PyPI| image:: https://img.shields.io/pypi/v/nine.svg
-.. |GitHub release| image:: https://img.shields.io/github/release/qubyte/rubidium.svg
-
+.. |Total Alerts| image:: https://img.shields.io/lgtm/alerts/g/matthewdeanmartin/jiggle_version.svg?logo=lgtm&logoWidth=18
+   :target: https://lgtm.com/projects/g/matthewdeanmartin/jiggle_version/alerts/
+.. |CodeFactor| image:: https://www.codefactor.io/repository/github/matthewdeanmartin/jiggle_version/badge
+   :target: https://www.codefactor.io/repository/github/matthewdeanmartin/jiggle_version
+.. |PyPI version| image:: https://badge.fury.io/py/jiggle_version.svg
+   :target: https://badge.fury.io/py/jiggle_version
+.. |GitHub release| image:: https://img.shields.io/github/release/jiggle-version/rubidium.svg
+.. |MIT licensed| image:: https://img.shields.io/badge/license-MIT-blue.svg
+   :target: https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE

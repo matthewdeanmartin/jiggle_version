@@ -86,9 +86,10 @@ class JiggleVersion(object):
 
         any_valid = self.version_finder.find_any_valid_version()
 
-
         try:
-            self.current_version, self.version, self.schema = version_object_and_next(any_valid)
+            self.current_version, self.version, self.schema = version_object_and_next(
+                any_valid
+            )
         except Exception as ex:
             # Can't find a version
             candidates = self.version_finder.all_current_versions()
@@ -109,6 +110,9 @@ class JiggleVersion(object):
         self.file_maker = FileMaker(self.PROJECT)
         self.version_finder = FindVersion(project, source, file_opener, debug)
         self.file_inventory = FileInventory(project, source)
+
+        # TODO: Make this off by default & option to turn on
+        self.signature = " # Jiggle Version Was Here"
 
     def leading_whitespace(self, line):
         string = ""
@@ -143,11 +147,12 @@ class JiggleVersion(object):
                             comma = ""
 
                         to_write.append(
-                            '{0}{1} = "{2}{3}"\n'.format(
+                            '{0}{1} = "{2}"{3}{4}\n'.format(
                                 leading_white,
                                 version_token,
                                 unicode(self.version_to_write()),
-                                comma
+                                comma,
+                                self.signature,
                             )
                         )
                     else:
@@ -203,11 +208,15 @@ class JiggleVersion(object):
                 # setup() function args
                 if version:
                     # actual version to write decided earlier.
-                    source = leading_white + 'version = "{0}"'.format(
-                        unicode(self.version_to_write())
-                    )
+                    comma = ""
                     if "," in simplified_line:
-                        source += ","
+                        comma = ","
+                    source = '{0}version = "{1}"{2}{3}'.format(
+                        leading_white,
+                        unicode(self.version_to_write()),
+                        comma,
+                        self.signature,
+                    )
                     need_rewrite = True
                     lines_to_write.append(source + "\n")
                     continue
@@ -222,14 +231,15 @@ class JiggleVersion(object):
                         comma = ""
 
                     lines_to_write.append(
-                        '{0}{1} = "{2}{3}"\n'.format(
+                        '{0}{1} = "{2}"{3}{4}\n'.format(
                             leading_white,
                             version_token,
                             unicode(self.version_to_write()),
-                            comma
+                            comma,
+                            self.signature,
                         )
                     )
-                    need_rewrite =True
+                    need_rewrite = True
                     continue
 
                 lines_to_write.append(line)
@@ -297,9 +307,9 @@ class JiggleVersion(object):
                 try:
                     version = config["metadata"]["version"]
                 except KeyError:
-                    version =""
+                    version = ""
                 if version:
-                    with io.open(filepath, 'w') as configfile:  # save
+                    with io.open(filepath, "w") as configfile:  # save
                         config["metadata"]["version"] = str(self.version_to_write())
                         config.write(configfile)
                         changed += 1

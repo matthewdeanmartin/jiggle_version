@@ -29,7 +29,9 @@ from jiggle_version.utils import (
     merge_two_dicts,
     first_value_in_dict,
     JiggleVersionException,
-    die, execute_get_text)
+    die,
+    execute_get_text,
+)
 
 try:
     import configparser
@@ -103,7 +105,9 @@ class FindVersion(object):
         """
         versions = self.all_current_versions()
         if not versions:
-            raise JiggleVersionException("Have no versions to work with, failed to find any.")
+            raise JiggleVersionException(
+                "Have no versions to work with, failed to find any."
+            )
 
         if len(versions) > 1:
             if not self.all_versions_equal(versions):
@@ -216,7 +220,9 @@ class FindVersion(object):
                     if vers:
                         maybe_good = merge_two_dicts(good_versions, vers)
 
-                        more_bad_versions, good_versions = self.kick_out_bad_versions(maybe_good)
+                        more_bad_versions, good_versions = self.kick_out_bad_versions(
+                            maybe_good
+                        )
 
         if not good_versions:
             vers = self.execute_setup()
@@ -228,7 +234,9 @@ class FindVersion(object):
                     print(vers)
 
                 maybe_good = merge_two_dicts(good_versions, vers)
-                more_bad_versions, good_versions = self.kick_out_bad_versions(maybe_good)
+                more_bad_versions, good_versions = self.kick_out_bad_versions(
+                    maybe_good
+                )
 
         # more_bad_versions, good_versions = self.kick_out_bad_versions(versions)
 
@@ -295,7 +303,10 @@ class FindVersion(object):
         self.setup_py_source = self.file_opener.open_this(setup_py, "r").read()
 
         if "use_scm_version=True" in self.setup_py_source:
-            die(-1, "setup.py has use_scm_version=True in it- this means we expect no file to have a version string. Nothing to change")
+            die(
+                -1,
+                "setup.py has use_scm_version=True in it- this means we expect no file to have a version string. Nothing to change",
+            )
             return {}
 
         with self.file_opener.open_this(setup_py, "r") as infile:
@@ -398,7 +409,7 @@ class FindVersion(object):
             )
         return self.version
 
-    def execute_setup(self): # type: () -> Dict[str,str]
+    def execute_setup(self):  # type: () -> Dict[str,str]
         """
         for really surprising things like a dict foo in setup(**foo)
         consider python3 setup.py --version
@@ -418,4 +429,3 @@ class FindVersion(object):
             return {"setup.py --version": string.strip(" \n")}
         else:
             return {}
-

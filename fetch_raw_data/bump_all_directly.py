@@ -129,10 +129,5 @@ y = {'Have path_dict, but has more than one path.': 6,
      "Can't find setup.py : setup.py, path :": 3,
      "Can't continue: Versions not in sync, won't continue": 22,
      'Either this is hard to parse or we have 2+ src foldrs': 1}
-p = {"Can't find setup.py : setup.py, path :": 3,
-     'Have no versions to work with, failed to find any.': 23,
-     "Can't continue: setup.py has use_scm_version=True in it- this means we expect no file to have a version string. Nothing to change": 18,
-     "Can't continue: Versions not in sync, won't continue": 22,
-     'Either this is hard to parse or we have 2+ src foldrs': 1,
-     'Have path_dict, but has more than one path.': 6}
-
+p = {'Have no versions to work with, failed to find any.': 23,}
+d = {'Have no versions to work with, failed to find any.': 24}

@@ -9,7 +9,7 @@ pylint:
 
 mccabe:
   options:
-    max-complexity: 15
+    max-complexity: 22
 
 pep8:
   options:

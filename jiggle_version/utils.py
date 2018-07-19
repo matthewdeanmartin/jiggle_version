@@ -28,7 +28,7 @@ def die(code, why):  # type: (int,str)->None
     """
     if code != 0:
         # Development
-        if True:
+        if "Have no versions to work with" not in why:
             raise JiggleVersionException("Can't continue: " + why)
         else:
             # prod
@@ -57,23 +57,21 @@ def merge_two_dicts(x, y):  # type: (Dict[Any, Any], Dict[Any, Any]) -> Dict[Any
     z.update(y)  # modifies z with y's keys and values & returns None
     return z
 
-def execute_get_text(command, raise_errors=False): # type: (str) -> str
+
+def execute_get_text(command, raise_errors=False):  # type: (str) -> str
     """
     Execute a shell commmand
     :param command:
     :return:
     """
     try:
-        result = subprocess.check_output(
-            command,
-            stderr=subprocess.STDOUT,
-            shell=True)
-        #print(result.decode())
+        result = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
+        # print(result.decode())
     except subprocess.CalledProcessError as err:
         if raise_errors:
             raise
         return ""
     if result:
-        return result.decode('utf-8')
+        return result.decode("utf-8")
     else:
         return ""

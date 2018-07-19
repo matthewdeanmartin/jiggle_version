@@ -59,7 +59,6 @@ class FileOpener(object):
                 print(file)
                 print(file_bytes)
 
-
             self.found_encoding[file] = encoding
 
         return io.open(file, how, encoding=encoding)

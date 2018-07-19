@@ -68,25 +68,37 @@ def simplify_line(line):  # type: (str)->str
     if not line:
         return ""
 
-    simplified_line = line.replace(" ", "").replace("'", '"').replace("\t", "").replace("\n","").strip(" ,")
+    simplified_line = (
+        line.replace(" ", "")
+        .replace("'", '"')
+        .replace("\t", "")
+        .replace("\n", "")
+        .strip(" ,")
+    )
     if "#" in simplified_line:
         simplified_line = simplified_line.split("#")[0]
     return simplified_line
 
 
-def find_version_by_regex(file_source, version_token="__version__"):  # type: (str,str)->Optional[str]
+def find_version_by_regex(
+    file_source, version_token="__version__"
+):  # type: (str,str)->Optional[str]
     """
     Regex for dunder version
     """
     if not file_source:
         return None
-    version_match = re.search(r"^" + version_token + r" = ['\"]([^'\"]*)['\"]", file_source, re.M)
+    version_match = re.search(
+        r"^" + version_token + r" = ['\"]([^'\"]*)['\"]", file_source, re.M
+    )
     if version_match:
         return version_match.group(1)
     return None
 
 
-def find_version_by_string_lib(line, version_token="__version__"):  # type: (str,str)->Optional[str]
+def find_version_by_string_lib(
+    line, version_token="__version__"
+):  # type: (str,str)->Optional[str]
     """
     No regex parsing. Or at least, mostly, not regex.
     """
@@ -102,7 +114,7 @@ def find_version_by_string_lib(line, version_token="__version__"):  # type: (str
             if "=" in simplified_line:
                 post_equals = simplified_line.split("=")[1]
 
-                if post_equals.startswith("\""):
+                if post_equals.startswith('"'):
                     parts = post_equals.split('"')
                     version = parts[0]
     return version
@@ -124,10 +136,12 @@ def find_in_line(line):  # type: (str)->Tuple[Optional[str],Optional[str]]
     """
     if not line:
         return None, None
-    for version_token in ["__version__", # canonical
-                          "VERSION", # rare
-                          "version",
-                          "PACKAGE_VERSION"]:
+    for version_token in [
+        "__version__",  # canonical
+        "VERSION",  # rare
+        "version",
+        "PACKAGE_VERSION",
+    ]:
 
         by_ast = find_by_ast(line, version_token)
         validate_string(by_ast)
