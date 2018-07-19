@@ -10,8 +10,8 @@ Yes, you could have setup.py read from __version__.py and should.
 
 # py2 prob here!
 from importlib import import_module
-
 from typing import Any
+
 import pkg_resources
 
 _ = Any

@@ -24,7 +24,9 @@ Badges
 ------
 
 |MIT licensed| |Read the Docs| |Travis| |Coverage Status| |BCH
-compliance|
+compliance| |Known Vulnerabilities|
+
+|PyPI| |GitHub release|
 
 Problem to be solved
 --------------------
@@ -517,3 +519,8 @@ same..
    :target: https://coveralls.io/github/matthewdeanmartin/jiggle_version?branch=master
 .. |BCH compliance| image:: https://bettercodehub.com/edge/badge/matthewdeanmartin/jiggle_version?branch=master
    :target: https://bettercodehub.com/
+.. |Known Vulnerabilities| image:: https://snyk.io/test/github/matthewdeanmartin/jiggle_version/badge.svg?targetFile=requirements.txt
+   :target: https://snyk.io/test/github/matthewdeanmartin/jiggle_version?targetFile=requirements.txt
+.. |PyPI| image:: https://img.shields.io/pypi/v/nine.svg
+.. |GitHub release| image:: https://img.shields.io/github/release/qubyte/rubidium.svg
+

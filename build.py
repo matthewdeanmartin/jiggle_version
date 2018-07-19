@@ -478,7 +478,7 @@ def gemfury():
         package_text = cp.stdout.decode().split("\n")
         found = False
         for line in package_text:
-            if "." in line in line:
+            if "." in line:
                 try:
                     version = Version(line)
                     versions.append(version)

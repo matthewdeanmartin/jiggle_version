@@ -19,11 +19,11 @@ from semantic_version import Version
 
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
+from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_version_class import FindVersion
 from jiggle_version.is_this_okay import check
 from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import die, JiggleVersionException
-from jiggle_version.file_opener import FileOpener
 
 try:
     import configparser

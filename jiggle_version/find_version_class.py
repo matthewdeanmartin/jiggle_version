@@ -8,26 +8,24 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import sys
 import ast
 import codecs
-import io
 import logging
 import os.path
 import re
+import sys
 from typing import List, Optional, Dict, Any
 
-import chardet
 from semantic_version import Version
 
 from jiggle_version.file_inventory import FileInventory
+from jiggle_version.file_opener import FileOpener
 from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import (
     merge_two_dicts,
     first_value_in_dict,
     JiggleVersionException,
 )
-from jiggle_version.file_opener import FileOpener
 
 try:
     import configparser
@@ -152,7 +150,6 @@ class FindVersion(object):
 
         if not versions.keys():
             raise JiggleVersionException("Noooo! Must find a value")
-            return "0.1.0"
         return unicode(first_value_in_dict(versions))
 
     def almost_the_same_version(
@@ -249,7 +246,7 @@ class FindVersion(object):
         for key, version in versions.items():
             if semver is None:
                 try:
-                    _ = version_object_and_next(version)
+                    semver, _, __ = version_object_and_next(version)
                 except ValueError:
                     logger.error("Invalid version at:" + unicode((key, version)))
                     return False

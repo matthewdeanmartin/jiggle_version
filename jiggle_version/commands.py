@@ -10,14 +10,12 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from jiggle_version.file_inventory import FileInventory
-from jiggle_version.file_opener import FileOpener
-from jiggle_version.find_version_class import FindVersion
-from jiggle_version.jiggle_class import JiggleVersion
-
 import logging
 import sys
 
+from jiggle_version.file_opener import FileOpener
+from jiggle_version.find_version_class import FindVersion
+from jiggle_version.jiggle_class import JiggleVersion
 from jiggle_version.utils import die
 
 if sys.version_info.major == 3:

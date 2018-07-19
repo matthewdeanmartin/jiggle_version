@@ -5,18 +5,17 @@ asking the user something we can probably infer.
 
 """
 import ast
-import os
-import io
 import logging
-import chardet
+import os
 import sys
 from typing import List, Optional
 
 # so formatter doesn't remove.
 from setuptools import find_packages
+
 from jiggle_version.file_inventory import FileInventory
-from jiggle_version.utils import die, first_value_in_dict, JiggleVersionException
 from jiggle_version.file_opener import FileOpener
+from jiggle_version.utils import die, first_value_in_dict, JiggleVersionException
 
 logger = logging.getLogger(__name__)
 

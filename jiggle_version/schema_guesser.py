@@ -16,18 +16,14 @@ cmp ver
 disutils.version
 
 """
-import sys
 import logging
+import sys
 from typing import Any, Tuple, Optional, Union
 
 import parver
 import semantic_version
 from versio import version as versio_version
-from versio.version_scheme import (
-    Pep440VersionScheme,
-    VersionScheme,
-    Simple4VersionScheme,
-)
+from versio.version_scheme import Pep440VersionScheme, Simple4VersionScheme
 
 from jiggle_version.utils import JiggleVersionException
 

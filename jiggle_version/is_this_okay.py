@@ -2,8 +2,8 @@
 Is that python source code we are about to write really python?
 """
 import ast
-import sys
 import logging
+import sys
 
 logger = logging.getLogger(__name__)
 
