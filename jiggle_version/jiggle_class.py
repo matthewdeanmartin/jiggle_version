@@ -22,6 +22,8 @@ from jiggle_version.file_makers import FileMaker
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_version_class import FindVersion
 from jiggle_version.is_this_okay import check
+import jiggle_version.parse_dunder_version as dunder_version
+import jiggle_version.parse_kwarg_version as kwarg_version
 from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import die, JiggleVersionException
 
@@ -81,16 +83,18 @@ class JiggleVersion(object):
         # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
         self.version_finder = FindVersion(self.PROJECT, self.SRC, self.file_opener)
+
+        any_valid = self.version_finder.find_any_valid_version()
+
+
         try:
-            self.current_version, self.version, self.schema = version_object_and_next(
-                self.version_finder.find_any_valid_version()
-            )
+            self.current_version, self.version, self.schema = version_object_and_next(any_valid)
         except Exception as ex:
             # Can't find a version
             candidates = self.version_finder.all_current_versions()
             message = (
                 unicode(ex)
-                + " Can't find a recognizable version, won't be able to bump anything. "
+                + " Can't parse this version, won't be able to bump anything. "
                 + str(candidates)
             )
             logger.error(message)
@@ -130,48 +134,23 @@ class JiggleVersion(object):
             with self.file_opener.open_this(file_name, "r") as infile:
                 for line in infile:
                     leading_white = self.leading_whitespace(line)
-                    ends_with_comma = line.strip(" \t\n").endswith(",")
-                    simplified_line = (
-                        line.strip()
-                        .replace(" ", "")
-                        .replace("'", '"')
-                        .replace("\n", "")
-                    )
-                    found = False
-                    for version_token in ["__version__", "VERSION", "version"]:
-                        if simplified_line.startswith(version_token + '="'):
-                            if '"' not in simplified_line:
-                                pass
-                                # logger.warn("weird source,no double quote " + unicode((file_name, line, simplified_line)))
-                                # raise JiggleVersionException(
-                                #     "Couldn't find double quote (\") Please format your code, maybe with Black."
-                                # )
-                                # to_write.append(line)
-                            else:
-                                parts = simplified_line.split('"')
-                                if len(parts) != 3:
-                                    # logger.warn(
-                                    #     "weird source, not 3 parts " + unicode((file_name, line, simplified_line)))
-                                    continue
-                                if parts[2].strip(" \t") not in [",", ""]:
-                                    raise JiggleVersionException(
-                                        "Can't parse this yet (stuff after version) "
-                                        + line
-                                    )
-                                found = True
-                                # preserve leading whitespace
-                                comma = ""
-                                if ends_with_comma:
-                                    comma = ","
-                                to_write.append(
-                                    '{0}{1} = "{2}"{3}\n'.format(
-                                        leading_white,
-                                        version_token,
-                                        unicode(self.version_to_write()),
-                                        comma,
-                                    )
-                                )
-                    if not found:
+                    version, version_token = dunder_version.find_in_line(line)
+                    if version:
+                        # dunder...simplify line strips the ","
+                        if line.strip(" \t\n").endswith(","):
+                            comma = ","
+                        else:
+                            comma = ""
+
+                        to_write.append(
+                            '{0}{1} = "{2}{3}"\n'.format(
+                                leading_white,
+                                version_token,
+                                unicode(self.version_to_write()),
+                                comma
+                            )
+                        )
+                    else:
                         to_write.append(line)
 
             check(self.file_opener.open_this(file_name, "r").read(), "".join(to_write))
@@ -199,23 +178,6 @@ class JiggleVersion(object):
                 if not os.path.isfile(filepath):
                     raise JiggleVersionException("Missing file " + filepath)
 
-    def validate_setup(self):  # type: () ->None
-        """
-        Okay, lots of people only have their version in setup.py as a constant.
-        """
-        setuppy = self.SRC + "setup.py"
-        if not os.path.isfile(setuppy):
-            return
-        with self.file_opener.open_this(setuppy, "r") as infile:
-            for line in infile:
-                # BUG: this doesn't stick to [metadata] & will touch other sections
-                if line.strip().replace(" ", "").startswith("version="):
-                    if not ("__version__" in line or "__init__" in line):
-                        logger.error(line)
-                        raise JiggleVersionException(
-                            "Read the __version__.py or __init__.py don't add version in setup.py as constant"
-                        )
-
     def jiggle_setup_py(self):  # type: () -> int
         """
         Edit a version = "1.2.3" or version="1.2.3",
@@ -236,40 +198,41 @@ class JiggleVersion(object):
                 simplified_line = (
                     line.replace(" ", "").replace("'", '"').replace("\t", "")
                 )
-                if 'version="' in simplified_line:
-                    if len([x for x in simplified_line if x == "="]) > 1:
-                        raise JiggleVersionException(
-                            "Don't have a way of parsing this yet. " + line
-                        )
+                # determine if we have a version=
+                version = kwarg_version.find_in_line(line)
+                # setup() function args
+                if version:
+                    # actual version to write decided earlier.
                     source = leading_white + 'version = "{0}"'.format(
                         unicode(self.version_to_write())
                     )
                     if "," in simplified_line:
                         source += ","
-
                     need_rewrite = True
                     lines_to_write.append(source + "\n")
-                elif simplified_line.startswith('__version__="'):
-                    if '"' not in simplified_line:
-                        # logger.warn("weird source,no double quote " + unicode((setup_py, line, simplified_line)))
-                        # raise JiggleVersionException(
-                        #     "Couldn't find double quote (\") Please format your code, maybe with Black."
-                        # )
-                        lines_to_write.append(line)
+                    continue
+
+                # code that isn't the setup() function args
+                version, version_token = dunder_version.find_in_line(line)
+                if version:
+                    # the other simplify removes ","
+                    if line.strip(" \t\n").endswith(","):
+                        comma = ","
                     else:
-                        parts = simplified_line.split('"')
-                        if len(parts) != 3:
-                            # logger.warn(
-                            #     "weird source, not 3 parts " + unicode((setup_py, line, simplified_line)))
-                            continue
-                        lines_to_write.append(
-                            '__version__ = "{0}"\n'.format(
-                                unicode(self.version_to_write())
-                            )
+                        comma = ""
+
+                    lines_to_write.append(
+                        '{0}{1} = "{2}{3}"\n'.format(
+                            leading_white,
+                            version_token,
+                            unicode(self.version_to_write()),
+                            comma
                         )
-                        need_rewrite = True
-                else:
-                    lines_to_write.append(line)
+                    )
+                    need_rewrite =True
+                    continue
+
+                lines_to_write.append(line)
 
         if need_rewrite:
             check(
@@ -328,30 +291,18 @@ class JiggleVersion(object):
 
             if os.path.isfile(filepath):
                 need_rewrite = False
-                with self.file_opener.open_this(filepath, "r") as infile:
-                    for line in infile:
-                        if "version =" in line or "version=" in line:
-                            parts = line.split("=")
-                            if len(parts) != 2:
-                                logger.error(line)
-                                logger.error(parts)
-                                logger.error("Must be of form version = 1.1.1")
-                                print("Must be of form version = 1.1.1")
-                                die(-1, "Can't parse " + str(line))
-                                return changed
-
-                            to_write.append(
-                                "version={0}\n".format(unicode(self.version_to_write()))
-                            )
-                            need_rewrite = True
-                        else:
-                            to_write.append(line)
-                if need_rewrite:
-                    with io.open(
-                        self.SRC + file_name, "w", encoding="utf-8"
-                    ) as outfile:
-                        outfile.writelines(to_write)
-                    changed += 1
+                version = ""
+                config = configparser.ConfigParser()
+                config.read(filepath)
+                try:
+                    version = config["metadata"]["version"]
+                except KeyError:
+                    version =""
+                if version:
+                    with io.open(filepath, 'w') as configfile:  # save
+                        config["metadata"]["version"] = str(self.version_to_write())
+                        config.write(configfile)
+                        changed += 1
         return changed
 
     def jiggle_text_file(self):  # type: () -> int

@@ -34,6 +34,7 @@ class FileInventory(object):
         # or submodules that you might want to version
         self.project_root = os.path.join(self.src, self.project)
 
+        # TODO: sometimes the __version__ is in ANY FILE.
         self.source_files = [
             "__init__.py",  # required.
             # "__version__.py",  # this creates confusing import patterns
@@ -41,6 +42,7 @@ class FileInventory(object):
             "version.py",  # uncommon
             "__about__.py",  # uncommon
             "__meta__.py",  # uncommon
+            "__pkg__.py", # rare
         ]
         replacement = []
         if os.path.isdir(self.project_root):
@@ -52,11 +54,17 @@ class FileInventory(object):
         self.config_files = [os.path.join(self.src, "setup.cfg")]
 
         self.default_text_file = [os.path.join(self.src, "VERSION.txt")]
+        # [_,,.][version|VERSION|Version][,.txt]
+
         self.text_files = [
             os.path.join(self.src, "version.txt"),
             os.path.join(self.src, "VERSION.txt"),
+            os.path.join(self.src, "_version.txt"),
+            os.path.join(self.src, "_VERSION.txt"),
             os.path.join(self.src, "VERSION"),
             os.path.join(self.src, "version"),
+            os.path.join(self.src, "_VERSION"),
+            os.path.join(self.src, "_version"),
             os.path.join(self.src, ".version"),
             os.path.join(self.src, ".VERSION"),
         ]

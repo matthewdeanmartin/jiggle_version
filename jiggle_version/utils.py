@@ -2,7 +2,12 @@
 """
 Non-domain specific methods I don't want cluttering up other files.
 """
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 from typing import List, Optional, Dict, Any
+import subprocess
+
 
 # contrive usage so black doesn't remove the import
 _ = List, Optional, Dict, Any
@@ -23,7 +28,7 @@ def die(code, why):  # type: (int,str)->None
     """
     if code != 0:
         # Development
-        if False:
+        if True:
             raise JiggleVersionException("Can't continue: " + why)
         else:
             # prod
@@ -51,3 +56,24 @@ def merge_two_dicts(x, y):  # type: (Dict[Any, Any], Dict[Any, Any]) -> Dict[Any
     z = x.copy()  # start with x's keys and values
     z.update(y)  # modifies z with y's keys and values & returns None
     return z
+
+def execute_get_text(command, raise_errors=False): # type: (str) -> str
+    """
+    Execute a shell commmand
+    :param command:
+    :return:
+    """
+    try:
+        result = subprocess.check_output(
+            command,
+            stderr=subprocess.STDOUT,
+            shell=True)
+        #print(result.decode())
+    except subprocess.CalledProcessError as err:
+        if raise_errors:
+            raise
+        return ""
+    if result:
+        return result.decode('utf-8')
+    else:
+        return ""

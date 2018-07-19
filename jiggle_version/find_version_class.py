@@ -2,22 +2,26 @@
 """
 Just discover version and if possible, the schema.
 
-TODO: __version_info__ = (3, 0, 0, 'a0')
+
+TODO: __version_info__ = (3, 0, 0, 'a0')  -- sometime this is canonical. Shouldn't be first choice.
+But not sys.version_info!
+
+TODO: use_scm_version=True,  -- If this is in the file, then the user is signalling that no file will have a version string!
+
 """
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import ast
-import codecs
 import logging
 import os.path
-import re
 import sys
 from typing import List, Optional, Dict, Any
 
 from semantic_version import Version
 
+import jiggle_version.parse_dunder_version as dunder_version
+import jiggle_version.parse_kwarg_version as kwarg_version
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.schema_guesser import version_object_and_next
@@ -25,7 +29,7 @@ from jiggle_version.utils import (
     merge_two_dicts,
     first_value_in_dict,
     JiggleVersionException,
-)
+    die, execute_get_text)
 
 try:
     import configparser
@@ -88,6 +92,8 @@ class FindVersion(object):
 
         self.file_inventory = FileInventory(self.PROJECT, self.SRC)
 
+        self.setup_py_source = None
+
     def find_any_valid_version(self):  # type: () -> str
         """
         Find version candidates, return first (or any, since they aren't ordered)
@@ -96,6 +102,9 @@ class FindVersion(object):
         :return:
         """
         versions = self.all_current_versions()
+        if not versions:
+            raise JiggleVersionException("Have no versions to work with, failed to find any.")
+
         if len(versions) > 1:
             if not self.all_versions_equal(versions):
                 if not self.all_versions_equal(versions):
@@ -110,17 +119,23 @@ class FindVersion(object):
                         return unicode(almost_same)
 
         if not versions.keys():
-            raise JiggleVersionException("Noooo! Must find a value")
+            raise JiggleVersionException("Noooo! Must find a value" + unicode(versions))
         return unicode(first_value_in_dict(versions))
 
     def almost_the_same_version(
         self, version_list
     ):  # type: (List[str]) -> Optional[str]
-        version_list = list(set(version_list))
 
-        sem_ver_list = list(
-            set([unicode(Version(x)) for x in version_list])
-        )  # type: List[Version]
+        version_list = list(set(version_list))
+        try:
+            sem_ver_list = list(
+                set([unicode(Version(x)) for x in version_list])
+            )  # type: List[Version]
+        except ValueError:
+            # I hope htat was a bad semver
+            return None
+
+        # should be good sem vers from here
         if len(sem_ver_list) == 2:
             if (
                 sem_ver_list[0] == unicode(Version(sem_ver_list[1]).next_patch())
@@ -172,27 +187,66 @@ class FindVersion(object):
             if not os.path.isfile(file):
                 continue
             vers = self.find_dunder_version_in_file(file)
-            versions = merge_two_dicts(versions, vers)
+            if vers:
+                versions = merge_two_dicts(versions, vers)
 
         for finder in [self.read_metadata, self.read_text, self.read_setup_py]:
             more_vers = finder()
-            versions = merge_two_dicts(versions, more_vers)
+            if more_vers:
+                versions = merge_two_dicts(versions, more_vers)
 
+        bad_versions, good_versions = self.kick_out_bad_versions(versions)
+
+        # get more versions here via risky routes
+        if not good_versions:
+            # desperate times, man...
+            for folder in [self.file_inventory.project_root, self.file_inventory.src]:
+                if not os.path.isdir(folder):
+                    print(os.listdir("."))
+                    continue
+
+                if folder == "":
+                    folder = "."
+                for file in [x for x in os.listdir(folder) if x.endswith(".py")]:
+                    # not going to do the extensionsless py files, too slow.
+                    file_path = os.path.join(folder, file)
+                    if not os.path.isfile(file_path):
+                        continue
+                    vers = self.find_dunder_version_in_file(file_path)
+                    if vers:
+                        maybe_good = merge_two_dicts(good_versions, vers)
+
+                        more_bad_versions, good_versions = self.kick_out_bad_versions(maybe_good)
+
+        if not good_versions:
+            vers = self.execute_setup()
+            if vers:
+                try:
+                    for key, value in vers.items():
+                        v = version_object_and_next(value)
+                except:
+                    print(vers)
+
+                maybe_good = merge_two_dicts(good_versions, vers)
+                more_bad_versions, good_versions = self.kick_out_bad_versions(maybe_good)
+
+        # more_bad_versions, good_versions = self.kick_out_bad_versions(versions)
+
+        if bad_versions:
+            print(unicode(bad_versions))
+            logger.warning(unicode(bad_versions))
+        return good_versions
+
+    def kick_out_bad_versions(self, versions):
         copy = {}  # type: Dict[str,str]
+        bad_versions = {}
         for key, version in versions.items():
             try:
                 _ = version_object_and_next(version)
                 copy[key] = version
             except:
-                logger.error(
-                    "Invalid Version Schema - not Semantic Version, not Pep 440 -  "
-                    + version
-                )
-                copy[key] = (
-                    "Invalid Version Schema - not Semantic Version, not Pep 440 : "
-                    + unicode(version)
-                )
-        return copy
+                bad_versions[key] = version
+        return bad_versions, copy
 
     def all_versions_equal(self, versions):  # type: (Dict[str,str]) -> bool
         """
@@ -238,30 +292,27 @@ class FindVersion(object):
             else:
                 return found
 
+        self.setup_py_source = self.file_opener.open_this(setup_py, "r").read()
+
+        if "use_scm_version=True" in self.setup_py_source:
+            die(-1, "setup.py has use_scm_version=True in it- this means we expect no file to have a version string. Nothing to change")
+            return {}
+
         with self.file_opener.open_this(setup_py, "r") as infile:
             for line in infile:
-                simplified_line = line.replace(" ", "").replace("'", '"')
-                if sum([1 for x in simplified_line if x == ","]) > 1:
-                    comma_parts = simplified_line.split(",")
-                    for part in comma_parts:
-
-                        if "version" in part:
-                            simplified_line = part
-
-                # could be more than 1!
-                if 'version="' in simplified_line:
-                    version = simplified_line.split('"')[1]
-                    if not version:
-                        logging.warning("Can't find all of version string " + line)
-                        continue
+                version = kwarg_version.find_in_line(line)
+                if version:
                     found[setup_py] = version
                     continue
-                if '__version__="' in simplified_line:
-                    version = simplified_line.split('"')[1]
-                    if not version:
-                        logging.warning("Can't find all of version string " + line)
-                        continue
+                version, version_token = dunder_version.find_in_line(line)
+                if version:
                     found[setup_py] = version
+                    continue
+
+        # stress testing
+        # if "version" in self.setup_py_source and not found:
+        #     raise TypeError(self.setup_py_source)
+
         return found
 
     def read_text(self):  # type: () ->Dict[str,str]
@@ -300,20 +351,10 @@ class FindVersion(object):
 
         with self.file_opener.open_this(full_path, "r") as infile:
             for line in infile:
-                simplified_line = line.replace("'", '"')
-                if simplified_line.strip().startswith("__version__"):
-                    if '"' not in simplified_line:
-                        pass
-                        # logger.debug("Weird version string, no double quote : " + unicode((full_path, line, simplified_line)))
-                    else:
-                        if '"' in simplified_line:
-                            parts = simplified_line.split('"')
-                        else:
-                            parts = simplified_line.split("'")
-                        if len(parts) != 3:
-                            # logger.debug("Weird string, more than 3 parts : " + unicode((full_path, line, simplified_line)))
-                            continue
-                        versions[full_path] = parts[1]
+                version, version_token = dunder_version.find_in_line(line)
+                if version:
+                    versions[full_path] = version
+                version, version_token = dunder_version.find_in_line(line)
         return versions
 
     def validate_setup(self):  # type: () ->None
@@ -356,3 +397,25 @@ class FindVersion(object):
                 )
             )
         return self.version
+
+    def execute_setup(self): # type: () -> Dict[str,str]
+        """
+        for really surprising things like a dict foo in setup(**foo)
+        consider python3 setup.py --version
+        :return:
+        """
+
+        ver = execute_get_text("python setup.py --version")
+        if "UserWarning" in ver:
+            # UserWarning- Ther version specified ... is an invalid...
+            return {}
+
+        if ver:
+            string = unicode(ver).strip(" \n")
+            if "\n" in string:
+                string = string.split("\n")[0]
+
+            return {"setup.py --version": string.strip(" \n")}
+        else:
+            return {}
+

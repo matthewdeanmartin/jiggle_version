@@ -1,16 +1,17 @@
+# coding=utf-8
+"""
+Build tasks
+"""
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-import functools
 import glob
 import json
 import os
-import socket
 import subprocess
 import sys
 
-from checksumdir import dirhash
 from pynt import task
 from pyntcontrib import execute, safe_cd
 from semantic_version import Version
@@ -31,127 +32,16 @@ CURRENT_HASH = None
 
 MAC_LIBS = ":"
 
-
-def check_is_aws():
-    """
-
-    :rtype: bool
-    """
-    name = socket.getfqdn()
-    return "ip-" in name and ".ec2.internal" in name
-
-
-# bash to find what has change recently
-# find src/ -type f -print0 | xargs -0 stat -f "%m %N" | sort -rn | head -10 | cut -f2- -d" "
-class BuildState(object):
-    def __init__(self, what, where):
-        self.what = what
-        self.where = where
-        if not os.path.exists(".build_state"):
-            os.makedirs(".build_state")
-        self.state_file_name = ".build_state/last_change_{0}.txt".format(what)
-
-    def oh_never_mind(self):
-        """
-        If a task fails, we don't care if it didn't change since last, re-run,
-        :return:
-        """
-        os.remove(self.state_file_name)
-
-    def has_source_code_tree_changed(self):
-        """
-        If a task succeeds & is re-run and didn't change, we might not
-        want to re-run it if it depends *only* on source code
-        :return:
-        """
-        global CURRENT_HASH
-        directory = self.where
-
-        #if CURRENT_HASH is None:
-        # print("hashing " + directory)
-        # print(os.listdir(directory))
-        CURRENT_HASH = dirhash(directory, 'md5', ignore_hidden=True,
-                               # changing these exclusions can cause dirhas to skip EVERYTHING
-                               excluded_files=[".coverage", "lint.txt"],
-                               excluded_extensions=[".pyc"]
-                               )
-
-        print("Searching " + self.state_file_name)
-        if os.path.isfile(self.state_file_name):
-            with open(self.state_file_name, "r+") as file:
-                last_hash = file.read()
-                if last_hash != CURRENT_HASH:
-                    file.seek(0)
-                    file.write(CURRENT_HASH)
-                    file.truncate()
-                    return True
-                else:
-                    return False
-
-        # no previous file, by definition not the same.
-        with open(self.state_file_name, "w") as file:
-            file.write(CURRENT_HASH)
-            return True
-
-
-
-def oh_never_mind(what):
-    state = BuildState(what, PROJECT_NAME)
-    state.oh_never_mind()
-
-
-def has_source_code_tree_changed(what):
-    state = BuildState(what, PROJECT_NAME)
-    return state.has_source_code_tree_changed()
-
-
-def skip_if_no_change(name):
-    # https://stackoverflow.com/questions/5929107/decorators-with-parameters
-    def real_decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            if not has_source_code_tree_changed(name):
-                print("Nothing changed, won't re-" + name)
-                return
-            try:
-                return func(*args, **kwargs)
-            except:
-                oh_never_mind(name)
-                raise
-
-        return wrapper
-
-    return real_decorator
-
-
-def execute_with_environment(command, env):
-    # Python 2 code! Python 3 uses context managers.
-    shell_process = subprocess.Popen(command.strip().replace("  ", " ").split(" "), env=env)
-    value = shell_process.communicate()  # wait
-    if shell_process.returncode != 0:
-        print("Didn't get a zero return code, got : {0}".format(shell_process.returncode))
-        exit(-1)
-        #raise TypeError("Didn't get a zero return code, got : {0}".format(shell_process.returncode))
-    return value
-
-
-def execute_get_text(command):
-    try:
-        completed = subprocess.run(
-            command,
-            check=True,
-            shell=True,
-            stdout=subprocess.PIPE,
-        )
-    except subprocess.CalledProcessError as err:
-        raise
-    else:
-        return completed.stdout.decode('utf-8')
-
+sys.path.append(os.path.join(os.path.dirname(__file__), '.'))
+from build_utils import check_is_aws, skip_if_no_change, execute_with_environment, get_versions
 
 @task()
 @skip_if_no_change("git_secrets")
 def git_secrets():
+    """
+    Install git secrets if possible.
+    """
+
     if check_is_aws():
         # no easy way to install git secrets on ubuntu.
         return
@@ -186,12 +76,20 @@ def git_secrets():
 
 @task()
 def clean():
+    """
+    Delete all outputs. Blank until I think of a better way to do this.
+    :return:
+    """
     return
 
 
 @task()
 @skip_if_no_change("formatting")
 def formatting():
+    """
+    Call "black" to reformat. Supercedes pylints opinions on formatting.
+    :return:
+    """
     if sys.version_info < (3, 6):
         print("Black doesn't work on python 2")
         return
@@ -203,14 +101,22 @@ def formatting():
 
 @task(clean, formatting)
 @skip_if_no_change("compile")
-def compile():
+def compile_py():
+    """
+    Catch on the worst syntax errors
+    :return:
+    """
     with safe_cd(SRC):
         execute(PYTHON, "-m", "compileall", PROJECT_NAME)
 
 
-@task(formatting, compile)
+@task(formatting, compile_py)
 @skip_if_no_change("prospector")
 def prospector():
+    """
+    Catch a few things with a non-strict propector run
+    :return:
+    """
     with safe_cd(SRC):
         command = "{0} prospector {1} --profile {1}_style --pylint-config-file=pylintrc.ini --profile-path=.prospector".format(
             PIPENV, PROJECT_NAME).strip().replace("  ", " ")
@@ -222,6 +128,9 @@ def prospector():
 @task()
 @skip_if_no_change("detect_secrets")
 def detect_secrets():
+    """
+    Call detect-secrets tool
+    """
     # use
     # blah blah = "foo"     # pragma: whitelist secret
     # to ignore a false posites
@@ -247,17 +156,24 @@ def detect_secrets():
             data = json.load(f)
         except Exception:
             print("Can't read json")
+            exit(-1)
+            return
 
     if data["results"]:
         for result in data["results"]:
             print(result)
-        raise TypeError("detect-secrets has discovered high entropy strings, possibly passwords?")
+        print("detect-secrets has discovered high entropy strings, possibly passwords?")
+        exit(-1)
 
 
 
-@task(compile, formatting, prospector)
+@task(compile_py, formatting, prospector)
 @skip_if_no_change("lint")
 def lint():
+    """
+    Lint
+    :return:
+    """
     with safe_cd(SRC):
         if os.path.isfile("lint.txt"):
             execute("rm", "lint.txt")
@@ -307,6 +223,10 @@ def lint():
 @task(lint)
 @skip_if_no_change("nose_tests")
 def nose_tests():
+    """
+    Nose tests
+    :return:
+    """
     # with safe_cd(SRC):
     if IS_DJANGO:
         command = "{0} manage.py test -v 2".format(PYTHON)
@@ -324,6 +244,9 @@ def nose_tests():
 
 
 def config_pythonpath():
+    """
+    Add to PYTHONPATH
+    """
     if check_is_aws():
         env = "DEV"
     else:
@@ -339,6 +262,9 @@ def config_pythonpath():
 
 @task()
 def coverage():
+    """
+    Coverage, which is a bit redundant with nose test
+    """
     print("Coverage tests always re-run")
     with safe_cd(SRC):
         my_env = config_pythonpath()
@@ -351,6 +277,9 @@ def coverage():
 @task()
 @skip_if_no_change("docs")
 def docs():
+    """
+    Docs
+    """
     with safe_cd(SRC):
         with safe_cd("docs"):
             my_env = config_pythonpath()
@@ -360,18 +289,22 @@ def docs():
 
 @task()
 def pip_check():
+    """
+    Are packages ok?
+    """
     execute("pip", "check")
     if PIPENV and not IS_TRAVIS:
         execute("pipenv", "check")
     execute("safety", "check", "-r", "requirements_dev.txt")
 
 
-@task(pip_check)
-def pin_dependencies():
-    execute(*("{0} pipenv_to_requirements".format(PIPENV).strip().split(" ")))
+
 
 @task()
 def compile_mark_down():
+    """
+    Convert MD to RST
+    """
     with safe_cd(SRC):
         if IS_TRAVIS:
             command = "pandoc --from=markdown --to=rst --output=README.rst README.md".strip().split(
@@ -385,6 +318,9 @@ def compile_mark_down():
 @task()
 @skip_if_no_change("mypy")
 def mypy():
+    """
+    Are types ok?
+    """
     if sys.version_info < (3, 4):
         print("Mypy doesn't work on python < 3.4")
         return
@@ -422,20 +358,29 @@ def mypy():
 
 @task()
 def pin_dependencies():
+    """
+    Create requirement*.txt
+    """
     with safe_cd(SRC):
         execute(*("{0} pipenv_to_requirements".format(PIPENV).strip().split(" ")))
 
 
 @task()
 def jiggle_version():
+    """
+    Bump version. Not dogfooding 'cause it would create a circular dependency.
+    """
     # This is the primordial version, not the script/library version
     execute(PYTHON, "jiggle_version_self.py")
 
 
-@task(formatting, mypy, detect_secrets, git_secrets, nose_tests, coverage, compile, lint,
+@task(formatting, mypy, detect_secrets, git_secrets, nose_tests, coverage, compile_py, lint,
       compile_mark_down, pin_dependencies, jiggle_version)  # docs ... later
 @skip_if_no_change("package")
 def package():
+    """
+    package, but don't upload
+    """
     with safe_cd(SRC):
         for folder in ["build", "dist", PROJECT_NAME + ".egg-info"]:
             execute("rm", "-rf", folder)
@@ -447,6 +392,8 @@ def package():
 @task(package)
 def gemfury():
     """
+    Push to gem fury
+
     fury login
     fury push dist/*.gz --as=YOUR_ACCT
     fury push dist/*.whl --as=YOUR_ACCT
@@ -455,37 +402,6 @@ def gemfury():
                         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                         shell=False, check=True)
     print(cp.stdout)
-
-    def get_packages():
-        packages = []
-        cp = subprocess.run(("fury list --as={0}".format(GEM_FURY).split(" ")),
-                            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                            shell=False, check=True)
-        package_text = cp.stdout.split("\n")
-        found = False
-        for line in package_text:
-            if "(" in line and ")" in line:
-                if PROJECT_NAME in line:
-                    found = True
-                packages.append(line)
-        return package, found
-
-    def get_versions():
-        versions = []
-        cp = subprocess.run(("fury versions {0} --as={0}".format(GEM_FURY).format(PROJECT_NAME).split(" ")),
-                            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                            shell=False, check=True)
-        package_text = cp.stdout.decode().split("\n")
-        found = False
-        for line in package_text:
-            if "." in line:
-                try:
-                    version = Version(line)
-                    versions.append(version)
-                except ValueError:
-                    pass
-        print(versions)
-        return versions
 
     about = {}
     with open(os.path.join(SRC, PROJECT_NAME, "__version__.py")) as f:
@@ -520,12 +436,21 @@ def gemfury():
 
 @task()
 def echo(*args, **kwargs):
+    """
+    Pure diagnostics
+    :param args:
+    :param kwargs:
+    :return:
+    """
     print(args)
     print(kwargs)
 
 
 @task()
 def dead_code():
+    """
+    This also finds code you are working on today!
+    """
     with safe_cd(SRC):
         if IS_TRAVIS:
             command = "{0} vulture {1}".format(PYTHON, PROJECT_NAME)

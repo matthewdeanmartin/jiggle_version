@@ -18,10 +18,11 @@ PROJECT = "sample_lib"
 SRC = here + "/../sample_projects/sample_src/"
 
 various = {
-    PROJECT: SRC,
-    "setup_only": here + "/../sample_projects/setup_only/",
-    "file_module_src":  here + "/../sample_projects/file_module_src/",
-    "double_module":  here + "/../sample_projects/double_module/",
+    # PROJECT: SRC,
+    # "setup_only": here + "/../sample_projects/setup_only/",
+    # "file_module_src":  here + "/../sample_projects/file_module_src/",
+    # "double_module":  here + "/../sample_projects/double_module/",
+    "ver_in_weird_file":  here + "/../sample_projects/ver_in_weird_file/",
 }
 
 def test_go():

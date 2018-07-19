@@ -3,7 +3,11 @@
 Finds project by folder & source inspection.  Enables zero config by not
 asking the user something we can probably infer.
 
+TODO: support     packages=["aca"],
 """
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
 import ast
 import logging
 import os
@@ -63,7 +67,11 @@ class ModuleFinder(object):
         if not source:
             return ""
         for row in source.split("\n"):
-            if "name" in row:
+            if "name=" in row:
+                simplified_row = row.replace(" ", "").replace("'", '"').strip(" \t\n")
+                if '"' in simplified_row:
+                    return simplified_row.split('"')[1]
+            if "packages=" in row:
                 simplified_row = row.replace(" ", "").replace("'", '"').strip(" \t\n")
                 if '"' in simplified_row:
                     return simplified_row.split('"')[1]
@@ -80,33 +88,41 @@ class ModuleFinder(object):
             # this happens when the setup.py file is missing
             return None
         if "package_dir" in source:
-            for line in source.split("\n"):
-                simplified_line = line.strip(" ,").replace("'", '"')
-                if "package_dir" in simplified_line:
-                    parts = simplified_line.split("=")
-                    dict_src = parts[1].strip(" \t")
-                    if not dict_src.endswith("}"):
-                        raise JiggleVersionException(
-                            "Either this is hard to parse or we have 2+ src foldrs"
-                        )
-                    try:
-                        paths_dict = ast.literal_eval(dict_src)
-                    except ValueError as ve:
-                        logger.error(source + ": " + dict_src)
-                        return ""
+            line = source.replace("\n","")
+            line = source.split("package_dir")[1]
+            fixed = ""
+            for char in line:
+                fixed += char
+                if char =="}":
+                    break
+            line = fixed
 
-                    if "" in paths_dict:
-                        candidate = paths_dict[""]
-                        if os.path.isdir(candidate):
-                            return unicode(candidate)
-                    if len(paths_dict) == 1:
-                        candidate = first_value_in_dict(paths_dict)
-                        if os.path.isdir(candidate):
-                            return unicode(candidate)
-                    else:
-                        raise JiggleVersionException(
-                            "Have path_dict, but has more than one path."
-                        )
+            simplified_line = line.strip(" ,").replace("'", '"')
+
+            parts = simplified_line.split("=")
+            dict_src = parts[1].strip(" \t")
+            if not dict_src.endswith("}"):
+                raise JiggleVersionException(
+                    "Either this is hard to parse or we have 2+ src foldrs"
+                )
+            try:
+                paths_dict = ast.literal_eval(dict_src)
+            except ValueError as ve:
+                logger.error(source + ": " + dict_src)
+                return ""
+
+            if "" in paths_dict:
+                candidate = paths_dict[""]
+                if os.path.isdir(candidate):
+                    return unicode(candidate)
+            if len(paths_dict) == 1:
+                candidate = first_value_in_dict(paths_dict)
+                if os.path.isdir(candidate):
+                    return unicode(candidate)
+            else:
+                raise JiggleVersionException(
+                    "Have path_dict, but has more than one path."
+                )
         return None
 
     def via_find_packages(self):  # type: () -> List[str]

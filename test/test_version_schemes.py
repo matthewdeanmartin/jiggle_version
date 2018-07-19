@@ -5,7 +5,6 @@ from versio.version_scheme import Pep440VersionScheme, VersionScheme, Simple4Ver
 
 from jiggle_version.schema_guesser import version_object_and_next
 
-
 def test_four_part():
     string ="1.7.1.3"
     print(string)

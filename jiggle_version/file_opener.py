@@ -9,6 +9,12 @@ from typing import List, Optional, Any
 
 import chardet
 
+try:
+    import configparser
+except ImportError:
+    # Python 2.x fallback
+    import ConfigParser as configparser
+
 _ = List, Optional, Any
 if sys.version_info.major == 3:
     unicode = str
@@ -43,9 +49,29 @@ class FileOpener(object):
 
             encoding = self.found_encoding[file]
         else:
-            encoding_info = chardet.detect(io.open(file, "rb").read())
+            file_bytes = io.open(file, "rb").read()
+            encoding_info = chardet.detect(file_bytes)
             encoding = encoding_info["encoding"]
             logger.debug(unicode(encoding))
+            try:
+                io.open(file, how, encoding=encoding).read()
+            except UnicodeDecodeError:
+                print(file)
+                print(file_bytes)
+
+
             self.found_encoding[file] = encoding
 
         return io.open(file, how, encoding=encoding)
+
+    def read_metadata(self, file_path):  # type: (str) ->str
+        """
+        Get version out of a .ini file (or .cfg)
+        :return:
+        """
+        config = configparser.ConfigParser()
+        config.read(file_path)
+        try:
+            return config["metadata"]["version"]
+        except KeyError:
+            return ""

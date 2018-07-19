@@ -23,7 +23,7 @@ if sys.version_info.major == 3:
 logger = logging.getLogger(__name__)
 
 
-def bump_version(project, source, debug):  # type: (str, str, bool) ->None
+def bump_version(project, source, debug):  # type: (str, str, bool) ->int
     """
     Entry point
     :return:
@@ -44,6 +44,7 @@ def bump_version(project, source, debug):  # type: (str, str, bool) ->None
         die(-1, "Versions not in sync, won't continue")
     changed = jiggler.jiggle_all()
     logger.debug("Changed {0} files".format(changed))
+    return changed
 
 
 def find_version(project, source, debug):  # type: (str, str, bool) ->None
