@@ -157,7 +157,7 @@
           <entry key="dummy" value="40" />
           <entry key="gitignore" value="226" />
           <entry key="ini" value="12" />
-          <entry key="md" value="16878" />
+          <entry key="md" value="16946" />
           <entry key="py" value="35899" />
           <entry key="rst" value="181" />
           <entry key="sh" value="310" />
@@ -172,7 +172,7 @@
           <entry key="Git file" value="226" />
           <entry key="Ini" value="55" />
           <entry key="Makefile" value="14" />
-          <entry key="Markdown" value="16878" />
+          <entry key="Markdown" value="16946" />
           <entry key="PLAIN_TEXT" value="59" />
           <entry key="Python" value="36017" />
           <entry key="ReST" value="181" />
@@ -189,8 +189,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="172">
-                <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+              <first_editor relative-caret-position="70">
+                <caret line="21" column="1048" selection-start-line="21" selection-start-column="1048" selection-end-line="21" selection-end-column="1048" />
               </first_editor>
               <second_editor />
             </state>
@@ -1133,8 +1133,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="172">
-            <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <first_editor relative-caret-position="70">
+            <caret line="21" column="1048" selection-start-line="21" selection-start-column="1048" selection-end-line="21" selection-end-column="1048" />
           </first_editor>
           <second_editor />
         </state>
