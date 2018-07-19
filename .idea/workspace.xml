@@ -36,9 +36,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/double_module/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/double_module/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/file_module_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/file_module_src/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__version__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/setup_only/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/setup_only/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_command_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_command_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +53,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/jiggle_version$0805nexter.coverage" NAME="0805nexter Coverage Results" MODIFIED="1531854550274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fetch_raw_data/packages/0805nexter-1.2.0" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_main_py__1_.coverage" NAME="Nosetests in test_main.py (1) Coverage Results" MODIFIED="1531421703594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../find_known_secrets/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test.coverage" NAME="Nosetests in test Coverage Results" MODIFIED="1531956244023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test.coverage" NAME="Nosetests in test Coverage Results" MODIFIED="1531959788666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_py.coverage" NAME="Nosetests in test_main.py Coverage Results" MODIFIED="1531342337308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_schema_guesser_py.coverage" NAME="Nosetests in test_schema_guesser.py Coverage Results" MODIFIED="1531783198012" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$main.coverage" NAME="main Coverage Results" MODIFIED="1531418544419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
@@ -60,6 +64,7 @@
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_process_docopts.coverage" NAME="Nosetests for test_main.test_process_docopts Coverage Results" MODIFIED="1531412730979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$bump_all_directly.coverage" NAME="bump_all_directly Coverage Results" MODIFIED="1531941412853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fetch_raw_data" />
     <SUITE FILE_PATH="coverage/jiggle_version$schema_guesser.coverage" NAME="schema_guesser Coverage Results" MODIFIED="1531782752155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_command_line_test_find_modify.coverage" NAME="Nosetests for test_command_line.test_find_modify Coverage Results" MODIFIED="1531959610050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$jiggle_class.coverage" NAME="jiggle_class Coverage Results" MODIFIED="1531684289842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
     <SUITE FILE_PATH="coverage/jiggle_version$setup.coverage" NAME="setup Coverage Results" MODIFIED="1531868731530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fetch_raw_data/packages/a00k5pgrtn-0.1" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_jiggle_class_py.coverage" NAME="Nosetests in test_jiggle_class.py Coverage Results" MODIFIED="1531946072589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -81,6 +86,7 @@
     <SUITE FILE_PATH="coverage/jiggle_version$execise_foo.coverage" NAME="execise_foo Coverage Results" MODIFIED="1531947138762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sample_projects/double_module" />
     <SUITE FILE_PATH="coverage/jiggle_version$__main__.coverage" NAME="__main__ Coverage Results" MODIFIED="1531340439178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jiggle_version" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_find_version_py.coverage" NAME="Nosetests in test_find_version.py Coverage Results" MODIFIED="1531782424056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_command_line.coverage" NAME="Nosetests for test_command_line Coverage Results" MODIFIED="1531959546762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1531347427567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../find_known_secrets/find_known_secrets" />
   </component>
   <component name="FUSProjectUsageTrigger">
@@ -120,7 +126,7 @@
           <entry key="ini" value="6" />
           <entry key="lock" value="3" />
           <entry key="md" value="32" />
-          <entry key="py" value="691" />
+          <entry key="py" value="692" />
           <entry key="rst" value="13" />
           <entry key="setup" value="1" />
           <entry key="sh" value="15" />
@@ -139,7 +145,7 @@
           <entry key="Makefile" value="1" />
           <entry key="Markdown" value="32" />
           <entry key="PLAIN_TEXT" value="120" />
-          <entry key="Python" value="696" />
+          <entry key="Python" value="697" />
           <entry key="ReST" value="13" />
           <entry key="TOML file" value="13" />
           <entry key="YAML" value="18" />
@@ -157,7 +163,7 @@
           <entry key="gitignore" value="199" />
           <entry key="ini" value="12" />
           <entry key="md" value="16835" />
-          <entry key="py" value="35644" />
+          <entry key="py" value="35677" />
           <entry key="rst" value="181" />
           <entry key="sh" value="310" />
           <entry key="txt" value="5" />
@@ -173,7 +179,7 @@
           <entry key="Makefile" value="14" />
           <entry key="Markdown" value="16835" />
           <entry key="PLAIN_TEXT" value="59" />
-          <entry key="Python" value="35762" />
+          <entry key="Python" value="35795" />
           <entry key="ReST" value="181" />
           <entry key="TOML file" value="25" />
           <entry key="YAML" value="92" />
@@ -196,10 +202,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test_command_line.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1224">
-              <caret line="68" column="72" selection-start-line="68" selection-start-column="72" selection-end-line="68" selection-end-column="72" />
+            <state relative-caret-position="157">
+              <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
               <folding>
-                <marker date="1531959230000" expanded="true" signature="1480:1481" ph="..." />
+                <marker date="1531959615000" expanded="true" signature="1503:1504" ph="..." />
               </folding>
             </state>
           </provider>
@@ -233,6 +239,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1363">
+              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="86" selection-end-column="20" />
+              <folding>
+                <marker date="1531956006000" expanded="true" signature="1408:1421" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
@@ -249,15 +267,6 @@
               <folding>
                 <marker date="1531956244000" expanded="true" signature="746:821" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/file_opener.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -322,8 +331,8 @@
       <find>print(err.stdout)</find>
       <find>print(err.stderr)</find>
       <find>import jiggle_version.__init__ as init</find>
-      <find>raise TypeError(&quot;Didn't get a zero return code</find>
       <find>execut</find>
+      <find>raise TypeError(&quot;Didn't get a zero return code</find>
     </findStrings>
     <dirStrings>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
@@ -442,6 +451,11 @@
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
               <item name="sample_projects" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -503,49 +517,37 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Nosetests for test_command_line.test_find_version">
-    <configuration name="execise_foo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python tests.Nosetests in test">
+    <configuration name="Nosetests for test_command_line" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sample_projects/double_module" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sample_projects/double_module/execise_foo.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_command_line&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="exercise_me" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Nosetests for test_command_line.test_find_modify" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sample_projects/file_module_src" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sample_projects/file_module_src/exercise_me.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_command_line.test_find_modify&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Nosetests for test_command_line.test_find_version" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
@@ -613,19 +615,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.exercise_me" />
-      <item itemvalue="Python.execise_foo" />
       <item itemvalue="Python tests.Nosetests in test_command_line.py" />
       <item itemvalue="Python tests.Nosetests in test" />
       <item itemvalue="Python tests.Nosetests for test_command_line.test_find_version" />
+      <item itemvalue="Python tests.Nosetests for test_command_line" />
+      <item itemvalue="Python tests.Nosetests for test_command_line.test_find_modify" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Nosetests for test_command_line.test_find_version" />
         <item itemvalue="Python tests.Nosetests in test" />
+        <item itemvalue="Python tests.Nosetests for test_command_line.test_find_modify" />
+        <item itemvalue="Python tests.Nosetests for test_command_line" />
+        <item itemvalue="Python tests.Nosetests for test_command_line.test_find_version" />
         <item itemvalue="Python tests.Nosetests in test_command_line.py" />
-        <item itemvalue="Python.execise_foo" />
-        <item itemvalue="Python.exercise_me" />
       </list>
     </recent_temporary>
   </component>
@@ -643,27 +645,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_in_test - 2018.07.18 at 19h 20m 08s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.07.18 at 19h 21m 24s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.07.18 at 19h 21m 48s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.07.18 at 19h 22m 01s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.07.18 at 19h 22m 25s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.07.18 at 19h 22m 54s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.07.18 at 19h 23m 29s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_in_test - 2018.07.18 at 19h 24m 05s.xml">
       <configuration name="Nosetests in test" configurationId="tests" />
     </history-entry>
@@ -673,18 +654,39 @@
     <history-entry file="Nosetests_for_test_command_line_test_find_version - 2018.07.18 at 19h 53m 56s.xml">
       <configuration name="Nosetests for test_command_line.test_find_version" configurationId="tests" />
     </history-entry>
+    <history-entry file="Nosetests_in_test - 2018.07.18 at 20h 16m 31s.xml">
+      <configuration name="Nosetests in test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_command_line - 2018.07.18 at 20h 17m 10s.xml">
+      <configuration name="Nosetests for test_command_line" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_command_line - 2018.07.18 at 20h 17m 51s.xml">
+      <configuration name="Nosetests for test_command_line" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_command_line - 2018.07.18 at 20h 19m 08s.xml">
+      <configuration name="Nosetests for test_command_line" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_command_line_test_find_modify - 2018.07.18 at 20h 19m 40s.xml">
+      <configuration name="Nosetests for test_command_line.test_find_modify" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_command_line_test_find_modify - 2018.07.18 at 20h 20m 03s.xml">
+      <configuration name="Nosetests for test_command_line.test_find_modify" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_for_test_command_line_test_find_modify - 2018.07.18 at 20h 20m 10s.xml">
+      <configuration name="Nosetests for test_command_line.test_find_modify" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="831" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2360515" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2360515" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.32995495" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.2932961" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5069832" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.2932961" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5069832" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.45810056" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1032,16 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-344">
-          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="86" selection-end-column="20" />
-          <folding>
-            <marker date="1531956006000" expanded="true" signature="1408:1421" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fetch_raw_data/bump_all_directly.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1125,12 +1117,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1363">
+          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="86" selection-end-column="20" />
+          <folding>
+            <marker date="1531956006000" expanded="true" signature="1408:1421" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_command_line.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="68" column="72" selection-start-line="68" selection-start-column="72" selection-end-line="68" selection-end-column="72" />
+        <state relative-caret-position="157">
+          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
           <folding>
-            <marker date="1531959230000" expanded="true" signature="1480:1481" ph="..." />
+            <marker date="1531959615000" expanded="true" signature="1503:1504" ph="..." />
           </folding>
         </state>
       </provider>
