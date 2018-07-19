@@ -21,14 +21,14 @@ def execute_get_text(command):
         print(result.decode())
     except subprocess.CalledProcessError as err:
         print(err)
-        try:
-            print(err.stdout)
-        except:
-            pass
-        try:
-            print(err.stderr)
-        except:
-            pass
+        # try:
+        #     print(err.stdout)
+        # except:
+        #     pass
+        # try:
+        #     print(err.stderr)
+        # except:
+        #     pass
         raise
 
     return result.decode('utf-8')

@@ -155,7 +155,7 @@
           <entry key="gitignore" value="199" />
           <entry key="ini" value="12" />
           <entry key="md" value="16835" />
-          <entry key="py" value="35536" />
+          <entry key="py" value="35576" />
           <entry key="rst" value="181" />
           <entry key="sh" value="310" />
           <entry key="txt" value="5" />
@@ -171,7 +171,7 @@
           <entry key="Makefile" value="14" />
           <entry key="Markdown" value="16835" />
           <entry key="PLAIN_TEXT" value="59" />
-          <entry key="Python" value="35654" />
+          <entry key="Python" value="35694" />
           <entry key="ReST" value="181" />
           <entry key="TOML file" value="25" />
           <entry key="YAML" value="92" />
@@ -194,10 +194,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test_command_line.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+            <state relative-caret-position="62">
+              <caret line="23" selection-start-line="23" selection-end-line="30" selection-end-column="18" />
               <folding>
-                <marker date="1531958650000" expanded="true" signature="1203:1204" ph="..." />
+                <marker date="1531958791000" expanded="true" signature="1444:1445" ph="..." />
               </folding>
             </state>
           </provider>
@@ -292,7 +292,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>char</find>
       <find>encoding=</find>
       <find>acli [--region=&lt;region&gt;] [--access_key_id=&lt;access_key_id&gt;] [--secret_a</find>
       <find>version</find>
@@ -322,6 +321,7 @@
       <find>ModuleFinder</find>
       <find>.cfg</find>
       <find>print(err.stdout)</find>
+      <find>print(err.stderr)</find>
     </findStrings>
     <dirStrings>
       <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
@@ -435,11 +435,6 @@
           <expand>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1131,10 +1126,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_command_line.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+        <state relative-caret-position="62">
+          <caret line="23" selection-start-line="23" selection-end-line="30" selection-end-column="18" />
           <folding>
-            <marker date="1531958650000" expanded="true" signature="1203:1204" ph="..." />
+            <marker date="1531958791000" expanded="true" signature="1444:1445" ph="..." />
           </folding>
         </state>
       </provider>
