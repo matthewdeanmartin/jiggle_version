@@ -1,4 +1,4 @@
-# # coding=utf-8
+# coding=utf-8
 """
 Take a string, guess the schema.
 

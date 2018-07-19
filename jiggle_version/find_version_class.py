@@ -42,45 +42,6 @@ logger = logging.getLogger(__name__)
 # contrive usage so black doesn't remove the import
 _ = List, Optional, Dict, Any
 
-# don't do this.
-# execfile('...sample/version.py')
-def version_by_ast(file):  # type: (str) -> str
-    """
-    Safer way to 'execute' python code to get a simple value
-    :param file:
-    :return:
-    """
-    with open(file) as input_file:
-        for line in input_file:
-            if line.startswith("__version__"):
-                return ast.parse(line).body[0].value.s
-
-
-# ----
-# https://packaging.python.org/guides/single-sourcing-package-version/
-here = os.path.abspath(os.path.dirname(__file__))
-
-
-def read(*parts):  # type: (Any)->str
-    with codecs.open(os.path.join(here, *parts), "r") as fp:
-        return fp.read()
-
-
-def find_version_by_regex(*file_paths):  # type: (Any)->str
-    """
-    find_version("package", "__init__.py")
-    :param file_paths:
-    :return:
-    """
-    version_file = read(*file_paths)
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
-    if version_match:
-        return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
-
-
-# ----
-
 
 class FindVersion(object):
     """
@@ -176,7 +137,7 @@ class FindVersion(object):
         :return:
         """
         versions = self.all_current_versions()
-        for ver, version in versions.items():
+        for _, version in versions.items():
             if "Invalid Semantic Version" in version:
                 logger.error(
                     "Invalid versions, can't compare them, can't determine if in sync"
@@ -196,7 +157,7 @@ class FindVersion(object):
             logger.error(unicode(versions))
             return False
 
-        for key, version in versions.items():
+        for _ in versions:
             return True
         return False
 
@@ -291,14 +252,14 @@ class FindVersion(object):
                 if 'version="' in simplified_line:
                     version = simplified_line.split('"')[1]
                     if not version:
-                        logging.warn("Can't find all of version string " + line)
+                        logging.warning("Can't find all of version string " + line)
                         continue
                     found[setup_py] = version
                     continue
                 if '__version__="' in simplified_line:
                     version = simplified_line.split('"')[1]
                     if not version:
-                        logging.warn("Can't find all of version string " + line)
+                        logging.warning("Can't find all of version string " + line)
                         continue
                     found[setup_py] = version
         return found

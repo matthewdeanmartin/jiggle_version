@@ -1,3 +1,7 @@
+# coding=utf-8
+"""
+Detect encoding, read file, remember encoding
+"""
 import io
 import logging
 import sys
@@ -31,6 +35,7 @@ class FileOpener(object):
         :param how:
         :return:
         """
+        # BUG: risky code here, allowing relative
         if not file.startswith("/"):
             # raise TypeError("this isn't absolute! We're siths, ya' know.")
             pass
@@ -38,7 +43,7 @@ class FileOpener(object):
 
             encoding = self.found_encoding[file]
         else:
-            encoding_info = chardet.detect(io.open("setup.py", "rb").read())
+            encoding_info = chardet.detect(io.open(file, "rb").read())
             encoding = encoding_info["encoding"]
             logger.debug(unicode(encoding))
             self.found_encoding[file] = encoding

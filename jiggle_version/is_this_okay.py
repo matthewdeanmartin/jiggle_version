@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Is that python source code we are about to write really python?
 """
@@ -35,5 +36,6 @@ def check(src, dst):  # type: (str,str)->None
             # I didn't make it worse.
             pass
         else:
+            # ok, this made the file worse. It must be jiggle_version's fault.
             logger.error(dst)
             raise
