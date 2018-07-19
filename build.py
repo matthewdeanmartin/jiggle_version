@@ -129,7 +129,9 @@ def execute_with_environment(command, env):
     shell_process = subprocess.Popen(command.strip().replace("  ", " ").split(" "), env=env)
     value = shell_process.communicate()  # wait
     if shell_process.returncode != 0:
-        raise TypeError("Didn't get a zero return code, got : {0}".format(shell_process.returncode))
+        print("Didn't get a zero return code, got : {0}".format(shell_process.returncode))
+        exit(-1)
+        #raise TypeError("Didn't get a zero return code, got : {0}".format(shell_process.returncode))
     return value
 
 

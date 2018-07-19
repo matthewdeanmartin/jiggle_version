@@ -39,7 +39,7 @@ def test_where_am_i():
         print(os.getcwd())
         result = execute_get_text("pwd")
         print(result)
-        assert result == "jiggle_version"
+        assert str(result).endswith("jiggle_version"), result
     finally:
         os.chdir("test")
 
@@ -47,7 +47,7 @@ def test_self_version():
     try:
         os.chdir(SRC)
         print(os.getcwd())
-        result = execute_get_text("python -m jiggle_version --version")
+        result = execute_get_text("python -m jiggle_version --version --debug")
         print(result)
         assert result
     finally:
@@ -56,7 +56,7 @@ def test_self_version():
 def test_find_version():
     try:
         os.chdir(SRC)
-        result = execute_get_text("python -m jiggle_version find")
+        result = execute_get_text("python -m jiggle_version find --debug")
         print(result)
         assert result
     finally:
@@ -66,7 +66,7 @@ def test_find_modify():
     try:
         SRC = here + "/../sample_projects/sample_src/"
         os.chdir(SRC)
-        result = execute_get_text("python -m jiggle_version here")
+        result = execute_get_text("python -m jiggle_version here --debug")
         print(result)
         assert result
     finally:

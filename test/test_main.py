@@ -2,6 +2,11 @@
 """
 Tests
 """
+from docopt import DocoptExit
+
+import jiggle_version.__init__ as init
+import jiggle_version.__version__ as v2
+import jiggle_version.main as main
 from jiggle_version.utils import JiggleVersionException
 
 try:
@@ -9,13 +14,6 @@ try:
 except NameError:
     FileNotFoundError = IOError
 import os
-
-from docopt import DocoptExit
-
-import jiggle_version.__init__ as init
-import jiggle_version.__version__ as v2
-import jiggle_version.main as main
-from jiggle_version.jiggle_class import JiggleVersion
 
 here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "sample_lib"
