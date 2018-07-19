@@ -35,18 +35,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/fetch_raw_data/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__version__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/double_module/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/double_module/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/file_module_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/file_module_src/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/setup_only/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/setup_only/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_command_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_command_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_find_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_find_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_jiggle_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +115,7 @@
           <entry key="cfg" value="34" />
           <entry key="coverage" value="1" />
           <entry key="fela" value="1" />
-          <entry key="gitignore" value="12" />
+          <entry key="gitignore" value="13" />
           <entry key="html" value="4" />
           <entry key="in" value="3" />
           <entry key="ini" value="6" />
@@ -144,7 +134,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="15" />
-          <entry key="Git file" value="12" />
+          <entry key="Git file" value="13" />
           <entry key="HTML" value="4" />
           <entry key="Ini" value="40" />
           <entry key="Makefile" value="1" />
@@ -165,7 +155,7 @@
           <entry key="bat" value="14" />
           <entry key="cfg" value="43" />
           <entry key="dummy" value="40" />
-          <entry key="gitignore" value="199" />
+          <entry key="gitignore" value="226" />
           <entry key="ini" value="12" />
           <entry key="md" value="16835" />
           <entry key="py" value="35869" />
@@ -179,7 +169,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="310" />
-          <entry key="Git file" value="199" />
+          <entry key="Git file" value="226" />
           <entry key="Ini" value="55" />
           <entry key="Makefile" value="14" />
           <entry key="Markdown" value="16835" />
@@ -249,7 +239,7 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_version_schemes.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -260,23 +250,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/utils.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fetch_raw_data/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-45">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="72">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
+        <entry file="file://$PROJECT_DIR$/jiggle_version/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="87" selection-start-line="87" selection-end-line="87" />
-              <folding>
-                <marker date="1531960541000" expanded="true" signature="1408:1421" ph="..." />
-              </folding>
+            <state relative-caret-position="-45">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -351,7 +338,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fetch_raw_data/pypi_versions.py" />
         <option value="$PROJECT_DIR$/fetch_raw_data/packages/a00k5pgrtn-0.1/setup.py" />
         <option value="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" />
         <option value="$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/versio/version.py" />
@@ -402,6 +388,7 @@
         <option value="$PROJECT_DIR$/test/test_find_version.py" />
         <option value="$PROJECT_DIR$/test/test_jiggle_class.py" />
         <option value="$PROJECT_DIR$/test/test_main.py" />
+        <option value="$PROJECT_DIR$/fetch_raw_data/.gitignore" />
       </list>
     </option>
   </component>
@@ -418,6 +405,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="401" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="831" />
@@ -436,6 +424,11 @@
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
+              <item name="fetch_raw_data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
@@ -662,6 +655,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="831" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2360515" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -816,13 +810,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sample_projects/double_module/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample_projects/setup_only/setup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1128,6 +1115,13 @@
           <folding>
             <marker date="1531883295000" expanded="true" signature="606:607" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fetch_raw_data/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
