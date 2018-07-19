@@ -89,7 +89,9 @@ class FindVersion(object):
     Because OOP.
     """
 
-    def __init__(self, project, source, file_opener, debug=False):  # type: (str, str, FileOpener, bool) ->None
+    def __init__(
+        self, project, source, file_opener, debug=False
+    ):  # type: (str, str, FileOpener, bool) ->None
         """
         Entry point
         """

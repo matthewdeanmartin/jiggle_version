@@ -47,7 +47,9 @@ class JiggleVersion(object):
     Coordinates code, writes versions
     """
 
-    def __init__(self, project, source,file_opener, debug=False):  # type: (str, str, FileOpener, bool) ->None
+    def __init__(
+        self, project, source, file_opener, debug=False
+    ):  # type: (str, str, FileOpener, bool) ->None
         """
         Entry point
         """
@@ -103,7 +105,6 @@ class JiggleVersion(object):
         self.file_maker = FileMaker(self.PROJECT)
         self.version_finder = FindVersion(project, source, file_opener, debug)
         self.file_inventory = FileInventory(project, source)
-
 
     def leading_whitespace(self, line):
         string = ""
@@ -173,9 +174,7 @@ class JiggleVersion(object):
                     if not found:
                         to_write.append(line)
 
-            check(
-                self.file_opener.open_this(file_name, "r").read(), "".join(to_write)
-            )
+            check(self.file_opener.open_this(file_name, "r").read(), "".join(to_write))
             with open(file_name, "w") as outfile:
                 outfile.writelines(to_write)
                 changed += 1

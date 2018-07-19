@@ -30,6 +30,24 @@ def test_process_docopts():
         pass
 
 
+def test_process_docopts_fake_it():
+    try:
+        os.chdir(SRC)
+        args = {'--debug': 'False',
+            '--help': False,
+            '--project': None,
+            '--source': None,
+            '--version': False,
+            'find': True,
+            'here': False}
+        main.process_docopts(args)
+    except JiggleVersionException as jve:
+        print(os.getcwd())
+        raise
+    finally:
+        os.chdir("../../test")
+
+
 def test_entry_point():
     # put app in dir with setup.py. Easier!
     try:

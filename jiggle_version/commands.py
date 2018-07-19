@@ -32,7 +32,7 @@ def bump_version(project, source, debug):  # type: (str, str, bool) ->None
     """
     file_opener = FileOpener()
     # logger.debug("Starting version jiggler...")
-    jiggler = JiggleVersion(project, source, file_opener,  debug)
+    jiggler = JiggleVersion(project, source, file_opener, debug)
 
     logger.debug(
         "Current, next : {0} -> {1} : {2}".format(

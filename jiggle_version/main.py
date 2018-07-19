@@ -76,12 +76,16 @@ def console_trace(level):  # type: (int)->None
     # logging.getLogger('').addHandler(console)
 
 
-def process_docopts():  # type: ()->None
+def process_docopts(test=None):  # type: ()->None
     """
     Just process the command line options and commands
     :return:
     """
-    arguments = docopt(__doc__, version="Jiggle Version 1.0")
+    if test:
+        arguments = test
+    else:
+        arguments = docopt(__doc__, version="Jiggle Version 1.0")
+
     logger.debug(arguments)
 
     f = FileOpener()
