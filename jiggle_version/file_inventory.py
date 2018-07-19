@@ -39,7 +39,7 @@ class FileInventory(object):
 
         self.source_files = [
             "__init__.py",  # required.
-            "__version__.py",  # required.
+            # "__version__.py",  # this creates confusing import patterns
             "_version.py",  # optional
             "version.py",  # uncommon
             "__about__.py",  # uncommon

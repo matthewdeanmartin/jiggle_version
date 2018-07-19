@@ -18,15 +18,30 @@ def execute_get_text(command):
             command,
             stderr=subprocess.STDOUT,
             shell=True)
-        print(result)
+        print(result.decode())
     except subprocess.CalledProcessError as err:
         print(err)
-        print(err.stdout)
-        print(err.stderr)
+        try:
+            print(err.stdout)
+        except:
+            pass
+        try:
+            print(err.stderr)
+        except:
+            pass
         raise
 
     return result.decode('utf-8')
 
+def test_self_version():
+    try:
+        os.chdir(SRC)
+        print(os.getcwd())
+        result = execute_get_text("python -m jiggle_version --version")
+        print(result)
+        assert result
+    finally:
+        os.chdir("test")
 
 def test_find_version():
     try:

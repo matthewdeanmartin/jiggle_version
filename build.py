@@ -1,14 +1,14 @@
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
 
-import sys
 import functools
 import glob
 import json
 import os
 import socket
 import subprocess
+import sys
 
 from checksumdir import dirhash
 from pynt import task
@@ -68,8 +68,8 @@ class BuildState(object):
         directory = self.where
 
         #if CURRENT_HASH is None:
-        print("hashing " + directory)
-        print(os.listdir(directory))
+        # print("hashing " + directory)
+        # print(os.listdir(directory))
         CURRENT_HASH = dirhash(directory, 'md5', ignore_hidden=True,
                                # changing these exclusions can cause dirhas to skip EVERYTHING
                                excluded_files=[".coverage", "lint.txt"],
