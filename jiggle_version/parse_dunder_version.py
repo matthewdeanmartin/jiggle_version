@@ -20,10 +20,17 @@ from __future__ import unicode_literals
 
 import ast
 import re
-
 from typing import List, Optional, Any, Tuple
 
 _ = List, Optional, Any, Tuple
+
+version_tokens = [
+    "__version__",  # canonical
+    "__VERSION__",  # rare and wrong, but who am I to argue
+    "VERSION",  # rare
+    "version",
+    "PACKAGE_VERSION",
+]
 
 
 def find_by_ast(line, version_token="__version__"):  # type: (str,str) -> Optional[str]
@@ -60,23 +67,29 @@ def find_by_ast(line, version_token="__version__"):  # type: (str,str) -> Option
     return None
 
 
-def simplify_line(line):  # type: (str)->str
+def simplify_line(line, keep_comma=False):  # type: (str, bool)->str
     """
     Change ' to "
     Remove tabs and spaces (assume no significant whitespace inside a version string!)
     """
     if not line:
         return ""
+    if "#" in line:
+        parts = line.split("#")
+        simplified_line = parts[0]
+    else:
+        simplified_line = line
 
     simplified_line = (
-        line.replace(" ", "")
+        simplified_line.replace(" ", "")
         .replace("'", '"')
         .replace("\t", "")
         .replace("\n", "")
-        .strip(" ,")
+        .replace("'''", '"')  # version strings shouldn't be split across lines normally
+        .replace('"""', '"')
     )
-    if "#" in simplified_line:
-        simplified_line = simplified_line.split("#")[0]
+    if not keep_comma:
+        simplified_line = simplified_line.strip(" ,")
     return simplified_line
 
 
@@ -92,7 +105,10 @@ def find_version_by_regex(
         r"^" + version_token + r" = ['\"]([^'\"]*)['\"]", file_source, re.M
     )
     if version_match:
-        return version_match.group(1)
+        candidate = version_match.group(1)
+        if candidate == "" or candidate == ".":  # yes, it will match to a .
+            return None
+        return candidate
     return None
 
 
@@ -117,15 +133,19 @@ def find_version_by_string_lib(
                 if post_equals.startswith('"'):
                     parts = post_equals.split('"')
                     version = parts[0]
+                if not version:
+                    version = None
     return version
 
 
-def validate_string(version):
+def validate_string(version):  # type: (str) -> Optional[str]
     if not version:
-        return
+        return None
     for char in version:
         if char in " \t()":
-            raise TypeError("Bad parse : " + version)
+            return None
+            # raise TypeError("Bad parse : " + version)
+    return version
 
 
 def find_in_line(line):  # type: (str)->Tuple[Optional[str],Optional[str]]
@@ -136,25 +156,20 @@ def find_in_line(line):  # type: (str)->Tuple[Optional[str],Optional[str]]
     """
     if not line:
         return None, None
-    for version_token in [
-        "__version__",  # canonical
-        "VERSION",  # rare
-        "version",
-        "PACKAGE_VERSION",
-    ]:
+    for version_token in version_tokens:
 
         by_ast = find_by_ast(line, version_token)
-        validate_string(by_ast)
+        by_ast = validate_string(by_ast)
         if by_ast:
             return by_ast, version_token
 
         by_string_lib = find_version_by_string_lib(line, version_token)
-        validate_string(by_string_lib)
+        by_string_lib = validate_string(by_string_lib)
         if by_string_lib:
             return by_string_lib, version_token
 
         by_regex = find_version_by_regex(line, version_token)
-        validate_string(by_regex)
+        by_regex = validate_string(by_regex)
         if by_regex:
             return by_regex, version_token
     return None, None

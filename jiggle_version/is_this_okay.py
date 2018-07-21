@@ -37,5 +37,6 @@ def check(src, dst):  # type: (str,str)->None
             pass
         else:
             # ok, this made the file worse. It must be jiggle_version's fault.
+            print(dst)
             logger.error(dst)
             raise

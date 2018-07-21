@@ -11,9 +11,10 @@ Usage:
 
 Options:
   here                 No config version bumping, edits source code and stops.
-  find_version         Just tell me next version, like this jiggle_version find>version.txt
-  --schema             pep440, semversion, guess
-  --project=<project>  Project name, e.g. my_lib in src/my_lib
+  find                 Just tell me next version, like this jiggle_version find>version.txt
+  --execute_code       infer version by parsing only, or parsing and executing?
+  --strict             Don't tolerate weird states
+  --project=<project>  'Central' module name, e.g. my_lib in src/my_lib
   --source=<source>    Source folder. e.g. src/
   --version            Show version of jiggle_version, not your apps.
   --debug=<debug>      Show diagnostic info [default: False].
@@ -30,9 +31,10 @@ from typing import List, Optional, Dict, Any
 
 from docopt import docopt
 
+from jiggle_version.central_module_finder import CentralModuleFinder
 from jiggle_version.commands import bump_version, find_version
 from jiggle_version.file_opener import FileOpener
-from jiggle_version.project_finder import ModuleFinder
+from jiggle_version.module_finder import ModuleFinder
 
 logger = logging.getLogger(__name__)
 
@@ -88,24 +90,24 @@ def process_docopts(test=None):  # type: ()->None
 
     logger.debug(arguments)
 
-    f = FileOpener()
-    module_finder = ModuleFinder(f)
+    file_opener = FileOpener()
+    central_module_finder = CentralModuleFinder(file_opener)
 
-    candidates = module_finder.find_project()
-    if candidates:
-        project_name = candidates[0]
-    else:
-        project_name = ""
+    central_module = central_module_finder.find_central_module()
 
     if arguments["here"]:
         if arguments["--debug"] == "True":
             console_trace(logging.DEBUG)
-        module_finder.validate_found_project(candidates)
+        module_finder = ModuleFinder(file_opener)
         guess_src_dir = module_finder.extract_package_dir()
         if not guess_src_dir:
             guess_src_dir = ""
+
+        if not central_module:
+            # check if exists first?
+            central_module = "setup.py"
         bump_version(
-            project=project_name, source=guess_src_dir, debug=arguments["--debug"]
+            project=central_module, source=guess_src_dir, debug=arguments["--debug"]
         )
     elif arguments["find"]:
         # Only show errors. Rest of extraneous console output messes up this:
@@ -116,15 +118,15 @@ def process_docopts(test=None):  # type: ()->None
         # else:
         #     console_trace(logging.ERROR)
 
-        if not arguments["--project"]:
-            module_finder.validate_found_project(candidates)
-        find_version(project=project_name, source="", debug=arguments["--debug"])
+        if arguments["--project"]:
+            central_module = arguments["--project"]
+        find_version(project=central_module, source="", debug=arguments["--debug"])
 
     else:
         if arguments["--debug"] == "True":
             console_trace(logging.DEBUG)
-        if not arguments["--project"]:
-            module_finder.validate_found_project(candidates)
+        if arguments["--project"]:
+            central_module = arguments["--project"]
         bump_version(
             project=arguments["--project"],
             source=arguments["--source"],

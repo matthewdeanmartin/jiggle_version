@@ -129,7 +129,12 @@ def execute_with_environment(command, env):
     return value
 
 
-def execute_get_text(command):
+def execute_get_text(command):  # type: (str) ->str
+    """
+    Execute shell command and return stdout txt
+    :param command:
+    :return:
+    """
     try:
         completed = subprocess.run(
             command,

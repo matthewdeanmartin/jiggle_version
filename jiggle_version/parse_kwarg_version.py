@@ -40,7 +40,10 @@ def find_by_ast(line):  # type: (str) -> Optional[str]
             if hasattr(tree.body[0].value, "elts"):
                 version_parts = []
                 for elt in tree.body[0].value.elts:
-                    version_parts.append(str(elt.n))
+                    if hasattr(elt, "n"):
+                        version_parts.append(str(elt.n))
+                    else:
+                        version_parts.append(str(elt.s))
                 return ".".join(version_parts)
             if hasattr(tree.body[0].value, "n"):
                 return str(tree.body[0].value.n)
@@ -92,19 +95,9 @@ def find_in_line(line):  #
     if not line:
         return None
 
-    by_ast = find_by_ast(line)
-    validate_string(by_ast)
-    if by_ast:
-        return by_ast
-
-    by_string_lib = find_version_by_string_lib(line)
-    validate_string(by_string_lib)
-    if by_string_lib:
-        return by_string_lib
-
-    by_regex = find_version_by_regex(line)
-    validate_string(by_regex)
-    if by_regex:
-        return by_regex
-
+    for method in [find_by_ast, find_version_by_string_lib, find_version_by_regex]:
+        by = method(line)
+        by = validate_string(by)
+        if by:
+            return by
     return None

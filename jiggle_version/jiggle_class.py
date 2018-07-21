@@ -4,6 +4,42 @@ Zero config alternative to bump version.
 
 see README.md for philosophy & design decisions
 
+
+TODO: detection problem- can detect, but can't update!
+__version__ = '.'.join(__version_info__)
+
+TODO: backwards version info
+__version_info__ = (2, 21)
+__version__ = '.'.join(str(x) for x in __version_info__)
+
+# what system is this?
+__version__ = (
+    '.'.join(str(x) for x in __version_info__[:3]) +
+    ''.join(__version_info__[3:] or [])
+)
+
+TODO: Ok, this would require executing
+VersionInfo = collections.namedtuple('version_info', ('major', 'minor', 'micro'))
+__version_info__ = VersionInfo(
+    major=0,
+    minor=1,
+    micro=3,
+)
+
+__version_info__ = {
+    'major': 0,
+    'minor': 9,
+    'micro': 5,
+    'releaselevel': 'beta',
+    'serial': 1
+}
+
+TODO: BUG
+__version_info__ = (0, 1, 4)
+__version__ = "0.1.8" # Jiggle Version Was Here
+
+
+
 """
 from __future__ import division
 from __future__ import print_function
@@ -126,7 +162,7 @@ class JiggleVersion(object):
 
     def jiggle_source_code(self):  # type: () ->int
         """
-        Update python source files
+        Updates version of central package
         """
         changed = 0
         for file_name in self.file_inventory.source_files:
@@ -135,19 +171,32 @@ class JiggleVersion(object):
             if not os.path.isfile(file_name):
                 continue
 
+            all_source = self.file_opener.read_this(file_name)
+            if "__version_info__" in all_source:
+                logger.warning("We have __version_info__ to sync up.")
+                # raise TypeError()
+
             with self.file_opener.open_this(file_name, "r") as infile:
                 for line in infile:
                     leading_white = self.leading_whitespace(line)
                     version, version_token = dunder_version.find_in_line(line)
                     if version:
-                        # dunder...simplify line strips the ","
-                        if line.strip(" \t\n").endswith(","):
+                        simplified_line = dunder_version.simplify_line(
+                            line, keep_comma=True
+                        )
+                        if simplified_line.strip(" \t\n").endswith(","):
                             comma = ","
                         else:
                             comma = ""
 
+                        if simplified_line.strip(" \t\n").startswith(","):
+                            start_comma = ","
+                        else:
+                            start_comma = ""
+
                         to_write.append(
-                            '{0}{1} = "{2}"{3}{4}\n'.format(
+                            '{0}{1}{2} = "{3}"{4}{5}\n'.format(
+                                start_comma,
                                 leading_white,
                                 version_token,
                                 unicode(self.version_to_write()),
@@ -200,39 +249,54 @@ class JiggleVersion(object):
         with self.file_opener.open_this(setup_py, "r") as infile:
             for line in infile:
                 leading_white = self.leading_whitespace(line)
-                simplified_line = (
-                    line.replace(" ", "").replace("'", '"').replace("\t", "")
-                )
+
+                simplified_line = dunder_version.simplify_line(line, keep_comma=True)
+
                 # determine if we have a version=
                 version = kwarg_version.find_in_line(line)
                 # setup() function args
                 if version:
-                    # actual version to write decided earlier.
+                    if simplified_line.strip(" \t\n").startswith(","):
+                        start_comma = ","
+                    else:
+                        start_comma = ""
+
                     comma = ""
-                    if "," in simplified_line:
+                    if simplified_line.strip(" \t\n").endswith(","):
                         comma = ","
-                    source = '{0}version = "{1}"{2}{3}'.format(
+                    # could happen, say on last.
+                    # if not comma and not start_comma:
+                    #     print(simplified_line)
+                    #     raise TypeError("$$$$$")
+                    source = '{0}{1}version = "{2}"{3}{4}\n'.format(
                         leading_white,
+                        start_comma,
                         unicode(self.version_to_write()),
                         comma,
                         self.signature,
                     )
                     need_rewrite = True
-                    lines_to_write.append(source + "\n")
+                    lines_to_write.append(source)
                     continue
 
                 # code that isn't the setup() function args
                 version, version_token = dunder_version.find_in_line(line)
                 if version:
+                    if simplified_line.strip(" \t\n").startswith(","):
+                        start_comma = ","
+                    else:
+                        start_comma = ""
+
                     # the other simplify removes ","
-                    if line.strip(" \t\n").endswith(","):
+                    if simplified_line.strip(" \t\n").endswith(","):
                         comma = ","
                     else:
                         comma = ""
 
                     lines_to_write.append(
-                        '{0}{1} = "{2}"{3}{4}\n'.format(
+                        '{0}{1}{2} = "{3}"{4}{5}\n'.format(
                             leading_white,
+                            start_comma,
                             version_token,
                             unicode(self.version_to_write()),
                             comma,
@@ -283,9 +347,6 @@ class JiggleVersion(object):
         # setup.py related. setup.py itself should read __init__.py or __version__.py
         to_write = []
         other_files = ["setup.cfg"]
-
-        # Okay, lets just update if found
-        # self.validate_setup()
 
         for file_name in other_files:
             filepath = os.path.join(self.SRC, file_name)

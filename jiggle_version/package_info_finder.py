@@ -1,18 +1,9 @@
 # coding=utf-8
 """
-Finds project by folder & source inspection.  Enables zero config by not
-asking the user something we can probably infer.
-
-
-TODO: confounds two concepts:
-    package - 1, has 1 version from setup.py/setup.cfg (might be same as central module)
-    modules -
-        0 - setup.py only, degenerate case or it is just not really a python dist (maybe jquery!)
-        1 - easy scenario
-        2+ - could each have own version
-        2+ - but 1 is the central module and the rest are unversionsed test/demo/examples/etc
-
+Deals with package level concepts, not module level concepts.
 """
+
+
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
@@ -43,28 +34,28 @@ class ModuleFinder(object):
 
     def __init__(self, file_opener):  # type: (FileOpener) -> None
         self.file_opener = file_opener
+        self.setup_source = ""
 
-    def read_file(self, file):  # type: (str) -> Optional[str]
+    def _read_file(self, file):  # type: (str) -> Optional[str]
         """
         Read any file, deal with encoding.
         :param file:
         :return:
         """
-        setup_source = None
-        if os.path.isfile("setup.py"):
-            with self.file_opener.open_this("setup.py", "r") as setup_py:
-                setup_source = setup_py.read()
-        return setup_source
+        source = None
+        if os.path.isfile(file):
+            with self.file_opener.open_this(file, "r") as setup_py:
+                source = setup_py.read()
+        return source
 
     def setup_py_source(self):  # type: () -> Optional[str]
         """
         Read setup.py to string
         :return:
         """
-        source = self.read_file("setup.py")
-        if not source:
-            source = self.read_file("setup")  # rare case
-        return source
+        if not self.setup_source:
+            source = self._read_file("setup")  # rare case
+        return self.setup_source
 
     def name_from_setup_py(self):  # type: () -> str
         """
@@ -75,6 +66,7 @@ class ModuleFinder(object):
         if not source:
             return ""
         for row in source.split("\n"):
+            #
             if "packages=" in row:
                 simplified_row = row.replace(" ", "").replace("'", '"').strip(" \t\n")
                 if '"' in simplified_row:
@@ -96,7 +88,12 @@ class ModuleFinder(object):
         if not source:
             # this happens when the setup.py file is missing
             return None
-        if "package_dir" in source:
+
+        # sometime
+        # 'package_dir'      : {'': 'src'},
+        # sometimes
+        # package_dir={...}
+        if "package_dir=" in source:
             line = source.replace("\n", "")
             line = source.split("package_dir")[1]
             fixed = ""
@@ -109,6 +106,7 @@ class ModuleFinder(object):
             simplified_line = line.strip(" ,").replace("'", '"')
 
             parts = simplified_line.split("=")
+
             dict_src = parts[1].strip(" \t")
             if not dict_src.endswith("}"):
                 raise JiggleVersionException(
@@ -171,7 +169,7 @@ class ModuleFinder(object):
         setup = self.setup_py_source()
         for folder in folders:
             if os.path.isfile(folder + "/__init__.py"):
-                dunder_source = self.read_file(folder + "/__init__.py")
+                dunder_source = self._read_file(folder + "/__init__.py")
                 project = folder
                 if setup:
                     # prevents test folders & other junk

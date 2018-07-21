@@ -13,6 +13,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import ast
 import logging
 import os.path
 import sys
@@ -71,18 +72,39 @@ class FindVersion(object):
 
         self.PROJECT = project
         self.SRC = source
-        self.is_folder_project = os.path.isdir(os.path.join(self.SRC, self.PROJECT))
-        self.is_file_project = os.path.isfile(
-            os.path.join(self.SRC, self.PROJECT) + ".py"
-        )
-        if not self.is_folder_project and not self.is_file_project:
-            logger.warning(
-                "Can't find module, typically a packages has a .py file or folder with module name : "
-                + unicode(self.SRC + self.PROJECT)
-                + " - can only update setup.py and text files."
+
+        if self.PROJECT is None:
+            self.is_folder_project = False
+        else:
+            candidate_folder = os.path.join(self.SRC, self.PROJECT)
+            self.is_folder_project = os.path.isdir(candidate_folder)
+
+        if self.PROJECT is None:
+            self.is_file_project = False
+        else:
+            self.is_file_project = os.path.isfile(
+                os.path.join(self.SRC, self.PROJECT) + ".py"
             )
 
+        if not self.is_folder_project and not self.is_file_project:
+            self.is_setup_only_project = os.path.isfile(
+                os.path.join(self.SRC, "setup.py")
+            )
+        else:
+            self.is_setup_only_project = False
+
+        if not any(
+            [self.is_setup_only_project, self.is_file_project, self.is_folder_project]
+        ):
+            logger.warning(
+                "Can't find module nor setup.py, typically a packages has a .py file or folder with module name : "
+                + unicode(self.SRC + self.PROJECT)
+                + " - what should be done? Update the version.txt?"
+            )
+
+        # fuzzy concept of being secure, minimal package, "linted'
         self.strict = True
+
         self.DEBUG = False
         # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
@@ -180,6 +202,37 @@ class FindVersion(object):
             return True
         return False
 
+    def version_by_eval(self, file_path):  # type: (str) ->Dict[str,str]
+        source = self.file_opener.read_this(file_path)
+        sb = "{"
+        for line in source.split("\n"):
+            if "=" in line:
+                parts = line.split("=")
+                sb += "'" + parts[0] + "':" + parts[1]
+        sb += "}"
+        if sb == "{}":
+            return {}
+        try:
+            thing = ast.literal_eval(sb)
+        except:
+            return {}
+        for version_token in dunder_version.version_tokens:
+            if version_token in thing:
+                return {"literal_eval": thing[version_token]}
+        return {}
+
+    def version_by_import(self, module_name):  # type: (str) ->Dict[str,str]
+        try:
+            module = __import__(module_name)
+        except ModuleNotFoundError as mnfe:
+            # hypothetical module would have to be on python path or execution folder, I think.
+            return {}
+        except FileNotFoundError as fnfe:
+            return {}
+
+        version = module.__version__
+        return {"module import": version}
+
     def all_current_versions(self):  # type: () ->Dict[str,str]
         """
         Track down all the versions & compile into one dictionary
@@ -229,7 +282,7 @@ class FindVersion(object):
             if vers:
                 try:
                     for key, value in vers.items():
-                        v = version_object_and_next(value)
+                        _ = version_object_and_next(value)
                 except:
                     print(vers)
 
@@ -239,6 +292,21 @@ class FindVersion(object):
                 )
 
         # more_bad_versions, good_versions = self.kick_out_bad_versions(versions)
+        if not good_versions:
+            vers = self.version_by_import(self.PROJECT)
+            maybe_good = merge_two_dicts(good_versions, vers)
+            more_bad_versions, good_versions = self.kick_out_bad_versions(maybe_good)
+
+        # no new versions found!
+        # for file in self.file_inventory.source_files:
+        #
+        #     if not os.path.isfile(file):
+        #         continue
+        #     vers = self.version_by_eval(file)
+        #     maybe_good = merge_two_dicts(good_versions, vers)
+        #     more_bad_versions, good_versions = self.kick_out_bad_versions(
+        #         maybe_good
+        #     )
 
         if bad_versions:
             print(unicode(bad_versions))
@@ -368,23 +436,6 @@ class FindVersion(object):
                 version, version_token = dunder_version.find_in_line(line)
         return versions
 
-    def validate_setup(self):  # type: () ->None
-        """
-        Don't put version constants into setup.py
-        """
-        setuppy = self.SRC + "setup.py"
-        if not os.path.isfile(setuppy):
-            return
-        with self.file_opener.open_this(setuppy, "r") as infile:
-            for line in infile:
-                # BUG: this doesn't stick to [metadata] & will touch other sections
-                if line.strip().replace(" ", "").startswith("version="):
-                    if not ("__version__" in line or "__init__" in line):
-                        logger.error(line)
-                        raise JiggleVersionException(
-                            "Read the __version__.py or __init__.py don't add version in setup.py as constant"
-                        )
-
     def version_to_write(self, found):  # type: (str) -> Version
         """
         Take 1st version string found.
@@ -417,7 +468,9 @@ class FindVersion(object):
         """
 
         ver = execute_get_text("python setup.py --version")
+
         if "UserWarning" in ver:
+            logger.warning("python setup.py --version won't parse, got :" + str(ver))
             # UserWarning- Ther version specified ... is an invalid...
             return {}
 

@@ -8,7 +8,8 @@ import jiggle_version.__init__ as init
 import jiggle_version.__version__ as v2
 import jiggle_version.main as main
 from jiggle_version.utils import JiggleVersionException
-
+import jiggle_version.package_info_finder
+_ = jiggle_version.package_info_finder
 try:
     FileNotFoundError
 except NameError:
@@ -35,7 +36,7 @@ def test_process_docopts_fake_it():
         os.chdir(SRC)
         args = {'--debug': 'False',
             '--help': False,
-            '--project': None,
+            '--project': "sample_lib",
             '--source': None,
             '--version': False,
             'find': True,

@@ -43,7 +43,7 @@ versio_version.Version.supported_version_schemes = [
 
 def version_object_and_next(
     string, retries=0
-):  # type: (str) -> Tuple[Union[semantic_version.Version,parver.Version, versio_version.Version],Union[semantic_version.Version, parver.Version, versio_version.Version],str]
+):  # type: (str, int) -> Tuple[Union[semantic_version.Version,parver.Version, versio_version.Version],Union[semantic_version.Version, parver.Version, versio_version.Version],str]
     """
     Try three parsing strategies, favoring semver, then pep440, then whatev.
     :param string:

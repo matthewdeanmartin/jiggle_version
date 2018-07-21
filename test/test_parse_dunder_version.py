@@ -2,9 +2,46 @@
 """
 Is that a version string, a tuple or a int or float? 'Cause in the wild people use all of those.
 """
-from jiggle_version.parse_dunder_version import find_in_line
+from jiggle_version.parse_dunder_version import find_in_line, simplify_line
 
-def test_regression_scenarios():
+def test_comments():
+    value = "version=\"7.8.6.16.dev0\",#JiggleVersionWasHere"
+    result = simplify_line(value, keep_comma=True)
+    assert  result=="version=\"7.8.6.16.dev0\",", result
+
+def test_post_comma():
+    value = 'version = "1.3.2", # Jiggle Version Was Here'
+    result = simplify_line(value, keep_comma=True)
+    assert "," in result, result
+
+def test_simplify_pre_comma():
+    value = ',version = "1.3.2" # Jiggle Version Was Here'
+    result = simplify_line(value, keep_comma=True)
+    assert "," in result, result
+
+def test_simplify_both_comma():
+    value = ',version = "1.3.2", # Jiggle Version Was Here'
+    result = simplify_line(value, keep_comma=True)
+    assert "," in result, result
+
+
+def test_regression_scenarios_current():
+
+    value = "__version__ = '''0.0.0'''"
+    result, _ = find_in_line(value)
+    assert result == "0.0.0", result
+
+    value = '__version__ = """0.0.0"""'
+    result, _ = find_in_line(value)
+    assert result == "0.0.0", result
+
+def test_regression_scenarios_old():
+    value = "__version__ = '%(version)s%(tag)s%(build)s' % {"
+    result, _ = find_in_line(value)
+    assert result is None, result
+
+    result, _ = find_in_line('__version__ = ".".join(map(str, version_info[:3])) + ("-"+version_info[3] if')
+    assert result is None, result
 
     result, _ = find_in_line("VERSION = (1, 1, 0, 'rc1')")
     assert result == "1.1.0.rc1", result

@@ -65,7 +65,9 @@ scenario, e.g.
 
 An opinionated library has an opinion about the right way to do it. That
 said, if the library can discover existing conventions, it should
-discover them and use them.
+discover them and use them. If you don’t like it, see the end for
+competing opinionated libraries and their philosophy, such as
+vcs-tag-only, regex-more-regex-all-day-regex.
 
 The following contraints enable “drop in and go”
 
@@ -81,9 +83,11 @@ Don’t contaminate the package
 Other than creating \__init__.py, \__version__.py, etc, no code should
 contaminate the users setup.py, nor package folder. No code should have
 to run in \__version__.py or the like, for example, nothing like
-``\_\_version\_\_ = run_git_command_to_find_version()``, it should be
-equal to a constant. The use of jiggle_version should not increase the
-number of dependencies.
+``__version__ = run_git_command_to_find_version()``, it should be equal
+to a constant.
+
+The use of jiggle_version should not increase the number of
+dependencies. (Not yet achieved- vendorizing a library isn’t trivial)
 
 Provide a vendorization option
 ------------------------------
@@ -91,7 +95,8 @@ Provide a vendorization option
 It should be an effortless & license-compatible way to just copy this
 next to setup.py.
 
-This isn’t achieved yet.
+This isn’t achieved yet. Python-world doesn’t seem to have anything
+similar to JS minification or bundling.
 
 Don’t do too many things unrelated to versioning
 ------------------------------------------------
@@ -115,7 +120,7 @@ or
 
 ::
 
-    cmdclass=jiggle_version_command,
+    cmdclass=jiggle_version_command, # not yet implemented
 
 Don’t argue over a patch version
 --------------------------------
@@ -170,34 +175,35 @@ number.
 Files Targeted
 --------------
 
+TODO: any file with a ``__version__`` attribute. This is usally “single
+file” modules and possibly submodules.
+
 /__init__.py - ``__version__ = "1.1.1"``
 
-/__version__.py - ``__version__ = "1.1.1"``
+Other source files with version: ``__about__.py',``\ **meta**.py’,
+’_version.py’ and ``__version__.py`` which I have a problem with.
 
-TODO: \_version.py - I think this is a place to pipe a version string
-from a version control system that isn’t expected to be executable? Not
-sure. It is a common convention. Versioneer puts library code here.
+I don’t think ``__version__.py`` is any sort of standard and it makes
+for confusing imports, since in an app with a file and attribute named
+``__version__`` you could easily confuse the two.
 
-TODO: version.txt - Some tools put/expect just the version string here.
-It works well with bash & doesn’t require a parser of any sort.
+version.txt - Some tools put/expect just the version string here. It
+works well with bash & doesn’t require a parser of any sort.
 
-/setup.cfg ``version=1.1.1``
-
-We take the first of these, increment the patch, and re-write those 3
-files. If they don’t exist, they will be created with only the version
-number filled in.
-
-We make no particular effort to parse wild text. If your current number
-is so messed up that you need regex to ID it, then edit it by hand.
-
-Other way to get/provide version:
-
-https://stackoverflow.com/questions/7079735/how-do-i-get-the-version-of-an-installed-module-in-python-programatically
+/setup.cfg
 
 ::
 
-    import pkg_resources
-    version = pkg_resources.get_distribution("nose").version
+    [metadata] 
+    version=1.1.1
+
+If setup.py exists, setup.cfg is created.
+
+``__init__.py`` can’t be created without making a breaking changes, so
+it isn’t created, only updated.
+
+We make no particular effort to parse wild text. If your current number
+is so messed up that you need regex to ID it, then edit it by hand.
 
 Flipside Question
 -----------------
@@ -238,6 +244,13 @@ Weird Edge Cases
 ----------------
 
 Multi-module packages Submodules Packages with no python
+
+``__package_info__`` Tuples
+---------------------------
+
+This is a standard piece of metadata. It should always derive from the
+``__version__``. In code in the wild, often this is yet another place to
+store a copy of the version.
 
 Relevant PEPs
 -------------

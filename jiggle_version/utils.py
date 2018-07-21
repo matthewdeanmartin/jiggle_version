@@ -58,7 +58,7 @@ def merge_two_dicts(x, y):  # type: (Dict[Any, Any], Dict[Any, Any]) -> Dict[Any
     return z
 
 
-def execute_get_text(command, raise_errors=False):  # type: (str) -> str
+def execute_get_text(command, raise_errors=False):  # type: (str, bool) -> str
     """
     Execute a shell commmand
     :param command:

@@ -14,6 +14,8 @@ from typing import Any
 
 import pkg_resources
 
+from build_utils import execute_get_text
+
 _ = Any
 
 # These are not expected unless you unzip a package and do development on *that* code base.
@@ -27,17 +29,36 @@ def pkg_resources_version(package):  # type: (str) -> str
     :param package:
     :return:
     """
+    # ref https://stackoverflow.com/questions/7079735/how-do-i-get-the-version-of-an-installed-module-in-python-programatically
     try:
         return pkg_resources.get_distribution(package).version
     except Exception:
         return "unknown"
 
 
+# command lines
+
+
+def version_by_pip(package):
+    """
+    Don't use this for bumping code, unless it is dot installed,
+    this is going to look at pip installed packages?
+    :param package:
+    :return:
+    """
+    command = "pip show {0}".format(package)
+    result = execute_get_text(command)
+    for line in result.split("\n"):
+        if line.startswith("Version"):
+            return line.split(":")[0]
+    return None
+
+
 # from pipdeptree.py
 def guess_version_by_running_live_package(
     pkg_key, default="?"
 ):  # type: (str,str) -> Any
-    """Guess the version of a pkg when pip doesn't provide it
+    """Guess the version of a pkg when pip doesn't provide it.
 
     :param str pkg_key: key of the package
     :param str default: default version to return if unable to find

@@ -72,6 +72,7 @@ def read_packages():
             url = "https://pypi.org" + row.split("\"")[1]
             package_name = row.split("\"")[1].replace("simple/","").replace("/","")
             if package_name in done:
+                print(package_name + " done")
                 continue
             print(url)
         except:
@@ -84,7 +85,7 @@ def read_packages():
             # file.write(response.text)
 
         i += 1
-        if i>1000:
+        if i>10000:
             exit(1)
 read_packages()
 

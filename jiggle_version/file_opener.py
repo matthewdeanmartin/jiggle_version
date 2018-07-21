@@ -34,6 +34,40 @@ class FileOpener(object):
         """
         self.found_encoding = {}
 
+    def is_python_inside(self, file_path):  # type: (str) -> bool
+        """
+        If .py, yes. If extensionless, open file and check shebang
+
+
+        TODO: support variations on this: #!/usr/bin/env python
+
+        :param file_path:
+        :return:
+        """
+        if file_path.endswith(".py"):
+            return True  # duh.
+
+        # not supporting surprising extensions, ege. .py2, .python, .corn_chowder
+
+        # extensionless
+        if not "." in file_path:
+            try:
+                firstline = self.open_this(file_path, "r").readline()
+                if firstline.startswith("#") and "python" in firstline:
+                    return True
+            except:
+                pass
+        return False
+
+    def read_this(self, file):  # type: (str) -> Any
+        """
+        Return file text.
+        :param file:
+        :return:
+        """
+        with self.open_this(file, "r") as file_handler:
+            return file_handler.read()
+
     def open_this(self, file, how):  # type: (str,str) -> Any
         """
         Open file while detecting encoding. Use cached when possible.
@@ -50,8 +84,11 @@ class FileOpener(object):
             encoding = self.found_encoding[file]
         else:
             file_bytes = io.open(file, "rb").read()
-            encoding_info = chardet.detect(file_bytes)
-            encoding = encoding_info["encoding"]
+            if not file_bytes:
+                encoding = "utf-8"
+            else:
+                encoding_info = chardet.detect(file_bytes)
+                encoding = encoding_info["encoding"]
             logger.debug(unicode(encoding))
             try:
                 io.open(file, how, encoding=encoding).read()

@@ -19,10 +19,11 @@ SRC = here + "/../sample_projects/sample_src/"
 
 various = {
     # PROJECT: SRC,
-    # "setup_only": here + "/../sample_projects/setup_only/",
-    # "file_module_src":  here + "/../sample_projects/file_module_src/",
-    # "double_module":  here + "/../sample_projects/double_module/",
+    "setup_only": here + "/../sample_projects/setup_only/",
+    "file_module_src":  here + "/../sample_projects/file_module_src/",
+    "double_module":  here + "/../sample_projects/double_module/",
     "ver_in_weird_file":  here + "/../sample_projects/ver_in_weird_file/",
+    "with_unlikely_modules": here + "/../sample_projects/with_unlikely_modules/",
 }
 
 def test_go():
