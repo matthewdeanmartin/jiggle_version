@@ -339,6 +339,8 @@ def mypy():
     with open(mypy_file, "w+") as lint_file:
         lines = out.decode().split("\n")
         for line in lines:
+            if "build_utils.py" in line:
+                continue
             if "test.py" in line:
                 continue
             if "tests.py" in line:

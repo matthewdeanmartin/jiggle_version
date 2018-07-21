@@ -62,14 +62,14 @@ def version_object_and_next(
     try:
         version = semantic_version.Version(string)
         next_version = version.next_patch()
-        _ = semantic_version.Version(str(string))
+        _ = semantic_version.Version(unicode(string))
         return version, next_version, "semantic_version"
     except:
         logger.debug("Not sem_ver:" + unicode(string))
         try:
             version = parver.Version.parse(string)
             next_version = version.bump_dev()
-            _ = parver.Version.parse(str(next_version))
+            _ = parver.Version.parse(unicode(next_version))
             return version, next_version, "pep440 (parver)"
         except:
             try:

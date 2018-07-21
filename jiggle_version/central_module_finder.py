@@ -96,7 +96,7 @@ class CentralModuleFinder(object):
 
         return ""
 
-    def execute_setup_name(self):
+    def execute_setup_name(self):  # type: () -> Optional[str]
         try:
             name = None  # execute_get_text("python setup.py p--name")
         except:

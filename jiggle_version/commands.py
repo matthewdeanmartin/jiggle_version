@@ -39,7 +39,7 @@ def bump_version(project, source, debug):  # type: (str, str, bool) ->int
     )
     if not jiggler.version_finder.validate_current_versions():
 
-        logger.debug(str(jiggler.version_finder.all_current_versions()))
+        logger.debug(unicode(jiggler.version_finder.all_current_versions()))
         logger.error("Versions not in sync, won't continue")
         die(-1, "Versions not in sync, won't continue")
     changed = jiggler.jiggle_all()
@@ -57,7 +57,7 @@ def find_version(project, source, debug):  # type: (str, str, bool) ->None
     finder = FindVersion(project, source, file_opener, debug)
     if not finder.validate_current_versions():
         # This is a failure.
-        logger.debug(str(finder.all_current_versions()))
+        logger.debug(unicode(finder.all_current_versions()))
         logger.error("Versions not in sync, won't continue")
         die(-1, "Versions not in sync, won't continue")
 

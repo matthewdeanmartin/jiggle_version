@@ -17,7 +17,7 @@ import ast
 import logging
 import os.path
 import sys
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Tuple
 
 from semantic_version import Version
 
@@ -46,7 +46,7 @@ if sys.version_info.major == 3:
 logger = logging.getLogger(__name__)
 
 # contrive usage so black doesn't remove the import
-_ = List, Optional, Dict, Any
+_ = List, Optional, Dict, Any, Tuple
 
 
 class FindVersion(object):
@@ -73,17 +73,17 @@ class FindVersion(object):
         self.SRC = source
 
         if self.PROJECT is None:
-            self.is_folder_project = False
+            self.is_folder_project = False  # type: bool
         else:
             candidate_folder = os.path.join(self.SRC, self.PROJECT)
-            self.is_folder_project = os.path.isdir(candidate_folder)
+            self.is_folder_project = os.path.isdir(candidate_folder)  # type: bool
 
         if self.PROJECT is None:
-            self.is_file_project = False
+            self.is_file_project = False  # type: bool
         else:
             self.is_file_project = os.path.isfile(
                 os.path.join(self.SRC, self.PROJECT) + ".py"
-            )
+            )  # type : bool
 
         if not self.is_folder_project and not self.is_file_project:
             self.is_setup_only_project = os.path.isfile(
@@ -252,6 +252,8 @@ class FindVersion(object):
         :return:
         """
         versions = {}  # type: Dict[str,str]
+        files_to_check = [x for x in self.file_inventory.source_files]
+        files_to_check.append(self.PROJECT + ".py")  # is this the 'central' module?
         for file in self.file_inventory.source_files:
 
             if not os.path.isfile(file):
@@ -326,7 +328,9 @@ class FindVersion(object):
             logger.warning(unicode(bad_versions))
         return good_versions
 
-    def kick_out_bad_versions(self, versions):
+    def kick_out_bad_versions(
+        self, versions
+    ):  # type: (Dict[str,str])->Tuple[Dict[str,str], Dict[str,str]]
         copy = {}  # type: Dict[str,str]
         bad_versions = {}
         for key, version in versions.items():
@@ -368,13 +372,13 @@ class FindVersion(object):
         Extract from setup.py's setup() arg list.
         :return:
         """
-        found = {}
+        found = {}  # type: Dict[str,str]
         setup_py = os.path.join("setup.py")
 
         if not os.path.isfile(setup_py):
             if self.strict:
-                logger.debug(os.getcwd())
-                logger.debug(os.listdir(os.getcwd()))
+                logger.debug(unicode(os.getcwd()))
+                logger.debug(unicode(os.listdir(os.getcwd())))
                 raise JiggleVersionException(
                     "Can't find setup.py : {0}, path :{1}".format(setup_py, self.SRC)
                 )
@@ -485,7 +489,9 @@ class FindVersion(object):
             return None
 
         if "UserWarning" in ver:
-            logger.warning("python setup.py --version won't parse, got :" + str(ver))
+            logger.warning(
+                "python setup.py --version won't parse, got :" + unicode(ver)
+            )
             # UserWarning- Ther version specified ... is an invalid...
             return {}
 

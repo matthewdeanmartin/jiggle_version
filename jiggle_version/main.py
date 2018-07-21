@@ -78,7 +78,7 @@ def console_trace(level):  # type: (int)->None
     # logging.getLogger('').addHandler(console)
 
 
-def process_docopts(test=None):  # type: ()->None
+def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
     """
     Just process the command line options and commands
     :return:

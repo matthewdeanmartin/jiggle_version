@@ -20,10 +20,12 @@ from __future__ import unicode_literals
 
 import ast
 import re
+import sys
 from typing import List, Optional, Any, Tuple
 
 _ = List, Optional, Any, Tuple
-
+if sys.version_info.major == 3:
+    unicode = str
 version_tokens = [
     "__version__",  # canonical
     "__VERSION__",  # rare and wrong, but who am I to argue
@@ -47,19 +49,19 @@ def find_by_ast(line, version_token="__version__"):  # type: (str,str) -> Option
 
     if simplified_line.startswith(version_token):
         try:
-            tree = ast.parse(simplified_line)
+            tree = ast.parse(simplified_line)  # type: Any
             if hasattr(tree.body[0].value, "s"):
-                return tree.body[0].value.s
+                return unicode(tree.body[0].value.s)
             if hasattr(tree.body[0].value, "elts"):
                 version_parts = []
                 for elt in tree.body[0].value.elts:
                     if hasattr(elt, "n"):
-                        version_parts.append(str(elt.n))
+                        version_parts.append(unicode(elt.n))
                     else:
-                        version_parts.append(str(elt.s))
+                        version_parts.append(unicode(elt.s))
                 return ".".join(version_parts)
             if hasattr(tree.body[0].value, "n"):
-                return str(tree.body[0].value.n)
+                return unicode(tree.body[0].value.n)
             # print(tree)
         except Exception as ex:
             # raise
@@ -139,7 +141,7 @@ def find_version_by_string_lib(
     return version
 
 
-def validate_string(version):  # type: (str) -> Optional[str]
+def validate_string(version):  # type: (Optional[str]) -> Optional[str]
     """
     Trying to catch expressions here
     :param version:

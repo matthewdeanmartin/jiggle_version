@@ -12,6 +12,7 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import sys
 import ast
 import re
 from typing import List, Optional, Any, Tuple
@@ -19,6 +20,8 @@ from typing import List, Optional, Any, Tuple
 from jiggle_version.parse_dunder_version import simplify_line, validate_string
 
 _ = List, Optional, Any, Tuple
+if sys.version_info.major == 3:
+    unicode = str
 
 
 def find_by_ast(line):  # type: (str) -> Optional[str]
@@ -34,19 +37,19 @@ def find_by_ast(line):  # type: (str) -> Optional[str]
 
     if simplified_line.startswith("version="):
         try:
-            tree = ast.parse(simplified_line)
+            tree = ast.parse(simplified_line)  # type: Any
             if hasattr(tree.body[0].value, "s"):
                 return tree.body[0].value.s
             if hasattr(tree.body[0].value, "elts"):
                 version_parts = []
                 for elt in tree.body[0].value.elts:
                     if hasattr(elt, "n"):
-                        version_parts.append(str(elt.n))
+                        version_parts.append(unicode(elt.n))
                     else:
-                        version_parts.append(str(elt.s))
+                        version_parts.append(unicode(elt.s))
                 return ".".join(version_parts)
             if hasattr(tree.body[0].value, "n"):
-                return str(tree.body[0].value.n)
+                return unicode(tree.body[0].value.n)
             # print(tree)
         except Exception as ex:
             # raise

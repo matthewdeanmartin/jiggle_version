@@ -137,7 +137,7 @@ class ModuleFinder(object):
         Use find_packages code to find modules. Can find LOTS of modules.
         :return:
         """
-        packages = []
+        packages = []  # type: List[str]
         source = self.setup_py_source()
         if not source:
             return packages
@@ -148,10 +148,9 @@ class ModuleFinder(object):
                     packages = find_packages()
                 else:
                     try:
-
                         value = row.split("(")[1].split(")")[0]
                         packages = find_packages(ast.literal_eval(value))
-                        logger.debug(packages)
+                        logger.debug(unicode(packages))
                     except:
                         logger.debug(source)
                         # raise
@@ -297,7 +296,7 @@ class ModuleFinder(object):
         :return:
         """
         if len(candidates) > 1:
-            message = "Found multiple possible projects : " + str(candidates)
+            message = "Found multiple possible projects : " + unicode(candidates)
             logger.error(message)
             die(-1, message)
             return

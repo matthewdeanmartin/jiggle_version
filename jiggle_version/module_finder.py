@@ -67,7 +67,7 @@ class ModuleFinder(object):
 
     def __init__(self, file_opener):  # type: (FileOpener) -> None
         self.file_opener = file_opener
-        self.setup_source = ""
+        self.setup_source = ""  # type: Optional[str]
 
     def _read_file(self, file):  # type: (str) -> Optional[str]
         """
@@ -165,7 +165,7 @@ class ModuleFinder(object):
         Use find_packages code to find modules. Can find LOTS of modules.
         :return:
         """
-        packages = []
+        packages = []  # type: List[str]
         source = self.setup_py_source()
         if not source:
             return packages
@@ -270,22 +270,22 @@ class ModuleFinder(object):
                         candidates.append(file)
         return candidates
 
-    def validate_found_project(self, candidates):  # type: (List[str]) -> None
-        """
-        Should be only 1 project
-        :param candidates:
-        :return:
-        """
-        if len(candidates) > 1:
-            message = "Found multiple possible projects : " + str(candidates)
-            logger.error(message)
-            die(-1, message)
-            return
-        if not candidates:
-            # we can still update setup.py
-            logger.warning(
-                "Found no project. Expected a folder in current directory to contain a __init__.py "
-                "file. Use --source, --project for other scenarios"
-            )
-            # die(-1)
-            # return
+    # def validate_found_project(self, candidates):  # type: (List[str]) -> None
+    #     """
+    #     Should be only 1 project
+    #     :param candidates:
+    #     :return:
+    #     """
+    #     if len(candidates) > 1:
+    #         message = "Found multiple possible projects : " + unicode(candidates)
+    #         logger.error(message)
+    #         die(-1, message)
+    #         return
+    #     if not candidates:
+    #         # we can still update setup.py
+    #         logger.warning(
+    #             "Found no project. Expected a folder in current directory to contain a __init__.py "
+    #             "file. Use --source, --project for other scenarios"
+    #         )
+    #         # die(-1)
+    #         # return

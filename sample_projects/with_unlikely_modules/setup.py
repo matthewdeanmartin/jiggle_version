@@ -1,3 +1,3 @@
 setup(
-    version = "1.2.10" # Jiggle Version Was Here
+    version = "1.2.13" # Jiggle Version Was Here
 )

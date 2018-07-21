@@ -5,7 +5,7 @@ Detect encoding, read file, remember encoding
 import io
 import logging
 import sys
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Dict
 
 import chardet
 
@@ -15,7 +15,8 @@ except ImportError:
     # Python 2.x fallback
     import ConfigParser as configparser
 
-_ = List, Optional, Any
+_ = List, Optional, Any, Dict
+
 if sys.version_info.major == 3:
     unicode = str
 logger = logging.getLogger(__name__)
@@ -32,7 +33,7 @@ class FileOpener(object):
         :param project:
         :param src:
         """
-        self.found_encoding = {}
+        self.found_encoding = {}  # type: Dict[str,str]
 
     def is_python_inside(self, file_path):  # type: (str) -> bool
         """
@@ -108,6 +109,6 @@ class FileOpener(object):
         config = configparser.ConfigParser()
         config.read(file_path)
         try:
-            return config["metadata"]["version"]
+            return unicode(config["metadata"]["version"])
         except KeyError:
             return ""

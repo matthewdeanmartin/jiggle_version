@@ -104,10 +104,12 @@ class JiggleVersion(object):
         self.PROJECT = project
         self.SRC = source
 
-        self.is_folder_project = os.path.isdir(os.path.join(self.SRC, self.PROJECT))
+        self.is_folder_project = os.path.isdir(
+            os.path.join(self.SRC, self.PROJECT)
+        )  # type: bool
         self.is_file_project = os.path.isfile(
             os.path.join(self.SRC, self.PROJECT) + ".py"
-        )
+        )  # type: bool
         if not self.is_folder_project and not self.is_file_project:
             logger.warning(
                 "Can't find module, typically a packages has a .py file or folder with module name : "
@@ -132,7 +134,7 @@ class JiggleVersion(object):
             message = (
                 unicode(ex)
                 + " Can't parse this version, won't be able to bump anything. "
-                + str(candidates)
+                + unicode(candidates)
             )
             logger.error(message)
             die(-1, message)
@@ -374,7 +376,7 @@ class JiggleVersion(object):
                     version = ""
                 if version:
                     with io.open(filepath, "w") as configfile:  # save
-                        config["metadata"]["version"] = str(self.version_to_write())
+                        config["metadata"]["version"] = unicode(self.version_to_write())
                         config.write(configfile)
                         changed += 1
         return changed
