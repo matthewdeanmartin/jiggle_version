@@ -33,7 +33,8 @@ for directory in things:
     count += 1
     # if count >100:
     #     exit()
-    if "bjad" in directory:
+    if "bjad" in directory or \
+            "Aliyun" in directory: # crash on attempted import (os.exit()?)
          # weird encoding
          continue
     if directory.endswith(".gz") or directory.endswith(".zip"):

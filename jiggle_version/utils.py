@@ -67,11 +67,10 @@ def execute_get_text(command, raise_errors=False):  # type: (str, bool) -> str
     try:
         result = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
         # print(result.decode())
-    except subprocess.CalledProcessError as err:
+    except subprocess.CalledProcessError:
         if raise_errors:
             raise
         return ""
     if result:
         return result.decode("utf-8")
-    else:
-        return ""
+    return ""

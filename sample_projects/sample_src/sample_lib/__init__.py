@@ -2,4 +2,4 @@
 """
 Version
 """
-__version__ = "0.0.94" # Jiggle Version Was Here
+__version__ = "0.0.98" # Jiggle Version Was Here

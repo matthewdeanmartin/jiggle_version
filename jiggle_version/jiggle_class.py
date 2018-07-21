@@ -53,13 +53,13 @@ from typing import List, Optional, Dict, Any
 import chardet
 from semantic_version import Version
 
+import jiggle_version.parse_dunder_version as dunder_version
+import jiggle_version.parse_kwarg_version as kwarg_version
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_version_class import FindVersion
 from jiggle_version.is_this_okay import check
-import jiggle_version.parse_dunder_version as dunder_version
-import jiggle_version.parse_kwarg_version as kwarg_version
 from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import die, JiggleVersionException
 
@@ -150,7 +150,12 @@ class JiggleVersion(object):
         # TODO: Make this off by default & option to turn on
         self.signature = " # Jiggle Version Was Here"
 
-    def leading_whitespace(self, line):
+    def leading_whitespace(self, line):  # type: (str) -> str
+        """
+        For preserving indents
+        :param line:
+        :return:
+        """
         string = ""
         for char in line:
             if char in " \t":
@@ -345,7 +350,7 @@ class JiggleVersion(object):
         """
         changed = 0
         # setup.py related. setup.py itself should read __init__.py or __version__.py
-        to_write = []
+
         other_files = ["setup.cfg"]
 
         for file_name in other_files:
@@ -361,8 +366,6 @@ class JiggleVersion(object):
                 self.file_maker.create_setup_cfg(filepath)
 
             if os.path.isfile(filepath):
-                need_rewrite = False
-                version = ""
                 config = configparser.ConfigParser()
                 config.read(filepath)
                 try:

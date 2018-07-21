@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 from setuptools import setup
-
+import file_module
 setup(
     name="file_module",
-    version = "1.1.37", # Jiggle Version Was Here
+    version = file_module.__version__,
     description="foo",
     long_description="foo\n",
     long_description_content_type="text/markdown",

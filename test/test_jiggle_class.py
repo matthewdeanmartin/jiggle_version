@@ -21,6 +21,7 @@ various = {
     # PROJECT: SRC,
     "setup_only": here + "/../sample_projects/setup_only/",
     "file_module_src":  here + "/../sample_projects/file_module_src/",
+    "file_module_ver_in_file": here + "/../sample_projects/file_module_ver_in_file/",
     "double_module":  here + "/../sample_projects/double_module/",
     "ver_in_weird_file":  here + "/../sample_projects/ver_in_weird_file/",
     "with_unlikely_modules": here + "/../sample_projects/with_unlikely_modules/",

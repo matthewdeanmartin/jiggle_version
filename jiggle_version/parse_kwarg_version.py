@@ -67,7 +67,7 @@ def find_version_by_regex(file_source):  # type: (str)->Optional[str]
     return None
 
 
-def find_version_by_string_lib(line):  # type: (str,str)->Optional[str]
+def find_version_by_string_lib(line):  # type: (str)->Optional[str]
     """
     No regex parsing. Or at least, mostly, not regex.
     """
@@ -91,7 +91,12 @@ def find_version_by_string_lib(line):  # type: (str,str)->Optional[str]
     return version
 
 
-def find_in_line(line):  #
+def find_in_line(line):  # type: (str) -> Optional[str]
+    """
+    Find a version in a line.
+    :param line:
+    :return:
+    """
     if not line:
         return None
 

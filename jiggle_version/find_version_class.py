@@ -31,7 +31,6 @@ from jiggle_version.utils import (
     first_value_in_dict,
     JiggleVersionException,
     die,
-    execute_get_text,
 )
 
 try:
@@ -69,7 +68,7 @@ class FindVersion(object):
             raise JiggleVersionException(
                 'Can\'t continue, source directory is None, should be ""\ for current dir'
             )
-
+        self.current_version = ""
         self.PROJECT = project
         self.SRC = source
 
@@ -203,6 +202,11 @@ class FindVersion(object):
         return False
 
     def version_by_eval(self, file_path):  # type: (str) ->Dict[str,str]
+        """
+        Version by ast evaluation. Didn't find more versions that existing methods
+        :param file_path:
+        :return:
+        """
         source = self.file_opener.read_this(file_path)
         sb = "{"
         for line in source.split("\n"):
@@ -222,6 +226,13 @@ class FindVersion(object):
         return {}
 
     def version_by_import(self, module_name):  # type: (str) ->Dict[str,str]
+        """
+        This is slow & if running against random code, dangerous
+
+        Sometimes apps call exit() in import if conditions not met.
+        :param module_name:
+        :return:
+        """
         try:
             module = __import__(module_name)
         except ModuleNotFoundError as mnfe:
@@ -230,8 +241,10 @@ class FindVersion(object):
         except FileNotFoundError as fnfe:
             return {}
 
-        version = module.__version__
-        return {"module import": version}
+        if hasattr(module, "__version__"):
+            version = module.__version__
+            return {"module import": version}
+        return {}
 
     def all_current_versions(self):  # type: () ->Dict[str,str]
         """
@@ -467,7 +480,9 @@ class FindVersion(object):
         :return:
         """
 
-        ver = execute_get_text("python setup.py --version")
+        ver = None  # execute_get_text("python setup.py --version")
+        if not ver:
+            return None
 
         if "UserWarning" in ver:
             logger.warning("python setup.py --version won't parse, got :" + str(ver))

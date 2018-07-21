@@ -37,6 +37,7 @@ def find_by_ast(line, version_token="__version__"):  # type: (str,str) -> Option
     """
     Safer way to 'execute' python code to get a simple value
     :param line:
+    :param version_token:
     :return:
     """
     if not line:
@@ -139,6 +140,11 @@ def find_version_by_string_lib(
 
 
 def validate_string(version):  # type: (str) -> Optional[str]
+    """
+    Trying to catch expressions here
+    :param version:
+    :return:
+    """
     if not version:
         return None
     for char in version:

@@ -94,15 +94,15 @@ class CentralModuleFinder(object):
         if name:
             return name
 
-        # TODO: could try python setup.py --name to extract name.
-        # raise TypeError("Come on, why not?")
         return ""
 
     def execute_setup_name(self):
         try:
-            name = execute_get_text("python setup.py p--name")
+            name = None  # execute_get_text("python setup.py p--name")
         except:
             # setup.py is not always in an executable state
+            return None
+        if not name:
             return None
         name = name.strip(" \n\t")
         if " " in name or "\n" in name:
