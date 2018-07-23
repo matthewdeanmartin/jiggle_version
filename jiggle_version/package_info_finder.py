@@ -114,7 +114,7 @@ class ModuleFinder(object):
                 )
             try:
                 paths_dict = ast.literal_eval(dict_src)
-            except ValueError as ve:
+            except ValueError:
                 logger.error(source + ": " + dict_src)
                 return ""
 
@@ -195,7 +195,7 @@ class ModuleFinder(object):
         candidates = list(set([x for x in candidates if x]))
 
         # too many
-        if len(candidates) == 0:
+        if not candidates:
             candidates.extend(self.via_find_packages())
             candidates = list(set([x for x in candidates if x]))
 

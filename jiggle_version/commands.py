@@ -54,7 +54,7 @@ def find_version(project, source, debug):  # type: (str, str, bool) ->None
     """
     # quiet! no noise
     file_opener = FileOpener()
-    finder = FindVersion(project, source, file_opener, debug)
+    finder = FindVersion(project, source, file_opener)
     if not finder.validate_current_versions():
         # This is a failure.
         logger.debug(unicode(finder.all_current_versions()))

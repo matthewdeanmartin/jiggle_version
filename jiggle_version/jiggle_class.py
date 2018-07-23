@@ -78,7 +78,7 @@ logger = logging.getLogger(__name__)
 
 # contrive usage so black doesn't remove the import
 _ = List, Optional, Dict, Any
-
+_ = Version
 
 class JiggleVersion(object):
     """
@@ -146,7 +146,7 @@ class JiggleVersion(object):
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
         self.file_maker = FileMaker(self.PROJECT)
-        self.version_finder = FindVersion(project, source, file_opener, debug)
+        self.version_finder = FindVersion(project, source, file_opener)
         self.file_inventory = FileInventory(project, source)
 
         # TODO: Make this off by default & option to turn on

@@ -63,7 +63,7 @@ def find_by_ast(line, version_token="__version__"):  # type: (str,str) -> Option
             if hasattr(tree.body[0].value, "n"):
                 return unicode(tree.body[0].value.n)
             # print(tree)
-        except Exception as ex:
+        except Exception:
             # raise
             return None
 

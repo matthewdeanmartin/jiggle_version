@@ -31,7 +31,7 @@ from jiggle_version.utils import (
     first_value_in_dict,
     JiggleVersionException,
     die,
-)
+    execute_get_text)
 
 try:
     import configparser
@@ -55,11 +55,25 @@ class FindVersion(object):
     """
 
     def __init__(
-        self, project, source, file_opener, debug=False
-    ):  # type: (str, str, FileOpener, bool) ->None
+        self, project, source, file_opener):  # type: (str, str, FileOpener) ->None
         """
         Entry point
         """
+
+        # fuzzy concept of being secure, minimal package, "linted'
+        self.strict = True
+
+        self.DEBUG = False
+        # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
+
+        self.version = None  # type: Optional[Version]
+        self.create_configs = False
+
+        # for example, do we create __init__.py which changes behavior
+        self.create_all = False
+        self.setup_py_source = None
+        self.schema = None
+
         # if not project:
         #     raise JiggleVersionException("Can't continue, no project name")
         self.file_opener = file_opener
@@ -101,21 +115,9 @@ class FindVersion(object):
                 + " - what should be done? Update the version.txt?"
             )
 
-        # fuzzy concept of being secure, minimal package, "linted'
-        self.strict = True
-
-        self.DEBUG = False
-        # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
-
-        self.version = None  # type: Optional[Version]
-        self.create_configs = False
-
-        # for example, do we create __init__.py which changes behavior
-        self.create_all = False
-
         self.file_inventory = FileInventory(self.PROJECT, self.SRC)
 
-        self.setup_py_source = None
+
 
     def find_any_valid_version(self):  # type: () -> str
         """
@@ -150,6 +152,11 @@ class FindVersion(object):
     def almost_the_same_version(
         self, version_list
     ):  # type: (List[str]) -> Optional[str]
+        """
+        Are these versions different by a .1 patch level? This is crazy common in the wild.
+        :param version_list:
+        :return:
+        """
 
         version_list = list(set(version_list))
         try:
@@ -235,10 +242,10 @@ class FindVersion(object):
         """
         try:
             module = __import__(module_name)
-        except ModuleNotFoundError as mnfe:
+        except ModuleNotFoundError:
             # hypothetical module would have to be on python path or execution folder, I think.
             return {}
-        except FileNotFoundError as fnfe:
+        except FileNotFoundError:
             return {}
 
         if hasattr(module, "__version__"):
@@ -400,7 +407,7 @@ class FindVersion(object):
                 if version:
                     found[setup_py] = version
                     continue
-                version, version_token = dunder_version.find_in_line(line)
+                version, _ = dunder_version.find_in_line(line)
                 if version:
                     found[setup_py] = version
                     continue
@@ -447,10 +454,10 @@ class FindVersion(object):
 
         with self.file_opener.open_this(full_path, "r") as infile:
             for line in infile:
-                version, version_token = dunder_version.find_in_line(line)
+                version, _ = dunder_version.find_in_line(line)
                 if version:
                     versions[full_path] = version
-                version, version_token = dunder_version.find_in_line(line)
+                version, _ = dunder_version.find_in_line(line)
         return versions
 
     def version_to_write(self, found):  # type: (str) -> Version
@@ -484,7 +491,7 @@ class FindVersion(object):
         :return:
         """
 
-        ver = None  # execute_get_text("python setup.py --version")
+        ver = execute_get_text("python setup.py --version")
         if not ver:
             return None
 

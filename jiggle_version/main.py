@@ -45,9 +45,12 @@ _ = List, Optional, Dict, Any
 def console_trace(level):  # type: (int)->None
     """
     Stop using print(), messes up `jiggle_version find` command
-    :param level:
     :return:
     """
+
+    # TODO: fix logging. This is a mess.
+    _ = level
+
     logging.config.dictConfig(
         {
             "version": 1,

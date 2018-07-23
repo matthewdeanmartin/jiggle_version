@@ -16,7 +16,6 @@ from typing import List, Optional
 from build_utils import execute_get_text
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
-
 # so formatter doesn't remove.
 from jiggle_version.module_finder import ModuleFinder
 
