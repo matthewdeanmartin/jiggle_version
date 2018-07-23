@@ -107,7 +107,7 @@ class CentralModuleFinder(object):
         :return:
         """
         try:
-            name = execute_get_text("python setup.py p--name")
+            name = execute_get_text("python setup.py --name")
         except subprocess.CalledProcessError:
             # setup.py is not always in an executable state
             return None
