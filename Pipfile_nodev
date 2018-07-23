@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+semantic-version = "*"
+docopt = "*"
+parver = "*"
+cmp-version = "*"
+versio = "*"
+chardet = "*"
+
+[requires]
+python_version = "3.6"

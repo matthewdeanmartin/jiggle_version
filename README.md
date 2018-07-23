@@ -221,12 +221,11 @@ How are other people solving this problem?
 | __      | [python-versioneer](https://github.com/warner/python-versioneer) | ___ |
 | __      | [python-git-version](https://github.com/aebrahim/python-git-version)      |   ___ |
 | [git-bump-version](https://pypi.org/project/git-bump-version/) | ___      |    ___ |
-| [pyver](https://pypi.org/project/pyver/) | ___      |    ___ |
 | [setupext-gitversion](https://pypi.org/project/setupext-gitversion/) | ___      |    ___ |
 | __ | [python-git-version](https://github.com/aebrahim/python-git-version)       |    ___ |
-| [git-bump-version](https://pypi.org/project/git-bump-version/) | [git_bump_version](https://github.com/silent-snowman/git_bump_version)       |    ___ |
-| [pyver](https://pypi.org/project/pyver/) | [pyver](https://github.com/clearclaw/pyver) | ___ |
-| [vdt.version](https://pypi.org/project/vdt.version/) | [vdt.version](https://github.com/devopsconsulting/vdt.version) | ___ |
+| [git-bump-version](https://pypi.org/project/git-bump-version/) | [git_bump_version (GH)](https://github.com/silent-snowman/git_bump_version)       |    ___ |
+| [pyver](https://pypi.org/project/pyver/) | [pyver (GH)](https://github.com/clearclaw/pyver) | ___ |
+| [vdt.version](https://pypi.org/project/vdt.version/) | [vdt.version (GH)](https://github.com/devopsconsulting/vdt.version) | ___ |
 
 
 Git Centric

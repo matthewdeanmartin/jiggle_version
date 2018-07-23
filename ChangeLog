@@ -1,6 +1,89 @@
 CHANGES
 =======
 
+* mypy, liniting
+* linting
+* developed idea of 'central' module
+* build passes
+* Bumps w/o error 82% of random pypi projects
+* found nasty bug
+* another badge
+* badges
+* lgtm issue
+* "remove" large file
+* fix current folder prob
+* please just pass
+* commenting out failing tests. meh
+* still chasing errors
+* again
+* more
+* error chasing in 2.7
+* now tries to check encoding on all files
+* sample projs, less lint, fix dir change detection in pynt
+
+v1.0.36
+-------
+
+* thot I'd checked these in
+* lots of fixes, failures on random public packages less often
+* readme edits
+* fix deps, more logging
+
+v1.0.33
+-------
+
+* cheat on build script
+* hmm, thought I already commited this
+* tesing against random pkgs, lots of fixes
+* how to start
+* minor README improvements
+* bad dunders in MD
+* idea for getting some version strings as test data
+* update readme
+
+1.0.30
+------
+
+* dont vendorize. build passes locally
+* build failing, but out of time
+* incorporate ideas I got reviewing the competition
+* so much work to try out competing libraries
+* py2/py3 unicode-str
+* mypy
+* less lint, pin astroid version
+* version
+* move towards versioning together and not as we go
+* move towards versioning together and not as we go
+* fix travis doc
+* recompile
+* io.open
+* ignore some files
+* something
+* docs works better now
+* slash
+* not found
+* no circular dependencies
+* complexity
+* file not found
+* py2 thing
+* future
+* json in py2
+* python 2 prob
+* mypy for 2
+* pandoc
+* new reqs
+* py2 compat
+* fix whitespace
+* fix mypy again
+* fix mypy
+* no git secrets on travis
+* dash
+* more
+* travis work
+* travis stuff
+* supporting files for here test
+* add a "here" option for even less config
+
 v1.0.13
 -------
 

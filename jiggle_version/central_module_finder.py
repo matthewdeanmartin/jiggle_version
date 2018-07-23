@@ -9,6 +9,7 @@ from __future__ import unicode_literals
 
 import logging
 import os
+import subprocess
 import sys
 from typing import List, Optional
 
@@ -32,6 +33,10 @@ class CentralModuleFinder(object):
     """
 
     def __init__(self, file_opener):  # type: (FileOpener) -> None
+        """
+        Initialize object
+        :param file_opener:
+        """
         self.file_opener = file_opener
         self.setup_source = ""
 
@@ -97,9 +102,13 @@ class CentralModuleFinder(object):
         return ""
 
     def execute_setup_name(self):  # type: () -> Optional[str]
+        """
+        Runs code, so this is a bit dangerous, especially if it isn't your own
+        :return:
+        """
         try:
-            name = None  # execute_get_text("python setup.py p--name")
-        except:
+            name = execute_get_text("python setup.py p--name")
+        except subprocess.CalledProcessError:
             # setup.py is not always in an executable state
             return None
         if not name:

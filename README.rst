@@ -317,10 +317,6 @@ How are other people solving this problem?
 | t/git-bump-version/>` |                       |                       |
 | __                    |                       |                       |
 +-----------------------+-----------------------+-----------------------+
-| `pyver <https://pypi. | \__\_                 | \__\_                 |
-| org/project/pyver/>`_ |                       |                       |
-| _                     |                       |                       |
-+-----------------------+-----------------------+-----------------------+
 | `setupext-gitversion  | \__\_                 | \__\_                 |
 | <https://pypi.org/pro |                       |                       |
 | ject/setupext-gitvers |                       |                       |
@@ -331,19 +327,20 @@ How are other people solving this problem?
 |                       | brahim/python-git-ver |                       |
 |                       | sion>`__              |                       |
 +-----------------------+-----------------------+-----------------------+
-| `git-bump-version <ht | `git_bump_version <ht | \__\_                 |
-| tps://pypi.org/projec | tps://github.com/sile |                       |
-| t/git-bump-version/>` | nt-snowman/git_bump_v |                       |
-| __                    | ersion>`__            |                       |
+| `git-bump-version <ht | `git_bump_version     | \__\_                 |
+| tps://pypi.org/projec | (GH) <https://github. |                       |
+| t/git-bump-version/>` | com/silent-snowman/gi |                       |
+| __                    | t_bump_version>`__    |                       |
 +-----------------------+-----------------------+-----------------------+
-| `pyver <https://pypi. | `pyver <https://githu | \__\_                 |
-| org/project/pyver/>`_ | b.com/clearclaw/pyver |                       |
-| _                     | >`__                  |                       |
-+-----------------------+-----------------------+-----------------------+
-| `vdt.version <https:/ | `vdt.version <https:/ | \__\_                 |
-| /pypi.org/project/vdt | /github.com/devopscon |                       |
-| .version/>`__         | sulting/vdt.version>` |                       |
+| `pyver <https://pypi. | `pyver                | \__\_                 |
+| org/project/pyver/>`_ | (GH) <https://github. |                       |
+| _                     | com/clearclaw/pyver>` |                       |
 |                       | __                    |                       |
++-----------------------+-----------------------+-----------------------+
+| `vdt.version <https:/ | `vdt.version          | \__\_                 |
+| /pypi.org/project/vdt | (GH) <https://github. |                       |
+| .version/>`__         | com/devopsconsulting/ |                       |
+|                       | vdt.version>`__       |                       |
 +-----------------------+-----------------------+-----------------------+
 
 Git Centric

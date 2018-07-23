@@ -376,8 +376,13 @@ def jiggle_version():
     execute(PYTHON, "jiggle_version_self.py")
 
 
+@task()
+def check_setup_py():
+    with safe_cd(SRC):
+        execute("PYTHON", *("setup.py check -r -s".split(" ")))
+
 @task(formatting, mypy, detect_secrets, git_secrets, nose_tests, coverage, compile_py, lint,
-      compile_mark_down, pin_dependencies, jiggle_version)  # docs ... later
+      compile_mark_down, check_setup_py, pin_dependencies, jiggle_version)  # docs ... later
 @skip_if_no_change("package")
 def package():
     """
