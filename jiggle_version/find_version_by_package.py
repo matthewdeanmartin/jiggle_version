@@ -14,7 +14,7 @@ from typing import Any
 
 import pkg_resources
 
-from build_utils import execute_get_text
+from jiggle_version.utils import execute_get_text
 
 _ = Any
 

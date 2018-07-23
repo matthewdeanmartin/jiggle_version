@@ -13,7 +13,7 @@ import subprocess
 import sys
 from typing import List, Optional
 
-from build_utils import execute_get_text
+from jiggle_version.utils import execute_get_text
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
 
