@@ -209,7 +209,8 @@ def lint():
                         "import-error" in line:
                     print(line)
 
-            raise TypeError("Fatal lint errors : {0}".format(fatal_errors))
+            print("Fatal lint errors : {0}".format(fatal_errors))
+            exit(-1)
 
         cutoff = 100
         num_lines = sum(1 for line in open(lint_output_file_name)
@@ -379,9 +380,36 @@ def jiggle_version():
 @task()
 def check_setup_py():
     with safe_cd(SRC):
-        execute("PYTHON", *("setup.py check -r -s".split(" ")))
+        if IS_TRAVIS:
+            execute(PYTHON, *("setup.py check -r -s".split(" ")))
+        else:
+            execute(*("{0} {1} setup.py check -r -s".format(PIPENV, PYTHON).strip().split(" ")))
 
-@task(formatting, mypy, detect_secrets, git_secrets, nose_tests, coverage, compile_py, lint,
+
+@task()
+def dead_code():
+    """
+    This also finds code you are working on today!
+    """
+    with safe_cd(SRC):
+        if IS_TRAVIS:
+            command = "{0} vulture {1}".format(PYTHON, PROJECT_NAME).strip().split()
+        else:
+            command = "{0} vulture {1}".format(PIPENV, PROJECT_NAME).strip().split()
+
+        output_file_name = "dead_code.txt"
+        with open(output_file_name, "w") as outfile:
+            env = config_pythonpath()
+            subprocess.call(command, stdout=outfile, env=env)
+
+        cutoff = 20
+        num_lines = sum(1 for line in open(output_file_name) if line)
+        if num_lines > cutoff:
+            print("Too many lines of dead code : {0}, max {1}".format(num_lines, cutoff))
+            exit(-1)
+
+
+@task(formatting, mypy, detect_secrets, git_secrets,dead_code, nose_tests, coverage, compile_py, lint,
       compile_mark_down, check_setup_py, pin_dependencies, jiggle_version)  # docs ... later
 @skip_if_no_change("package")
 def package():
@@ -394,6 +422,7 @@ def package():
 
     with safe_cd(SRC):
         execute(PYTHON, "setup.py", "sdist", "--formats=gztar,zip")
+
 
 
 @task(package)
@@ -452,19 +481,6 @@ def echo(*args, **kwargs):
     print(args)
     print(kwargs)
 
-
-@task()
-def dead_code():
-    """
-    This also finds code you are working on today!
-    """
-    with safe_cd(SRC):
-        if IS_TRAVIS:
-            command = "{0} vulture {1}".format(PYTHON, PROJECT_NAME)
-        else:
-            command = "{0} vulture {1}".format(PIPENV, PROJECT_NAME)
-
-        execute(*(command.strip().split(" ")))
 
 
 # Default task (if specified) is run when no task is specified in the command line

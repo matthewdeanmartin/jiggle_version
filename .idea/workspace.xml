@@ -37,7 +37,18 @@
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../find_known_secrets/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/../find_known_secrets/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/central_module_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/central_module_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/double_module/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/double_module/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/file_module_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/file_module_src/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/setup_only/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/setup_only/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/with_unlikely_modules/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/with_unlikely_modules/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/with_unlikely_modules/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/with_unlikely_modules/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -155,14 +166,14 @@
           <entry key="cfg" value="44" />
           <entry key="coverage" value="1" />
           <entry key="fela" value="1" />
-          <entry key="gitignore" value="14" />
+          <entry key="gitignore" value="15" />
           <entry key="html" value="4" />
           <entry key="in" value="3" />
           <entry key="ini" value="8" />
           <entry key="lock" value="3" />
           <entry key="md" value="37" />
           <entry key="pstat" value="1" />
-          <entry key="py" value="1136" />
+          <entry key="py" value="1137" />
           <entry key="rst" value="14" />
           <entry key="setup" value="1" />
           <entry key="sh" value="17" />
@@ -175,14 +186,14 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="17" />
-          <entry key="Git file" value="14" />
+          <entry key="Git file" value="15" />
           <entry key="HTML" value="4" />
           <entry key="Ini" value="52" />
           <entry key="Makefile" value="1" />
           <entry key="Markdown" value="37" />
           <entry key="PLAIN_TEXT" value="149" />
           <entry key="Profiler Session" value="1" />
-          <entry key="Python" value="1143" />
+          <entry key="Python" value="1144" />
           <entry key="ReST" value="14" />
           <entry key="TOML file" value="15" />
           <entry key="YAML" value="20" />
@@ -197,10 +208,10 @@
           <entry key="bat" value="14" />
           <entry key="cfg" value="43" />
           <entry key="dummy" value="73" />
-          <entry key="gitignore" value="234" />
+          <entry key="gitignore" value="235" />
           <entry key="ini" value="16" />
           <entry key="md" value="18287" />
-          <entry key="py" value="58325" />
+          <entry key="py" value="58504" />
           <entry key="rst" value="181" />
           <entry key="sh" value="462" />
           <entry key="txt" value="5" />
@@ -211,12 +222,12 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="462" />
-          <entry key="Git file" value="234" />
+          <entry key="Git file" value="235" />
           <entry key="Ini" value="59" />
           <entry key="Makefile" value="14" />
           <entry key="Markdown" value="18287" />
           <entry key="PLAIN_TEXT" value="92" />
-          <entry key="Python" value="58536" />
+          <entry key="Python" value="58715" />
           <entry key="ReST" value="181" />
           <entry key="TOML file" value="32" />
           <entry key="YAML" value="97" />
@@ -227,33 +238,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="385" column="74" selection-start-line="385" selection-start-column="74" selection-end-line="385" selection-end-column="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="115" column="13" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/module_finder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="167" column="31" selection-start-line="167" selection-start-column="31" selection-end-line="167" selection-end-column="31" />
-              <folding>
-                <marker date="1532142176000" expanded="true" signature="2282:2383" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-              <folding>
-                <marker date="1532362445000" expanded="true" signature="1606:1619" ph="..." />
-              </folding>
-            </state>
-          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -291,7 +296,7 @@
         <entry file="file://$PROJECT_DIR$/.prospector/jiggle_version_style.yaml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
-              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+              <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -300,16 +305,16 @@
         <entry file="file://$PROJECT_DIR$/Pipfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="576">
-              <caret line="32" column="18" lean-forward="true" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+              <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jiggle_version/central_module_finder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="109" column="53" selection-start-line="109" selection-start-column="53" selection-end-line="109" selection-end-column="53" />
+            <state relative-caret-position="171">
+              <caret line="144" column="35" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -317,8 +322,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements-dev.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+            <state relative-caret-position="311">
+              <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -334,11 +339,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>EXIT(</find>
-      <find>AdvancedHTTPServer</find>
-      <find>inv</find>
-      <find>to_write</find>
-      <find>is_folder_project</find>
       <find>kick_out_bad_versions</find>
       <find>found_encoding</find>
       <find>mypy</find>
@@ -364,6 +364,11 @@
       <find>--name</find>
       <find>p--name</find>
       <find>pylin</find>
+      <find>line</find>
+      <find>lines</find>
+      <find>raise</find>
+      <find>&quot;PYTHON</find>
+      <find>setup.py</find>
     </findStrings>
     <replaceStrings>
       <replace>version</replace>
@@ -399,7 +404,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sample_projects/file_module_src/.gitignore" />
         <option value="$PROJECT_DIR$/sample_projects/double_module/foo/.gitignore" />
         <option value="$PROJECT_DIR$/jiggle_version/vendorized/pep440.py" />
         <option value="$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/checksumdir/__init__.py" />
@@ -437,7 +441,6 @@
         <option value="$PROJECT_DIR$/Pipfile_nodev" />
         <option value="$PROJECT_DIR$/freeze_man.sh" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/build.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/pylintrc.ini" />
         <option value="$PROJECT_DIR$/jiggle_version/commands.py" />
@@ -450,6 +453,8 @@
         <option value="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" />
         <option value="$PROJECT_DIR$/Pipfile" />
         <option value="$PROJECT_DIR$/jiggle_version/central_module_finder.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/build.py" />
       </list>
     </option>
   </component>
@@ -761,7 +766,7 @@
     <frame x="0" y="23" width="1920" height="1006" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17571884" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17571884" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.32995495" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -775,7 +780,7 @@
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="TeamCity" order="10" weight="0.3446712" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.33333334" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.5016835" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.32819074" />
@@ -915,11 +920,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/Aliyun-0.1.1/src/aliyun/shell.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-339" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/Aliyun-0.1.1/ez_setup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4958" />
@@ -1117,16 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-778">
-          <caret line="388" column="29" selection-start-line="388" selection-start-column="29" selection-end-line="388" selection-end-column="29" />
-          <folding>
-            <marker date="1532360519000" expanded="true" signature="10873:10939" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ChangeLog">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1318" />
@@ -1219,34 +1209,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.prospector/jiggle_version_style.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements-dev.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pipfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
-          <caret line="32" column="18" lean-forward="true" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jiggle_version/central_module_finder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="109" column="53" selection-start-line="109" selection-start-column="53" selection-end-line="109" selection-end-column="53" />
+        <state relative-caret-position="171">
+          <caret line="144" column="35" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="115" column="13" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.prospector/jiggle_version_style.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements-dev.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="385" column="74" selection-start-line="385" selection-start-column="74" selection-end-line="385" selection-end-column="74" />
         </state>
       </provider>
     </entry>
