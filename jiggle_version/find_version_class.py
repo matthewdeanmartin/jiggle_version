@@ -31,7 +31,8 @@ from jiggle_version.utils import (
     first_value_in_dict,
     JiggleVersionException,
     die,
-    execute_get_text)
+    execute_get_text,
+)
 
 try:
     import configparser
@@ -55,7 +56,8 @@ class FindVersion(object):
     """
 
     def __init__(
-        self, project, source, file_opener):  # type: (str, str, FileOpener) ->None
+        self, project, source, file_opener
+    ):  # type: (str, str, FileOpener) ->None
         """
         Entry point
         """
@@ -116,8 +118,6 @@ class FindVersion(object):
             )
 
         self.file_inventory = FileInventory(self.PROJECT, self.SRC)
-
-
 
     def find_any_valid_version(self):  # type: () -> str
         """

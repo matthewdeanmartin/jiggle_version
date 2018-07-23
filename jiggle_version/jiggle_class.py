@@ -80,6 +80,7 @@ logger = logging.getLogger(__name__)
 _ = List, Optional, Dict, Any
 _ = Version
 
+
 class JiggleVersion(object):
     """
     Coordinates code, writes versions

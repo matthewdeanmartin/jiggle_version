@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name="file_module",
-    version = "1.1.46", # Jiggle Version Was Here
+    version = "1.1.50", # Jiggle Version Was Here
     description="foo",
     long_description="foo\n",
     long_description_content_type="text/markdown",
