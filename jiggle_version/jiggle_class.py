@@ -87,8 +87,8 @@ class JiggleVersion(object):
     """
 
     def __init__(
-        self, project, source, file_opener, debug=False
-    ):  # type: (str, str, FileOpener, bool) ->None
+        self, project, source, file_opener
+    ):  # type: (str, str, FileOpener) ->None
         """
         Entry point
         """

@@ -5,7 +5,7 @@ Jiggle Version.
 Usage:
   jiggle_version here
   jiggle_version find
-  jiggle_version --project=<project> --source=<source> [--debug=<debug>]
+  jiggle_version --project=<project> --source=<source>
   jiggle_version -h | --help
   jiggle_version --version
 
@@ -17,7 +17,6 @@ Options:
   --project=<project>  'Central' module name, e.g. my_lib in src/my_lib
   --source=<source>    Source folder. e.g. src/
   --version            Show version of jiggle_version, not your apps.
-  --debug=<debug>      Show diagnostic info [default: False].
   -h --help            Show this screen.
 
 """
@@ -110,32 +109,19 @@ def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
         if not central_module:
             # check if exists first?
             central_module = "setup.py"
-        bump_version(
-            project=central_module, source=guess_src_dir, debug=arguments["--debug"]
-        )
+        bump_version(project=central_module, source=guess_src_dir)
     elif arguments["find"]:
         # Only show errors. Rest of extraneous console output messes up this:
         # jiggle_version find>version.txt
 
-        if arguments["--debug"] == "True":
-            console_trace(logging.DEBUG)
-        # else:
-        #     console_trace(logging.ERROR)
-
         if arguments["--project"]:
             central_module = arguments["--project"]
-        find_version(project=central_module, source="", debug=arguments["--debug"])
+        find_version(project=central_module, source="")
 
     else:
-        if arguments["--debug"] == "True":
-            console_trace(logging.DEBUG)
         if arguments["--project"]:
             central_module = arguments["--project"]
-        bump_version(
-            project=arguments["--project"],
-            source=arguments["--source"],
-            debug=arguments["--debug"],
-        )
+        bump_version(project=arguments["--project"], source=arguments["--source"])
 
 
 if __name__ == "__main__":

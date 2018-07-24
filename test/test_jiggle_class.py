@@ -38,7 +38,7 @@ def test_new_probs():
     for key, value in various.items():
         try:
             os.chdir(value)
-            jiggler = JiggleVersion(key[1], key[0], f, True)
+            jiggler = JiggleVersion(key[1], key[0], f)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
             assert changed>0
@@ -53,7 +53,7 @@ def test_old_probs():
     for key, value in various.items():
         try:
             os.chdir(value)
-            jiggler = JiggleVersion(key[0], key[1], f, True)
+            jiggler = JiggleVersion(key[0], key[1], f)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
             assert changed>0
@@ -76,13 +76,13 @@ def test_no_files():
     try:
         os.chdir(SRC)
         # doesn't exist
-        jiggler = JiggleVersion(PROJECT, "",f, True)
+        jiggler = JiggleVersion(PROJECT, "",f)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()
 
         # and already exist
-        jiggler = JiggleVersion(PROJECT, "",f, True)
+        jiggler = JiggleVersion(PROJECT, "",f)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()

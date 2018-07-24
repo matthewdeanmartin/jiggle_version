@@ -23,14 +23,14 @@ if sys.version_info.major == 3:
 logger = logging.getLogger(__name__)
 
 
-def bump_version(project, source, debug):  # type: (str, str, bool) ->int
+def bump_version(project, source):  # type: (str, str, bool) ->int
     """
     Entry point
     :return:
     """
     file_opener = FileOpener()
     # logger.debug("Starting version jiggler...")
-    jiggler = JiggleVersion(project, source, file_opener, debug)
+    jiggler = JiggleVersion(project, source, file_opener)
 
     logger.debug(
         "Current, next : {0} -> {1} : {2}".format(
@@ -47,7 +47,7 @@ def bump_version(project, source, debug):  # type: (str, str, bool) ->int
     return changed
 
 
-def find_version(project, source, debug):  # type: (str, str, bool) ->None
+def find_version(project, source):  # type: (str, str) ->None
     """
     Entry point to just find a version and print next
     :return:

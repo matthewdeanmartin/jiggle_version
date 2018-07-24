@@ -22,7 +22,7 @@ def test_find_version():
     try:
         os.chdir(SRC)
         # what ev, who knows if these file even exist
-        _ = find_version(PROJECT, "sample_src", True)
+        _ = find_version(PROJECT, "sample_src")
     finally:
         os.chdir(initial_pwd)
 

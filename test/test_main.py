@@ -53,7 +53,7 @@ def test_entry_point():
     # put app in dir with setup.py. Easier!
     try:
         os.chdir(SRC)
-        main.bump_version(PROJECT, "", True)
+        main.bump_version(PROJECT, "")
     except JiggleVersionException as jve:
         print(os.getcwd())
         raise

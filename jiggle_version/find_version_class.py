@@ -65,7 +65,6 @@ class FindVersion(object):
         # fuzzy concept of being secure, minimal package, "linted'
         self.strict = True
 
-        self.DEBUG = False
         # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
         self.version = None  # type: Optional[Version]

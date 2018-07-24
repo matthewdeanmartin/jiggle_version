@@ -109,7 +109,7 @@ class ModuleFinder(object):
         # package_dir={...}
         if "package_dir=" in source:
             line = source.replace("\n", "")
-            line = source.split("package_dir")[1]
+            line = line.split("package_dir")[1]
             fixed = ""
             for char in line:
                 fixed += char
