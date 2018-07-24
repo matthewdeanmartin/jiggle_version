@@ -13,6 +13,6 @@
 chardet
 cmp-version
 docopt
-parver
+parver==0.1.1
 semantic-version
 versio
