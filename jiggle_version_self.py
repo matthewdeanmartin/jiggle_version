@@ -13,7 +13,7 @@ from semantic_version import Version
 
 PROJECT = "jiggle_version"
 SRC = ""
-files = ["/__init__.py", "/__version__.py"]
+files = ["/__init__.py", "/_version.py"]
 DEBUG = False
 
 version = None

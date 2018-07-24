@@ -175,7 +175,7 @@ class JiggleVersion(object):
         changed = 0
         for file_name in self.file_inventory.source_files:
             to_write = []
-            self.create_missing(file_name, file_name)
+            # self.create_missing(file_name, file_name)
             if not os.path.isfile(file_name):
                 continue
 
@@ -221,24 +221,25 @@ class JiggleVersion(object):
                 changed += 1
         return changed
 
-    def create_missing(self, file_name, filepath):  # type: (str,str)->None
-        """
-        Check for file, decide if needed, call to create
-        :param file_name:
-        :param filepath:
-        :return:
-        """
-        if not os.path.isfile(filepath):
-            if self.create_all and "__init__" in file_name and not self.is_file_project:
-                logger.info("Creating " + unicode(filepath))
-                self.file_maker.create_init(filepath)
-                if not os.path.isfile(filepath):
-                    raise JiggleVersionException("Missing file " + filepath)
-            if "__version__" in filepath and not self.is_file_project and self.PROJECT:
-                logger.info("Creating " + unicode(filepath))
-                self.file_maker.create_version(filepath)
-                if not os.path.isfile(filepath):
-                    raise JiggleVersionException("Missing file " + filepath)
+    # This is just a bad idea. You can't do this without user input & __version__.py is a bad convention.
+    # def create_missing(self, file_name, filepath):  # type: (str,str)->None
+    #     """
+    #     Check for file, decide if needed, call to create
+    #     :param file_name:
+    #     :param filepath:
+    #     :return:
+    #     """
+    #     if not os.path.isfile(filepath):
+    #         if self.create_all and "__init__" in file_name and not self.is_file_project:
+    #             logger.info("Creating " + unicode(filepath))
+    #             self.file_maker.create_init(filepath)
+    #             if not os.path.isfile(filepath):
+    #                 raise JiggleVersionException("Missing file " + filepath)
+    #         if "__version__" in filepath and not self.is_file_project and self.PROJECT:
+    #             logger.info("Creating " + unicode(filepath))
+    #             self.file_maker.create_version(filepath)
+    #             if not os.path.isfile(filepath):
+    #                 raise JiggleVersionException("Missing file " + filepath)
 
     def jiggle_setup_py(self):  # type: () -> int
         """

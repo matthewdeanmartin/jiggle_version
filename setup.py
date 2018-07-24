@@ -20,7 +20,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = '\n' + f.read()
 about = {}
-with open(os.path.join(here, PROJECT_NAME, "__version__.py")) as f:
+with open(os.path.join(here, PROJECT_NAME, "_version.py")) as f:
     exec(f.read(), about)
 if sys.argv[-1] == "publish":
     os.system("python setup.py sdist bdist_wheel upload")

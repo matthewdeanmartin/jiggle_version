@@ -386,9 +386,11 @@ class FindVersion(object):
             if self.strict:
                 logger.debug(unicode(os.getcwd()))
                 logger.debug(unicode(os.listdir(os.getcwd())))
-                raise JiggleVersionException(
-                    "Can't find setup.py : {0}, path :{1}".format(setup_py, self.SRC)
-                )
+                # return ""
+                # raise JiggleVersionException(
+                #     "Can't find setup.py : {0}, path :{1}".format(setup_py, self.SRC)
+                # )
+                return found
             else:
                 return found
 

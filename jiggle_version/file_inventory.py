@@ -37,7 +37,7 @@ class FileInventory(object):
         # TODO: sometimes the __version__ is in ANY FILE.
         self.source_files = [
             "__init__.py",  # required.
-            # "__version__.py",  # this creates confusing import patterns
+            "__version__.py",  # this creates confusing import patterns
             "_version.py",  # optional
             "version.py",  # uncommon
             "__about__.py",  # uncommon
