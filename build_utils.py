@@ -103,7 +103,7 @@ def has_source_code_tree_changed(task_name, expect_file=None):
         if not os.path.isfile(expect_file):
             # output file gone
             return True
-    state = BuildState(task_name, SRC + PROJECT_NAME)
+    state = BuildState(task_name, os.path.join(SRC, PROJECT_NAME))
     return state.has_source_code_tree_changed()
 
 
