@@ -10,7 +10,7 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
-chardet
+chardet==3.0.4
 cmp-version
 docopt
 parver
