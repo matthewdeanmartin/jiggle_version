@@ -35,26 +35,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.pyup.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__version__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jiggle_version.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jiggle_version.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/build_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/version_lint.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/version_lint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/double_module/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/double_module/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/file_module_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/file_module_src/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/sample_lib/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/setup_only/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/setup_only/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/with_unlikely_modules/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/with_unlikely_modules/setup.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample_projects/with_unlikely_modules/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/with_unlikely_modules/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_command_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_command_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_jiggle_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pyup.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.pyup.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -274,8 +255,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.pyup.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="8" />
+            <state relative-caret-position="90">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -388,7 +369,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/checksumdir/__init__.py" />
         <option value="$PROJECT_DIR$/test/test_find_version.py" />
         <option value="$PROJECT_DIR$/jiggle_version/file_makers.py" />
         <option value="$PROJECT_DIR$/../find_known_secrets/build.py" />
@@ -439,6 +419,7 @@
         <option value="$PROJECT_DIR$/jiggle_version/main.py" />
         <option value="$PROJECT_DIR$/test/test_command_line.py" />
         <option value="$PROJECT_DIR$/.pyup.yaml" />
+        <option value="$PROJECT_DIR$/.pyup.yml" />
       </list>
     </option>
   </component>
@@ -1358,8 +1339,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.pyup.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="8" />
+        <state relative-caret-position="90">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
