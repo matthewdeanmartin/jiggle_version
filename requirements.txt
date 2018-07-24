@@ -15,4 +15,4 @@ cmp-version
 docopt
 parver
 semantic-version
-versio
+versio==0.3.0
