@@ -11,7 +11,7 @@
 ################################################################################
 
 chardet
-cmp-version
+cmp-version==3.0.0
 docopt
 parver
 semantic-version
