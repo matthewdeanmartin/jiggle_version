@@ -67,7 +67,7 @@ class BuildState(object):
         # print(os.listdir(directory))
         CURRENT_HASH = dirhash(directory, 'md5', ignore_hidden=True,
                                # changing these exclusions can cause dirhas to skip EVERYTHING
-                               excluded_files=[".coverage", "lint.txt"],
+                               #excluded_files=[".coverage", "lint.txt"],
                                excluded_extensions=[".pyc"]
                                )
 
@@ -94,17 +94,25 @@ def oh_never_mind(what):
     state.oh_never_mind()
 
 
-def has_source_code_tree_changed(what):
-    state = BuildState(what, PROJECT_NAME)
+def has_source_code_tree_changed(task_name, expect_file=None):
+    if expect_file:
+        if os.path.isdir(expect_file) and not os.listdir(expect_file):
+            os.path.dirname(expect_file)
+            # output folder empty
+            return True
+        if not os.path.isfile(expect_file):
+            # output file gone
+            return True
+    state = BuildState(task_name, SRC + PROJECT_NAME)
     return state.has_source_code_tree_changed()
 
 
-def skip_if_no_change(name):
+def skip_if_no_change(name, expect_files=None):
     # https://stackoverflow.com/questions/5929107/decorators-with-parameters
     def real_decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            if not has_source_code_tree_changed(name):
+            if not has_source_code_tree_changed(name, expect_files):
                 print("Nothing changed, won't re-" + name)
                 return
             try:

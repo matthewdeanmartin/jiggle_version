@@ -78,7 +78,6 @@ def git_secrets():
 def clean():
     """
     Delete all outputs. Blank until I think of a better way to do this.
-    :return:
     """
     return
 
@@ -88,7 +87,6 @@ def clean():
 def formatting():
     """
     Call "black" to reformat. Supercedes pylints opinions on formatting.
-    :return:
     """
     if sys.version_info < (3, 6):
         print("Black doesn't work on python 2")
@@ -100,11 +98,10 @@ def formatting():
 
 
 @task(clean, formatting)
-@skip_if_no_change("compile")
+@skip_if_no_change("compile_py")
 def compile_py():
     """
     Catch on the worst syntax errors
-    :return:
     """
     with safe_cd(SRC):
         execute(PYTHON, "-m", "compileall", PROJECT_NAME)
@@ -115,7 +112,6 @@ def compile_py():
 def prospector():
     """
     Catch a few things with a non-strict propector run
-    :return:
     """
     with safe_cd(SRC):
         command = "{0} prospector {1} --profile {1}_style --pylint-config-file=pylintrc.ini --profile-path=.prospector".format(
@@ -172,7 +168,6 @@ def detect_secrets():
 def lint():
     """
     Lint
-    :return:
     """
     with safe_cd(SRC):
         if os.path.isfile("lint.txt"):
@@ -226,7 +221,6 @@ def lint():
 def nose_tests():
     """
     Nose tests
-    :return:
     """
     # with safe_cd(SRC):
     if IS_DJANGO:
@@ -387,6 +381,7 @@ def check_setup_py():
 
 
 @task()
+@skip_if_no_change("vulture", expect_files="dead_code.txt")
 def dead_code():
     """
     This also finds code you are working on today!
@@ -428,12 +423,12 @@ def package():
 @task(package)
 def gemfury():
     """
-    Push to gem fury
-
-    fury login
-    fury push dist/*.gz --as=YOUR_ACCT
-    fury push dist/*.whl --as=YOUR_ACCT
+    Push to gem fury, a repo with private options
     """
+    # fury login
+    # fury push dist/*.gz --as=YOUR_ACCT
+    # fury push dist/*.whl --as=YOUR_ACCT
+
     cp = subprocess.run(("fury login --as={0}".format(GEM_FURY).split(" ")),
                         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                         shell=False, check=True)
@@ -474,9 +469,6 @@ def gemfury():
 def echo(*args, **kwargs):
     """
     Pure diagnostics
-    :param args:
-    :param kwargs:
-    :return:
     """
     print(args)
     print(kwargs)

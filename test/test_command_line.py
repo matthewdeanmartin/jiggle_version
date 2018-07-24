@@ -48,7 +48,17 @@ def test_self_version():
     try:
         os.chdir(SRC)
         print(os.getcwd())
-        result = execute_get_text("python -m jiggle_version --version --debug=True")
+        result = execute_get_text("python -m jiggle_version --version")
+        print(result)
+        assert "." in result.split("Jiggle Version")[1]
+    finally:
+        os.chdir(initial_pwd)
+
+def test_self_help():
+    try:
+        os.chdir(SRC)
+        print(os.getcwd())
+        result = execute_get_text("python -m jiggle_version --help")
         print(result)
         assert result
     finally:

@@ -31,6 +31,7 @@ from typing import List, Optional, Dict, Any
 
 from docopt import docopt
 
+from jiggle_version._version import __version__
 from jiggle_version.central_module_finder import CentralModuleFinder
 from jiggle_version.commands import bump_version, find_version
 from jiggle_version.file_opener import FileOpener
@@ -89,7 +90,7 @@ def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
     if test:
         arguments = test
     else:
-        arguments = docopt(__doc__, version="Jiggle Version 1.0")
+        arguments = docopt(__doc__, version="Jiggle Version {0}".format(__version__))
 
     logger.debug(arguments)
 

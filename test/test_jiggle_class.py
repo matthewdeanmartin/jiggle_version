@@ -25,6 +25,7 @@ various = {
     "double_module":  here + "/../sample_projects/double_module/",
     "ver_in_weird_file":  here + "/../sample_projects/ver_in_weird_file/",
     "with_unlikely_modules": here + "/../sample_projects/with_unlikely_modules/",
+    "dupes_in_dunders": here + "/../sample_projects/dupes_in_dunders/",
 }
 
 def test_go():

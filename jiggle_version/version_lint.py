@@ -15,3 +15,7 @@ jiggle_version lint
 - single file module should have __version__
 
 """
+
+# List files to version
+
+# List files to create (setup.py, init)
