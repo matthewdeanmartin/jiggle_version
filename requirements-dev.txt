@@ -14,7 +14,7 @@ bandit==1.4.0
 black==18.6b3; python_version >= '3.6'
 checksumdir==1.1.4
 detect-secrets==0.9.1
-mccabe
+mccabe==0.6.1
 mypy ; python_version >= '3.4'
 nose
 pandoc
