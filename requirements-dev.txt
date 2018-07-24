@@ -34,7 +34,7 @@ python-coveralls==2.9.1
 python-taint==0.34
 radon==2.2.0
 sphinx==1.7.6
-sphinx-rtd-theme
+sphinx-rtd-theme==0.4.0
 teamcity-messages
 twine
 vulture
