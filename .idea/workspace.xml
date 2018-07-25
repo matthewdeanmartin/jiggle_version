@@ -35,12 +35,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/jiggle_version/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/commands.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/find_version_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/find_version_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/module_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/module_finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/package_info_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/package_info_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -148,14 +143,14 @@
           <entry key="lock" value="4" />
           <entry key="md" value="37" />
           <entry key="pstat" value="1" />
-          <entry key="py" value="1171" />
+          <entry key="py" value="1174" />
           <entry key="rst" value="14" />
           <entry key="setup" value="1" />
           <entry key="sh" value="17" />
           <entry key="txt" value="101" />
           <entry key="version" value="3" />
           <entry key="yaml" value="9" />
-          <entry key="yml" value="13" />
+          <entry key="yml" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -168,10 +163,10 @@
           <entry key="Markdown" value="37" />
           <entry key="PLAIN_TEXT" value="151" />
           <entry key="Profiler Session" value="1" />
-          <entry key="Python" value="1178" />
+          <entry key="Python" value="1181" />
           <entry key="ReST" value="14" />
           <entry key="TOML file" value="16" />
-          <entry key="YAML" value="22" />
+          <entry key="YAML" value="23" />
           <entry key="yarn.lock" value="1" />
         </counts>
       </usages-collector>
@@ -191,7 +186,7 @@
           <entry key="sh" value="462" />
           <entry key="txt" value="5" />
           <entry key="yaml" value="11" />
-          <entry key="yml" value="88" />
+          <entry key="yml" value="93" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -205,7 +200,7 @@
           <entry key="Python" value="59235" />
           <entry key="ReST" value="181" />
           <entry key="TOML file" value="32" />
-          <entry key="YAML" value="99" />
+          <entry key="YAML" value="104" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -223,48 +218,49 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version_self.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pipfile.lock">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
-              <caret line="78" column="37" lean-forward="true" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
+              <caret line="78" column="37" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
               <folding>
-                <marker date="1532463740000" expanded="true" signature="1574:1587" ph="..." />
+                <marker date="1532463789000" expanded="true" signature="1574:1587" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pipfile">
+        <entry file="file://$PROJECT_DIR$/test/test_find_version.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="18" />
+            <state relative-caret-position="274">
+              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/module_finder.py">
+        <entry file="file://$PROJECT_DIR$/test/test_jiggle_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="109" column="36" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="36" />
-              <folding>
-                <marker date="1532462787000" expanded="true" signature="2282:2383" ph="..." />
-              </folding>
+            <state relative-caret-position="162">
+              <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test_main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -377,8 +373,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fetch_raw_data/.gitignore" />
-        <option value="$PROJECT_DIR$/sample_projects/ver_in_weird_file/setup.py" />
         <option value="$PROJECT_DIR$/test/test_version_schemes.py" />
         <option value="$PROJECT_DIR$/test/test_damanged_versions.py" />
         <option value="$PROJECT_DIR$/sample_projects/ver_in_weird_file/ver_in_weird_file/smtp.py" />
@@ -417,9 +411,7 @@
         <option value="$PROJECT_DIR$/build_utils.py" />
         <option value="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__init__.py" />
         <option value="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__version__.py" />
-        <option value="$PROJECT_DIR$/test/test_jiggle_class.py" />
         <option value="$PROJECT_DIR$/jiggle_version/file_inventory.py" />
-        <option value="$PROJECT_DIR$/test/test_main.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/jiggle_version_self.py" />
         <option value="$PROJECT_DIR$/jiggle_version/module_finder.py" />
@@ -428,6 +420,10 @@
         <option value="$PROJECT_DIR$/jiggle_version/find_version_class.py" />
         <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
         <option value="$PROJECT_DIR$/jiggle_version/main.py" />
+        <option value="$PROJECT_DIR$/test/test_find_version.py" />
+        <option value="$PROJECT_DIR$/test/test_jiggle_class.py" />
+        <option value="$PROJECT_DIR$/test/test_main.py" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -480,9 +476,9 @@
       <path value="$PROJECT_DIR$/fetch_raw_data/packages/alto-0.4/alto/static/codemirror/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="43" />
+    <option name="y" value="333" />
     <option name="width" value="1920" />
     <option name="height" value="993" />
   </component>
@@ -499,11 +495,6 @@
           <expand>
             <path>
               <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
               <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -846,12 +837,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetests_for_test_jiggle_class_test_new_probs - 2018.07.24 at 15h 47m 17s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_new_probs" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_for_test_jiggle_class_test_new_probs - 2018.07.24 at 15h 47m 23s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_new_probs" configurationId="tests" />
-    </history-entry>
     <history-entry file="Nosetests_for_test_jiggle_class_test_new_probs - 2018.07.24 at 15h 48m 20s.xml">
       <configuration name="Nosetests for test_jiggle_class.test_new_probs" configurationId="tests" />
     </history-entry>
@@ -876,15 +861,21 @@
     <history-entry file="Nosetests_for_test_jiggle_class_test_new_probs - 2018.07.24 at 16h 03m 39s.xml">
       <configuration name="Nosetests for test_jiggle_class.test_new_probs" configurationId="tests" />
     </history-entry>
+    <history-entry file="Nosetests_in_test - 2018.07.24 at 16h 22m 28s.xml">
+      <configuration name="Nosetests in test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_test - 2018.07.24 at 16h 22m 59s.xml">
+      <configuration name="Nosetests in test" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="116" y="81" width="1920" height="993" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="830" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18157615" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24391988" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.43394077" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.43394077" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.38952163" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30751708" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -894,7 +885,7 @@
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="TeamCity" order="10" weight="0.3446712" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3667426" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.45034966" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="bottom" id="Python Console" order="14" weight="0.32819074" />
@@ -906,7 +897,7 @@
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Structure" order="7" visible="true" weight="0.10330138" />
+      <window_info anchor="right" id="Structure" order="7" visible="true" weight="0.13876967" />
       <window_info anchor="right" id="Coverage" order="8" side_tool="true" />
     </layout>
     <layout-to-restore>
@@ -954,12 +945,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/jiggle_version/main.py</url>
-          <line>119</line>
+          <line>123</line>
           <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/jiggle_version/main.py</url>
-          <line>118</line>
+          <line>124</line>
           <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1080,16 +1071,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sample_projects/file_module_src/file_module.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample_projects/file_module_ver_in_file/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="6" lean-forward="true" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample_projects/file_module_ver_in_file/setup.cfg" />
     <entry file="file://$PROJECT_DIR$/sample_projects/file_module_ver_in_file/file_module.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1310,13 +1291,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_jiggle_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__version__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1335,13 +1309,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="70" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1413,10 +1380,38 @@
     <entry file="file://$PROJECT_DIR$/jiggle_version/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="78" column="37" lean-forward="true" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
+          <caret line="78" column="37" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
           <folding>
-            <marker date="1532463740000" expanded="true" signature="1574:1587" ph="..." />
+            <marker date="1532463789000" expanded="true" signature="1574:1587" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_find_version.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_jiggle_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
         </state>
       </provider>
     </entry>
