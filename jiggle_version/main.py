@@ -99,8 +99,8 @@ def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
     central_module = central_module_finder.find_central_module()
 
     if arguments["here"]:
-        if arguments["--debug"] == "True":
-            console_trace(logging.DEBUG)
+        # TODO: find better way to turn debugging on & off
+        # console_trace(logging.DEBUG)
         module_finder = ModuleFinder(file_opener)
         guess_src_dir = module_finder.extract_package_dir()
         if not guess_src_dir:

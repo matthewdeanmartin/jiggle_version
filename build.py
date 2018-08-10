@@ -33,7 +33,7 @@ CURRENT_HASH = None
 MAC_LIBS = ":"
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '.'))
-from build_utils import check_is_aws, skip_if_no_change, execute_with_environment, get_versions
+from build_utils import check_is_aws, skip_if_no_change, execute_with_environment, get_versions, execute_get_text
 
 @task()
 @skip_if_no_change("git_secrets")
@@ -85,19 +85,26 @@ def clean():
 @task()
 @skip_if_no_change("formatting")
 def formatting():
-    """
-    Call "black" to reformat. Supercedes pylints opinions on formatting.
-    """
-    if sys.version_info < (3, 6):
-        print("Black doesn't work on python 2")
-        return
     with safe_cd(SRC):
+        if sys.version_info < (3, 6):
+            print("Black doesn't work on python 2")
+            return
         command = "{0} black {1}".format(PIPENV, PROJECT_NAME).strip()
         print(command)
-        execute(*(command.split(" ")))
+        result = execute_get_text(command)
+        assert result
+        changed =[]
+        for line in result.split("\n"):
+            if "reformatted " in line:
+                file = line[len("reformatted "):].strip()
+                changed.append(file)
+        for change in changed:
+            command ="git add {0}".format(change)
+            print(command)
+            execute(*(command.split(" ")))
 
 
-@task(clean, formatting)
+@task()
 @skip_if_no_change("compile_py")
 def compile_py():
     """
@@ -132,19 +139,27 @@ def detect_secrets():
     # to ignore a false posites
     errors_file = "detect-secrets-results.txt"
 
-    command = "detect-secrets --scan --base64-limit 4 --exclude .idea|.js|.min.js|.html|.xsd|" \
+    print(execute_get_text("pwd"))
+
+    command = "{0} detect-secrets --scan --base64-limit 4 --exclude .idea|.js|.min.js|.html|.xsd|" \
               "lock.json|synced_folders|.scss|Pipfile.lock|" \
-              "lint.txt|{0}".format(errors_file).strip()
+              "lint.txt|{1}".format(PIPENV, errors_file).strip()
     print(command)
     bash_process = subprocess.Popen(command.split(" "),
-                                    # shell=True,
+                                    #shell=True,
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE
                                     )
+    foo = bash_process.wait()
     out, err = bash_process.communicate()  # wait
 
+
     with open(errors_file, "w+") as file_handle:
+        if len(out)==0:
+            print("Warning- no output from detect secrets. Happens with git hook, but not from ordinary command line.")
+            return
         file_handle.write(out.decode())
+
 
 
     with open(errors_file) as f:
@@ -463,6 +478,25 @@ def gemfury():
                             print(line)
                 print(cpe)
                 raise
+
+
+# FAST. FATAL ERRORS. DON'T CHANGE THINGS THAT CHECK IN
+@task(mypy, detect_secrets, git_secrets, check_setup_py, compile_py, dead_code)
+@skip_if_no_change("pre_commit_hook")
+def pre_commit_hook():
+    # Don't format or update version
+    # Don't do slow stuff- discourages frequent check in
+    # Run checks that are likely to have FATAL errors, not just sloppy coding.
+    pass
+
+# Don't break the build, but don't change source tree either.
+@task(mypy, detect_secrets, git_secrets, nose_tests, coverage, check_setup_py, compile_py, dead_code)
+@skip_if_no_change("pre_push_hook")
+def pre_push_hook():
+    # Don't format or update version
+    # Don't do slow stuff- discourages frequent check in
+    # Run checks that are likely to have FATAL errors, not just sloppy coding.
+    pass
 
 
 @task()

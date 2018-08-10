@@ -149,11 +149,13 @@ def execute_get_text(command):  # type: (str) ->str
             check=True,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
         )
     except subprocess.CalledProcessError as err:
         raise
     else:
-        return completed.stdout.decode('utf-8')
+        return completed.stdout.decode('utf-8')  + completed.stderr.decode("utf-8")
+
 
 
 def get_packages():
