@@ -164,7 +164,7 @@ def execute_get_text(command):  # type: (str) ->str
         except subprocess.CalledProcessError as cpe:
             raise
         else:
-            return out.decode('utf-8') + err.decode("utf-8")
+            return str(out) + str(err)
 
 
 
