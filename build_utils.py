@@ -144,17 +144,30 @@ def execute_get_text(command):  # type: (str) ->str
     :return:
     """
     try:
-        completed = subprocess.run(
-            command,
-            check=True,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
-        )
-    except subprocess.CalledProcessError as err:
-        raise
-    else:
-        return completed.stdout.decode('utf-8')  + completed.stderr.decode("utf-8")
+        _ = subprocess.run
+        try:
+            completed = subprocess.run(
+                command,
+                check=True,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+        except subprocess.CalledProcessError as cpe:
+            raise
+        else:
+            return completed.stdout.decode('utf-8') + completed.stderr.decode("utf-8")
+    except AttributeError:
+        try:
+            p = subprocess.Popen(command.split(" "), stdout=subprocess.PIPE)
+            out, err = p.communicate()
+        except subprocess.CalledProcessError as cpe:
+            raise
+        else:
+            return out.decode('utf-8') + err.decode("utf-8")
+
+
+
 
 
 
