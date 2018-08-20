@@ -51,7 +51,7 @@ class FileOpener(object):
         # not supporting surprising extensions, ege. .py2, .python, .corn_chowder
 
         # extensionless
-        if not "." in file_path:
+        if "." not in file_path:
             try:
                 firstline = self.open_this(file_path, "r").readline()
                 if firstline.startswith("#") and "python" in firstline:

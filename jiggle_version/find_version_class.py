@@ -110,11 +110,13 @@ class FindVersion(object):
         if not any(
             [self.is_setup_only_project, self.is_file_project, self.is_folder_project]
         ):
-            logger.warning(
+            print(
                 "Can't find module nor setup.py, typically a packages has a .py file or folder with module name : "
                 + unicode(self.SRC + self.PROJECT)
                 + " - what should be done? Update the version.txt?"
             )
+            exit(-1)
+            return
 
         self.file_inventory = FileInventory(self.PROJECT, self.SRC)
 
@@ -257,6 +259,9 @@ class FindVersion(object):
         Track down all the versions & compile into one dictionary
         :return:
         """
+        if self.PROJECT is None:
+            raise TypeError("self.PROJECT missing, can't continue")
+
         versions = {}  # type: Dict[str,str]
         files_to_check = [x for x in self.file_inventory.source_files]
         files_to_check.append(self.PROJECT + ".py")  # is this the 'central' module?

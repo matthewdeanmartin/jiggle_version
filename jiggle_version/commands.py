@@ -55,6 +55,8 @@ def find_version(project, source):  # type: (str, str) ->None
     # quiet! no noise
     file_opener = FileOpener()
     finder = FindVersion(project, source, file_opener)
+    if finder.PROJECT is None:
+        raise TypeError("Next step will fail without project name")
     if not finder.validate_current_versions():
         # This is a failure.
         logger.debug(unicode(finder.all_current_versions()))

@@ -251,7 +251,7 @@ class ModuleFinder(object):
             if file.endswith("setup.py"):
                 continue  # duh
 
-            if not "." in file:
+            if "." not in file:
                 candidate = files
                 try:
                     firstline = self.file_opener.open_this(file, "r").readline()

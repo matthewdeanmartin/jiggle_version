@@ -15,7 +15,7 @@ from jiggle_version.commands import find_version
 initial_pwd= os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "sample_lib"
-SRC = here + "/../sample_projects/sample_src/"
+SRC = here + "/../sample_projects/"
 
 
 def test_find_version():
