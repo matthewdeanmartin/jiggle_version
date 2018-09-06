@@ -23,14 +23,14 @@ if sys.version_info.major == 3:
 logger = logging.getLogger(__name__)
 
 
-def bump_version(project, source):  # type: (str, str, bool) ->int
+def bump_version(project, source, force_init):  # type: (str, str, bool, bool) ->int
     """
     Entry point
     :return:
     """
     file_opener = FileOpener()
     # logger.debug("Starting version jiggler...")
-    jiggler = JiggleVersion(project, source, file_opener)
+    jiggler = JiggleVersion(project, source, file_opener, force_init)
 
     logger.debug(
         "Current, next : {0} -> {1} : {2}".format(
@@ -47,14 +47,14 @@ def bump_version(project, source):  # type: (str, str, bool) ->int
     return changed
 
 
-def find_version(project, source):  # type: (str, str) ->None
+def find_version(project, source, force_init):  # type: (str, str, bool) ->None
     """
     Entry point to just find a version and print next
     :return:
     """
     # quiet! no noise
     file_opener = FileOpener()
-    finder = FindVersion(project, source, file_opener)
+    finder = FindVersion(project, source, file_opener, force_init=force_init)
     if finder.PROJECT is None:
         raise TypeError("Next step will fail without project name")
     if not finder.validate_current_versions():

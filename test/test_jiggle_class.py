@@ -27,9 +27,26 @@ various_old = {
     ("with_unlikely_modules", ""): here + "/../sample_projects/with_unlikely_modules/",
 }
 
+empty_projects= {("some_thing", ""): here + "/../sample_projects/init_project/",}
+
 various = {
     ("dupes", ""): here + "/../sample_projects/dupes_in_dunders/",
 }
+
+def test_empty_projects():
+    # what ev, who knows if these file even exist
+
+    f = FileOpener()
+    for key, value in empty_projects.items():
+        try:
+            os.chdir(value)
+            jiggler = JiggleVersion(key[1], key[0], f, force_init=True)
+            jiggler.create_configs = True
+            changed = jiggler.jiggle_all()
+            assert changed>0
+        finally:
+            os.chdir(initial_pwd)
+        assert changed > 0
 
 def test_new_probs():
     # what ev, who knows if these file even exist
@@ -38,7 +55,7 @@ def test_new_probs():
     for key, value in various.items():
         try:
             os.chdir(value)
-            jiggler = JiggleVersion(key[1], key[0], f)
+            jiggler = JiggleVersion(key[1], key[0], f, force_init=False)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
             assert changed>0
@@ -53,7 +70,7 @@ def test_old_probs():
     for key, value in various.items():
         try:
             os.chdir(value)
-            jiggler = JiggleVersion(key[0], key[1], f)
+            jiggler = JiggleVersion(key[0], key[1], f, force_init=False)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
             assert changed>0
@@ -76,13 +93,13 @@ def test_no_files():
     try:
         os.chdir(SRC)
         # doesn't exist
-        jiggler = JiggleVersion(PROJECT, "",f)
+        jiggler = JiggleVersion(PROJECT, "",f, force_init=False)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()
 
         # and already exist
-        jiggler = JiggleVersion(PROJECT, "",f)
+        jiggler = JiggleVersion(PROJECT, "",f, force_init=False)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()

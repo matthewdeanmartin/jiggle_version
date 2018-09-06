@@ -87,11 +87,12 @@ class JiggleVersion(object):
     """
 
     def __init__(
-        self, project, source, file_opener
-    ):  # type: (str, str, FileOpener) ->None
+        self, project, source, file_opener, force_init
+    ):  # type: (str, str, FileOpener, bool) ->None
         """
         Entry point
         """
+        self.force_init = force_init
         self.file_opener = file_opener
         if not project:
             logger.warning("No module name, can only update certain files.")
@@ -121,7 +122,9 @@ class JiggleVersion(object):
         self.DEBUG = False
         # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
-        self.version_finder = FindVersion(self.PROJECT, self.SRC, self.file_opener)
+        self.version_finder = FindVersion(
+            self.PROJECT, self.SRC, self.file_opener, force_init=self.force_init
+        )
 
         any_valid = self.version_finder.find_any_valid_version()
 
@@ -147,7 +150,9 @@ class JiggleVersion(object):
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
         self.file_maker = FileMaker(self.PROJECT)
-        self.version_finder = FindVersion(project, source, file_opener)
+        self.version_finder = FindVersion(
+            project, source, file_opener, force_init=self.force_init
+        )
         self.file_inventory = FileInventory(project, source)
 
         # TODO: Make this off by default & option to turn on

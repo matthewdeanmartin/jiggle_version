@@ -42,7 +42,7 @@ expect version strings in different places:
 -  \__init__.py has \__version_\_
 -  so does \__version__.py
 -  so does the setup function in setup.py
--  so does the setup.cfg if you are doing cofig driven setup.py
+-  so does the setup.cfg if you are doing config driven setup.py
 -  your git repo might need a tag matching the library version
 -  you might need a plain text version.txt
 

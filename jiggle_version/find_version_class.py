@@ -56,12 +56,12 @@ class FindVersion(object):
     """
 
     def __init__(
-        self, project, source, file_opener
-    ):  # type: (str, str, FileOpener) ->None
+        self, project, source, file_opener, force_init
+    ):  # type: (str, str, FileOpener, bool) ->None
         """
         Entry point
         """
-
+        self.force_init = force_init
         # fuzzy concept of being secure, minimal package, "linted'
         self.strict = True
 
@@ -128,10 +128,14 @@ class FindVersion(object):
         :return:
         """
         versions = self.all_current_versions()
-        if not versions:
+
+        if not versions and not self.force_init:
             raise JiggleVersionException(
-                "Have no versions to work with, failed to find any."
+                "Have no versions to work with, failed to find any. Include --init to start out at 0.1.0"
             )
+
+        if not versions and self.force_init:
+            versions = {"force_init": "0.1.0"}
 
         if len(versions) > 1:
             if not self.all_versions_equal(versions):
@@ -241,6 +245,8 @@ class FindVersion(object):
         :param module_name:
         :return:
         """
+        if not module_name:
+            return {}
         try:
             module = __import__(module_name)
         except ModuleNotFoundError:

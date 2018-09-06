@@ -3,8 +3,8 @@
 Jiggle Version.
 
 Usage:
-  jiggle_version here
-  jiggle_version find
+  jiggle_version here --init
+  jiggle_version find --init
   jiggle_version --project=<project> --source=<source>
   jiggle_version -h | --help
   jiggle_version --version
@@ -12,6 +12,7 @@ Usage:
 Options:
   here                 No config version bumping, edits source code and stops.
   find                 Just tell me next version, like this jiggle_version find>version.txt
+  --init               Force initialization. Use 0.1.0 as first version if version not found
   --execute_code       infer version by parsing only, or parsing and executing?
   --strict             Don't tolerate weird states
   --project=<project>  'Central' module name, e.g. my_lib in src/my_lib
@@ -98,6 +99,15 @@ def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
 
     central_module = central_module_finder.find_central_module()
 
+    if arguments["--init"]:
+        force_init = arguments["--init"]
+        if force_init == "False":
+            force_init = False
+        if force_init == "True":
+            force_init = True
+    else:
+        force_init = False
+
     if arguments["here"]:
         # TODO: find better way to turn debugging on & off
         # console_trace(logging.DEBUG)
@@ -109,19 +119,27 @@ def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
         if not central_module:
             # check if exists first?
             central_module = "setup.py"
-        bump_version(project=central_module, source=guess_src_dir)
+
+        bump_version(
+            project=central_module, source=guess_src_dir, force_init=force_init
+        )
     elif arguments["find"]:
         # Only show errors. Rest of extraneous console output messes up this:
         # jiggle_version find>version.txt
 
         if arguments["--project"]:
             central_module = arguments["--project"]
-        find_version(project=central_module, source="")
+
+        find_version(project=central_module, source="", force_init=force_init)
 
     else:
         if arguments["--project"]:
             central_module = arguments["--project"]
-        bump_version(project=arguments["--project"], source=arguments["--source"])
+        bump_version(
+            project=arguments["--project"],
+            source=arguments["--source"],
+            force_init=force_init,
+        )
 
 
 if __name__ == "__main__":

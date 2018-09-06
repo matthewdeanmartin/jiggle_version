@@ -36,7 +36,7 @@ because so many tools expect version strings in different places:
 - \_\_init\_\_.py has \_\_version\_\_
 - so does \_\_version\_\_.py
 - so does the setup function in setup.py
-- so does the setup.cfg if you are doing cofig driven setup.py
+- so does the setup.cfg if you are doing config driven setup.py
 - your git repo might need a tag matching the library version
 - you might need a plain text version.txt
 

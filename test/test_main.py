@@ -39,6 +39,7 @@ def test_process_docopts_fake_it():
             '--project': "sample_lib",
             '--source': None,
             '--version': False,
+            '--init': False,
             'find': True,
             'here': False}
         main.process_docopts(args)
@@ -53,7 +54,7 @@ def test_entry_point():
     # put app in dir with setup.py. Easier!
     try:
         os.chdir(SRC)
-        main.bump_version(PROJECT, "")
+        main.bump_version(PROJECT, "", force_init=True)
     except JiggleVersionException as jve:
         print(os.getcwd())
         raise
