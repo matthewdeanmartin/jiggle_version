@@ -3,9 +3,9 @@
 Jiggle Version.
 
 Usage:
-  jiggle_version here --init
-  jiggle_version find --init
-  jiggle_version --project=<project> --source=<source>
+  jiggle_version here [--init]
+  jiggle_version find [--init]
+  jiggle_version --project=<project> --source=<source> [--init]
   jiggle_version -h | --help
   jiggle_version --version
 
