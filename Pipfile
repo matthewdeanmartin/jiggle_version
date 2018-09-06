@@ -10,6 +10,7 @@ parver = "*"
 cmp-version = "*"
 versio = "*"
 chardet = "*"
+prospector = "*"
 
 [dev-packages]
 nose = "*"

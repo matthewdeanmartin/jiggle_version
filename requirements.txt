@@ -14,5 +14,6 @@ chardet
 cmp-version
 docopt
 parver
+prospector
 semantic-version
 versio
