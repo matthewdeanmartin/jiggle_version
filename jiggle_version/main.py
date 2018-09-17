@@ -3,8 +3,8 @@
 Jiggle Version.
 
 Usage:
-  jiggle_version here [--init]
-  jiggle_version find [--init]
+  jiggle_version here [--module=<module>] [--init]
+  jiggle_version find [--module=<module>] [--init]
   jiggle_version --project=<project> --source=<source> [--init]
   jiggle_version -h | --help
   jiggle_version --version
@@ -13,6 +13,7 @@ Options:
   here                 No config version bumping, edits source code and stops.
   find                 Just tell me next version, like this jiggle_version find>version.txt
   --init               Force initialization. Use 0.1.0 as first version if version not found
+  --module=<module>    Explicitly specify which module to target
   --execute_code       infer version by parsing only, or parsing and executing?
   --strict             Don't tolerate weird states
   --project=<project>  'Central' module name, e.g. my_lib in src/my_lib
@@ -97,7 +98,14 @@ def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
     file_opener = FileOpener()
     central_module_finder = CentralModuleFinder(file_opener)
 
-    central_module = central_module_finder.find_central_module()
+    if arguments["--module"]:
+        central_module = arguments["--module"]
+    elif arguments["--project"]:
+        # soon to be deprecated in favor of module/package
+        central_module = arguments["--project"]
+    else:
+        # infer it the best we can.
+        central_module = central_module_finder.find_central_module()
 
     if arguments["--init"]:
         force_init = arguments["--init"]
