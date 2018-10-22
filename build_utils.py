@@ -51,7 +51,10 @@ class BuildState(object):
         If a task fails, we don't care if it didn't change since last, re-run,
         :return:
         """
-        os.remove(self.state_file_name)
+        try:
+            os.remove(self.state_file_name)
+        except:
+            pass
 
     def has_source_code_tree_changed(self):
         """

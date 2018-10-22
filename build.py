@@ -278,7 +278,7 @@ def coverage():
     print("Coverage tests always re-run")
     with safe_cd(SRC):
         my_env = config_pythonpath()
-        command = "{0} py.test {1} --cov={2} --cov-report html:coverage --cov-fail-under 60  --verbose".format(
+        command = "{0} py.test {1} --cov={2} --cov-report html:coverage --cov-fail-under 55  --verbose".format(
             PIPENV,
             "test", PROJECT_NAME)
         execute_with_environment(command, my_env)
@@ -498,6 +498,40 @@ def pre_push_hook():
     # Run checks that are likely to have FATAL errors, not just sloppy coding.
     pass
 
+def do_check_manifest(output_file_name, env):
+    if IS_TRAVIS:
+        command = "check-manifest".format(PYTHON).strip().split()
+    else:
+        command = "{0} check-manifest".format(PIPENV).strip().split()
+
+    with open(output_file_name, "w") as outfile:
+
+        subprocess.call(command, stdout=outfile, env=env)
+
+@task()
+@skip_if_no_change("check_manifest", "manifest_errors.txt")
+def check_manifest():
+    env = config_pythonpath()
+    output_file_name = "manifest_errors.txt"
+    do_check_manifest(output_file_name, env)
+
+    with open(output_file_name) as outfile_reader:
+        text = outfile_reader.read()
+
+        print(text)
+        if not os.path.isfile("MANIFEST.in") and "no MANIFEST.in found" in text:
+            command = "{0} check-manifest -c".format(PIPENV).strip().split()
+            subprocess.call(command, env=env)
+            # print("Had to create MANIFEST.in, please review and redo")
+            do_check_manifest(output_file_name, env)
+        else:
+            pass
+            # print("found it")
+    cutoff = 20
+    num_lines = sum(1 for line in open(output_file_name) if line)
+    if num_lines > cutoff:
+        print("Too many lines of manifest problems : {0}, max {1}".format(num_lines, cutoff))
+        exit(-1)
 
 @task()
 def echo(*args, **kwargs):
@@ -506,7 +540,6 @@ def echo(*args, **kwargs):
     """
     print(args)
     print(kwargs)
-
 
 
 # Default task (if specified) is run when no task is specified in the command line

@@ -2,4 +2,4 @@
 """
 Opinionated version incrementing
 """
-__version__ = "1.0.63" # Jiggle Version Was Here
+__version__ = "1.0.64"

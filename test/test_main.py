@@ -36,6 +36,7 @@ def test_process_docopts_fake_it():
         os.chdir(SRC)
         args = {'--debug': 'False',
             '--help': False,
+            '--module': None,
             '--project': "sample_lib",
             '--source': None,
             '--version': False,
