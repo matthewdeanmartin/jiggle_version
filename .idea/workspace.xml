@@ -35,8 +35,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/build_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/build_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +141,7 @@
           <entry key="LICENSE" value="5" />
           <entry key="Makefile" value="2" />
           <entry key="PKG-INFO" value="26" />
-          <entry key="Pipfile" value="19" />
+          <entry key="Pipfile" value="20" />
           <entry key="Pipfile_nodev" value="1" />
           <entry key="Procfile" value="1" />
           <entry key="VERSION" value="3" />
@@ -163,10 +162,10 @@
           <entry key="rst" value="18" />
           <entry key="setup" value="1" />
           <entry key="sh" value="23" />
-          <entry key="txt" value="115" />
+          <entry key="txt" value="118" />
           <entry key="version" value="3" />
           <entry key="yaml" value="9" />
-          <entry key="yml" value="15" />
+          <entry key="yml" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -177,12 +176,12 @@
           <entry key="Ini" value="55" />
           <entry key="Makefile" value="2" />
           <entry key="Markdown" value="42" />
-          <entry key="PLAIN_TEXT" value="179" />
+          <entry key="PLAIN_TEXT" value="182" />
           <entry key="Profiler Session" value="1" />
           <entry key="Python" value="1336" />
           <entry key="ReST" value="18" />
-          <entry key="TOML file" value="19" />
-          <entry key="YAML" value="24" />
+          <entry key="TOML file" value="20" />
+          <entry key="YAML" value="25" />
           <entry key="yarn.lock" value="1" />
         </counts>
       </usages-collector>
@@ -203,7 +202,7 @@
           <entry key="sh" value="938" />
           <entry key="txt" value="5" />
           <entry key="yaml" value="11" />
-          <entry key="yml" value="93" />
+          <entry key="yml" value="122" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -217,7 +216,7 @@
           <entry key="Python" value="64278" />
           <entry key="ReST" value="184" />
           <entry key="TOML file" value="33" />
-          <entry key="YAML" value="104" />
+          <entry key="YAML" value="133" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -248,12 +247,42 @@
         <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="222">
-              <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+              <caret line="107" selection-start-line="107" selection-end-line="107" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements-dev.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-210" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/req_graph.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="160" column="10" selection-start-line="160" selection-start-column="4" selection-end-line="160" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build_utils.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="201">
@@ -263,6 +292,15 @@
                 <marker date="1547231403048" expanded="true" signature="6290:6295" ph="..." />
                 <marker date="1547231403048" expanded="true" signature="6872:6877" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pipfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-131">
+              <caret line="18" column="6" selection-start-line="18" selection-end-line="18" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -278,7 +316,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>process_docopts</find>
       <find>check_ma</find>
       <find>commun</find>
       <find>commu</find>
@@ -308,6 +345,7 @@
       <find>&quot;&quot;\</find>
       <find>&quot;&quot;</find>
       <find>**os.environ</find>
+      <find>pytest</find>
     </findStrings>
     <replaceStrings>
       <replace>version</replace>
@@ -362,7 +400,6 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/jiggle_version_self.py" />
         <option value="$PROJECT_DIR$/jiggle_version/module_finder.py" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/build_hook.sh" />
         <option value="$PROJECT_DIR$/jiggle_version/__main__.py" />
         <option value="$PROJECT_DIR$/jiggle_version/file_opener.py" />
@@ -396,6 +433,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
         <option value="$PROJECT_DIR$/build_utils.py" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -1059,31 +1097,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/warehouse.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/apartment.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/kitchen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-706" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/hint.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/maintenance_room.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="124" lean-forward="true" selection-start-line="124" selection-end-line="124" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/fight.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3598">
@@ -1321,7 +1334,7 @@
     <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
-          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
         </state>
       </provider>
     </entry>
@@ -1334,6 +1347,35 @@
             <marker date="1547231403048" expanded="true" signature="6290:6295" ph="..." />
             <marker date="1547231403048" expanded="true" signature="6872:6877" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-131">
+          <caret line="18" column="6" selection-start-line="18" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements-dev.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-210" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/req_graph.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="160" column="10" selection-start-line="160" selection-start-column="4" selection-end-line="160" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
         </state>
       </provider>
     </entry>
