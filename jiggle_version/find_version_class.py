@@ -81,7 +81,7 @@ class FindVersion(object):
 
         if source is None:
             raise JiggleVersionException(
-                'Can\'t continue, source directory is None, should be ""\ for current dir'
+                'Can\'t continue, source directory is None, should be "" for current dir'
             )
         self.current_version = ""
         self.PROJECT = project

@@ -1,28 +1,25 @@
-include *.lock
 include *.md
-include *.py
-include *.sh
-include *.txt
-include *.yml
+include jiggle_version/*.py
+recursive-include jiggle_version *.py
 include AUTHORS
 include ChangeLog
 include LICENSE
-include Pipfile
-include Pipfile_nodev
-include pylintrc.ini
-recursive-include docs *.bat
-recursive-include docs *.py
-recursive-include docs *.rst
-recursive-include docs *.sh
-recursive-include docs Makefile
-recursive-include extra *.py
-recursive-include fetch_raw_data *.py
-recursive-include fetch_raw_data *.sh
-recursive-include sample_projects *.py
-recursive-include test *.py
-recursive-include test *.sh
-recursive-include usage_example *.py
+prune *.lock
+prune Pipfile
+prune Pipfile_nodev
+prune *.sh
+prune jiggle_version_self.py
+prune build.py
+prune build_utils.py
+prune *.txt
+prune *.yml
+prune pylintrc.ini
 prune docs
 prune sample_projects
 prune usage_example
-prune
+prune fetch_raw_data
+prune docs
+prune test
+prune sample_projects
+prune usage_example
+prune extra

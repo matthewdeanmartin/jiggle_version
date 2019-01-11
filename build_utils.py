@@ -205,3 +205,32 @@ def get_versions():
                 pass
     print(versions)
     return versions
+
+def run_gitleaks():
+    #  git remote get-url --all origin
+    # So far nothing works... as if current repo is corrupt
+    cwd = os.getcwd()
+    command = "gitleaks --repo-path={0} --report=/tmp/{1}.csv".format(cwd, PROJECT_NAME).strip()
+    print(command)
+    cp = subprocess.run((command.split(" ")),
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                        env={
+                            **os.environ,
+                            "GOPATH":"$HOME/gocode",
+                            "PATH":"$PATH:$GOPATH/bin"
+                        },
+                        shell=True, check=True)
+
+def run_truffle_hog():
+    #  git remote get-url --all origin
+    # truffleHog --entropy=False https://github.com/matthewdeanmartin/jiggle_version
+    cwd = os.getcwd()
+    command = "gitleaks --repo-path={0} --report=/tmp/{1}.csv".format(cwd, PROJECT_NAME).strip()
+    print(command)
+    cp = subprocess.run((command.split(" ")),
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                        env={
+                            "GOPATH": "$HOME/gocode",
+                            "PATH": "$PATH:$GOPATH/bin"
+                        },
+                        shell=True, check=True)

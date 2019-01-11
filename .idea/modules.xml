@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/jiggle_version.iml" filepath="$PROJECT_DIR$/.idea/jiggle_version.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../package_quality/.idea/package_quality.iml" filepath="$PROJECT_DIR$/../package_quality/.idea/package_quality.iml" />
     </modules>
   </component>
 </project>

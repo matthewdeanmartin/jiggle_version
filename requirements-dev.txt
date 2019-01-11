@@ -12,6 +12,7 @@
 
 bandit
 black ; python_version >= '3.6'
+check-manifest
 checksumdir
 detect-secrets
 mccabe
@@ -36,5 +37,6 @@ radon
 sphinx
 sphinx-rtd-theme
 teamcity-messages
+trufflehog
 twine
 vulture

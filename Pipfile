@@ -34,14 +34,15 @@ pynt = "*"
 pynt-contrib = "*"
 sphinx = "*"
 vulture = "*"
-mypy = {markers="python_version >= '3.4'"}
+mypy = {markers = "python_version >= '3.4'"}
 detect-secrets = "*"
 pipenv-to-requirements = "*"
 checksumdir = "*"
-black = {markers="python_version >= '3.6'"}
+black = {markers = "python_version >= '3.6'"}
 sphinx-rtd-theme = "*"
 python-coveralls = "*"
 check-manifest = "*"
+trufflehog = "*"
 
 [requires]
 python_version = "3.6"

@@ -33,7 +33,12 @@ CURRENT_HASH = None
 MAC_LIBS = ":"
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '.'))
-from build_utils import check_is_aws, skip_if_no_change, execute_with_environment, get_versions, execute_get_text
+from build_utils import check_is_aws, skip_if_no_change, execute_with_environment, get_versions, execute_get_text, run_gitleaks
+
+@task()
+@skip_if_no_change("git_leaks")
+def git_leaks():
+    run_gitleaks()
 
 @task()
 @skip_if_no_change("git_secrets")
@@ -315,14 +320,15 @@ def compile_mark_down():
     """
     Convert MD to RST
     """
-    with safe_cd(SRC):
-        if IS_TRAVIS:
-            command = "pandoc --from=markdown --to=rst --output=README.rst README.md".strip().split(
-                " ")
-        else:
-            command = "{0} pandoc --from=markdown --to=rst --output=README.rst README.md".format(PIPENV).strip().split(
-                " ")
-        execute(*(command))
+    print("Not compiling README.md because moderately complex MD makes pypi rst parser puke.")
+    # with safe_cd(SRC):
+    #     if IS_TRAVIS:
+    #         command = "pandoc --from=markdown --to=rst --output=README.rst README.md".strip().split(
+    #             " ")
+    #     else:
+    #         command = "{0} pandoc --from=markdown --to=rst --output=README.rst README.md".format(PIPENV).strip().split(
+    #             " ")
+    #     execute(*(command))
 
 
 @task()
@@ -388,6 +394,10 @@ def jiggle_version():
 
 @task()
 def check_setup_py():
+    # if
+    # ValueError: ZIP does not support timestamps before 1980
+    # then run this to ID
+    #   find . -mtime +13700 -ls
     with safe_cd(SRC):
         if IS_TRAVIS:
             execute(PYTHON, *("setup.py check -r -s".split(" ")))

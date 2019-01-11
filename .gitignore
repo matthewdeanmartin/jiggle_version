@@ -114,3 +114,7 @@ sample_projects/sample_src/sample_lib/*.py
 sample_projects/sample_src/*.cfg
 detect-secrets-results.txt
 dead_code.txt
+dist
+dist/
+.idea
+.idea/

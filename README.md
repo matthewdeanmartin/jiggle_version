@@ -5,10 +5,13 @@ Opinionated, no config build version incrementer. No regex. Drop in and go.
     
     cd src
     # should run from same folder with setup.py
-    # or parent folder of my_project/__init__.py
+    # or parent folder of my_module/__init__.py
     
     jiggle_library here
     # find, bump & update version strings in source code
+    
+    jiggle_version here --module=my_module
+    # specify which module.
     
     git --tag $(jiggle_library find)
 
@@ -303,5 +306,5 @@ Django
 ------
 [django-fe-version](https://pypi.org/project/django-fe-version/) Adds a /version/ endpoint to your web app.
 
-[django-project-version](https://pypi.org/project/django-project-version/) same..
+[django-project-version](https://pypi.org/project/django-project-version/) same
 
