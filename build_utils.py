@@ -215,7 +215,7 @@ def run_gitleaks():
     cp = subprocess.run((command.split(" ")),
                         stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                         env={
-                            **os.environ,
+                            # **os.environ, # not supported in python 2
                             "GOPATH":"$HOME/gocode",
                             "PATH":"$PATH:$GOPATH/bin"
                         },

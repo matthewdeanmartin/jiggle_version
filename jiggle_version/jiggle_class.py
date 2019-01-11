@@ -100,7 +100,7 @@ class JiggleVersion(object):
 
         if source is None:
             raise JiggleVersionException(
-                'Can\'t continue, source directory is None, should be ""\ for current dir'
+                'Can\'t continue, source directory is None, should be zero length string for current dir'
             )
 
         self.PROJECT = project
