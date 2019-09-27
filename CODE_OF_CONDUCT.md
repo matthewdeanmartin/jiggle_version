@@ -46,7 +46,8 @@ Harassment includes:
 * Continued one-on-one communication after requests to cease.
 * Deliberate “outing” of any aspect of a person’s identity without their consent except as necessary to protect vulnerable people from intentional abuse.
 * Publication of non-harassing private communication.
-* jiggle_version main repo prioritizes marginalized people’s safety over privileged people’s comfort. The repo admis reserves the right not to act on complaints regarding:
+
+jiggle_version main repo prioritizes marginalized people’s safety over privileged people’s comfort. The repo admis reserves the right not to act on complaints regarding:
 
 * ‘Reverse’ -isms, including ‘reverse racism,’ ‘reverse sexism,’ and ‘cisphobia’
 * Reasonable communication of boundaries, such as “leave me alone,” “go away,” or “I’m not discussing this with you.”
