@@ -1,19 +1,19 @@
 # jiggle_version
 Opinionated, no config build version incrementer. No regex. Drop in and go.
 
-    pip install jiggle_library
+    pip install jiggle_version
     
     cd src
     # should run from same folder with setup.py
     # or parent folder of my_module/__init__.py
     
-    jiggle_library here
+    jiggle_version here
     # find, bump & update version strings in source code
     
     jiggle_version here --module=my_module
     # specify which module.
     
-    git --tag $(jiggle_library find)
+    git --tag $(jiggle_version find)
 
 Depends on cmp-version, docopt, parver, semantic-version, versio, which your application is unlikely to depend on.
 
@@ -27,7 +27,7 @@ How's it doing?
 
 Where's the bits?
 
-[![PyPI version](https://badge.fury.io/py/jiggle_version.svg)](https://badge.fury.io/py/jiggle_version)  ![GitHub release](https://img.shields.io/github/release/jiggle-version/rubidium.svg)
+[![PyPI version](https://badge.fury.io/py/jiggle-version.svg)](https://badge.fury.io/py/jiggle-version)  ![GitHub release](https://img.shields.io/github/release/jiggle-version/rubidium.svg)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
 
@@ -50,7 +50,7 @@ Opinionated
 -----------
 A library should have one working, no-options, no questions asked scenario, e.g.
 
-    jiggle_library here
+    jiggle_version here
     # find, bump & update version strings in source code
 
 An opinionated library has an opinion about the right way to do it. That said, if the library can discover existing conventions, it should discover them and use them. If you don't like it, see the end for competing opinionated libraries and their philosophy, such as vcs-tag-only, regex-more-regex-all-day-regex.

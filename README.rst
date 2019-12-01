@@ -6,19 +6,19 @@ go.
 
 ::
 
-    pip install jiggle_library
+    pip install jiggle_version
 
     cd src
     # should run from same folder with setup.py
     # or parent folder of my_module/__init__.py
 
-    jiggle_library here
+    jiggle_version here
     # find, bump & update version strings in source code
 
     jiggle_version here --module=my_module
     # specify which module.
 
-    git --tag $(jiggle_library find)
+    git --tag $(jiggle_version find)
 
 Depends on cmp-version, docopt, parver, semantic-version, versio, which
 your application is unlikely to depend on.
@@ -51,7 +51,7 @@ scenario, e.g.
 
 ::
 
-    jiggle_library here
+    jiggle_version here
     # find, bump & update version strings in source code
 
 An opinionated library has an opinion about the right way to do it. That
