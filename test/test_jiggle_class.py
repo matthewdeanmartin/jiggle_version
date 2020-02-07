@@ -1,18 +1,13 @@
-# coding=utf-8
 """
 Tests
 """
 from jiggle_version.file_opener import FileOpener
 
-try:
-    FileNotFoundError
-except NameError:
-    FileNotFoundError = IOError
-
 import os
 
 from jiggle_version.jiggle_class import JiggleVersion
-initial_pwd= os.getcwd()
+
+initial_pwd = os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "sample_lib"
 SRC = here + "/../sample_projects/sample_src/"
@@ -27,11 +22,10 @@ various_old = {
     ("with_unlikely_modules", ""): here + "/../sample_projects/with_unlikely_modules/",
 }
 
-empty_projects= {("some_thing", ""): here + "/../sample_projects/init_project/",}
+empty_projects = {("some_thing", ""): here + "/../sample_projects/init_project/"}
 
-various = {
-    ("dupes", ""): here + "/../sample_projects/dupes_in_dunders/",
-}
+various = {("dupes", ""): here + "/../sample_projects/dupes_in_dunders/"}
+
 
 def test_empty_projects():
     # what ev, who knows if these file even exist
@@ -43,10 +37,11 @@ def test_empty_projects():
             jiggler = JiggleVersion(key[1], key[0], f, force_init=True)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
-            assert changed>0
+            assert changed > 0
         finally:
             os.chdir(initial_pwd)
         assert changed > 0
+
 
 def test_new_probs():
     # what ev, who knows if these file even exist
@@ -58,10 +53,11 @@ def test_new_probs():
             jiggler = JiggleVersion(key[1], key[0], f, force_init=False)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
-            assert changed>0
+            assert changed > 0
         finally:
             os.chdir(initial_pwd)
         assert changed > 0
+
 
 def test_old_probs():
     # what ev, who knows if these file even exist
@@ -73,15 +69,17 @@ def test_old_probs():
             jiggler = JiggleVersion(key[0], key[1], f, force_init=False)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
-            assert changed>0
+            assert changed > 0
         finally:
             os.chdir(initial_pwd)
 
 
 def test_no_files():
-    for file in [SRC + PROJECT + "/__init__.py",
-                 SRC + PROJECT + "/__version__.py",
-                 SRC + "setup.cfg"]:
+    for file in [
+        SRC + PROJECT + "/__init__.py",
+        SRC + PROJECT + "/__version__.py",
+        SRC + "setup.cfg",
+    ]:
         try:
             os.remove(file)
         except FileNotFoundError:
@@ -93,17 +91,16 @@ def test_no_files():
     try:
         os.chdir(SRC)
         # doesn't exist
-        jiggler = JiggleVersion(PROJECT, "",f, force_init=False)
+        jiggler = JiggleVersion(PROJECT, "", f, force_init=False)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()
 
         # and already exist
-        jiggler = JiggleVersion(PROJECT, "",f, force_init=False)
+        jiggler = JiggleVersion(PROJECT, "", f, force_init=False)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()
 
     finally:
         os.chdir(initial_pwd)
-

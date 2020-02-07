@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 A whole file dedicated to parsing __version__ in all it's weird possible ways
 
@@ -14,18 +13,11 @@ A whole file dedicated to parsing __version__ in all it's weird possible ways
 
 6) Handle version as tuple
 """
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import ast
 import re
-import sys
-from typing import List, Optional, Any, Tuple
+from typing import Optional, Any, Tuple
 
-_ = List, Optional, Any, Tuple
-if sys.version_info.major == 3:
-    unicode = str
 version_tokens = [
     "__version__",  # canonical
     "__VERSION__",  # rare and wrong, but who am I to argue
@@ -35,7 +27,7 @@ version_tokens = [
 ]
 
 
-def find_by_ast(line, version_token="__version__"):  # type: (str,str) -> Optional[str]
+def find_by_ast(line: str, version_token: str = "__version__") -> Optional[str]:
     """
     Safer way to 'execute' python code to get a simple value
     :param line:
@@ -48,20 +40,21 @@ def find_by_ast(line, version_token="__version__"):  # type: (str,str) -> Option
     simplified_line = simplify_line(line)
 
     if simplified_line.startswith(version_token):
+        # noinspection PyBroadException
         try:
-            tree = ast.parse(simplified_line)  # type: Any
+            tree: Any = ast.parse(simplified_line)
             if hasattr(tree.body[0].value, "s"):
-                return unicode(tree.body[0].value.s)
+                return str(tree.body[0].value.s)
             if hasattr(tree.body[0].value, "elts"):
                 version_parts = []
                 for elt in tree.body[0].value.elts:
                     if hasattr(elt, "n"):
-                        version_parts.append(unicode(elt.n))
+                        version_parts.append(str(elt.n))
                     else:
-                        version_parts.append(unicode(elt.s))
+                        version_parts.append(str(elt.s))
                 return ".".join(version_parts)
             if hasattr(tree.body[0].value, "n"):
-                return unicode(tree.body[0].value.n)
+                return str(tree.body[0].value.n)
             # print(tree)
         except Exception:
             # raise
@@ -70,7 +63,7 @@ def find_by_ast(line, version_token="__version__"):  # type: (str,str) -> Option
     return None
 
 
-def simplify_line(line, keep_comma=False):  # type: (str, bool)->str
+def simplify_line(line: str, keep_comma: bool = False) -> str:
     """
     Change ' to "
     Remove tabs and spaces (assume no significant whitespace inside a version string!)
@@ -97,8 +90,8 @@ def simplify_line(line, keep_comma=False):  # type: (str, bool)->str
 
 
 def find_version_by_regex(
-    file_source, version_token="__version__"
-):  # type: (str,str)->Optional[str]
+    file_source: str, version_token: str = "__version__"
+) -> Optional[str]:
     """
     Regex for dunder version
     """
@@ -109,15 +102,15 @@ def find_version_by_regex(
     )
     if version_match:
         candidate = version_match.group(1)
-        if candidate == "" or candidate == ".":  # yes, it will match to a .
+        if candidate in ("", "."):  # yes, it will match to a .
             return None
         return candidate
     return None
 
 
 def find_version_by_string_lib(
-    line, version_token="__version__"
-):  # type: (str,str)->Optional[str]
+    line: str, version_token: str = "__version__"
+) -> Optional[str]:
     """
     No regex parsing. Or at least, mostly, not regex.
     """
@@ -141,7 +134,7 @@ def find_version_by_string_lib(
     return version
 
 
-def validate_string(version):  # type: (Optional[str]) -> Optional[str]
+def validate_string(version: Optional[str]) -> Optional[str]:
     """
     Trying to catch expressions here
     :param version:
@@ -149,18 +142,16 @@ def validate_string(version):  # type: (Optional[str]) -> Optional[str]
     """
     if not version:
         return None
-    for char in version:
+    for char in str(version):
         if char in " \t()":
             return None
             # raise TypeError("Bad parse : " + version)
     return version
 
 
-def find_in_line(line):  # type: (str)->Tuple[Optional[str],Optional[str]]
+def find_in_line(line: str) -> Tuple[Optional[str], Optional[str]]:
     """
     Use three strategies to parse version string
-    :param line:
-    :return:
     """
     if not line:
         return None, None

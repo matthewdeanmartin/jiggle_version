@@ -1,42 +1,37 @@
-# coding=utf-8
 """
 Deals with package level concepts, not module level concepts.
 """
 
-
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 import ast
 import logging
 import os
-import sys
 from typing import List, Optional
 
 # so formatter doesn't remove.
 from setuptools import find_packages
 
-from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
-from jiggle_version.utils import die, first_value_in_dict, JiggleVersionException
+from jiggle_version.utils import (
+    die,
+    first_value_in_dict,
+    JiggleVersionException,
+    ifnull,
+    parse_source_to_dict,
+)
 
 logger = logging.getLogger(__name__)
 
-_ = List, Optional, FileInventory
-if sys.version_info.major == 3:
-    unicode = str
 
-
-class ModuleFinder(object):
+class PackageInfoFinder:
     """
     Finds modules in a folder.
     """
 
-    def __init__(self, file_opener):  # type: (FileOpener) -> None
+    def __init__(self, file_opener: FileOpener) -> None:
         self.file_opener = file_opener
-        self.setup_source = ""
+        self.setup_source: Optional[str] = ""
 
-    def _read_file(self, file):  # type: (str) -> Optional[str]
+    def _read_file(self, file: str) -> Optional[str]:
         """
         Read any file, deal with encoding.
         :param file:
@@ -48,16 +43,19 @@ class ModuleFinder(object):
                 source = setup_py.read()
         return source
 
-    def setup_py_source(self):  # type: () -> Optional[str]
+    def setup_py_source(self) -> Optional[str]:
         """
         Read setup.py to string
         :return:
         """
         if not self.setup_source:
-            source = self._read_file("setup")  # rare case
+            self.setup_source = self._read_file("setup.py")  # rare case
+
+        if not self.setup_source:
+            self.setup_source = self._read_file("setup")  # rare case
         return self.setup_source
 
-    def name_from_setup_py(self):  # type: () -> str
+    def name_from_setup_py(self) -> str:
         """
         Extract likley module name from setup.py args
         :return:
@@ -78,7 +76,7 @@ class ModuleFinder(object):
                     return simplified_row.split('"')[1]
         return ""
 
-    def extract_package_dir(self):  # type: () -> Optional[str]
+    def extract_package_dir(self) -> Optional[str]:
         """
         Get the package_dir dictionary from source
         :return:
@@ -86,6 +84,7 @@ class ModuleFinder(object):
         # package_dir={'': 'lib'},
         source = self.setup_py_source()
         if not source:
+            print("No setup.py")
             # this happens when the setup.py file is missing
             return None
 
@@ -94,20 +93,7 @@ class ModuleFinder(object):
         # sometimes
         # package_dir={...}
         if "package_dir=" in source:
-            line = source.replace("\n", "")
-            line = line.split("package_dir")[1]
-            fixed = ""
-            for char in line:
-                fixed += char
-                if char == "}":
-                    break
-            line = fixed
-
-            simplified_line = line.strip(" ,").replace("'", '"')
-
-            parts = simplified_line.split("=")
-
-            dict_src = parts[1].strip(" \t")
+            dict_src = parse_source_to_dict(source)
             if not dict_src.endswith("}"):
                 raise JiggleVersionException(
                     "Either this is hard to parse or we have 2+ src foldrs"
@@ -121,23 +107,25 @@ class ModuleFinder(object):
             if "" in paths_dict:
                 candidate = paths_dict[""]
                 if os.path.isdir(candidate):
-                    return unicode(candidate)
+                    return str(candidate)
             if len(paths_dict) == 1:
                 candidate = first_value_in_dict(paths_dict)
                 if os.path.isdir(candidate):
-                    return unicode(candidate)
+                    return str(candidate)
             else:
                 raise JiggleVersionException(
                     "Have path_dict, but has more than one path."
                 )
+        else:
+            print("package_dir not in setup.py")
         return None
 
-    def via_find_packages(self):  # type: () -> List[str]
+    def via_find_packages(self) -> List[str]:
         """
         Use find_packages code to find modules. Can find LOTS of modules.
         :return:
         """
-        packages = []  # type: List[str]
+        packages: List[str] = []
         source = self.setup_py_source()
         if not source:
             return packages
@@ -147,17 +135,18 @@ class ModuleFinder(object):
                 if "find_packages()" in row:
                     packages = find_packages()
                 else:
+                    # noinspection PyBroadException
                     try:
                         value = row.split("(")[1].split(")")[0]
                         packages = find_packages(ast.literal_eval(value))
-                        logger.debug(unicode(packages))
+                        logger.debug(str(packages))
                     except:
                         logger.debug(source)
                         # raise
 
         return packages
 
-    def find_project(self):  # type: () -> List[str]
+    def find_project(self) -> List[str]:
         """
         Get all candidate projects
         :return:
@@ -173,12 +162,11 @@ class ModuleFinder(object):
                 if setup:
                     # prevents test folders & other junk
                     in_setup = (
-                        "'{0}".format(project) not in setup
-                        and '"{0}"'.format(project) not in setup
+                        f"'{project}" not in setup and f'"{project}"' not in setup
                     )
                     in_dunder = (
-                        "'{0}".format(dunder_source) not in setup
-                        and '"{0}"'.format(dunder_source) not in setup
+                        f"'{dunder_source}" not in setup
+                        and f'"{dunder_source}"' not in setup
                     )
 
                     if not in_setup and not in_dunder:
@@ -192,12 +180,12 @@ class ModuleFinder(object):
         if not candidates:
             candidates = candidates + self.find_malformed_single_file_project()
 
-        candidates = list(set([x for x in candidates if x]))
+        candidates = list({x for x in candidates if x})
 
         # too many
         if not candidates:
             candidates.extend(self.via_find_packages())
-            candidates = list(set([x for x in candidates if x]))
+            candidates = list({x for x in candidates if x})
 
         if len(candidates) > 1:
             for unlikely in [
@@ -210,7 +198,7 @@ class ModuleFinder(object):
                 "test_files",
             ]:
                 if unlikely in candidates:
-                    logger.warning("Assuming {0} is not the project".format(unlikely))
+                    logger.warning(f"Assuming {unlikely} is not the project")
                     candidates.remove(unlikely)
                 if len(candidates) == 1:
                     break
@@ -220,13 +208,13 @@ class ModuleFinder(object):
             likely_name = self.name_from_setup_py()
             if likely_name in candidates:
                 return [likely_name]
-        return list(set([x for x in candidates if x]))
+        return list({x for x in candidates if x})
 
     # TODO: use setup.py line to find package
     # packages=find_packages('src'),
     # packages=['ajax_select'],
 
-    def find_malformed_single_file_project(self):  # type: () -> List[str]
+    def find_malformed_single_file_project(self) -> List[str]:
         """
         Take first non-setup.py python file. What a mess.
         :return:
@@ -252,13 +240,14 @@ class ModuleFinder(object):
                 continue  # duh
 
             if "." not in file:
-                candidate = files
+                candidate = file
+                # noinspection PyBroadException
                 try:
                     firstline = self.file_opener.open_this(file, "r").readline()
                     if (
                         firstline.startswith("#")
                         and "python" in firstline
-                        and candidate in self.setup_py_source()
+                        and candidate in ifnull(self.setup_py_source(), "")
                     ):
                         candidates.append(candidate)
                         return candidates
@@ -267,7 +256,7 @@ class ModuleFinder(object):
         # default.
         return candidates
 
-    def find_single_file_project(self):  # type: () -> List[str]
+    def find_single_file_project(self) -> List[str]:
         """
         Find well formed singler file project
         :return:
@@ -289,14 +278,12 @@ class ModuleFinder(object):
 
         return candidates
 
-    def validate_found_project(self, candidates):  # type: (List[str]) -> None
+    def validate_found_project(self, candidates: List[str]) -> None:
         """
         Should be only 1 project
-        :param candidates:
-        :return:
         """
         if len(candidates) > 1:
-            message = "Found multiple possible projects : " + unicode(candidates)
+            message = "Found multiple possible projects : " + str(candidates)
             logger.error(message)
             die(-1, message)
             return

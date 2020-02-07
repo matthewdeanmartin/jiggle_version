@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Just discover version and if possible, the schema.
 
@@ -6,20 +5,20 @@ Just discover version and if possible, the schema.
 TODO: __version_info__ = (3, 0, 0, 'a0')  -- sometime this is canonical. Shouldn't be first choice.
 But not sys.version_info!
 
-TODO: use_scm_version=True,  -- If this is in the file, then the user is signalling that no file will have a version string!
+TODO: use_scm_version=True,  -- If this is in the file, then the user is signalling that no file will have a
+version string!
 
 """
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import ast
+import configparser
 import logging
 import os.path
 import sys
-from typing import List, Optional, Dict, Any, Tuple
+from typing import List, Optional, Dict, Tuple, Union, cast
 
+import parver
 from semantic_version import Version
+from versio import version as versio_version
 
 import jiggle_version.parse_dunder_version as dunder_version
 import jiggle_version.parse_kwarg_version as kwarg_version
@@ -32,32 +31,20 @@ from jiggle_version.utils import (
     JiggleVersionException,
     die,
     execute_get_text,
+    ifnull,
 )
-
-try:
-    import configparser
-except ImportError:
-    # Python 2.x fallback
-    import ConfigParser as configparser
-
-
-if sys.version_info.major == 3:
-    unicode = str
 
 logger = logging.getLogger(__name__)
 
-# contrive usage so black doesn't remove the import
-_ = List, Optional, Dict, Any, Tuple
 
-
-class FindVersion(object):
+class FindVersion:
     """
     Because OOP.
     """
 
     def __init__(
-        self, project, source, file_opener, force_init
-    ):  # type: (str, str, FileOpener, bool) ->None
+        self, project: str, source: str, file_opener: FileOpener, force_init: bool
+    ) -> None:
         """
         Entry point
         """
@@ -67,13 +54,13 @@ class FindVersion(object):
 
         # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
-        self.version = None  # type: Optional[Version]
+        self.version: Optional[Version] = None
         self.create_configs = False
 
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
         self.setup_py_source = None
-        self.schema = None
+        self.schema: Optional[str] = None
 
         # if not project:
         #     raise JiggleVersionException("Can't continue, no project name")
@@ -83,22 +70,24 @@ class FindVersion(object):
             raise JiggleVersionException(
                 'Can\'t continue, source directory is None, should be "" for current dir'
             )
-        self.current_version = ""
+        self.current_version: Optional[
+            Union[Version, parver.Version, versio_version.Version]
+        ] = None
         self.PROJECT = project
         self.SRC = source
 
         if self.PROJECT is None:
-            self.is_folder_project = False  # type: bool
+            self.is_folder_project: bool = False
         else:
             candidate_folder = os.path.join(self.SRC, self.PROJECT)
-            self.is_folder_project = os.path.isdir(candidate_folder)  # type: bool
+            self.is_folder_project = os.path.isdir(candidate_folder)
 
         if self.PROJECT is None:
-            self.is_file_project = False  # type: bool
+            self.is_file_project: bool = False
         else:
             self.is_file_project = os.path.isfile(
                 os.path.join(self.SRC, self.PROJECT) + ".py"
-            )  # type : bool
+            )
 
         if not self.is_folder_project and not self.is_file_project:
             self.is_setup_only_project = os.path.isfile(
@@ -112,15 +101,15 @@ class FindVersion(object):
         ):
             print(
                 "Can't find module nor setup.py, typically a packages has a .py file or folder with module name : "
-                + unicode(self.SRC + self.PROJECT)
+                + str(self.SRC + self.PROJECT)
                 + " - what should be done? Update the version.txt?"
             )
-            exit(-1)
-            return
+            # exits really mess with unit test runners
+            sys.exit(-1)
 
         self.file_inventory = FileInventory(self.PROJECT, self.SRC)
 
-    def find_any_valid_version(self):  # type: () -> str
+    def find_any_valid_version(self) -> str:
         """
         Find version candidates, return first (or any, since they aren't ordered)
 
@@ -141,22 +130,20 @@ class FindVersion(object):
             if not self.all_versions_equal(versions):
                 if not self.all_versions_equal(versions):
                     almost_same = self.almost_the_same_version(
-                        [x for x in versions.values()]
+                        cast(List[str], versions.values())
                     )
                     if almost_same:
                         # TODO: disable with strict option
                         logger.warning(
                             "Version very by a patch level, will use greater."
                         )
-                        return unicode(almost_same)
+                        return str(almost_same)
 
         if not versions.keys():
-            raise JiggleVersionException("Noooo! Must find a value" + unicode(versions))
-        return unicode(first_value_in_dict(versions))
+            raise JiggleVersionException("Noooo! Must find a value" + str(versions))
+        return str(first_value_in_dict(versions))
 
-    def almost_the_same_version(
-        self, version_list
-    ):  # type: (List[str]) -> Optional[str]
+    def almost_the_same_version(self, version_list: List[str]) -> Optional[str]:
         """
         Are these versions different by a .1 patch level? This is crazy common in the wild.
         :param version_list:
@@ -165,9 +152,7 @@ class FindVersion(object):
 
         version_list = list(set(version_list))
         try:
-            sem_ver_list = list(
-                set([unicode(Version(x)) for x in version_list])
-            )  # type: List[Version]
+            sem_ver_list: List[Version] = list({str(Version(x)) for x in version_list})
         except ValueError:
             # I hope htat was a bad semver
             return None
@@ -175,15 +160,15 @@ class FindVersion(object):
         # should be good sem vers from here
         if len(sem_ver_list) == 2:
             if (
-                sem_ver_list[0] == unicode(Version(sem_ver_list[1]).next_patch())
-                or unicode(Version(sem_ver_list[0]).next_patch()) == sem_ver_list[1]
+                sem_ver_list[0] == str(Version(sem_ver_list[1]).next_patch())
+                or str(Version(sem_ver_list[0]).next_patch()) == sem_ver_list[1]
             ):
                 if sem_ver_list[0] > sem_ver_list[1]:
-                    return unicode(sem_ver_list[0])
-                return unicode(sem_ver_list[1])
+                    return str(sem_ver_list[0])
+                return str(sem_ver_list[1])
         return None
 
-    def validate_current_versions(self):  # type: () -> bool
+    def validate_current_versions(self) -> bool:
         """
         Can a version be found? Are all versions currently the same? Are they valid sem ver?
         :return:
@@ -201,19 +186,19 @@ class FindVersion(object):
             return True
 
         if not self.all_versions_equal(versions):
-            if self.almost_the_same_version([x for x in versions.values()]):
+            if self.almost_the_same_version(cast(List[str], versions.values())):
                 # TODO: disable with strict option
                 logger.warning("Version very by a patch level, will use greater.")
                 return True
             logger.error("Found various versions, how can we rationally pick?")
-            logger.error(unicode(versions))
+            logger.error(str(versions))
             return False
 
         for _ in versions:
             return True
         return False
 
-    def version_by_eval(self, file_path):  # type: (str) ->Dict[str,str]
+    def version_by_eval(self, file_path: str) -> Dict[str, str]:
         """
         Version by ast evaluation. Didn't find more versions that existing methods
         :param file_path:
@@ -228,6 +213,7 @@ class FindVersion(object):
         sb += "}"
         if sb == "{}":
             return {}
+        # noinspection PyBroadException
         try:
             thing = ast.literal_eval(sb)
         except:
@@ -237,7 +223,7 @@ class FindVersion(object):
                 return {"literal_eval": thing[version_token]}
         return {}
 
-    def version_by_import(self, module_name):  # type: (str) ->Dict[str,str]
+    def version_by_import(self, module_name: str) -> Dict[str, str]:
         """
         This is slow & if running against random code, dangerous
 
@@ -260,7 +246,7 @@ class FindVersion(object):
             return {"module import": version}
         return {}
 
-    def all_current_versions(self):  # type: () ->Dict[str,str]
+    def all_current_versions(self) -> Dict[str, str]:
         """
         Track down all the versions & compile into one dictionary
         :return:
@@ -268,14 +254,14 @@ class FindVersion(object):
         if self.PROJECT is None:
             raise TypeError("self.PROJECT missing, can't continue")
 
-        versions = {}  # type: Dict[str,str]
-        files_to_check = [x for x in self.file_inventory.source_files]
+        versions: Dict[str, str] = {}
+        files_to_check = self.file_inventory.source_files
         files_to_check.append(self.PROJECT + ".py")  # is this the 'central' module?
         for file in self.file_inventory.source_files:
 
             if not os.path.isfile(file):
                 continue
-            vers = self.find_dunder_version_in_file(file)
+            vers: Optional[Dict[str, str]] = self.find_dunder_version_in_file(file)
             if vers:
                 versions = merge_two_dicts(versions, vers)
 
@@ -305,29 +291,26 @@ class FindVersion(object):
                     if vers:
                         maybe_good = merge_two_dicts(good_versions, vers)
 
-                        more_bad_versions, good_versions = self.kick_out_bad_versions(
-                            maybe_good
-                        )
+                        _, good_versions = self.kick_out_bad_versions(maybe_good)
 
         if not good_versions:
             vers = self.execute_setup()
             if vers:
+                # noinspection PyBroadException
                 try:
-                    for key, value in vers.items():
+                    for value in vers.values():
                         _ = version_object_and_next(value)
                 except:
                     print(vers)
 
                 maybe_good = merge_two_dicts(good_versions, vers)
-                more_bad_versions, good_versions = self.kick_out_bad_versions(
-                    maybe_good
-                )
+                _, good_versions = self.kick_out_bad_versions(maybe_good)
 
         # more_bad_versions, good_versions = self.kick_out_bad_versions(versions)
         if not good_versions:
             vers = self.version_by_import(self.PROJECT)
             maybe_good = merge_two_dicts(good_versions, vers)
-            more_bad_versions, good_versions = self.kick_out_bad_versions(maybe_good)
+            _, good_versions = self.kick_out_bad_versions(maybe_good)
 
         # no new versions found!
         # for file in self.file_inventory.source_files:
@@ -340,17 +323,22 @@ class FindVersion(object):
         #         maybe_good
         #     )
 
+        # BUG: this ignores a bunch of bad versions because I would have had to merged dict
         if bad_versions:
-            print(unicode(bad_versions))
-            logger.warning(unicode(bad_versions))
+            print(str(bad_versions))
+            logger.warning(str(bad_versions))
         return good_versions
 
     def kick_out_bad_versions(
-        self, versions
-    ):  # type: (Dict[str,str])->Tuple[Dict[str,str], Dict[str,str]]
-        copy = {}  # type: Dict[str,str]
+        self, versions: Dict[str, str]
+    ) -> Tuple[Dict[str, str], Dict[str, str]]:
+        """
+        Remove invalid versions from list of possible
+        """
+        copy: Dict[str, str] = {}
         bad_versions = {}
         for key, version in versions.items():
+            # noinspection PyBroadException
             try:
                 _ = version_object_and_next(version)
                 copy[key] = version
@@ -358,7 +346,7 @@ class FindVersion(object):
                 bad_versions[key] = version
         return bad_versions, copy
 
-    def all_versions_equal(self, versions):  # type: (Dict[str,str]) -> bool
+    def all_versions_equal(self, versions: Dict[str, str]) -> bool:
         """
         Verify that all the versions are the same.
         :param versions:
@@ -373,9 +361,10 @@ class FindVersion(object):
                 try:
                     semver, _, __ = version_object_and_next(version)
                 except ValueError:
-                    logger.error("Invalid version at:" + unicode((key, version)))
+                    logger.error("Invalid version at:" + str((key, version)))
                     return False
                 continue
+            # noinspection PyBroadException
             try:
                 version_as_version, _, __ = version_object_and_next(version)
             except:
@@ -384,32 +373,32 @@ class FindVersion(object):
                 return False
         return True
 
-    def read_setup_py(self):  # type: ()-> Dict[str,str]
+    def read_setup_py(self) -> Dict[str, str]:
         """
         Extract from setup.py's setup() arg list.
         :return:
         """
-        found = {}  # type: Dict[str,str]
+        found: Dict[str, str] = {}
         setup_py = os.path.join("setup.py")
 
         if not os.path.isfile(setup_py):
             if self.strict:
-                logger.debug(unicode(os.getcwd()))
-                logger.debug(unicode(os.listdir(os.getcwd())))
+                logger.debug(str(os.getcwd()))
+                logger.debug(str(os.listdir(os.getcwd())))
                 # return ""
                 # raise JiggleVersionException(
                 #     "Can't find setup.py : {0}, path :{1}".format(setup_py, self.SRC)
                 # )
                 return found
-            else:
-                return found
+            return found
 
         self.setup_py_source = self.file_opener.open_this(setup_py, "r").read()
 
-        if "use_scm_version=True" in self.setup_py_source:
+        if "use_scm_version=True" in ifnull(self.setup_py_source, ""):
             die(
                 -1,
-                "setup.py has use_scm_version=True in it- this means we expect no file to have a version string. Nothing to change",
+                "setup.py has use_scm_version=True in it- this means we expect no file to have a version string. "
+                "Nothing to change",
             )
             return {}
 
@@ -430,7 +419,7 @@ class FindVersion(object):
 
         return found
 
-    def read_text(self):  # type: () ->Dict[str,str]
+    def read_text(self) -> Dict[str, str]:
         """
         Get version out of ad-hoc version.txt
         :return:
@@ -444,7 +433,7 @@ class FindVersion(object):
             found[file] = text.strip(" \n")
         return found
 
-    def read_metadata(self):  # type: () ->Dict[str,str]
+    def read_metadata(self) -> Dict[str, str]:
         """
         Get version out of a .ini file (or .cfg)
         :return:
@@ -456,11 +445,9 @@ class FindVersion(object):
         except KeyError:
             return {}
 
-    def find_dunder_version_in_file(self, full_path):  # type: (str)-> Dict[str,str]
+    def find_dunder_version_in_file(self, full_path: str) -> Dict[str, str]:
         """
         Find __version__ in a source file
-        :param full_path:
-        :return:
         """
         versions = {}
 
@@ -472,7 +459,7 @@ class FindVersion(object):
                 version, _ = dunder_version.find_in_line(line)
         return versions
 
-    def version_to_write(self, found):  # type: (str) -> Version
+    def version_to_write(self, found: str) -> Version:
         """
         Take 1st version string found.
         :param found: possible version string
@@ -482,25 +469,26 @@ class FindVersion(object):
         if self.version is None:
             first = True
             try:
-                self.current_version, self.version, self.schema = version_object_and_next(
-                    found.strip(" ")
-                )
+                (
+                    self.current_version,
+                    self.version,
+                    self.schema,
+                ) = version_object_and_next(found.strip(" "))
             except:
                 raise JiggleVersionException("Shouldn't throw here.")
 
         if first:
             logger.info(
-                "Updating from version {0} to {1}".format(
-                    unicode(self.version), unicode(self.version)
+                "Updating from version {} to {}".format(
+                    str(self.version), str(self.version)
                 )
             )
         return self.version
 
-    def execute_setup(self):  # type: () -> Dict[str,str]
+    def execute_setup(self) -> Optional[Dict[str, str]]:
         """
         for really surprising things like a dict foo in setup(**foo)
         consider python3 setup.py --version
-        :return:
         """
 
         ver = execute_get_text("python setup.py --version")
@@ -508,17 +496,14 @@ class FindVersion(object):
             return None
 
         if "UserWarning" in ver:
-            logger.warning(
-                "python setup.py --version won't parse, got :" + unicode(ver)
-            )
+            logger.warning("python setup.py --version won't parse, got :" + str(ver))
             # UserWarning- Ther version specified ... is an invalid...
             return {}
 
         if ver:
-            string = unicode(ver).strip(" \n")
+            string = str(ver).strip(" \n")
             if "\n" in string:
                 string = string.split("\n")[0]
 
             return {"setup.py --version": string.strip(" \n")}
-        else:
-            return {}
+        return {}

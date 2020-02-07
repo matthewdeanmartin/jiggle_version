@@ -1,7 +1,7 @@
 # This will enable almost every single warning
-#[ build.py - Starting task "prospector" ]
+#[ build_old.py - Starting task "prospector" ]
 #Searching .build_state/last_change_prospector.txt
-#prospector jiggle_version --profile jiggle_version_style --pylint-config-file=pylintrc.ini --profile-path=.prospector
+#prospector jiggle_version --profile jiggle_version_style --pylint-config-file=.pylintrc --profile-path=.prospector
 #Traceback (most recent call last):
 #  File "/home/travis/virtualenv/python3.6.3/bin/prospector", line 11, in <module>
 #    sys.exit(main())

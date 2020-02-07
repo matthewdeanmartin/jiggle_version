@@ -35,9 +35,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.license_rules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.pynt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build_old.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/problems/manifest_errors.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reports/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reports/line_counts.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements_for_safety.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sample_projects/sample_src/a.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test_strings/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test_x_package_finder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test_zcentral_module_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jiggle_version.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jiggle_version.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/central_module_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/central_module_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/commands.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/file_inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_inventory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/file_makers.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_makers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/file_opener.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_opener.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/find_version_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/find_version_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/is_this_okay.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/is_this_okay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/module_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/module_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/package_info_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/package_info_finder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/parse_dunder_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/parse_dunder_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/parse_kwarg_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/parse_kwarg_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/schema_guesser.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/schema_guesser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jiggle_version/version_lint.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/version_lint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest_errors.txt" beforeDir="false" afterPath="$PROJECT_DIR$/problems/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylintrc.ini" beforeDir="false" afterPath="$PROJECT_DIR$/.pylintrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements-dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements-dev.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_command_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_command_line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_damanged_versions.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_damanged_versions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_find_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_find_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_jiggle_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_parse_dunder_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_parse_dunder_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_parse_kwarg_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_parse_kwarg_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_pep440.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_pep440.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_schema_guesser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_version_schemes.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_version_schemes.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,208 +167,6 @@
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_command_line.coverage" NAME="Nosetests for test_command_line Coverage Results" MODIFIED="1531959546762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_find_version_py.coverage" NAME="Nosetests in test_find_version.py Coverage Results" MODIFIED="1534790383987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1636503142">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="37" />
-          <entry key="project.open.time.0" value="3" />
-          <entry key="project.open.time.1" value="12" />
-          <entry key="project.open.time.10" value="5" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.16" value="1" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.2" value="3" />
-          <entry key="project.open.time.20" value="1" />
-          <entry key="project.open.time.34" value="1" />
-          <entry key="project.open.time.4" value="3" />
-          <entry key="project.open.time.6" value="3" />
-          <entry key="project.open.time.7" value="3" />
-          <entry key="project.open.time.8" value="2" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="42" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="0805nexter" value="1" />
-          <entry key="1pass" value="1" />
-          <entry key="2112" value="1" />
-          <entry key="4chandownloader" value="2" />
-          <entry key="ABOUT" value="1" />
-          <entry key="AUTHORS" value="2" />
-          <entry key="ChangeLog" value="2" />
-          <entry key="LICENSE" value="5" />
-          <entry key="Makefile" value="2" />
-          <entry key="PKG-INFO" value="26" />
-          <entry key="Pipfile" value="20" />
-          <entry key="Pipfile_nodev" value="1" />
-          <entry key="Procfile" value="1" />
-          <entry key="VERSION" value="3" />
-          <entry key="accolade" value="1" />
-          <entry key="aliyun" value="1" />
-          <entry key="bat" value="3" />
-          <entry key="cfg" value="46" />
-          <entry key="coverage" value="1" />
-          <entry key="fela" value="1" />
-          <entry key="gitignore" value="18" />
-          <entry key="html" value="4" />
-          <entry key="in" value="11" />
-          <entry key="ini" value="9" />
-          <entry key="lock" value="4" />
-          <entry key="md" value="42" />
-          <entry key="pstat" value="1" />
-          <entry key="py" value="1329" />
-          <entry key="rst" value="18" />
-          <entry key="setup" value="1" />
-          <entry key="sh" value="23" />
-          <entry key="txt" value="118" />
-          <entry key="version" value="3" />
-          <entry key="yaml" value="9" />
-          <entry key="yml" value="16" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Bash" value="23" />
-          <entry key="Git file" value="18" />
-          <entry key="HTML" value="4" />
-          <entry key="Ini" value="55" />
-          <entry key="Makefile" value="2" />
-          <entry key="Markdown" value="42" />
-          <entry key="PLAIN_TEXT" value="182" />
-          <entry key="Profiler Session" value="1" />
-          <entry key="Python" value="1336" />
-          <entry key="ReST" value="18" />
-          <entry key="TOML file" value="20" />
-          <entry key="YAML" value="25" />
-          <entry key="yarn.lock" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="Makefile" value="14" />
-          <entry key="Pipfile" value="33" />
-          <entry key="Python Console" value="211" />
-          <entry key="bat" value="14" />
-          <entry key="cfg" value="43" />
-          <entry key="dummy" value="76" />
-          <entry key="gitignore" value="261" />
-          <entry key="in" value="349" />
-          <entry key="ini" value="16" />
-          <entry key="md" value="19085" />
-          <entry key="py" value="64067" />
-          <entry key="rst" value="184" />
-          <entry key="sh" value="938" />
-          <entry key="txt" value="5" />
-          <entry key="yaml" value="11" />
-          <entry key="yml" value="122" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Bash" value="938" />
-          <entry key="Git file" value="261" />
-          <entry key="Ini" value="59" />
-          <entry key="Makefile" value="14" />
-          <entry key="Markdown" value="19085" />
-          <entry key="PLAIN_TEXT" value="444" />
-          <entry key="Python" value="64278" />
-          <entry key="ReST" value="184" />
-          <entry key="TOML file" value="33" />
-          <entry key="YAML" value="133" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.js.language.service.starts" />
-      <usages-collector id="statistics.vcs.git.usages" />
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MANIFEST.in">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="107" selection-start-line="107" selection-end-line="107" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements-dev.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-210" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/req_graph.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="160" column="10" selection-start-line="160" selection-start-column="4" selection-end-line="160" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.travis.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="219" column="54" selection-start-line="219" selection-start-column="54" selection-end-line="219" selection-end-column="54" />
-              <folding>
-                <marker date="1547231403048" expanded="true" signature="6290:6291" ph="..." />
-                <marker date="1547231403048" expanded="true" signature="6290:6295" ph="..." />
-                <marker date="1547231403048" expanded="true" signature="6872:6877" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pipfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-131">
-              <caret line="18" column="6" selection-start-line="18" selection-end-line="18" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -314,213 +174,38 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>check_ma</find>
-      <find>commun</find>
-      <find>commu</find>
-      <find>jiggle_v</find>
-      <find>coverage</find>
-      <find>detect</find>
-      <find>2.2.2</find>
-      <find>zest</find>
-      <find>found by find_packages</find>
-      <find>extract_package_dir</find>
-      <find>check</find>
-      <find>compile_py</find>
-      <find>compile</find>
-      <find>docutils</find>
-      <find>packag</find>
-      <find>git</find>
-      <find>git add</find>
-      <find>enemies</find>
-      <find>__</find>
-      <find>..</find>
-      <find>compile_my</find>
-      <find>jiggle</find>
-      <find>setup_</find>
-      <find>extra</find>
-      <find>&lt;</find>
-      <find>jiggle_class.py</find>
-      <find>&quot;&quot;\</find>
-      <find>&quot;&quot;</find>
-      <find>**os.environ</find>
-      <find>pytest</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>version</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt</dir>
-      <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt_contrib-0.2.0.dist-info</dir>
-      <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pyntcontrib</dir>
-      <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/pynt-0.8.2.dist-info</dir>
-      <dir>$PROJECT_DIR$/../find_known_secrets/find_known_secrets</dir>
-      <dir>$PROJECT_DIR$/../find_known_secrets</dir>
-      <dir>$PROJECT_DIR$/../find_known_secrets/docs</dir>
-      <dir>$PROJECT_DIR$/docs</dir>
-      <dir>$USER_HOME$/.local/share/virtualenvs/jiggle_version-UwCgYoJ3/lib/python3.6/site-packages/setuptools</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data/packages/199Fix-1.1.2</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data/packages/abcpmc-0.1.2/docs</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data/packages/abilian-sbe-0.4.11</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data/packages/addic7ed-cli-1.4.5</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data/packages/ade-0.8.3</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data/packages/adns-1.4-py1</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data/packages/Aliyun-0.1.1</dir>
-      <dir>$PROJECT_DIR$/fetch_raw_data/packages</dir>
-      <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/test</dir>
-      <dir>$PROJECT_DIR$/</dir>
-      <dir>$PROJECT_DIR$/../package_quality/fetch_raw_data</dir>
-      <dir>$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure</dir>
-      <dir>$PROJECT_DIR$/jiggle_version</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/pylintrc.ini" />
-        <option value="$PROJECT_DIR$/jiggle_version/parse_dunder_version.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/parse_kwarg_version.py" />
-        <option value="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" />
-        <option value="$PROJECT_DIR$/jiggle_version/central_module_finder.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" />
-        <option value="$PROJECT_DIR$/sample_projects/dupes_in_dunders/__version__.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/version_lint.py" />
-        <option value="$PROJECT_DIR$/test/test_command_line.py" />
-        <option value="$PROJECT_DIR$/.pyup.yaml" />
-        <option value="$PROJECT_DIR$/.pyup.yml" />
-        <option value="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__init__.py" />
-        <option value="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__version__.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/file_inventory.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/jiggle_version_self.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/module_finder.py" />
-        <option value="$PROJECT_DIR$/build_hook.sh" />
-        <option value="$PROJECT_DIR$/jiggle_version/__main__.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/file_opener.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/package_info_finder.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/schema_guesser.py" />
-        <option value="$PROJECT_DIR$/sample_projects/init_project/some_thing/__init__.py" />
-        <option value="$PROJECT_DIR$/test/test_jiggle_class.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/commands.py" />
-        <option value="$PROJECT_DIR$/test/test_find_version.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/main.py" />
-        <option value="$PROJECT_DIR$/distractor/__init__.py" />
-        <option value="$PROJECT_DIR$/test/test_main.py" />
-        <option value="$PROJECT_DIR$/code_of_conduct.md" />
-        <option value="$PROJECT_DIR$/Pipfile" />
-        <option value="$PROJECT_DIR$/../package_quality/build.py" />
-        <option value="$PROJECT_DIR$/../package_quality/build_utils_template.py" />
-        <option value="$PROJECT_DIR$/jiggle_version/__init__.py" />
-        <option value="$PROJECT_DIR$/../package_quality/to_build/0-core-client-1.1.0a8/build.py" />
-        <option value="$PROJECT_DIR$/../package_quality/build_template.py" />
-        <option value="$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/prompt.py" />
-        <option value="$PROJECT_DIR$/../package_quality/multi_build.py" />
-        <option value="$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/__init__.py" />
-        <option value="$PROJECT_DIR$/../package_quality/to_build/adventurelib-1.2/demo_game.py" />
-        <option value="$PROJECT_DIR$/gl.sh" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/README.rst" />
-        <option value="$PROJECT_DIR$/jiggle_version/find_version_class.py" />
-        <option value="$PROJECT_DIR$/jiggle_version-1.0.65/jiggle_version/jiggle_class.py" />
-        <option value="$PROJECT_DIR$/build.py" />
-        <option value="$PROJECT_DIR$/MANIFEST.in" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/jiggle_version/jiggle_class.py" />
-        <option value="$PROJECT_DIR$/build_utils.py" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
     <service-enabled>false</service-enabled>
     <exe-path />
     <annotation-enable>false</annotation-enable>
     <other-services-enabled>false</other-services-enabled>
   </component>
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/AirStrip-2.0.2/airstrip/boilerplates/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/a2d_diary-0.1.5/a2d_diary/static/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/abilian-core-0.10.19/abilian/web/resources/select2/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/abilian-core-0.10.19/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/abilian-core-0.10.20/abilian/web/resources/select2/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/abilian-core-0.10.20/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/abilian-crm-core-0.1.21/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/abilian-sbe-0.4.11/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/aiohttp-r3-0.0.3/deps/r3/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.ace-0.25/ajenti_plugin_ace/resources/vendor/ace-builds/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.ace-0.25/ajenti_plugin_ace/resources/vendor/angular/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/AngularJS-Toaster/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-animate/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-bootstrap/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-gettext/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-loading-bar/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-mocks/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-route/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-socket-io/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-sortable-view/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular-touch/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/angular/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/bootstrap/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/core.js/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/core/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.core-0.88/ajenti_plugin_core/resources/vendor/ng-ip-address/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/ajenti.plugin.filesystem-0.41/ajenti_plugin_filesystem/resources/vendor/angular/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/aldryn-lightslider-0.1.2.dev2/aldryn_lightslider/static/vendor/lightslider-master/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/aliceoverwatch-1.0/overwatch/webApp/static/bower_components/font-roboto/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/aliceoverwatch-1.0/overwatch/webApp/static/bower_components/paper-button/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/aliceoverwatch-1.0/overwatch/webApp/static/bower_components/promise-polyfill/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/aliceoverwatch-1.0/overwatch/webApp/static/bower_components/webcomponentsjs/package.json" />
-      <path value="$PROJECT_DIR$/fetch_raw_data/packages/alto-0.4/alto/static/codemirror/package.json" />
-    </packageJsonPaths>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="24" />
-    <option name="width" value="1920" />
-    <option name="height" value="996" />
-  </component>
+  <component name="ProjectId" id="1Wb3ASwQi4GmKpMAL00x9tYTvjZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="jiggle_version" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jiggle_version" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="jiggle_class.py&#9;FILE&#9;file:///Users/martinmat/GitKraken/jiggle_version/jiggle_version/jiggle_class.py&#10;find_version_class.py&#9;FILE&#9;file:///Users/martinmat/GitKraken/jiggle_version/jiggle_version/find_version_class.py" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
-    <property name="run.code.analysis.last.selected.profile" value="aPython2to3Only" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -530,45 +215,23 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/" />
-      <recent name="$PROJECT_DIR$/../package_quality/to_build" />
-      <recent name="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes" />
-      <recent name="$PROJECT_DIR$/extra" />
-      <recent name="$PROJECT_DIR$/sample_projects/file_module_src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\matth\source\jiggle_version" />
       <recent name="$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure" />
       <recent name="$PROJECT_DIR$/../package_quality" />
       <recent name="$PROJECT_DIR$/../package_quality/to_build" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/sample_projects/file_module_ver_in_file" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\matth\source\jiggle_version\test\test_strings" />
+      <recent name="$PROJECT_DIR$/" />
+      <recent name="$PROJECT_DIR$/../package_quality/to_build" />
+      <recent name="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes" />
+      <recent name="$PROJECT_DIR$/extra" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Bash.gl.sh">
-    <configuration name="gl.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
-      <module name="jiggle_version" />
-      <option name="INTERPRETER_OPTIONS" value="bash" />
-      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gl.sh" />
-      <option name="PARAMETERS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+  <component name="RunManager" selected="Python tests.Nosetests in test_zcentral_module_finder.py">
+    <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="find_known_secrets" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -636,29 +299,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="multi_build" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="package_quality" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../package_quality" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../package_quality/multi_build.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer" factoryName="Flask server">
+    <configuration default="true" type="Python.FlaskServer">
       <module name="find_known_secrets" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -683,7 +324,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests for test_jiggle_class.test_empty_projects" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test.test_zcentral_module_finder.test_go" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -695,7 +336,23 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_jiggle_class.test_empty_projects&quot;" />
+      <option name="_new_target" value="&quot;test.test_zcentral_module_finder.test_go&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Nosetests for test_zcentral_module_finder.test_go" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <module name="jiggle_version" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_zcentral_module_finder.test_go&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -715,7 +372,7 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests in test_find_version.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests in test_x_package_finder.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -727,7 +384,23 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_find_version.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_x_package_finder.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Nosetests in test_zcentral_module_finder.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <module name="jiggle_version" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_zcentral_module_finder.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -812,22 +485,27 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Python tests.Nosetests in test" />
-      <item itemvalue="Python tests.Nosetests in test_find_version.py" />
-      <item itemvalue="Python tests.Nosetests for test_jiggle_class.test_empty_projects" />
-      <item itemvalue="Python.multi_build" />
-      <item itemvalue="Bash.gl.sh" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Bash.gl.sh" />
-        <item itemvalue="Python.multi_build" />
+        <item itemvalue="Python tests.Nosetests in test_zcentral_module_finder.py" />
         <item itemvalue="Python tests.Nosetests in test" />
-        <item itemvalue="Python tests.Nosetests for test_jiggle_class.test_empty_projects" />
-        <item itemvalue="Python tests.Nosetests in test_find_version.py" />
+        <item itemvalue="Python tests.Nosetests for test.test_zcentral_module_finder.test_go" />
+        <item itemvalue="Python tests.Nosetests for test_zcentral_module_finder.test_go" />
+        <item itemvalue="Python tests.Nosetests in test_x_package_finder.py" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -839,195 +517,143 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1531332813523</updated>
+      <workItem from="1579404325941" duration="42000" />
+      <workItem from="1579404391571" duration="4570000" />
+      <workItem from="1580500166374" duration="8033000" />
+      <workItem from="1580955915704" duration="780000" />
+      <workItem from="1580957326289" duration="14499000" />
+      <workItem from="1581043534694" duration="3753000" />
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="Nosetests_for_test_jiggle_class_test_empty_projects - 2018.09.06 at 14h 51m 11s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_empty_projects" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_for_test_jiggle_class_test_empty_projects - 2018.09.06 at 14h 51m 33s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_empty_projects" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_for_test_jiggle_class_test_empty_projects - 2018.09.06 at 14h 53m 11s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_empty_projects" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_for_test_jiggle_class_test_empty_projects - 2018.09.06 at 14h 53m 25s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_empty_projects" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_for_test_jiggle_class_test_empty_projects - 2018.09.06 at 15h 09m 35s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_empty_projects" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_for_test_jiggle_class_test_empty_projects - 2018.09.06 at 15h 09m 37s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_empty_projects" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_for_test_jiggle_class_test_empty_projects - 2018.09.06 at 15h 10m 01s.xml">
-      <configuration name="Nosetests for test_jiggle_class.test_empty_projects" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.09.06 at 15h 18m 21s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.09.06 at 15h 19m 14s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_test - 2018.09.06 at 15h 21m 06s.xml">
-      <configuration name="Nosetests in test" configurationId="tests" />
-    </history-entry>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="996" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14217253" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946752" weight="0.4303653" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49361023" weight="0.33561644" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4978701" weight="0.36301368" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Mypy Terminal" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TeamCity" order="10" weight="0.34392735" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.75612354" visible="true" weight="0.34846765" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5063898" side_tool="true" weight="0.41894978" />
-      <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Python Console" order="14" weight="0.32819074" />
-      <window_info anchor="bottom" id="Inspection Results" order="15" weight="0.32995495" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="R Graphics" order="4" />
-      <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Structure" order="7" visible="true" weight="0.07028754" />
-      <window_info anchor="right" id="Coverage" order="8" side_tool="true" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19275825" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.32995495" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.4006772" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.38075313" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.49232915" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Mypy Terminal" order="8" />
-      <window_info anchor="bottom" id="Docker" order="9" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="TeamCity" order="11" weight="0.23012552" />
-      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.36549374" />
-      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
-      <window_info anchor="bottom" id="Python Console" order="15" weight="0.32962447" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="R Graphics" order="4" />
-      <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="right" id="Database" order="6" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="WindowStateProjectService">
+    <state x="399" y="108" key="#Inspections" timestamp="1579489997819">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="399" y="108" key="#Inspections/0.0.1536.834@0.0.1536.834" timestamp="1579489997819" />
+    <state x="223" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581046933884">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="223" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1581046933884" />
+    <state x="540" y="223" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580993229184">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="540" y="223" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1580993229184" />
+    <state x="498" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1581046933529">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="498" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.834@0.0.1536.834" timestamp="1581046933529" />
+    <state x="499" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581047017873">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1581047017873" />
+    <state x="515" y="266" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1580578597575">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="515" y="266" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.834@0.0.1536.834" timestamp="1580578597575" />
+    <state width="1491" height="466" key="DebuggerActiveHint" timestamp="1580968148073">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1491" height="466" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1580968148073" />
+    <state x="549" y="174" key="FileChooserDialogImpl" timestamp="1579404415538">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="549" y="174" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1579404415538" />
+    <state width="1493" height="275" key="GridCell.Tab.0.bottom" timestamp="1581047188370">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="275" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1581047188370" />
+    <state width="1493" height="275" key="GridCell.Tab.0.center" timestamp="1581047188369">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="275" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1581047188369" />
+    <state width="1493" height="275" key="GridCell.Tab.0.left" timestamp="1581047188368">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="275" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1581047188368" />
+    <state width="1493" height="275" key="GridCell.Tab.0.right" timestamp="1581047188369">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="275" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1581047188369" />
+    <state width="1493" height="238" key="GridCell.Tab.1.bottom" timestamp="1581046883188">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1581046883188" />
+    <state width="1493" height="238" key="GridCell.Tab.1.center" timestamp="1581046883188">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1581046883188" />
+    <state width="1493" height="238" key="GridCell.Tab.1.left" timestamp="1581046883187">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1581046883187" />
+    <state width="1493" height="238" key="GridCell.Tab.1.right" timestamp="1581046883188">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="238" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1581046883188" />
+    <state x="277" y="62" key="SettingsEditor" timestamp="1580966308787">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1580966308787" />
+    <state width="700" height="398" key="XDebugger.FullValuePopup" timestamp="1580968108651">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="700" height="398" key="XDebugger.FullValuePopup/0.0.1536.834@0.0.1536.834" timestamp="1580968108651" />
+    <state x="465" y="244" key="com.intellij.ide.util.TipDialog" timestamp="1581043536122">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="465" y="244" key="com.intellij.ide.util.TipDialog/0.0.1536.834@0.0.1536.834" timestamp="1581043536122" />
+    <state x="322" y="155" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1580963993122">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="322" y="155" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.834@0.0.1536.834" timestamp="1580963993122" />
+    <state x="462" y="18" width="611" height="801" key="find.popup" timestamp="1581044250210">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="462" y="18" width="611" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1581044250210" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/jiggle_class.py</url>
-          <line>282</line>
-          <option name="timeStamp" value="65" />
+          <url>file://$PROJECT_DIR$/jiggle_version/is_this_okay.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="132" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/main.py</url>
-          <line>141</line>
-          <option name="timeStamp" value="71" />
+          <url>file://$PROJECT_DIR$/jiggle_version/is_this_okay.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/main.py</url>
-          <line>150</line>
-          <option name="timeStamp" value="72" />
+          <url>file://$PROJECT_DIR$/test/test_x_package_finder.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/utils.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="96" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/find_version_class.py</url>
-          <line>217</line>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/find_version_class.py</url>
-          <line>227</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/jiggle_class.py</url>
-          <line>140</line>
-          <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/jiggle_class.py</url>
+          <url>file://$PROJECT_DIR$/jiggle_version/central_module_finder.py</url>
           <line>139</line>
-          <option name="timeStamp" value="118" />
+          <option name="timeStamp" value="138" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/find_version_class.py</url>
-          <line>117</line>
-          <option name="timeStamp" value="123" />
+          <url>file://$PROJECT_DIR$/jiggle_version/central_module_finder.py</url>
+          <line>136</line>
+          <option name="timeStamp" value="139" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/find_version_class.py</url>
-          <line>132</line>
-          <option name="timeStamp" value="125" />
+          <url>file://$PROJECT_DIR$/jiggle_version/central_module_finder.py</url>
+          <line>184</line>
+          <option name="timeStamp" value="140" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/main.py</url>
-          <line>130</line>
-          <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../package_quality/multi_build.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../package_quality/multi_build.py</url>
-          <line>42</line>
-          <option name="timeStamp" value="128" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../package_quality/multi_build.py</url>
-          <line>19</line>
-          <option name="timeStamp" value="129" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version/find_version_class.py</url>
-          <line>223</line>
-          <option name="timeStamp" value="130" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/jiggle_version-1.0.65/jiggle_version/jiggle_class.py</url>
-          <line>97</line>
-          <option name="timeStamp" value="131" />
+          <url>file://$PROJECT_DIR$/jiggle_version/central_module_finder.py</url>
+          <line>185</line>
+          <option name="timeStamp" value="141" />
         </line-breakpoint>
       </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -1036,348 +662,21 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="tests">
-        <watch expression="os.path.join(self.SRC, &quot;setup.py&quot;)" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>os.path.join(self.SRC, &quot;setup.py&quot;)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>os.path.isfile(                 os.path.join(self.SRC, &quot;setup.py&quot;)             )</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>os.getcwd()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>list([f for f in os.listdir(likely_src)])</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>list([f for f in os.listdir(likely_src) if os.path.isdir(f)])</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>os.path.isdir(likely_src)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>os.listdir(likely_src)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>line.split(&quot;#&quot;)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>url.split(&quot;/&quot;)[-2]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>url.split(&quot;/&quot;)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/fight.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3598">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/junction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-913" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fetch_raw_data/packages/Aesthete-0.4.2/aesthete/glypher/Phrase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="2654" column="8" selection-start-line="2654" selection-start-column="8" selection-end-line="2654" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/ending.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/suburbs.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/suburb_junction.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/restroom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-444" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/multi_build.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-          <folding>
-            <marker date="1546452841123" expanded="true" signature="205:319" ph="..." />
-            <marker date="1546452841123" expanded="true" signature="341:342" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/basement.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/harrington_river.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="53" column="54" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/player.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/build.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/adventurelib-1.2/adventurelib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7722">
-          <caret line="429" column="46" lean-forward="true" selection-start-line="429" selection-start-column="46" selection-end-line="429" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/adventurelib-1.2/demo_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="63" column="16" lean-forward="true" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/adventurelib-1.2/build_utils.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/adventurelib-1.2/MANIFEST.in">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/adventurelib-1.2/LICENSE">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/adventurelib-1.2/test_adventurelib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/bin/zombieadv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/wandas_boat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="44" lean-forward="true" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/twentysecond_street.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/suburb_6.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/suburb_4.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/suburb_2.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/suburb_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/splashscreen.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/small_houses.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../package_quality/to_build/ZombieAdventure-1.0.5/zombieadventure/pirate_house.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version_self.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1024" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-218" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="54">
-            <caret line="3" selection-start-line="3" selection-end-line="15" selection-end-column="36" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/find_version_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="83" column="72" selection-start-line="83" selection-start-column="72" selection-end-line="83" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version-1.0.65/jiggle_version/jiggle_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2381">
-          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extra/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extra/vendorized/pep440.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/freeze_man.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="398" column="25" selection-start-line="398" selection-start-column="25" selection-end-line="398" selection-end-column="25" />
-          <folding>
-            <marker date="1547228153984" expanded="true" signature="806:827" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gl.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pypi-jiggle-version.ABOUT">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MANIFEST.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="109" column="8" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jiggle_version/jiggle_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="219" column="54" selection-start-line="219" selection-start-column="54" selection-end-line="219" selection-end-column="54" />
-          <folding>
-            <marker date="1547231403048" expanded="true" signature="6290:6291" ph="..." />
-            <marker date="1547231403048" expanded="true" signature="6290:6295" ph="..." />
-            <marker date="1547231403048" expanded="true" signature="6872:6877" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-131">
-          <caret line="18" column="6" selection-start-line="18" selection-end-line="18" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements-dev.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-210" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/req_graph.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="160" column="10" selection-start-line="160" selection-start-column="4" selection-end-line="160" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_x_package_finder_test_pif.coverage" NAME="Nosetests for test_x_package_finder.test_pif Coverage Results" MODIFIED="1581044501279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_zcentral_module_finder_test_go.coverage" NAME="Nosetests for test_zcentral_module_finder.test_go Coverage Results" MODIFIED="1581046469548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_strings.coverage" NAME="Nosetests in test_strings Coverage Results" MODIFIED="1581046145273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/test_strings" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_central_module_finder_test_go.coverage" NAME="Nosetests for test_central_module_finder.test_go Coverage Results" MODIFIED="1581041887878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_command_line_test_where_am_i.coverage" NAME="Nosetests for test_command_line.test_where_am_i Coverage Results" MODIFIED="1580968542715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_test_zcentral_module_finder_test_go.coverage" NAME="Nosetests for test.test_zcentral_module_finder.test_go Coverage Results" MODIFIED="1581046828834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_x_package_finder_test_find_package_dir.coverage" NAME="Nosetests for test_x_package_finder.test_find_package_dir Coverage Results" MODIFIED="1581045744308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_central_module_finder_test_setup_name.coverage" NAME="Nosetests for test_central_module_finder.test_setup_name Coverage Results" MODIFIED="1581041974555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_central_module_finder_py.coverage" NAME="Nosetests in test_central_module_finder.py Coverage Results" MODIFIED="1581042441428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_x_package_finder_py.coverage" NAME="Nosetests in test_x_package_finder.py Coverage Results" MODIFIED="1581046374554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test.coverage" NAME="Nosetests in test Coverage Results" MODIFIED="1581046994475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_entry_point.coverage" NAME="Nosetests for test_main.test_entry_point Coverage Results" MODIFIED="1580967616242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_parse_kwarg_version_test_that_is_a_int_or_float_a.coverage" NAME="Nosetests for test_parse_kwarg_version.test_that_is_a_int_or_float_a Coverage Results" MODIFIED="1580968467309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_zcentral_module_finder_py.coverage" NAME="Nosetests in test_zcentral_module_finder.py Coverage Results" MODIFIED="1581047188339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
 </project>

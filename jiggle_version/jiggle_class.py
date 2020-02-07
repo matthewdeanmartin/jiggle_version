@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Zero config alternative to bump version.
 
@@ -41,14 +40,10 @@ __version__ = "0.1.8" # Jiggle Version Was Here
 
 
 """
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
-import io
+import configparser
 import logging
 import os.path
-from typing import List, Optional, Dict, Any
 
 import chardet
 from semantic_version import Version
@@ -63,32 +58,17 @@ from jiggle_version.is_this_okay import check
 from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import die, JiggleVersionException
 
-try:
-    import configparser
-except ImportError:
-    # Python 2.x fallback
-    import ConfigParser as configparser
-
-import sys
-
-if sys.version_info.major == 3:
-    unicode = str
-
 logger = logging.getLogger(__name__)
 
-# contrive usage so black doesn't remove the import
-_ = List, Optional, Dict, Any
-_ = Version
 
-
-class JiggleVersion(object):
+class JiggleVersion:
     """
     Coordinates code, writes versions
     """
 
     def __init__(
-        self, project, source, file_opener, force_init
-    ):  # type: (str, str, FileOpener, bool) ->None
+        self, project: str, source: str, file_opener: FileOpener, force_init: bool
+    ) -> None:
         """
         Entry point
         """
@@ -100,22 +80,22 @@ class JiggleVersion(object):
 
         if source is None:
             raise JiggleVersionException(
-                'Can\'t continue, source directory is None, should be zero length string for current dir'
+                "Can't continue, source directory is None, should be zero length string for current dir"
             )
 
         self.PROJECT = project
         self.SRC = source
 
-        self.is_folder_project = os.path.isdir(
+        self.is_folder_project: bool = os.path.isdir(
             os.path.join(self.SRC, self.PROJECT)
-        )  # type: bool
-        self.is_file_project = os.path.isfile(
+        )
+        self.is_file_project: bool = os.path.isfile(
             os.path.join(self.SRC, self.PROJECT) + ".py"
-        )  # type: bool
+        )
         if not self.is_folder_project and not self.is_file_project:
             logger.warning(
                 "Can't find module, typically a packages has a .py file or folder with module name : "
-                + unicode(self.SRC + self.PROJECT)
+                + str(self.SRC + self.PROJECT)
                 + " - can only update setup.py and text files."
             )
 
@@ -136,9 +116,9 @@ class JiggleVersion(object):
             # Can't find a version
             candidates = self.version_finder.all_current_versions()
             message = (
-                unicode(ex)
+                str(ex)
                 + " Can't parse this version, won't be able to bump anything. "
-                + unicode(candidates)
+                + str(candidates)
             )
             logger.error(message)
             die(-1, message)
@@ -158,7 +138,7 @@ class JiggleVersion(object):
         # TODO: Make this off by default & option to turn on
         self.signature = " # Jiggle Version Was Here"
 
-    def leading_whitespace(self, line):  # type: (str) -> str
+    def leading_whitespace(self, line: str) -> str:
         """
         For preserving indents
         :param line:
@@ -169,11 +149,10 @@ class JiggleVersion(object):
             if char in " \t":
                 string += char
                 continue
-            else:
-                return string
+            return string
         return string
 
-    def jiggle_source_code(self):  # type: () ->int
+    def jiggle_source_code(self) -> int:
         """
         Updates version of central package
         """
@@ -208,11 +187,11 @@ class JiggleVersion(object):
                             start_comma = ""
 
                         to_write.append(
-                            '{0}{1}{2} = "{3}"{4}{5}\n'.format(
+                            '{}{}{} = "{}"{}{}\n'.format(
                                 start_comma,
                                 leading_white,
                                 version_token,
-                                unicode(self.version_to_write()),
+                                str(self.version_to_write()),
                                 comma,
                                 self.signature,
                             )
@@ -246,7 +225,7 @@ class JiggleVersion(object):
     #             if not os.path.isfile(filepath):
     #                 raise JiggleVersionException("Missing file " + filepath)
 
-    def jiggle_setup_py(self):  # type: () -> int
+    def jiggle_setup_py(self) -> int:
         """
         Edit a version = "1.2.3" or version="1.2.3",
         :return:
@@ -258,7 +237,7 @@ class JiggleVersion(object):
         lines_to_write = []
         need_rewrite = False
 
-        encoding = chardet.detect(io.open(setup_py, "rb").read())
+        encoding = chardet.detect(open(setup_py, "rb").read())
         # logger.warning("guessing encoding " + str(encoding))
         with self.file_opener.open_this(setup_py, "r") as infile:
             for line in infile:
@@ -282,10 +261,10 @@ class JiggleVersion(object):
                     # if not comma and not start_comma:
                     #     print(simplified_line)
                     #     raise TypeError("$$$$$")
-                    source = '{0}{1}version = "{2}"{3}{4}\n'.format(
+                    source = '{}{}version = "{}"{}{}\n'.format(
                         leading_white,
                         start_comma,
-                        unicode(self.version_to_write()),
+                        str(self.version_to_write()),
                         comma,
                         self.signature,
                     )
@@ -308,11 +287,11 @@ class JiggleVersion(object):
                         comma = ""
 
                     lines_to_write.append(
-                        '{0}{1}{2} = "{3}"{4}{5}\n'.format(
+                        '{}{}{} = "{}"{}{}\n'.format(
                             leading_white,
                             start_comma,
                             version_token,
-                            unicode(self.version_to_write()),
+                            str(self.version_to_write()),
                             comma,
                             self.signature,
                         )
@@ -327,20 +306,19 @@ class JiggleVersion(object):
                 self.file_opener.open_this(setup_py, "r").read(),
                 "".join(lines_to_write),
             )
-            with io.open(setup_py, "w", encoding=encoding["encoding"]) as outfile:
-
+            with open(setup_py, "w", encoding=encoding["encoding"]) as outfile:
                 outfile.writelines(lines_to_write)
                 outfile.close()
                 changed += 1
         return changed
 
-    def version_to_write(self):  # type: () -> Version
+    def version_to_write(self) -> Version:
         """
         Should refactor to plain attribute
         """
         return self.version
 
-    def jiggle_all(self):  # type: () -> int
+    def jiggle_all(self) -> int:
         """
         All possible files
         :return:
@@ -353,7 +331,7 @@ class JiggleVersion(object):
         # assert changed > 0, "Failed to change anything."
         return changed
 
-    def jiggle_config_file(self):  # type: () ->int
+    def jiggle_config_file(self) -> int:
         """
         Update ini, cfg, conf
         """
@@ -371,7 +349,7 @@ class JiggleVersion(object):
                 and not os.path.isfile(filepath)
                 and os.path.isfile("setup.py")
             ):
-                logger.info("Creating " + unicode(filepath))
+                logger.info("Creating " + str(filepath))
                 self.file_maker.create_setup_cfg(filepath)
 
             if os.path.isfile(filepath):
@@ -382,16 +360,15 @@ class JiggleVersion(object):
                 except KeyError:
                     version = ""
                 if version:
-                    with io.open(filepath, "w") as configfile:  # save
-                        config["metadata"]["version"] = unicode(self.version_to_write())
+                    with open(filepath, "w") as configfile:  # save
+                        config["metadata"]["version"] = str(self.version_to_write())
                         config.write(configfile)
                         changed += 1
         return changed
 
-    def jiggle_text_file(self):  # type: () -> int
+    def jiggle_text_file(self) -> int:
         """
         Update ver strings in a non-python, ordinary text file in root of package (next to setup.py).
-        :return:
         """
         changed = 0
 
@@ -405,10 +382,10 @@ class JiggleVersion(object):
 
         for version_txt in files_to_update:
             if os.path.isfile(version_txt):
-                with io.open(version_txt, "w", encoding="utf-8") as outfile:
+                with open(version_txt, "w", encoding="utf-8") as outfile:
                     if self.version is None or self.version == "":
                         raise JiggleVersionException("Can't write version")
-                    outfile.writelines([unicode(self.version_to_write())])
+                    outfile.writelines([str(self.version_to_write())])
                     outfile.close()
                     changed += 1
         return changed

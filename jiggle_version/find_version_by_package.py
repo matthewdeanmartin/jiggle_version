@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Support code for setup.py and package driven version management.
 
@@ -8,9 +7,8 @@ Yes, you could have setup.py read from __version__.py and should.
 
 """
 
-# py2 prob here!
 from importlib import import_module
-from typing import Any
+from typing import Any, Optional
 
 import pkg_resources
 
@@ -18,18 +16,22 @@ from jiggle_version.utils import execute_get_text
 
 _ = Any
 
+
 # These are not expected unless you unzip a package and do development on *that* code base.
 # TODO- Parent folder, e.g. mypackage-1.2.3
 # TODO- PKG-INFO
 
 
-def pkg_resources_version(package):  # type: (str) -> str
+def pkg_resources_version(package: str) -> str:
     """
     Look up version from current package. This will read from egg folder if not pip installed.
     :param package:
     :return:
     """
-    # ref https://stackoverflow.com/questions/7079735/how-do-i-get-the-version-of-an-installed-module-in-python-programatically
+    # ref https://stackoverflow.com/questions/7079735/
+    # how-do-i-get-the-version-of-an-installed-module-in-python-programatically
+
+    # noinspection PyBroadException
     try:
         return pkg_resources.get_distribution(package).version
     except Exception:
@@ -39,14 +41,14 @@ def pkg_resources_version(package):  # type: (str) -> str
 # command lines
 
 
-def version_by_pip(package):
+def version_by_pip(package: str) -> Optional[str]:
     """
     Don't use this for bumping code, unless it is dot installed,
     this is going to look at pip installed packages?
     :param package:
     :return:
     """
-    command = "pip show {0}".format(package)
+    command = f"pip show {package}"
     result = execute_get_text(command)
     for line in result.split("\n"):
         if line.startswith("Version"):
@@ -55,9 +57,7 @@ def version_by_pip(package):
 
 
 # from pipdeptree.py
-def guess_version_by_running_live_package(
-    pkg_key, default="?"
-):  # type: (str,str) -> Any
+def guess_version_by_running_live_package(pkg_key: str, default: str = "?") -> Any:
     """Guess the version of a pkg when pip doesn't provide it.
 
     :param str pkg_key: key of the package

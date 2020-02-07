@@ -1,28 +1,20 @@
-# coding=utf-8
 """
 Make dupe file lists go away.
 """
 import logging
 import os
-import sys
-from typing import List, Optional, Any
 
-_ = List, Optional, Any
-if sys.version_info.major == 3:
-    unicode = str
 logger = logging.getLogger(__name__)
 
 
-class FileInventory(object):
+class FileInventory:
     """
     Container for list of files that might have bumpable versions
     """
 
-    def __init__(self, project, src):  # type: (str,str) -> None
+    def __init__(self, project: str, src: str) -> None:
         """
         Init object
-        :param project:
-        :param src:
         """
         self.project = project
         self.src = src

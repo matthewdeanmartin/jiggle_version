@@ -23,3 +23,8 @@ prune test
 prune sample_projects
 prune usage_example
 prune extra
+prune .idea
+prune .prospector
+prune .pylintrc
+prune .pynt
+prune build_old.py

@@ -14,6 +14,6 @@ chardet
 cmp-version
 docopt
 parver
-prospector
+pylint==2.4.4
 semantic-version
 versio

@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Tests
 """
@@ -9,20 +8,21 @@ import jiggle_version._version as v2
 import jiggle_version.main as main
 from jiggle_version.utils import JiggleVersionException
 import jiggle_version.package_info_finder
+
 _ = jiggle_version.package_info_finder
-try:
-    FileNotFoundError
-except NameError:
-    FileNotFoundError = IOError
+
 import os
-initial_pwd= os.getcwd()
+
+initial_pwd = os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))
 PROJECT = "sample_lib"
 SRC = here + "/../sample_projects/sample_src/"
 
+
 def test_print_versions():
     print(init.__version__)
     print(v2)
+
 
 def test_process_docopts():
     try:
@@ -34,15 +34,17 @@ def test_process_docopts():
 def test_process_docopts_fake_it():
     try:
         os.chdir(SRC)
-        args = {'--debug': 'False',
-            '--help': False,
-            '--module': None,
-            '--project': "sample_lib",
-            '--source': None,
-            '--version': False,
-            '--init': False,
-            'find': True,
-            'here': False}
+        args = {
+            "--debug": "False",
+            "--help": False,
+            "--module": None,
+            "--project": "sample_lib",
+            "--source": None,
+            "--version": False,
+            "--init": False,
+            "find": True,
+            "here": False,
+        }
         main.process_docopts(args)
     except JiggleVersionException as jve:
         print(os.getcwd())
@@ -61,5 +63,3 @@ def test_entry_point():
         raise
     finally:
         os.chdir(initial_pwd)
-
-

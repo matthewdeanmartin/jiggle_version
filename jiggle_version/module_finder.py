@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Finds project by folder & source inspection.  Enables zero config by not
 asking the user something we can probably infer.
@@ -37,39 +36,34 @@ TODO: confounds two concepts:
         2+ - but 1 is the central module and the rest are unversionsed test/demo/examples/etc
 
 """
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 import ast
 import logging
 import os
-import sys
 from typing import List, Optional
 
 # so formatter doesn't remove.
 from setuptools import find_packages
 
-from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
-from jiggle_version.utils import die, first_value_in_dict, JiggleVersionException
+from jiggle_version.utils import (
+    first_value_in_dict,
+    JiggleVersionException,
+    parse_source_to_dict,
+)
 
 logger = logging.getLogger(__name__)
 
-_ = List, Optional, FileInventory
-if sys.version_info.major == 3:
-    unicode = str
 
-
-class ModuleFinder(object):
+class ModuleFinder:
     """
     Finds modules in a folder.
     """
 
-    def __init__(self, file_opener):  # type: (FileOpener) -> None
+    def __init__(self, file_opener: FileOpener) -> None:
         self.file_opener = file_opener
-        self.setup_source = ""  # type: Optional[str]
+        self.setup_source: Optional[str] = ""
 
-    def _read_file(self, file):  # type: (str) -> Optional[str]
+    def _read_file(self, file: str) -> Optional[str]:
         """
         Read any file, deal with encoding.
         :param file:
@@ -81,10 +75,9 @@ class ModuleFinder(object):
                 source = setup_py.read()
         return source
 
-    def setup_py_source(self):  # type: () -> Optional[str]
+    def setup_py_source(self) -> Optional[str]:
         """
         Read setup.py to string
-        :return:
         """
         if not self.setup_source:
             self.setup_source = self._read_file("setup.py")
@@ -92,7 +85,7 @@ class ModuleFinder(object):
             self.setup_source = self._read_file("setup")  # rare case
         return self.setup_source
 
-    def extract_package_dir(self):  # type: () -> Optional[str]
+    def extract_package_dir(self) -> Optional[str]:
         """
         Get the package_dir dictionary from source
         :return:
@@ -108,64 +101,54 @@ class ModuleFinder(object):
         # sometimes
         # package_dir={...}
         if "package_dir=" in source:
-            line = source.replace("\n", "")
-            line = line.split("package_dir")[1]
-            fixed = ""
-            for char in line:
-                fixed += char
-                if char == "}":
-                    break
-            line = fixed
-
-            simplified_line = line.strip(" ,").replace("'", '"')
-
-            parts = simplified_line.split("=")
-
-            dict_src = parts[1].strip(" \t")
+            dict_src = parse_source_to_dict(source)
             if not dict_src.endswith("}"):
                 raise JiggleVersionException(
                     "Either this is hard to parse or we have 2+ src foldrs"
                 )
             try:
                 paths_dict = ast.literal_eval(dict_src)
-            except ValueError as ve:
+            except ValueError:
                 logger.error(source + ": " + dict_src)
                 return ""
 
             if "" in paths_dict:
                 candidate = paths_dict[""]
                 if os.path.isdir(candidate):
-                    return unicode(candidate)
+                    return str(candidate)
             if len(paths_dict) == 1:
                 candidate = first_value_in_dict(paths_dict)
                 if os.path.isdir(candidate):
-                    return unicode(candidate)
+                    return str(candidate)
             else:
                 raise JiggleVersionException(
                     "Have path_dict, but has more than one path."
                 )
         return None
 
-    def find_by_any_method(self):  # type: () -> List[str]
+    def find_by_any_method(self) -> List[str]:
+        """
+        Ensemble algorithm for finding package/module
+        """
         packages = self.via_find_packages()
-        print("found by find_packages() " + unicode(packages))
+        print("found by find_packages() " + str(packages))
 
         if not packages:
             packages = self.find_top_level_modules_by_dunder_init()
-            print("found by dunder_init folders " + unicode(packages))
+            print("found by dunder_init folders " + str(packages))
 
         if not packages:
             packages = self.find_single_file_project()
-            print("found by single file " + unicode(packages))
+            print("found by single file " + str(packages))
 
         return packages
 
-    def via_find_packages(self):  # type: () -> List[str]
+    def via_find_packages(self) -> List[str]:
         """
         Use find_packages code to find modules. Can find LOTS of modules.
         :return:
         """
-        packages = []  # type: List[str]
+        packages: List[str] = []
         source = self.setup_py_source()
         if not source:
             return packages
@@ -176,6 +159,7 @@ class ModuleFinder(object):
                 if "find_packages()" in row:
                     packages = find_packages()
                 else:
+                    # noinspection PyBroadException
                     try:
 
                         find_package_args_source = row.split("(")[1].split(")")[0]
@@ -187,6 +171,7 @@ class ModuleFinder(object):
         if not find_package_args:
             packages = find_packages()
         else:
+            # noinspection PyBroadException
             try:
                 # signature find(cls, where='.', exclude=(), include=('*',)):
                 packages = find_packages(find_package_args)
@@ -195,7 +180,7 @@ class ModuleFinder(object):
 
         return packages
 
-    def find_top_level_modules_by_dunder_init(self):  # type: () -> List[str]
+    def find_top_level_modules_by_dunder_init(self) -> List[str]:
         """
         Find modules along side setup.py (or in current folder)
 
@@ -203,7 +188,8 @@ class ModuleFinder(object):
         :return:
         """
         # TODO: use package_dirs
-        packaged_dirs = ""
+        packaged_dirs: Optional[str] = ""
+        # noinspection PyBroadException
         try:
             # Right now only returns 1st.
             packaged_dirs = self.extract_package_dir()
@@ -228,20 +214,21 @@ class ModuleFinder(object):
                     # dunder_source = self.file_opener.read_file(folder + "/__init__.py")
                     candidates.append(folder)
 
-        return list(set([x for x in candidates if x]))
+        return list({x for x in candidates if x})
 
     # TODO: use setup.py line to find package
     # packages=find_packages('src'),
     # packages=['ajax_select'],
     # python setup.py --provides
 
-    def find_single_file_project(self):  # type: () -> List[str]
+    def find_single_file_project(self) -> List[str]:
         """
         Take first non-setup.py python file. What a mess.
         :return:
         """
         # TODO: use package_dirs
-        packaged_dirs = ""
+        packaged_dirs: Optional[str] = ""
+        # noinspection PyBroadException
         try:
             # Right now only returns 1st.
             packaged_dirs = self.extract_package_dir()
@@ -277,7 +264,7 @@ class ModuleFinder(object):
     #     :return:
     #     """
     #     if len(candidates) > 1:
-    #         message = "Found multiple possible projects : " + unicode(candidates)
+    #         message = "Found multiple possible projects : " + str(candidates)
     #         logger.error(message)
     #         die(-1, message)
     #         return

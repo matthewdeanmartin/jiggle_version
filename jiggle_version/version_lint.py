@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Give advice on versions as found, e.g.
 

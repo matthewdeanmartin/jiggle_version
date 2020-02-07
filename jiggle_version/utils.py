@@ -1,16 +1,9 @@
-# coding=utf-8
 """
 Non-domain specific methods I don't want cluttering up other files.
 """
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-from typing import List, Optional, Dict, Any
 import subprocess
-
-
-# contrive usage so black doesn't remove the import
-_ = List, Optional, Dict, Any
+import sys
+from typing import Dict, Any, Optional
 
 
 class JiggleVersionException(Exception):
@@ -19,7 +12,7 @@ class JiggleVersionException(Exception):
     """
 
 
-def die(code, why):  # type: (int,str)->None
+def die(code: int, why: str) -> None:
     """
     In release, exit process. In development, throw with useful message.
     :param code:
@@ -30,12 +23,11 @@ def die(code, why):  # type: (int,str)->None
         # Development
         if "Have no versions to work with" not in why:
             raise JiggleVersionException("Can't continue: " + why)
-        else:
-            # prod
-            exit(code)
+        # prod
+        sys.exit(code)
 
 
-def first_value_in_dict(x):  # type: (Dict[Any, Any]) -> Any
+def first_value_in_dict(x: Dict[Any, Any]) -> Any:
     """
     foo[n] but for dictionaries
     :param x:
@@ -46,7 +38,7 @@ def first_value_in_dict(x):  # type: (Dict[Any, Any]) -> Any
     raise KeyError()
 
 
-def merge_two_dicts(x, y):  # type: (Dict[Any, Any], Dict[Any, Any]) -> Dict[Any, Any]
+def merge_two_dicts(x: Dict[Any, Any], y: Dict[Any, Any]) -> Dict[Any, Any]:
     """
     Merge dictionaries. This is for python 2 compat.
     :param x:
@@ -58,14 +50,14 @@ def merge_two_dicts(x, y):  # type: (Dict[Any, Any], Dict[Any, Any]) -> Dict[Any
     return z
 
 
-def execute_get_text(command, raise_errors=False):  # type: (str, bool) -> str
+def execute_get_text(command: str, raise_errors: bool = False) -> str:
     """
     Execute a shell commmand
-    :param command:
-    :return:
     """
     try:
-        result = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
+        result = subprocess.check_output(
+            command, stderr=subprocess.STDOUT
+        )  # , shell=True)
         # print(result.decode())
     except subprocess.CalledProcessError:
         if raise_errors:
@@ -74,3 +66,32 @@ def execute_get_text(command, raise_errors=False):  # type: (str, bool) -> str
     if result:
         return result.decode("utf-8")
     return ""
+
+
+def ifnull(var: Optional[str], val: str) -> str:
+    """
+    Return second arg if first is null
+    """
+    if var is None:
+        return val
+    return var
+
+
+def parse_source_to_dict(source: str) -> str:
+    """
+    Extract dict from source file
+    :param source:
+    :return:
+    """
+    line = source.replace("\n", "")
+    line = line.split("package_dir")[1]
+    fixed = ""
+    for char in line:
+        fixed += char
+        if char == "}":
+            break
+    line = fixed
+    simplified_line = line.strip(" ,").replace("'", '"')
+    parts = simplified_line.split("=")
+    dict_src = parts[1].strip(" \t")
+    return dict_src

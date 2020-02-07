@@ -1,41 +1,27 @@
-# coding=utf-8
 """
 Detect encoding, read file, remember encoding
 """
-import io
+import configparser
 import logging
-import sys
-from typing import List, Optional, Any, Dict
+from typing import Dict, IO, Any, cast
 
 import chardet
 
-try:
-    import configparser
-except ImportError:
-    # Python 2.x fallback
-    import ConfigParser as configparser
-
-_ = List, Optional, Any, Dict
-
-if sys.version_info.major == 3:
-    unicode = str
 logger = logging.getLogger(__name__)
 
 
-class FileOpener(object):
+class FileOpener:
     """
     Container for list of files that might have bumpable versions
     """
 
-    def __init__(self):  # type: () -> None
+    def __init__(self) -> None:
         """
         Init object
-        :param project:
-        :param src:
         """
-        self.found_encoding = {}  # type: Dict[str,str]
+        self.found_encoding: Dict[str, str] = {}
 
-    def is_python_inside(self, file_path):  # type: (str) -> bool
+    def is_python_inside(self, file_path: str) -> bool:
         """
         If .py, yes. If extensionless, open file and check shebang
 
@@ -52,6 +38,7 @@ class FileOpener(object):
 
         # extensionless
         if "." not in file_path:
+            # noinspection PyBroadException
             try:
                 firstline = self.open_this(file_path, "r").readline()
                 if firstline.startswith("#") and "python" in firstline:
@@ -60,16 +47,16 @@ class FileOpener(object):
                 pass
         return False
 
-    def read_this(self, file):  # type: (str) -> Any
+    def read_this(self, file: str) -> str:
         """
         Return file text.
         :param file:
         :return:
         """
         with self.open_this(file, "r") as file_handler:
-            return file_handler.read()
+            return cast(str, file_handler.read())
 
-    def open_this(self, file, how):  # type: (str,str) -> Any
+    def open_this(self, file: str, how: str) -> IO[Any]:
         """
         Open file while detecting encoding. Use cached when possible.
         :param file:
@@ -84,24 +71,24 @@ class FileOpener(object):
 
             encoding = self.found_encoding[file]
         else:
-            file_bytes = io.open(file, "rb").read()
+            file_bytes = open(file, "rb").read()
             if not file_bytes:
                 encoding = "utf-8"
             else:
                 encoding_info = chardet.detect(file_bytes)
                 encoding = encoding_info["encoding"]
-            logger.debug(unicode(encoding))
+            logger.debug(str(encoding))
             try:
-                io.open(file, how, encoding=encoding).read()
+                open(file, how, encoding=encoding).read()
             except UnicodeDecodeError:
                 print(file)
                 print(file_bytes)
 
             self.found_encoding[file] = encoding
 
-        return io.open(file, how, encoding=encoding)
+        return open(file, how, encoding=encoding)
 
-    def read_metadata(self, file_path):  # type: (str) ->str
+    def read_metadata(self, file_path: str) -> str:
         """
         Get version out of a .ini file (or .cfg)
         :return:
@@ -109,6 +96,6 @@ class FileOpener(object):
         config = configparser.ConfigParser()
         config.read(file_path)
         try:
-            return unicode(config["metadata"]["version"])
+            return str(config["metadata"]["version"])
         except KeyError:
             return ""

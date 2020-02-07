@@ -31,6 +31,11 @@ Where's the bits?
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
 
+Python Versions Supported
+-------------------------
+3.6, 3.7, 3.8, and forward. Pypi still hosts the old version that supported python 2 and earlier.
+
+
 Problem to be solved
 -------------------
 There are up to 1/2 dozen places to update a version string. You scoff, 'Can't be!' But for a mature code base, it is

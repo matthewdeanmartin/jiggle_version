@@ -1,51 +1,41 @@
-# coding=utf-8
 """
 Given a known package, find the 'central' module, the one whose version should sync with the package
 """
 
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import os
 import subprocess
-import sys
 from typing import List, Optional
 
-from jiggle_version.utils import execute_get_text
-from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
 
 # so formatter doesn't remove.
 from jiggle_version.module_finder import ModuleFinder
+from jiggle_version.utils import execute_get_text
 
 logger = logging.getLogger(__name__)
 
-_ = List, Optional, FileInventory
-if sys.version_info.major == 3:
-    unicode = str
 
-
-class CentralModuleFinder(object):
+class CentralModuleFinder:
     """
     Finds modules in a folder. No assumptions about existance of PKG_INFO
     """
 
-    def __init__(self, file_opener):  # type: (FileOpener) -> None
+    def __init__(self, file_opener: FileOpener) -> None:
         """
         Initialize object
         :param file_opener:
         """
         self.file_opener = file_opener
-        self.setup_source = ""
+        self.setup_source: Optional[str] = ""
 
         self.setup_file_name = ""
         self.find_setup_file_name()
         self.read_setup_py_source()
         self.package_name = self.parse_package_name()
 
-    def find_setup_file_name(self):  # type: () ->None
+    def find_setup_file_name(self) -> None:
         """
         Usually setup.py or setup
         """
@@ -58,7 +48,7 @@ class CentralModuleFinder(object):
                 self.setup_file_name = file_path
                 break
 
-    def _read_file(self, file):  # type: (str) -> Optional[str]
+    def _read_file(self, file: str) -> Optional[str]:
         """
         Read any file, deal with encoding.
         :param file:
@@ -72,7 +62,7 @@ class CentralModuleFinder(object):
                 source = setup_py.read()
         return source
 
-    def read_setup_py_source(self):  # type: () -> None
+    def read_setup_py_source(self) -> None:
         """
         Read setup.py to string
         :return:
@@ -82,7 +72,7 @@ class CentralModuleFinder(object):
         if not self.setup_source:
             self.setup_source = self._read_file(self.setup_file_name)
 
-    def parse_package_name(self):  # type: () -> Optional[str]
+    def parse_package_name(self) -> Optional[str]:
         """
         Extract likley module name from setup.py args
         :return:
@@ -101,7 +91,7 @@ class CentralModuleFinder(object):
 
         return ""
 
-    def execute_setup_name(self):  # type: () -> Optional[str]
+    def execute_setup_name(self) -> Optional[str]:
         """
         Runs code, so this is a bit dangerous, especially if it isn't your own
         :return:
@@ -119,7 +109,7 @@ class CentralModuleFinder(object):
             return None
         return name
 
-    def find_central_module(self):  # type: () -> Optional[str]
+    def find_central_module(self) -> Optional[str]:
         """
         Get the module that is the sole module, or the module
         that matches the package name/version
@@ -168,7 +158,7 @@ class CentralModuleFinder(object):
 
         return None
 
-    def remove_likely_non_central(self, candidates):  # type: (List[str]) -> List[str]
+    def remove_likely_non_central(self, candidates: List[str]) -> List[str]:
         """
         Stuff that is likely to be in find_packages(exclude...)
         :param candidates:
@@ -187,12 +177,10 @@ class CentralModuleFinder(object):
                 "docs",
             ]:
                 if unlikely in candidates:
-                    logger.warning("Assuming {0} is not the project".format(unlikely))
+                    logger.warning(f"Assuming {unlikely} is not the project")
                     candidates.remove(unlikely)
                 for candidate in candidates:
-                    if candidate.startswith(unlikely + "."):
-                        logger.warning(
-                            "Assuming {0} is not the project".format(candidate)
-                        )
+                    if candidate.startswith(unlikely):
+                        logger.warning(f"Assuming {candidate} is not the project")
                         candidates.remove(candidate)
         return candidates

@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Take a string, guess the schema.
 
@@ -16,12 +15,8 @@ cmp ver
 disutils.version
 
 """
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 import logging
-import sys
-from typing import Any, Tuple, Optional, Union
+from typing import Tuple, Union
 
 import parver
 import semantic_version
@@ -30,11 +25,8 @@ from versio.version_scheme import Pep440VersionScheme, Simple4VersionScheme
 
 from jiggle_version.utils import JiggleVersionException
 
-if sys.version_info.major == 3:
-    unicode = str
 logger = logging.getLogger(__name__)
 
-_ = Any, Tuple, Optional, Union
 versio_version.Version.supported_version_schemes = [
     Pep440VersionScheme,
     Simple4VersionScheme,
@@ -47,37 +39,36 @@ VersionThing = Tuple[
 ]
 
 
-def version_object_and_next(string, retries=0):  # type: (str, int) -> VersionThing
+def version_object_and_next(string: str, retries: int = 0) -> VersionThing:
     """
     Try three parsing strategies, favoring semver, then pep440, then whatev.
-    :param string:
-    :return:
     """
     if retries > 2:
-        raise JiggleVersionException(
-            "Can't parse, ran out of retries: " + unicode(string)
-        )
+        raise JiggleVersionException("Can't parse, ran out of retries: " + str(string))
     if string == "" or string is None:
         raise JiggleVersionException("No version string, can only use default logic.")
 
     if string[0] == "v":
         string = string[1:]
 
+    # noinspection PyBroadException
     try:
         version = semantic_version.Version(string)
         next_version = version.next_patch()
-        _ = semantic_version.Version(unicode(string))
+        _ = semantic_version.Version(str(string))
         return version, next_version, "semantic_version"
     except:
-        logger.debug("Not sem_ver:" + unicode(string))
+        logger.debug("Not sem_ver:" + str(string))
+        # noinspection PyBroadException
         try:
             version = parver.Version.parse(string)
             next_version = version.bump_dev()
-            _ = parver.Version.parse(unicode(next_version))
+            _ = parver.Version.parse(str(next_version))
             return version, next_version, "pep440 (parver)"
         except:
+            # noinspection PyBroadException
             try:
-                logger.debug("Not par_ver:" + unicode(string))
+                logger.debug("Not par_ver:" + str(string))
                 # Version.supported_version_schemes = [Pep440VersionScheme, Simple4VersionScheme]
                 version = versio_version.Version(string, scheme=Simple4VersionScheme)
                 version.bump()
@@ -91,19 +82,23 @@ def version_object_and_next(string, retries=0):  # type: (str, int) -> VersionTh
                 retries += 1
                 if "a" in string:
                     return version_object_and_next(string.replace("a", ".a"), retries)
-                elif "b" in string:
+
+                if "b" in string:
                     return version_object_and_next(string.replace("b", ".b"), retries)
-                elif len(string.split(".")) == 1:
+
+                if len(string.split(".")) == 1:
                     # convert 2 part to 3 part.
                     return version_object_and_next(string + ".0.0", retries)
-                elif len(string.split(".")) == 2:
+
+                if len(string.split(".")) == 2:
                     # convert 2 part to 3 part, e.g. 1.1 -> 1.1.0
                     return version_object_and_next(string + ".0", retries)
-                elif string.isnumeric() and "." not in string:
+
+                if string.isnumeric() and "." not in string:
                     # e.g. "21" -> "21.0.0"
                     return version_object_and_next(string + ".0.0", retries)
-                else:
-                    logger.debug("Not versio:" + unicode(string))
-                    # versio only does pep440 by default
-                    # print(versio.version.Version.supported_version_schemes)
-                    raise
+
+                logger.debug("Not versio:" + str(string))
+                # versio only does pep440 by default
+                # print(versio.version.Version.supported_version_schemes)
+                raise

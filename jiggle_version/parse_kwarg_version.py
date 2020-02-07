@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 The kwarg version is found  in setup() of setup.py.
 
@@ -8,23 +7,15 @@ version=...
 
 Hardest case is positional, not that I've seen it in the wild yet.
 """
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
-import sys
 import ast
 import re
-from typing import List, Optional, Any, Tuple
+from typing import Optional, Any, cast
 
 from jiggle_version.parse_dunder_version import simplify_line, validate_string
 
-_ = List, Optional, Any, Tuple
-if sys.version_info.major == 3:
-    unicode = str
 
-
-def find_by_ast(line):  # type: (str) -> Optional[str]
+def find_by_ast(line: str) -> Optional[str]:
     """
     Safer way to 'execute' python code to get a simple value
     :param line:
@@ -36,20 +27,21 @@ def find_by_ast(line):  # type: (str) -> Optional[str]
     simplified_line = simplify_line(line)
 
     if simplified_line.startswith("version="):
+        # noinspection PyBroadException
         try:
-            tree = ast.parse(simplified_line)  # type: Any
+            tree: Any = ast.parse(simplified_line)
             if hasattr(tree.body[0].value, "s"):
-                return tree.body[0].value.s
+                return cast(str, tree.body[0].value.s)
             if hasattr(tree.body[0].value, "elts"):
                 version_parts = []
                 for elt in tree.body[0].value.elts:
                     if hasattr(elt, "n"):
-                        version_parts.append(unicode(elt.n))
+                        version_parts.append(str(elt.n))
                     else:
-                        version_parts.append(unicode(elt.s))
+                        version_parts.append(str(elt.s))
                 return ".".join(version_parts)
             if hasattr(tree.body[0].value, "n"):
-                return unicode(tree.body[0].value.n)
+                return str(tree.body[0].value.n)
             # print(tree)
         except Exception:
             # raise
@@ -58,7 +50,7 @@ def find_by_ast(line):  # type: (str) -> Optional[str]
     return None
 
 
-def find_version_by_regex(file_source):  # type: (str)->Optional[str]
+def find_version_by_regex(file_source: str) -> Optional[str]:
     """
     Regex for dunder version
     """
@@ -70,7 +62,7 @@ def find_version_by_regex(file_source):  # type: (str)->Optional[str]
     return None
 
 
-def find_version_by_string_lib(line):  # type: (str)->Optional[str]
+def find_version_by_string_lib(line: str) -> Optional[str]:
     """
     No regex parsing. Or at least, mostly, not regex.
     """
@@ -89,12 +81,13 @@ def find_version_by_string_lib(line):  # type: (str)->Optional[str]
                     parts = post_equals.split('"')
 
                     if len(parts) != 3:
-                        # logger.debug("Weird string, more than 3 parts : " + unicode((full_path, line, simplified_line)))
+                        # logger.debug("Weird string, more than 3 parts : " + unicode((full_path,
+                        # line, simplified_line)))
                         version = parts[0]
     return version
 
 
-def find_in_line(line):  # type: (str) -> Optional[str]
+def find_in_line(line: str) -> Optional[str]:
     """
     Find a version in a line.
     :param line:
@@ -107,5 +100,5 @@ def find_in_line(line):  # type: (str) -> Optional[str]
         by = method(line)
         by = validate_string(by)
         if by:
-            return by
+            return str(by)
     return None

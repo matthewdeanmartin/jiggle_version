@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Jiggle Version.
 
@@ -22,9 +21,6 @@ Options:
   -h --help            Show this screen.
 
 """
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import logging
 import logging.config
@@ -44,7 +40,7 @@ logger = logging.getLogger(__name__)
 _ = List, Optional, Dict, Any
 
 
-def console_trace(level):  # type: (int)->None
+def console_trace(level: int) -> None:
     """
     Stop using print(), messes up `jiggle_version find` command
     :return:
@@ -83,7 +79,7 @@ def console_trace(level):  # type: (int)->None
     # logging.getLogger('').addHandler(console)
 
 
-def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
+def process_docopts(test: Optional[Dict[str, Any]] = None) -> None:
     """
     Just process the command line options and commands
     :return:
@@ -91,7 +87,7 @@ def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
     if test:
         arguments = test
     else:
-        arguments = docopt(__doc__, version="Jiggle Version {0}".format(__version__))
+        arguments = docopt(__doc__, version=f"Jiggle Version {__version__}")
 
     logger.debug(arguments)
 
@@ -141,8 +137,6 @@ def process_docopts(test=None):  # type: (Optional[Dict[str,Any]])->None
         find_version(project=central_module, source="", force_init=force_init)
 
     else:
-        if arguments["--project"]:
-            central_module = arguments["--project"]
         bump_version(
             project=arguments["--project"],
             source=arguments["--source"],
