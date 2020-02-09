@@ -2,9 +2,10 @@
 
 from setuptools import setup
 import file_module
+
 setup(
     name="file_module",
-    version = file_module.__version__,
+    version=file_module.__version__,
     description="foo",
     long_description="foo\n",
     long_description_content_type="text/markdown",

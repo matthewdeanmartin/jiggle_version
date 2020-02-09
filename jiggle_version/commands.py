@@ -15,14 +15,14 @@ from jiggle_version.utils import die
 logger = logging.getLogger(__name__)
 
 
-def bump_version(project: str, source: str, force_init: bool) -> int:
+def bump_version(project: str, source: str, force_init: bool, signature: bool) -> int:
     """
     Entry point
     :return:
     """
     file_opener = FileOpener()
     # logger.debug("Starting version jiggler...")
-    jiggler = JiggleVersion(project, source, file_opener, force_init)
+    jiggler = JiggleVersion(project, source, file_opener, force_init, signature)
 
     logger.debug(
         "Current, next : {} -> {} : {}".format(

@@ -1537,7 +1537,8 @@ def nose_tests() -> None:
     """
     Nose tests
     """
-
+    print("nose not detecting any tests")
+    return
     check_command_exists("nosetests")
 
     if IS_DJANGO:
@@ -1726,10 +1727,7 @@ def do_sonar() -> str:
     )
     print(command)
     execute(*command)
-    url = (
-        f"https://code-quality-test.loc.gov/api/issues/search?"
-        f"componentKeys=public_record_{PROJECT_NAME}&resolved=false"
-    )
+    url = f"https://TBD/"
 
     session = requests.Session()
     session.auth = (sonar_key, "")
@@ -2256,12 +2254,12 @@ def upload_package() -> None:
 
     # Must register (may go away with newer version of devpi), must be 1 file!
     # twine register --config-file .pypirc -r devpi-root -u root
-    # -p PASSWORD dist/search_service-0.1.0.zip
+    # -p PASSWORD dist/proj-0.1.0.zip
     # can be all files!
     # twine upload --config-file .pypirc -r devpi-root -u root -p PASSWORD dist/*
 
     # which is installable using...
-    #  pip install search-service --index-url=http://localhost:3141/root/dev/
+    #  pip install proj --index-url=http://localhost:3141/root/dev/
 
     check_command_exists("devpi")
     password = os.environ["DEVPI_PASSWORD"]
@@ -2312,10 +2310,7 @@ def run_truffle_hog() -> None:
     Run truffle hog command
     """
     # need to get the URL from 'git remote show origin'
-    command = (
-        "trufflehog --entropy False "
-        "ssh://git@git.loc.gov:7999/COP/public-records/search_ui.git"
-    )
+    command = "trufflehog --entropy False " "ssh://TBD"
     print(command)
 
 

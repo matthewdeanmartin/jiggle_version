@@ -18,12 +18,12 @@
 
 
 __all__ = [
-    'description',
-    'find_doctests',
-    'get_version',
-    'long_description',
-    'require_python',
-    ]
+    "description",
+    "find_doctests",
+    "get_version",
+    "long_description",
+    "require_python",
+]
 
 
 import os
@@ -31,11 +31,10 @@ import re
 import sys
 
 
-DEFAULT_VERSION_RE = re.compile(
-    r'(?P<version>\d+\.\d+(?:\.\d+)?(?:(?:a|b|rc)\d+)?)')
-EMPTYSTRING = ''
+DEFAULT_VERSION_RE = re.compile(r"(?P<version>\d+\.\d+(?:\.\d+)?(?:(?:a|b|rc)\d+)?)")
+EMPTYSTRING = ""
 
-__version__ = '2.3'
+__version__ = "2.3"
 
 
 def require_python(minimum):
@@ -52,18 +51,22 @@ def require_python(minimum):
     if sys.hexversion < minimum:
         hversion = hex(minimum)[2:]
         if len(hversion) % 2 != 0:
-            hversion = '0' + hversion
+            hversion = "0" + hversion
         split = list(hversion)
         parts = []
         while split:
-            parts.append(int(''.join((split.pop(0), split.pop(0))), 16))
+            parts.append(int("".join((split.pop(0), split.pop(0))), 16))
         major, minor, micro, release = parts
-        if release == 0xf0:
-            print('Python {0}.{1}.{2} or better is required'.format(
-                major, minor, micro))
+        if release == 0xF0:
+            print(
+                "Python {0}.{1}.{2} or better is required".format(major, minor, micro)
+            )
         else:
-            print('Python {0}.{1}.{2} ({3}) or better is required'.format(
-                major, minor, micro, hex(release)[2:]))
+            print(
+                "Python {0}.{1}.{2} ({3}) or better is required".format(
+                    major, minor, micro, hex(release)[2:]
+                )
+            )
         sys.exit(1)
 
 
@@ -93,14 +96,14 @@ def get_version(filename, pattern=None):
         cre = re.compile(pattern)
     with open(filename) as fp:
         for line in fp:
-            if line.startswith('__version__'):
+            if line.startswith("__version__"):
                 mo = cre.search(line)
-                assert mo, 'No valid __version__ string found'
-                return mo.group('version')
-    raise AssertionError('No __version__ assignment found')
+                assert mo, "No valid __version__ string found"
+                return mo.group("version")
+    raise AssertionError("No __version__ assignment found")
 
 
-def find_doctests(start='.', extension='.rst'):
+def find_doctests(start=".", extension=".rst"):
     """Find separate-file doctests in the package.
 
     This is useful for Distribute's automatic 2to3 conversion support.  The
@@ -116,21 +119,23 @@ def find_doctests(start='.', extension='.rst'):
     """
     doctests = []
     for dirpath, dirnames, filenames in os.walk(start):
-        doctests.extend(os.path.join(dirpath, filename)
-                        for filename in filenames
-                        if filename.endswith(extension))
+        doctests.extend(
+            os.path.join(dirpath, filename)
+            for filename in filenames
+            if filename.endswith(extension)
+        )
     return doctests
 
 
 def long_description(*filenames):
     """Provide a long description."""
-    res = ['']
+    res = [""]
     for filename in filenames:
         with open(filename) as fp:
             for line in fp:
-                res.append('   ' + line)
-            res.append('')
-        res.append('\n')
+                res.append("   " + line)
+            res.append("")
+        res.append("\n")
     return EMPTYSTRING.join(res)
 
 

@@ -2,7 +2,7 @@
 Jiggle Version.
 
 Usage:
-  jiggle_version here [--module=<module>] [--init]
+  jiggle_version here [--module=<module>] [--init] [--signature]
   jiggle_version find [--module=<module>] [--init]
   jiggle_version --project=<project> --source=<source> [--init]
   jiggle_version -h | --help
@@ -12,6 +12,7 @@ Options:
   here                 No config version bumping, edits source code and stops.
   find                 Just tell me next version, like this jiggle_version find>version.txt
   --init               Force initialization. Use 0.1.0 as first version if version not found
+  --signature          Write "# Jiggle Version was here" on lines with modified source
   --module=<module>    Explicitly specify which module to target
   --execute_code       infer version by parsing only, or parsing and executing?
   --strict             Don't tolerate weird states
@@ -103,14 +104,10 @@ def process_docopts(test: Optional[Dict[str, Any]] = None) -> None:
         # infer it the best we can.
         central_module = central_module_finder.find_central_module()
 
-    if arguments["--init"]:
-        force_init = arguments["--init"]
-        if force_init == "False":
-            force_init = False
-        if force_init == "True":
-            force_init = True
-    else:
-        force_init = False
+    arg_name = "--init"
+    force_init = extract_bool(arg_name, arguments)
+    arg_name = "--signature"
+    signature = extract_bool(arg_name, arguments)
 
     if arguments["here"]:
         # TODO: find better way to turn debugging on & off
@@ -125,7 +122,10 @@ def process_docopts(test: Optional[Dict[str, Any]] = None) -> None:
             central_module = "setup.py"
 
         bump_version(
-            project=central_module, source=guess_src_dir, force_init=force_init
+            project=central_module,
+            source=guess_src_dir,
+            force_init=force_init,
+            signature=signature,
         )
     elif arguments["find"]:
         # Only show errors. Rest of extraneous console output messes up this:
@@ -141,7 +141,23 @@ def process_docopts(test: Optional[Dict[str, Any]] = None) -> None:
             project=arguments["--project"],
             source=arguments["--source"],
             force_init=force_init,
+            signature=signature,
         )
+
+
+def extract_bool(arg_name: str, arguments: Dict[str, str]) -> bool:
+    """
+    Pull a bool from a arg dict
+    """
+    if arg_name in arguments and arguments[arg_name]:
+        value = arguments[arg_name]
+        if value == "False":
+            return False
+        if value == "True":
+            return True
+    else:
+        return False
+    return False
 
 
 if __name__ == "__main__":

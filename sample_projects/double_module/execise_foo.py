@@ -1,4 +1,5 @@
 import foo
-#import foo.__version__
+
+# import foo.__version__
 print(foo.__version__)
 print(foo.__version__.__version__)

@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Things I wish pynt_contrib had.
 """
@@ -11,11 +10,11 @@ from checksumdir import dirhash
 from semantic_version import Version
 
 PROJECT_NAME = "jiggle_version"
-SRC = '.'
+SRC = "."
 # for multitargeting
 PYTHON = "python"
 IS_DJANGO = False
-IS_TRAVIS = 'TRAVIS' in os.environ
+IS_TRAVIS = "TRAVIS" in os.environ
 if IS_TRAVIS:
     PIPENV = ""
 else:
@@ -68,11 +67,14 @@ class BuildState(object):
         # if CURRENT_HASH is None:
         # print("hashing " + directory)
         # print(os.listdir(directory))
-        CURRENT_HASH = dirhash(directory, 'md5', ignore_hidden=True,
-                               # changing these exclusions can cause dirhas to skip EVERYTHING
-                               #excluded_files=[".coverage", "lint.txt"],
-                               excluded_extensions=[".pyc"]
-                               )
+        CURRENT_HASH = dirhash(
+            directory,
+            "md5",
+            ignore_hidden=True,
+            # changing these exclusions can cause dirhas to skip EVERYTHING
+            # excluded_files=[".coverage", "lint.txt"],
+            excluded_extensions=[".pyc"],
+        )
 
         print("Searching " + self.state_file_name)
         if os.path.isfile(self.state_file_name):
@@ -131,10 +133,14 @@ def skip_if_no_change(name, expect_files=None):
 
 def execute_with_environment(command, env):
     # Python 2 code! Python 3 uses context managers.
-    shell_process = subprocess.Popen(command.strip().replace("  ", " ").split(" "), env=env)
+    shell_process = subprocess.Popen(
+        command.strip().replace("  ", " ").split(" "), env=env
+    )
     value = shell_process.communicate()  # wait
     if shell_process.returncode != 0:
-        print("Didn't get a zero return code, got : {0}".format(shell_process.returncode))
+        print(
+            "Didn't get a zero return code, got : {0}".format(shell_process.returncode)
+        )
         exit(-1)
         # raise TypeError("Didn't get a zero return code, got : {0}".format(shell_process.returncode))
     return value
@@ -154,12 +160,12 @@ def execute_get_text(command):  # type: (str) ->str
                 check=True,
                 shell=True,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
+                stderr=subprocess.PIPE,
             )
         except subprocess.CalledProcessError as cpe:
             raise
         else:
-            return completed.stdout.decode('utf-8') + completed.stderr.decode("utf-8")
+            return completed.stdout.decode("utf-8") + completed.stderr.decode("utf-8")
     except AttributeError:
         try:
             p = subprocess.Popen(command.split(" "), stdout=subprocess.PIPE)
@@ -170,15 +176,15 @@ def execute_get_text(command):  # type: (str) ->str
             return str(out) + str(err)
 
 
-
-
-
-
 def get_packages():
     packages = []
-    cp = subprocess.run(("fury list --as={0}".format(GEM_FURY).split(" ")),
-                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                        shell=False, check=True)
+    cp = subprocess.run(
+        ("fury list --as={0}".format(GEM_FURY).split(" ")),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        shell=False,
+        check=True,
+    )
     package_text = cp.stdout.split("\n")
     found = False
     for line in package_text:
@@ -191,9 +197,13 @@ def get_packages():
 
 def get_versions():
     versions = []
-    cp = subprocess.run(("fury versions {0} --as={0}".format(GEM_FURY).format(PROJECT_NAME).split(" ")),
-                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                        shell=False, check=True)
+    cp = subprocess.run(
+        ("fury versions {0} --as={0}".format(GEM_FURY).format(PROJECT_NAME).split(" ")),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        shell=False,
+        check=True,
+    )
     package_text = cp.stdout.decode().split("\n")
     found = False
     for line in package_text:
@@ -206,31 +216,42 @@ def get_versions():
     print(versions)
     return versions
 
+
 def run_gitleaks():
     #  git remote get-url --all origin
     # So far nothing works... as if current repo is corrupt
     cwd = os.getcwd()
-    command = "gitleaks --repo-path={0} --report=/tmp/{1}.csv".format(cwd, PROJECT_NAME).strip()
+    command = "gitleaks --repo-path={0} --report=/tmp/{1}.csv".format(
+        cwd, PROJECT_NAME
+    ).strip()
     print(command)
-    cp = subprocess.run((command.split(" ")),
-                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                        env={
-                            # **os.environ, # not supported in python 2
-                            "GOPATH":"$HOME/gocode",
-                            "PATH":"$PATH:$GOPATH/bin"
-                        },
-                        shell=True, check=True)
+    cp = subprocess.run(
+        (command.split(" ")),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        env={
+            # **os.environ, # not supported in python 2
+            "GOPATH": "$HOME/gocode",
+            "PATH": "$PATH:$GOPATH/bin",
+        },
+        shell=True,
+        check=True,
+    )
+
 
 def run_truffle_hog():
     #  git remote get-url --all origin
     # truffleHog --entropy=False https://github.com/matthewdeanmartin/jiggle_version
     cwd = os.getcwd()
-    command = "gitleaks --repo-path={0} --report=/tmp/{1}.csv".format(cwd, PROJECT_NAME).strip()
+    command = "gitleaks --repo-path={0} --report=/tmp/{1}.csv".format(
+        cwd, PROJECT_NAME
+    ).strip()
     print(command)
-    cp = subprocess.run((command.split(" ")),
-                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                        env={
-                            "GOPATH": "$HOME/gocode",
-                            "PATH": "$PATH:$GOPATH/bin"
-                        },
-                        shell=True, check=True)
+    cp = subprocess.run(
+        (command.split(" ")),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        env={"GOPATH": "$HOME/gocode", "PATH": "$PATH:$GOPATH/bin"},
+        shell=True,
+        check=True,
+    )

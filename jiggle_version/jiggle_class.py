@@ -67,7 +67,12 @@ class JiggleVersion:
     """
 
     def __init__(
-        self, project: str, source: str, file_opener: FileOpener, force_init: bool
+        self,
+        project: str,
+        source: str,
+        file_opener: FileOpener,
+        force_init: bool,
+        signature: bool = False,
     ) -> None:
         """
         Entry point
@@ -136,7 +141,10 @@ class JiggleVersion:
         self.file_inventory = FileInventory(project, source)
 
         # TODO: Make this off by default & option to turn on
-        self.signature = " # Jiggle Version Was Here"
+        if signature:
+            self.signature_txt = "  # Jiggle Version Was Here"
+        else:
+            self.signature_txt = ""
 
     def leading_whitespace(self, line: str) -> str:
         """
@@ -193,7 +201,7 @@ class JiggleVersion:
                                 version_token,
                                 str(self.version_to_write()),
                                 comma,
-                                self.signature,
+                                self.signature_txt,
                             )
                         )
                     else:
@@ -266,7 +274,7 @@ class JiggleVersion:
                         start_comma,
                         str(self.version_to_write()),
                         comma,
-                        self.signature,
+                        self.signature_txt,
                     )
                     need_rewrite = True
                     lines_to_write.append(source)
@@ -293,7 +301,7 @@ class JiggleVersion:
                             version_token,
                             str(self.version_to_write()),
                             comma,
-                            self.signature,
+                            self.signature_txt,
                         )
                     )
                     need_rewrite = True

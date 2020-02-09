@@ -3,7 +3,8 @@ import sys
 import subprocess
 import random
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
 
 def execute_get_text(command, dir):
     try:
@@ -12,14 +13,15 @@ def execute_get_text(command, dir):
             check=True,
             shell=True,
             stdout=subprocess.PIPE,
-            cwd="packages/{0}".format(dir)
+            cwd="packages/{0}".format(dir),
         )
     except subprocess.CalledProcessError as err:
         # dupe.
         # print(err.stdout)
         raise
     else:
-        return completed.stdout.decode('utf-8')
+        return completed.stdout.decode("utf-8")
+
 
 things = [x for x in os.listdir("packages")]
 random.shuffle(things)
@@ -36,4 +38,3 @@ for dir in things:
         _ = execute_get_text(command, dir)
     except subprocess.CalledProcessError as cpe:
         continue
-

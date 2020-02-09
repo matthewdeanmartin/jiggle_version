@@ -35,70 +35,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1c92cb4-e033-40b4-811a-a5b28f9176cf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.license_rules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.pynt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build_old.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/problems/manifest_errors.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reports/line_counts.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements_for_safety.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sample_projects/sample_src/a.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test_strings/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test_x_package_finder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test_zcentral_module_finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jiggle_version.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jiggle_version.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.prospector/jiggle_version_style.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pylintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.pylintrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fetch_raw_data/bump_all_directly.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetch_raw_data/bump_all_directly.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jiggle_version/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/__main__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jiggle_version/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/central_module_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/central_module_finder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jiggle_version/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/commands.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/file_inventory.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_inventory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/file_makers.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_makers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/file_opener.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/file_opener.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/find_version_by_package.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/find_version_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/find_version_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/is_this_okay.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/is_this_okay.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/jiggle_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jiggle_version/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/module_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/module_finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/package_info_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/package_info_finder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/parse_dunder_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/parse_dunder_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/parse_kwarg_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/parse_kwarg_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/schema_guesser.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/schema_guesser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jiggle_version/version_lint.py" beforeDir="false" afterPath="$PROJECT_DIR$/jiggle_version/version_lint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest_errors.txt" beforeDir="false" afterPath="$PROJECT_DIR$/problems/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylintrc.ini" beforeDir="false" afterPath="$PROJECT_DIR$/.pylintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements-dev.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements-dev.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/a.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/a.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/sample_projects/sample_src/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_command_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_command_line.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_damanged_versions.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_damanged_versions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_find_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_find_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_jiggle_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_jiggle_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_parse_dunder_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_parse_dunder_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_parse_kwarg_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_parse_kwarg_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_pep440.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_pep440.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_schema_guesser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_version_schemes.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_strings/test_version_schemes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_strings/test_damanged_versions.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_damanged_versions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_strings/test_parse_dunder_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_parse_dunder_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_strings/test_parse_kwarg_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_parse_kwarg_version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_strings/test_pep440.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_pep440.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_strings/test_version_schemes.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_version_schemes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_zcentral_module_finder.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_zcentral_module_finder.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,14 +183,14 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\matth\source\jiggle_version\test" />
       <recent name="C:\Users\matth\source\jiggle_version\test\test_strings" />
       <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/../package_quality/to_build" />
       <recent name="$PROJECT_DIR$/sample_projects/dupes_in_dunders/dupes" />
-      <recent name="$PROJECT_DIR$/extra" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Nosetests in test_zcentral_module_finder.py">
+  <component name="RunManager" selected="Python tests.Nosetests for test_zcentral_module_finder.test_go">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="find_known_secrets" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -324,7 +284,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests for test.test_zcentral_module_finder.test_go" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests for test._test_zcentral_module_finder.test_go" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -336,7 +296,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test.test_zcentral_module_finder.test_go&quot;" />
+      <option name="_new_target" value="&quot;test._test_zcentral_module_finder.test_go&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -367,12 +327,12 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;-vvv&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/test&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests in test_x_package_finder.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests in test_command_line.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -384,11 +344,11 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_x_package_finder.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_command_line.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Nosetests in test_zcentral_module_finder.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration name="Nosetests in test_find_version.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="jiggle_version" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -400,7 +360,23 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_zcentral_module_finder.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_find_version.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Nosetests in test_main.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <module name="jiggle_version" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_main.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -485,13 +461,20 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python tests.Nosetests in test" />
+      <item itemvalue="Python tests.Nosetests in test_main.py" />
+      <item itemvalue="Python tests.Nosetests in test_command_line.py" />
+      <item itemvalue="Python tests.Nosetests in test_find_version.py" />
+      <item itemvalue="Python tests.Nosetests for test_zcentral_module_finder.test_go" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Nosetests in test_zcentral_module_finder.py" />
-        <item itemvalue="Python tests.Nosetests in test" />
-        <item itemvalue="Python tests.Nosetests for test.test_zcentral_module_finder.test_go" />
         <item itemvalue="Python tests.Nosetests for test_zcentral_module_finder.test_go" />
-        <item itemvalue="Python tests.Nosetests in test_x_package_finder.py" />
+        <item itemvalue="Python tests.Nosetests in test" />
+        <item itemvalue="Python tests.Nosetests in test_find_version.py" />
+        <item itemvalue="Python tests.Nosetests in test_command_line.py" />
+        <item itemvalue="Python tests.Nosetests in test_main.py" />
       </list>
     </recent_temporary>
   </component>
@@ -522,7 +505,7 @@
       <workItem from="1580500166374" duration="8033000" />
       <workItem from="1580955915704" duration="780000" />
       <workItem from="1580957326289" duration="14499000" />
-      <workItem from="1581043534694" duration="3753000" />
+      <workItem from="1581043534694" duration="9721000" />
     </task>
     <servers />
   </component>
@@ -534,10 +517,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="399" y="108" key="#Inspections/0.0.1536.834@0.0.1536.834" timestamp="1579489997819" />
-    <state x="223" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581046933884">
+    <state x="223" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581257228685">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="223" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1581046933884" />
+    <state x="223" y="74" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1581257228685" />
     <state x="540" y="223" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580993229184">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -546,10 +529,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="498" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.834@0.0.1536.834" timestamp="1581046933529" />
-    <state x="499" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581047017873">
+    <state x="499" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581257150487">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1581047017873" />
+    <state x="499" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1581257150487" />
     <state x="515" y="266" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1580578597575">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -562,22 +545,22 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="174" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1579404415538" />
-    <state width="1493" height="275" key="GridCell.Tab.0.bottom" timestamp="1581047188370">
+    <state width="1493" height="275" key="GridCell.Tab.0.bottom" timestamp="1581258393017">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="275" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1581047188370" />
-    <state width="1493" height="275" key="GridCell.Tab.0.center" timestamp="1581047188369">
+    <state width="1493" height="275" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1581258393017" />
+    <state width="1493" height="275" key="GridCell.Tab.0.center" timestamp="1581258393016">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="275" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1581047188369" />
-    <state width="1493" height="275" key="GridCell.Tab.0.left" timestamp="1581047188368">
+    <state width="1493" height="275" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1581258393016" />
+    <state width="1493" height="275" key="GridCell.Tab.0.left" timestamp="1581258393015">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="275" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1581047188368" />
-    <state width="1493" height="275" key="GridCell.Tab.0.right" timestamp="1581047188369">
+    <state width="1493" height="275" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1581258393015" />
+    <state width="1493" height="275" key="GridCell.Tab.0.right" timestamp="1581258393016">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="275" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1581047188369" />
+    <state width="1493" height="275" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1581258393016" />
     <state width="1493" height="238" key="GridCell.Tab.1.bottom" timestamp="1581046883188">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -610,10 +593,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="322" y="155" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.834@0.0.1536.834" timestamp="1580963993122" />
-    <state x="462" y="18" width="611" height="801" key="find.popup" timestamp="1581044250210">
+    <state x="462" y="18" width="611" height="801" key="find.popup" timestamp="1581258382660">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="462" y="18" width="611" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1581044250210" />
+    <state x="462" y="18" width="611" height="801" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1581258382660" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1581257568081">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1581257568081" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -664,8 +651,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_main_py.coverage" NAME="Nosetests in test_main.py Coverage Results" MODIFIED="1581258014279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_x_package_finder_test_pif.coverage" NAME="Nosetests for test_x_package_finder.test_pif Coverage Results" MODIFIED="1581044501279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_zcentral_module_finder_test_go.coverage" NAME="Nosetests for test_zcentral_module_finder.test_go Coverage Results" MODIFIED="1581046469548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_zcentral_module_finder_test_go.coverage" NAME="Nosetests for test_zcentral_module_finder.test_go Coverage Results" MODIFIED="1581258392983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_strings.coverage" NAME="Nosetests in test_strings Coverage Results" MODIFIED="1581046145273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/test_strings" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_central_module_finder_test_go.coverage" NAME="Nosetests for test_central_module_finder.test_go Coverage Results" MODIFIED="1581041887878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_command_line_test_where_am_i.coverage" NAME="Nosetests for test_command_line.test_where_am_i Coverage Results" MODIFIED="1580968542715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -674,9 +662,12 @@
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_central_module_finder_test_setup_name.coverage" NAME="Nosetests for test_central_module_finder.test_setup_name Coverage Results" MODIFIED="1581041974555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_central_module_finder_py.coverage" NAME="Nosetests in test_central_module_finder.py Coverage Results" MODIFIED="1581042441428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_x_package_finder_py.coverage" NAME="Nosetests in test_x_package_finder.py Coverage Results" MODIFIED="1581046374554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test.coverage" NAME="Nosetests in test Coverage Results" MODIFIED="1581046994475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_command_line_py.coverage" NAME="Nosetests in test_command_line.py Coverage Results" MODIFIED="1581258021926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_parse_dunder_version_py.coverage" NAME="Nosetests in test_parse_dunder_version.py Coverage Results" MODIFIED="1581257969847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_find_version_py.coverage" NAME="Nosetests in test_find_version.py Coverage Results" MODIFIED="1581258030126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test.coverage" NAME="Nosetests in test Coverage Results" MODIFIED="1581258184412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_main_test_entry_point.coverage" NAME="Nosetests for test_main.test_entry_point Coverage Results" MODIFIED="1580967616242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_for_test_parse_kwarg_version_test_that_is_a_int_or_float_a.coverage" NAME="Nosetests for test_parse_kwarg_version.test_that_is_a_int_or_float_a Coverage Results" MODIFIED="1580968467309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_zcentral_module_finder_py.coverage" NAME="Nosetests in test_zcentral_module_finder.py Coverage Results" MODIFIED="1581047188339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/jiggle_version$Nosetests_in_test_zcentral_module_finder_py.coverage" NAME="Nosetests in test_zcentral_module_finder.py Coverage Results" MODIFIED="1581257771991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
   </component>
 </project>

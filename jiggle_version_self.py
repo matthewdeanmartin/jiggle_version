@@ -1,4 +1,3 @@
-# coding=utf-8
 """
 Stupider version of jiggle version that jiggle_version depends on.
 
@@ -29,11 +28,13 @@ for file_name in files:
                 else:
                     parts = line.split('"')
                     if len(parts) != 3:
-                        raise TypeError("Version must be of form __version__ = \"1.1.1\"  with no comments")
+                        raise TypeError(
+                            'Version must be of form __version__ = "1.1.1"  with no comments'
+                        )
                     if version is None:
                         version = Version(parts[1])
                         next_version = version.next_patch()
-                to_write.append("__version__ = \"{0}\"".format(str(next_version)))
+                to_write.append('__version__ = "{0}"'.format(str(next_version)))
             else:
                 to_write.append(line)
 
@@ -41,7 +42,7 @@ for file_name in files:
         for line in to_write:
             print(line, end="")
     else:
-        with open(SRC + PROJECT + file_name, 'w') as outfile:
+        with open(SRC + PROJECT + file_name, "w") as outfile:
             outfile.writelines(to_write)
 
 # setup.py related. setup.py itself should read __init__.py or __version__.py
@@ -54,7 +55,7 @@ for file_name in other_files:
         with open(filepath, "r") as infile:
             for line in infile:
                 if "version =" in line or "version=" in line:
-                    parts = line.split('=')
+                    parts = line.split("=")
                     if len(parts) != 2:
                         print(line)
                         print(parts)
@@ -70,5 +71,5 @@ for file_name in other_files:
             for line in to_write:
                 print(line, end="")
         else:
-            with open(SRC + file_name, 'w') as outfile:
+            with open(SRC + file_name, "w") as outfile:
                 outfile.writelines(to_write)

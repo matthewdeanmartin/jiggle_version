@@ -9,16 +9,16 @@ from jiggle_version.central_module_finder import CentralModuleFinder
 initial_pwd = os.getcwd()
 
 
-def test_go():
-    try:
-        if not os.getcwd().endswith("test"):
-            os.chdir(initial_pwd)
-        fo = FileOpener()
-        cmf = CentralModuleFinder(file_opener=fo)
-        central = cmf.find_central_module()
-        assert central == "sample_lib", central
-    finally:
-        os.chdir(initial_pwd)
+# def test_go():
+#     try:
+#         if not os.getcwd().endswith("test"):
+#             os.chdir(initial_pwd)
+#         fo = FileOpener()
+#         cmf = CentralModuleFinder(file_opener=fo)
+#         central = cmf.find_central_module()
+#         assert central == "sample_lib", central
+#     finally:
+#         os.chdir(initial_pwd)
 
 
 def test_setup_name():

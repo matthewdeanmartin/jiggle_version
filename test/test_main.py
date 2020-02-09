@@ -9,7 +9,7 @@ import jiggle_version.main as main
 from jiggle_version.utils import JiggleVersionException
 import jiggle_version.package_info_finder
 
-_ = jiggle_version.package_info_finder
+# _ = jiggle_version.package_info_finder
 
 import os
 
@@ -44,6 +44,7 @@ def test_process_docopts_fake_it():
             "--init": False,
             "find": True,
             "here": False,
+            "--signature": False,
         }
         main.process_docopts(args)
     except JiggleVersionException as jve:
@@ -57,7 +58,7 @@ def test_entry_point():
     # put app in dir with setup.py. Easier!
     try:
         os.chdir(SRC)
-        main.bump_version(PROJECT, "", force_init=True)
+        main.bump_version(PROJECT, "", force_init=True, signature=True)
     except JiggleVersionException as jve:
         print(os.getcwd())
         raise

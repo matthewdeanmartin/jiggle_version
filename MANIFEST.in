@@ -28,3 +28,7 @@ prune .prospector
 prune .pylintrc
 prune .pynt
 prune build_old.py
+prune .license_rules
+prune .pre-commit-config.yaml
+prune problems
+prune reports

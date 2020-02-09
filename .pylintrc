@@ -77,7 +77,8 @@ disable=report,useless-suppression,getslice-method,unicode-builtin,
     execfile-builtin,import-star-module-level,round-builtin,unichr-builtin,next-method-called,cmp-builtin,indexing-exception,
     invalid-name,locally-disabled,
     fixme,bad-continuation,duplicate-code,line-too-long,logging-format-interpolation,too-few-public-methods,logging-not-lazy,
-    too-many-instance-attributes,no-self-use,broad-except,bare-except,too-many-return-statements,too-many-branches,too-many-locals
+    too-many-instance-attributes,no-self-use,broad-except,bare-except,too-many-return-statements,too-many-branches,too-many-locals,
+    too-many-arguments
 
 
 [REPORTS]
