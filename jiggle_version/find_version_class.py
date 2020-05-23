@@ -392,7 +392,8 @@ class FindVersion:
                 return found
             return found
 
-        self.setup_py_source = self.file_opener.open_this(setup_py, "r").read()
+        with self.file_opener.open_this(setup_py, "r") as file_handle:
+            self.setup_py_source = file_handle.read()
 
         if "use_scm_version=True" in ifnull(self.setup_py_source, ""):
             die(

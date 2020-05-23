@@ -78,7 +78,7 @@ disable=report,useless-suppression,getslice-method,unicode-builtin,
     invalid-name,locally-disabled,
     fixme,bad-continuation,duplicate-code,line-too-long,logging-format-interpolation,too-few-public-methods,logging-not-lazy,
     too-many-instance-attributes,no-self-use,broad-except,bare-except,too-many-return-statements,too-many-branches,too-many-locals,
-    too-many-arguments
+    too-many-arguments,logging-fstring-interpolation,wrong-import-order
 
 
 [REPORTS]

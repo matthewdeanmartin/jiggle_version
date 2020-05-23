@@ -957,7 +957,7 @@ def do_git_secrets() -> str:
             )
             for stream in [command_process.stdout, command_process.stderr]:
                 if stream:
-                    for line in stream.decode().split("\n"):
+                    for line in stream.decode(errors="ignore").split("\n"):
                         print("*" + line)
     except subprocess.CalledProcessError as cpe:
         print(cpe)
@@ -1673,8 +1673,9 @@ def do_pip_check() -> str:
     Are packages ok?
     """
     execute("pip", "check")
-    if PIPENV or WANT_TO_USE_PIPENV or PIPENV_ACTIVE:
-        execute("pipenv", "check")
+    # turning this off because it is throwing an error w/o messeage
+    # if PIPENV or WANT_TO_USE_PIPENV or PIPENV_ACTIVE:
+    #     execute("pipenv", "check")
     return "Pip(env) check run"
 
 

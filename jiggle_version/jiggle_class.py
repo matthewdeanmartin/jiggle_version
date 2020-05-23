@@ -207,7 +207,8 @@ class JiggleVersion:
                     else:
                         to_write.append(line)
 
-            check(self.file_opener.open_this(file_name, "r").read(), "".join(to_write))
+            with self.file_opener.open_this(file_name, "r") as file_handle:
+                check(file_handle.read(), "".join(to_write))
             with open(file_name, "w") as outfile:
                 outfile.writelines(to_write)
                 changed += 1
@@ -245,7 +246,8 @@ class JiggleVersion:
         lines_to_write = []
         need_rewrite = False
 
-        encoding = chardet.detect(open(setup_py, "rb").read())
+        with open(setup_py, "rb") as file_handle:
+            encoding = chardet.detect(file_handle.read())
         # logger.warning("guessing encoding " + str(encoding))
         with self.file_opener.open_this(setup_py, "r") as infile:
             for line in infile:
@@ -310,10 +312,9 @@ class JiggleVersion:
                 lines_to_write.append(line)
 
         if need_rewrite:
-            check(
-                self.file_opener.open_this(setup_py, "r").read(),
-                "".join(lines_to_write),
-            )
+            with self.file_opener.open_this(setup_py, "r") as file_handle_r:
+                source_string = str(file_handle_r.read())
+                check(source_string, "".join(lines_to_write))
             with open(setup_py, "w", encoding=encoding["encoding"]) as outfile:
                 outfile.writelines(lines_to_write)
                 outfile.close()

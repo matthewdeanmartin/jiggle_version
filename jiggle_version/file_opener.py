@@ -1,11 +1,10 @@
 """
 Detect encoding, read file, remember encoding
 """
+import chardet
 import configparser
 import logging
 from typing import Dict, IO, Any, cast
-
-import chardet
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +39,8 @@ class FileOpener:
         if "." not in file_path:
             # noinspection PyBroadException
             try:
-                firstline = self.open_this(file_path, "r").readline()
+                with self.open_this(file_path, "r") as file_handle:
+                    firstline = file_handle.readline()
                 if firstline.startswith("#") and "python" in firstline:
                     return True
             except:
@@ -71,7 +71,8 @@ class FileOpener:
 
             encoding = self.found_encoding[file]
         else:
-            file_bytes = open(file, "rb").read()
+            with open(file, "rb") as file_handle_rb:
+                file_bytes = file_handle_rb.read()
             if not file_bytes:
                 encoding = "utf-8"
             else:
@@ -79,7 +80,8 @@ class FileOpener:
                 encoding = encoding_info["encoding"]
             logger.debug(str(encoding))
             try:
-                open(file, how, encoding=encoding).read()
+                with open(file, how, encoding=encoding) as file_handle:
+                    file_handle.read()
             except UnicodeDecodeError:
                 print(file)
                 print(file_bytes)

@@ -243,7 +243,8 @@ class PackageInfoFinder:
                 candidate = file
                 # noinspection PyBroadException
                 try:
-                    firstline = self.file_opener.open_this(file, "r").readline()
+                    with self.file_opener.open_this(file, "r") as file_handle:
+                        firstline = file_handle.readline()
                     if (
                         firstline.startswith("#")
                         and "python" in firstline
