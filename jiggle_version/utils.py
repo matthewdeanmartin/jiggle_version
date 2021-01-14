@@ -3,7 +3,7 @@ Non-domain specific methods I don't want cluttering up other files.
 """
 import subprocess
 import sys
-from typing import Dict, Any, Optional
+from typing import Any, Dict, Optional
 
 
 class JiggleVersionException(Exception):

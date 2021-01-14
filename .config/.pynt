@@ -1,0 +1,32 @@
+[DEFAULT]
+PROJECT_NAME = jiggle_version
+SRC  = .
+PROBLEMS_FOLDER = reports
+REPORTS_FOLDER = reports
+VENV_SHELL = pipenv run
+PIPENV = pipenv run
+
+MINIMUM_TEST_COVERAGE_FOR_FAST_TESTS=25
+MINIMUM_TEST_COVERAGE = 50
+
+; Disables bandit, which forbids all shell script-like actions
+IS_SHELL_SCRIPT_LIKE = 0
+
+; Below this there should be 0 lint, 0 mypy, etc.
+; Above this follow maximum lint
+SMALL_CODE_BASE_CUTOFF = 50
+
+MAXIMUM_LINT = 0
+MAXIMUM_MYPY = 0
+MAXIMUM_DEAD_CODE = 1000
+MAXIMUM_MANIFEST_ERRORS = 0
+
+COMPLEXITY_CUT_OFF = 22
+
+DOCKER_TAG=jiggle_version:test
+
+PACKAGE_WITH=poetry
+INSTALL_WITH=pipenv
+KNOWN_IP_PREFIX=999.999
+RUN_ALL_TESTS_REGARDLESS_TO_NETWORK=True
+SPEAK_WHEN_BUILD_FAILS=True

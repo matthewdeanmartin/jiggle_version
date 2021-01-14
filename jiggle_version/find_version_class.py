@@ -14,24 +14,24 @@ import configparser
 import logging
 import os.path
 import sys
-from typing import List, Optional, Dict, Tuple, Union, cast
+from typing import Dict, List, Optional, Tuple, Union, cast
 
 import parver
 from semantic_version import Version
 from versio import version as versio_version
 
-import jiggle_version.parse_dunder_version as dunder_version
-import jiggle_version.parse_kwarg_version as kwarg_version
+from jiggle_version import parse_dunder_version as dunder_version
+from jiggle_version import parse_kwarg_version as kwarg_version
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import (
-    merge_two_dicts,
-    first_value_in_dict,
     JiggleVersionException,
     die,
     execute_get_text,
+    first_value_in_dict,
     ifnull,
+    merge_two_dicts,
 )
 
 logger = logging.getLogger(__name__)
@@ -480,31 +480,29 @@ class FindVersion:
 
         if first:
             logger.info(
-                "Updating from version {} to {}".format(
-                    str(self.version), str(self.version)
-                )
+                f"Updating from version {str(self.version)} to {str(self.version)}"
             )
         return self.version
 
-    def execute_setup(self) -> Optional[Dict[str, str]]:
-        """
-        for really surprising things like a dict foo in setup(**foo)
-        consider python3 setup.py --version
-        """
-
-        ver = execute_get_text("python setup.py --version")
-        if not ver:
-            return None
-
-        if "UserWarning" in ver:
-            logger.warning("python setup.py --version won't parse, got :" + str(ver))
-            # UserWarning- Ther version specified ... is an invalid...
-            return {}
-
-        if ver:
-            string = str(ver).strip(" \n")
-            if "\n" in string:
-                string = string.split("\n")[0]
-
-            return {"setup.py --version": string.strip(" \n")}
-        return {}
+    # def execute_setup(self) -> Optional[Dict[str, str]]:
+    #     """
+    #     for really surprising things like a dict foo in setup(**foo)
+    #     consider python3 setup.py --version
+    #     """
+    #
+    #     ver = execute_get_text("python setup.py --version")
+    #     if not ver:
+    #         return None
+    #
+    #     if "UserWarning" in ver:
+    #         logger.warning("python setup.py --version won't parse, got :" + str(ver))
+    #         # UserWarning- Ther version specified ... is an invalid...
+    #         return {}
+    #
+    #     if ver:
+    #         string = str(ver).strip(" \n")
+    #         if "\n" in string:
+    #             string = string.split("\n")[0]
+    #
+    #         return {"setup.py --version": string.strip(" \n")}
+    #     return {}

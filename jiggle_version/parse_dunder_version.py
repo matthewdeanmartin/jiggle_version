@@ -16,7 +16,7 @@ A whole file dedicated to parsing __version__ in all it's weird possible ways
 
 import ast
 import re
-from typing import Optional, Any, Tuple
+from typing import Any, Optional, Tuple
 
 version_tokens = [
     "__version__",  # canonical

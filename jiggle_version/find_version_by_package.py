@@ -41,19 +41,19 @@ def pkg_resources_version(package: str) -> str:
 # command lines
 
 
-def version_by_pip(package: str) -> Optional[str]:
-    """
-    Don't use this for bumping code, unless it is dot installed,
-    this is going to look at pip installed packages?
-    :param package:
-    :return:
-    """
-    command = f"pip show {package}"
-    result = execute_get_text(command)
-    for line in result.split("\n"):
-        if line.startswith("Version"):
-            return line.split(":")[0]
-    return None
+# def version_by_pip(package: str) -> Optional[str]:
+#     """
+#     Don't use this for bumping code, unless it is dot installed,
+#     this is going to look at pip installed packages?
+#     :param package:
+#     :return:
+#     """
+#     command = f"pip show {package}"
+#     result = execute_get_text(command)
+#     for line in result.split("\n"):
+#         if line.startswith("Version"):
+#             return line.split(":")[0]
+#     return None
 
 
 # from pipdeptree.py

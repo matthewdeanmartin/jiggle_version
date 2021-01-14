@@ -1,10 +1,11 @@
 """
 Detect encoding, read file, remember encoding
 """
-import chardet
 import configparser
 import logging
-from typing import Dict, IO, Any, cast
+from typing import IO, Any, Dict, cast
+
+import chardet
 
 logger = logging.getLogger(__name__)
 

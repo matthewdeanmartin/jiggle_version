@@ -25,9 +25,8 @@ def bump_version(project: str, source: str, force_init: bool, signature: bool) -
     jiggler = JiggleVersion(project, source, file_opener, force_init, signature)
 
     logger.debug(
-        "Current, next : {} -> {} : {}".format(
-            jiggler.current_version, jiggler.version, jiggler.schema
-        )
+        f"Current, next : {jiggler.current_version} -> {jiggler.version} "
+        f": {jiggler.schema}"
     )
     if not jiggler.version_finder.validate_current_versions():
         logger.debug(str(jiggler.version_finder.all_current_versions()))

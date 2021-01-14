@@ -20,10 +20,8 @@ def check(src: str, dst: str) -> None:
         major, minor = sys.version_info[:2]
         logger.warning(
             "failed to parse source file "
-            "with Python {}.{}'s builtin AST. Switch to manual "
-            "or stop using deprecated Python 2 syntax. AST error message: {}".format(
-                major, minor, exc
-            )
+            f"with Python {major}.{minor}'s builtin AST. Switch to manual "
+            f"or stop using deprecated Python 2 syntax. AST error message: {exc}"
         )
     # noinspection PyBroadException
     try:

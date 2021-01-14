@@ -10,7 +10,7 @@ Hardest case is positional, not that I've seen it in the wild yet.
 
 import ast
 import re
-from typing import Optional, Any, cast
+from typing import Any, Optional, cast
 
 from jiggle_version.parse_dunder_version import simplify_line, validate_string
 

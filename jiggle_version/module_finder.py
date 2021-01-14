@@ -46,8 +46,8 @@ from setuptools import find_packages
 
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.utils import (
-    first_value_in_dict,
     JiggleVersionException,
+    first_value_in_dict,
     parse_source_to_dict,
 )
 

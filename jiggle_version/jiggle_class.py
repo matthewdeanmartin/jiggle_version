@@ -48,15 +48,15 @@ import os.path
 import chardet
 from semantic_version import Version
 
-import jiggle_version.parse_dunder_version as dunder_version
-import jiggle_version.parse_kwarg_version as kwarg_version
+from jiggle_version import parse_dunder_version as dunder_version
+from jiggle_version import parse_kwarg_version as kwarg_version
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_version_class import FindVersion
 from jiggle_version.is_this_okay import check
 from jiggle_version.schema_guesser import version_object_and_next
-from jiggle_version.utils import die, JiggleVersionException
+from jiggle_version.utils import JiggleVersionException, die
 
 logger = logging.getLogger(__name__)
 
@@ -195,14 +195,8 @@ class JiggleVersion:
                             start_comma = ""
 
                         to_write.append(
-                            '{}{}{} = "{}"{}{}\n'.format(
-                                start_comma,
-                                leading_white,
-                                version_token,
-                                str(self.version_to_write()),
-                                comma,
-                                self.signature_txt,
-                            )
+                            f"{start_comma}{leading_white}{version_token} "
+                            f'= "{str(self.version_to_write())}"{comma}{self.signature_txt}\n'
                         )
                     else:
                         to_write.append(line)
@@ -271,13 +265,7 @@ class JiggleVersion:
                     # if not comma and not start_comma:
                     #     print(simplified_line)
                     #     raise TypeError("$$$$$")
-                    source = '{}{}version = "{}"{}{}\n'.format(
-                        leading_white,
-                        start_comma,
-                        str(self.version_to_write()),
-                        comma,
-                        self.signature_txt,
-                    )
+                    source = f'{leading_white}{start_comma}version = "{str(self.version_to_write())}"{comma}{self.signature_txt}\n'
                     need_rewrite = True
                     lines_to_write.append(source)
                     continue
@@ -297,14 +285,8 @@ class JiggleVersion:
                         comma = ""
 
                     lines_to_write.append(
-                        '{}{}{} = "{}"{}{}\n'.format(
-                            leading_white,
-                            start_comma,
-                            version_token,
-                            str(self.version_to_write()),
-                            comma,
-                            self.signature_txt,
-                        )
+                        f'{leading_white}{start_comma}{version_token} ='
+                        f' "{str(self.version_to_write())}"{comma}{self.signature_txt}\n'
                     )
                     need_rewrite = True
                     continue

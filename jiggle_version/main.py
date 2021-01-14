@@ -25,7 +25,7 @@ Options:
 
 import logging
 import logging.config
-from typing import List, Optional, Dict, Any
+from typing import Any, Dict, List, Optional
 
 from docopt import docopt
 

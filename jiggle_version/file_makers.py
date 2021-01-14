@@ -55,11 +55,9 @@ __version__ = \"0.0.0\"
         :param path:
         :return:
         """
-        source = """[metadata]
-name = {}
+        source = f"""[metadata]
+name = {self.project}
 version=0.0.1
-""".format(
-            self.project
-        )
+"""
         with open(path, "w", encoding="utf-8") as outfile:
             outfile.write(source)
