@@ -19,3 +19,8 @@ laid out in a sane manner, it is easier to bump
 - run vermin to get min
 - Allow running tool in docker
 - pre-commit support? 
+
+# CLI
+- clean up the clunky options
+- provide a zero-options workflow
+- some way to specify which branch gets bumps (maybe prompt for input if not known?)

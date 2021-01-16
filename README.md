@@ -22,14 +22,12 @@ Badges
 
 How's it doing?
 
- ![Read the Docs](https://img.shields.io/readthedocs/pip.svg)  [![Coverage Status](https://coveralls.io/repos/github/matthewdeanmartin/jiggle_version/badge.svg?branch=master)](https://coveralls.io/github/matthewdeanmartin/jiggle_version?branch=master) [![BCH compliance](https://bettercodehub.com/edge/badge/matthewdeanmartin/jiggle_version?branch=master)](https://bettercodehub.com/) [![Known Vulnerabilities](https://snyk.io/test/github/matthewdeanmartin/jiggle_version/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/matthewdeanmartin/jiggle_version?targetFile=requirements.txt) [![Total Alerts](https://img.shields.io/lgtm/alerts/g/matthewdeanmartin/jiggle_version.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/matthewdeanmartin/jiggle_version/alerts/) [![CodeFactor](https://www.codefactor.io/repository/github/matthewdeanmartin/jiggle_version/badge)](https://www.codefactor.io/repository/github/matthewdeanmartin/jiggle_version)
-
-
-Where's the bits?
-
-[![PyPI version](https://badge.fury.io/py/jiggle_version.svg)](https://badge.fury.io/py/jiggle_version)  ![GitHub release](https://img.shields.io/github/release/jiggle-version/rubidium.svg)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
-
+ ![Read the Docs](https://img.shields.io/readthedocs/pip.svg) 
+ [![Coverage Status](https://coveralls.io/repos/github/matthewdeanmartin/jiggle_version/badge.svg?branch=master)](https://coveralls.io/github/matthewdeanmartin/jiggle_version?branch=master)
+ [![BCH compliance](https://bettercodehub.com/edge/badge/matthewdeanmartin/jiggle_version?branch=master)](https://bettercodehub.com/) 
+ [![Known Vulnerabilities](https://snyk.io/test/github/matthewdeanmartin/jiggle_version/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/matthewdeanmartin/jiggle_version?targetFile=requirements.txt)
+ [![Total Alerts](https://img.shields.io/lgtm/alerts/g/matthewdeanmartin/jiggle_version.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/matthewdeanmartin/jiggle_version/alerts/)
+ [![CodeFactor](https://www.codefactor.io/repository/github/matthewdeanmartin/jiggle_version/badge)](https://www.codefactor.io/repository/github/matthewdeanmartin/jiggle_version)
 
 Python Versions Supported
 -------------------------
@@ -54,9 +52,9 @@ the developer to write regex to use a utility is a collosal cop out.
 
 Documentation
 -------------
-[Design Philosophy](docs/design_philosophy.md)
-[Prior Art](docs/prior_art.md)
-[TODO](docs/todo.md)
-[Authors](docs/AUTHORS)
-[ChangeLog](docs/ChangeLog)
-[Code of Conduct](docs/CODE_OF_CONDUCT.md)
+- [Design Philosophy](docs/design_philosophy.md)
+- [Prior Art](docs/prior_art.md)
+- [TODO](docs/todo.md)
+- [Authors](docs/AUTHORS)
+- [ChangeLog](docs/ChangeLog)
+- [Code of Conduct](docs/CODE_OF_CONDUCT.md)
