@@ -6,6 +6,7 @@
 
 # New places to put version numbers
 - support pyproject.toml
+- related: support projects that don't involve setup.py at all.
 
 # Multifile bumping
 - update major & minor with user input (low value scenario, imho)
