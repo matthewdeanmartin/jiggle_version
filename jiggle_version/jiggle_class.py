@@ -48,13 +48,13 @@ import os.path
 import chardet
 from semantic_version import Version
 
-from jiggle_version.parse_version import parse_dunder_version as dunder_version
-from jiggle_version.parse_version import parse_kwarg_version as kwarg_version
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_version_class import FindVersion
-from jiggle_version.is_this_okay import check
+from jiggle_version.parse_python.is_this_okay import check
+from jiggle_version.parse_version import parse_dunder_version as dunder_version
+from jiggle_version.parse_version import parse_kwarg_version as kwarg_version
 from jiggle_version.parse_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import JiggleVersionException, die
 
@@ -203,7 +203,7 @@ class JiggleVersion:
 
             with self.file_opener.open_this(file_name, "r") as file_handle:
                 check(file_handle.read(), "".join(to_write))
-            with open(file_name, "w") as outfile:
+            with open(file_name, "w", encoding="utf-8") as outfile:
                 outfile.writelines(to_write)
                 changed += 1
         return changed
@@ -285,7 +285,7 @@ class JiggleVersion:
                         comma = ""
 
                     lines_to_write.append(
-                        f'{leading_white}{start_comma}{version_token} ='
+                        f"{leading_white}{start_comma}{version_token} ="
                         f' "{str(self.version_to_write())}"{comma}{self.signature_txt}\n'
                     )
                     need_rewrite = True
@@ -351,7 +351,7 @@ class JiggleVersion:
                 except KeyError:
                     version = ""
                 if version:
-                    with open(filepath, "w") as configfile:  # save
+                    with open(filepath, "w", encoding="utf-8") as configfile:  # save
                         config["metadata"]["version"] = str(self.version_to_write())
                         config.write(configfile)
                         changed += 1

@@ -27,6 +27,8 @@ import setuptools
 from checksumdir import dirhash
 from git import Repo
 
+from navio_tasks.commands.cli_pytest import do_pytest
+
 try:
     from pynt import task
     from pyntcontrib import execute, safe_cd
@@ -1533,30 +1535,9 @@ def tox() -> str:
 
 @task(lint)
 @timed()
-def nose_tests() -> None:
-    """
-    Nose tests
-    """
-    print("nose not detecting any tests")
-    return
-    check_command_exists("nosetests")
-
-    if IS_DJANGO:
-        command = f"{PYTHON} manage.py test -v 2"
-        # We'd expect this to be MAC or a build server.
-        my_env = config_pythonpath()
-        execute_with_environment(command, env=my_env)
-    else:
-        my_env = config_pythonpath()
-        command_text = (
-            f"nosetests --where test --exe --with-coverage --cover-erase "
-            f"--with-xunit --cover-package={PROJECT_NAME} "
-            f"--cover-xml-file=coverage.xml "
-            f"--cover-xml --cover-min-percentage={MINIMUM_TEST_COVERAGE}"
-        )
-        command_text = f"{PIPENV} {command_text}".strip().replace("  ", " ")
-        print(command_text)
-        execute_with_environment(command_text, env=my_env)
+def tests() -> None:
+    """tests"""
+    do_pytest()
 
 
 def config_pythonpath() -> Dict[str, str]:
@@ -2033,7 +2014,7 @@ def jiggle_version() -> None:
     jiggle_version,
     check_manifest,
     # tests as slow as tests are.
-    nose_tests,
+    tests,
     coverage,
     # package related
     liccheck,
@@ -2335,7 +2316,7 @@ def pre_commit_hook() -> None:
     mypy,
     detect_secrets,
     git_secrets,
-    nose_tests,
+    tests,
     coverage,
     check_package,
     compile_py,

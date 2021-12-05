@@ -12,7 +12,10 @@ import ast
 import re
 from typing import Any, Optional, cast
 
-from jiggle_version.parse_version.parse_dunder_version import simplify_line, validate_string
+from jiggle_version.parse_version.parse_dunder_version import (
+    simplify_line,
+    validate_string,
+)
 
 
 def find_by_ast(line: str) -> Optional[str]:

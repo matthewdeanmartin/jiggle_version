@@ -8,11 +8,9 @@ Yes, you could have setup.py read from __version__.py and should.
 """
 
 from importlib import import_module
-from typing import Any, Optional
+from typing import Any
 
 import pkg_resources
-
-from jiggle_version.utils import execute_get_text
 
 _ = Any
 

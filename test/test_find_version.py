@@ -1,12 +1,12 @@
 """
 Tests
 """
-from jiggle_version.find_version_by_package import pkg_resources_version
 
 
 import os
 
 from jiggle_version.commands import find_version
+from jiggle_version.parse_package.find_version_by_package import pkg_resources_version
 
 initial_pwd = os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))

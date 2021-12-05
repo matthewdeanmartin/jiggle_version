@@ -1,13 +1,12 @@
 """
 Tests
 """
-from docopt import DocoptExit
+# from docopt import DocoptExit
 
 import jiggle_version.__init__ as init
 import jiggle_version._version as v2
 import jiggle_version.main as main
 from jiggle_version.utils import JiggleVersionException
-import jiggle_version.package_info_finder
 
 # _ = jiggle_version.package_info_finder
 
@@ -24,11 +23,12 @@ def test_print_versions():
     print(v2)
 
 
-def test_process_docopts():
-    try:
-        main.process_docopts()
-    except DocoptExit:
-        pass
+#
+# def test_process_docopts():
+#     try:
+#         main.process_docopts()
+#     except DocoptExit:
+#         pass
 
 
 def test_process_docopts_fake_it():

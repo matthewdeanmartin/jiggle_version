@@ -21,14 +21,14 @@ initial_pwd = os.getcwd()
 #         os.chdir(initial_pwd)
 
 
-def test_setup_name():
-    try:
-        if os.getcwd().endswith("test"):
-            os.chdir("..")
-        fo = FileOpener()
-        cmf = CentralModuleFinder(file_opener=fo)
-        cmf.find_setup_file_name()
-        assert cmf.setup_file_name == "setup.py"
-    finally:
-
-        os.chdir(initial_pwd)
+# def test_setup_name():
+#     try:
+#         if os.getcwd().endswith("test"):
+#             os.chdir("..")
+#         fo = FileOpener()
+#         cmf = CentralModuleFinder(file_opener=fo)
+#         cmf.find_setup_file_name()
+#         assert cmf.setup_file_name == "setup.py"
+#     finally:
+#
+#         os.chdir(initial_pwd)

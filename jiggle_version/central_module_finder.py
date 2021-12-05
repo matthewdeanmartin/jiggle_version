@@ -5,14 +5,12 @@ Given a known package, find the 'central' module, the one whose version should s
 
 import logging
 import os
-import subprocess
 from typing import List, Optional
 
 from jiggle_version.file_opener import FileOpener
 
 # so formatter doesn't remove.
 from jiggle_version.module_finder import ModuleFinder
-from jiggle_version.utils import execute_get_text
 
 logger = logging.getLogger(__name__)
 
@@ -85,7 +83,7 @@ class CentralModuleFinder:
                 if '"' in simplified_row:
                     return simplified_row.split('"')[1]
 
-        name = self.execute_setup_name()
+        name = ""  # self.execute_setup_name()
         if name:
             return name
 
