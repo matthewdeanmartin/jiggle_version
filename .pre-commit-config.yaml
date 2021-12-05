@@ -36,7 +36,7 @@ repos:
     #too nitpicky
     #-   id: flake8
 
--   repo: https://github.com/psf/black
-    rev: 19.3b0
-    hooks:
-    -   id: black
+#-   repo: https://github.com/psf/black
+#    rev: 19.3b0
+#    hooks:
+#    -   id: black
