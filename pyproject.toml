@@ -1,0 +1,110 @@
+[tool.poetry]
+name = "jiggle_version"
+version = "1.0.75"
+description = "Bump version by modifying source code. No regex needed from user."
+authors = ["Matthew Martin <matthewdeanmartin@gmail.com>"]
+keywords = ["bump version", "version"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+include = [
+    "jiggle_version/**/*.py",
+]
+exclude = [
+]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/matthewdeanmartin/jiggle_version"
+homepage = "https://github.com/matthewdeanmartin/jiggle_version"
+documentation ="https://github.com/matthewdeanmartin/jiggle_version"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/matthewdeanmartin/jiggle_version/issues"
+"Change Log" = "https://github.com/matthewdeanmartin/jiggle_version/blob/main/CHANGES.md"
+
+[tool.poetry.scripts]
+jiggle_version = 'jiggle_version.main:process_docopts'
+
+[tool.poetry.dependencies]
+python = ">=3.6, <4.0"
+semantic-version = "*"
+parver = "*"
+# cmp-version = "*"
+versio = "*"
+chardet = "*"
+docopt-ng = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "==6.0.1"
+pytest-cov = ">=2.10.1"
+flake8 = "*"
+pylint = "*"
+check-wheel-contents = "*"
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests",
+]
+junit_family = "xunit1"
+norecursedirs = ["vendor", "scripts"]
+# don't know how to do this in toml
+#addopts = "--strict-markers"
+#markers =
+#	slow: marks tests as slow (deselect with '-m "not slow"')
+#	fast: marks tests as fast (deselect with '-m "not fast"')
+
+[tool.isort]
+default_section = "THIRDPARTY"
+force_grid_wrap = 0
+include_trailing_comma = true
+known_first_party = ["pydoc_fork"]
+line_length = 88
+multi_line_output = 3
+use_parentheses = true
+
+[tool.pydoc_fork]
+PREFER_INTERNET_DOCUMENTATION = false
+DOCUMENT_INTERNALS = false
+SKIP_MODULES = ["typing"]
+ONLY_NAMED_AND_SUBS = false
+
+[tool.portray]
+output_dir = "doc/docs_portray"

@@ -5,11 +5,11 @@ name = "pypi"
 
 [packages]
 semantic-version = "*"
-docopt = "*"
 parver = "*"
-cmp-version = "*"
+# cmp-version = "*"
 versio = "*"
 chardet = "*"
+docopt-ng = "*"
 
 [dev-packages]
 checksumdir = "*"

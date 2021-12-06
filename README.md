@@ -1,21 +1,20 @@
 # jiggle_version
-Opinionated, no config build version incrementer. No regex. Drop in and go.
+Version bumper that finds version numbers in source code and increases the build number by modifying source.
 
-    pip install jiggle_library
-    
-    cd src
-    # should run from same folder with setup.py
-    # or parent folder of my_module/__init__.py
-    
-    jiggle_library here
+With jiggle-version, the source code is authoritative, as compared to some tools where the source control
+tag is authoritative, or the pyproject.toml is authoritative. You should consider instead using `poetry version patch` and looking up the `__version__` from the 
+package metadata.
+
+Special attention to making sure you don't have to write regex or do complex configuration.
+
+    pip install jiggle-version
+     
+    jiggle-version here
     # find, bump & update version strings in source code
     
     jiggle_version here --module=my_module
-    # specify which module.
     
-    git --tag $(jiggle_library find)
-
-Depends on cmp-version, docopt, parver, semantic-version, versio, which your application is unlikely to depend on.
+    git --tag $(jiggle-version find)
 
 Badges
 ------
@@ -38,7 +37,7 @@ Opinionated
 -----------
 A library should have one working, no-options, no questions asked scenario, e.g.
 
-    jiggle_library here
+    jiggle-version here
     # find, bump & update version strings in source code
 
 An opinionated library has an opinion about the right way to do it. That said, if the library can discover existing conventions, it should discover them and use them. If you don't like it, see the end for competing opinionated libraries and their philosophy, such as vcs-tag-only, regex-more-regex-all-day-regex.
