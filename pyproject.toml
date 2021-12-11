@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jiggle_version"
-version = "1.0.75"
+version = "1.0.77"
 description = "Bump version by modifying source code. No regex needed from user."
 authors = ["Matthew Martin <matthewdeanmartin@gmail.com>"]
 keywords = ["bump version", "version"]
@@ -19,6 +19,11 @@ classifiers = [
 ]
 include = [
     "jiggle_version/**/*.py",
+    # vendorizing until there is a wheel
+    "versio/**/*.py",
+    "versio/**/*.txt",
+    "versio/**/*.md",
+    "versio/**/*"
 ]
 exclude = [
 ]
@@ -39,8 +44,8 @@ jiggle_version = 'jiggle_version.main:process_docopts'
 python = ">=3.6, <4.0"
 semantic-version = "*"
 parver = "*"
-# cmp-version = "*"
-versio = "*"
+# vendorizing until there is a wheel
+# versio = "*"
 chardet = "*"
 docopt-ng = "*"
 
