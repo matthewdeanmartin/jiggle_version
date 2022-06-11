@@ -11,8 +11,7 @@
 ################################################################################
 
 chardet
-cmp-version
-docopt
+docopt-ng
 parver
 semantic-version
 versio

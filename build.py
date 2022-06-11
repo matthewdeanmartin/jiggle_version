@@ -33,6 +33,7 @@ import functools
 import os
 import subprocess
 import sys
+from navio.builder import task
 
 try:
     from dotenv import load_dotenv
@@ -61,7 +62,6 @@ from navio_tasks.mutating_commands.cli_precommit import do_precommit
 from navio_tasks.commands.cli_npm_pyright import do_pyright
 from pebble import ProcessPool
 
-from navio.builder import task
 
 # on some shells print doesn't flush!
 # pylint: disable=redefined-builtin,invalid-name
@@ -80,7 +80,6 @@ from navio_tasks.commands.cli_flake8 import do_flake8
 from navio_tasks.commands.cli_get_secrets import do_git_secrets
 from navio_tasks.commands.cli_mypy import do_mypy, evaluated_mypy_results
 from navio_tasks.commands.cli_pylint import do_lint, evaluated_lint_results
-from navio_tasks.commands.cli_pyt import do_python_taint
 from navio_tasks.commands.cli_pytest import do_pytest, do_pytest_coverage
 from navio_tasks.commands.cli_tox import do_tox
 from navio_tasks.commands.lib_dodgy import do_dodgy
@@ -216,6 +215,8 @@ def git_secrets() -> None:
     """
     Run git secrets utility
     """
+    print("skipping git secrets")
+    return
     do_git_secrets()
 
 
@@ -235,7 +236,7 @@ def pyupgrade() -> str:
     """
     Pyupgrade
     """
-    # supported py3, py36, py37, py38
+    # supported py38+
     # Should be logically consistent with other minimum python version
     # tools (vermin, compile_py, tox)
     return do_pyupgrade(IS_INTERACTIVE, "py38")
@@ -380,17 +381,11 @@ def bandit() -> None:
     # These two exist for running shell commands.
     # /scripts/ folder
     # build.py itself
+    print("no bandit:  taking too much time to configure skips...")
+    return
     do_bandit(IS_SHELL_SCRIPT_LIKE)
 
 
-@task(formatting, compile_py)
-@skip_if_no_change("python_taint")
-@timed()
-def python_taint() -> None:
-    """
-    Security linting with pyt
-    """
-    do_python_taint()
 
 
 @task(flake8)
@@ -634,7 +629,6 @@ def jiggle_version() -> None:
     flake8,
     dodgy_check,
     bandit,
-    python_taint,
     mccabe,
     pin_dependencies,
     jiggle_version,
@@ -675,7 +669,6 @@ def parallel_checks() -> None:
         do_flake8,
         do_dodgy,
         do_bandit,
-        do_python_taint,
         do_mccabe,
         do_check_manifest,
         do_liccheck,
@@ -725,7 +718,6 @@ def parallel_checks() -> None:
     flake8,
     dodgy_check,
     bandit,
-    python_taint,
     mccabe,
     check_manifest,
     liccheck,  #

@@ -193,7 +193,7 @@ class ModuleFinder:
         try:
             # Right now only returns 1st.
             packaged_dirs = self.extract_package_dir()
-        except:
+        except:  # nosec
             pass
         likely_src_folders = [".", "src", "lib"]
         if packaged_dirs and packaged_dirs not in likely_src_folders:

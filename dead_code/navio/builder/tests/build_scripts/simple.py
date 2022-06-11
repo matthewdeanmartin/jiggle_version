@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from navio.builder import task
+from dead_code.navio.builder import task
 
 
 @task()

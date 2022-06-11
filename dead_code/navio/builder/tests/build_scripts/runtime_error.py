@@ -1,7 +1,7 @@
 """
 Build script with a runtime error.
 """
-from navio.builder import task
+from dead_code.navio.builder import task
 
 
 @task()

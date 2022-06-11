@@ -89,7 +89,7 @@ def check_command_exists(
 
     # Build command & print. Must do here or the print gets redirected!
     # these commands lack a --version.
-    if command in ["pyroma", "liccheck", "pipenv_to_requirements", "pyupgrade", "pyt"]:
+    if command in ["pyroma", "liccheck", "pipenv_to_requirements", "pyupgrade"]:
         # will fail unless bash shell
         if is_powershell():
             cmd = venv_shell + ["powershell", "get-command", command]

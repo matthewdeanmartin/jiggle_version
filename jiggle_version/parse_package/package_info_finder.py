@@ -252,7 +252,7 @@ class PackageInfoFinder:
                     ):
                         candidates.append(candidate)
                         return candidates
-                except:
+                except:  # nosec
                     pass
         # default.
         return candidates

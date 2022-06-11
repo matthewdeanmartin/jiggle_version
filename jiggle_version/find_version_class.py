@@ -18,7 +18,6 @@ from typing import Dict, List, Optional, Tuple, Union, cast
 
 import parver
 from semantic_version import Version
-from versio import version as versio_version
 
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
@@ -32,6 +31,7 @@ from jiggle_version.utils import (
     ifnull,
     merge_two_dicts,
 )
+from versio import version as versio_version
 
 logger = logging.getLogger(__name__)
 

@@ -44,7 +44,7 @@ class FileOpener:
                     firstline = file_handle.readline()
                 if firstline.startswith("#") and "python" in firstline:
                     return True
-            except:
+            except:  # nosec
                 pass
         return False
 

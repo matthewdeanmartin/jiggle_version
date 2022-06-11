@@ -29,6 +29,7 @@ ifaddr = "*"
 mypy = "*"
 types-setuptools = "*"
 types-chardet = "*"
+navio-builder-win = "*"
 
 [requires]
 python_version = "3.8"

@@ -17,9 +17,8 @@ import time
 
 # import sh
 import json
-import zipfile
 from datetime import datetime, date
-from navio.meta_builder import __version__
+from dead_code.navio.meta_builder import __version__
 
 _CREDIT_LINE = "Powered by nb %s " "- A Lightweight Python Build Tool." % __version__
 _LOGGING_FORMAT = "[ %(name)s - %(message)s ]"

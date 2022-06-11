@@ -1,9 +1,7 @@
 #!/usr/bin/python
 
-from navio.builder import task
-
-from navio.builder.tests.build_scripts.simple import *
-from navio.builder.tests.build_scripts import build_with_params
+from dead_code.navio.builder.tests.build_scripts.simple import *
+from dead_code.navio.builder.tests.build_scripts import build_with_params
 
 tasks_run = []
 
