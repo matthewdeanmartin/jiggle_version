@@ -59,7 +59,7 @@ def test_regression_scenarios_old():
     result, _ = find_in_line("VERSION = (1, 0, 1)")
     assert result == "1.0.1", result
     result, _ = find_in_line(
-        "    version = re.search(r'^__version__\s*=\s*['\"]([^'\"]*)['\"]',"
+        "    version = re.search(r'^__version__\\s*=\\s*['\"]([^'\"]*)['\"]',"
     )
     assert result is None, result
     result, _ = find_in_line("version = re.search(r'^__version__\\s*=\\s*[")
