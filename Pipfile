@@ -10,6 +10,7 @@ parver = "*"
 versio = "*"
 chardet = "*"
 docopt-ng = "*"
+pre-commit = "*"
 
 [dev-packages]
 checksumdir = "*"
@@ -32,4 +33,4 @@ types-chardet = "*"
 navio-builder-win = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.11"

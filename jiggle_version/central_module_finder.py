@@ -114,9 +114,9 @@ class CentralModuleFinder:
         :return:
         """
         # find modules.
-        mf = ModuleFinder(self.file_opener)
+        module_finder = ModuleFinder(self.file_opener)
 
-        candidates = mf.find_by_any_method()
+        candidates = module_finder.find_by_any_method()
 
         sub_modules = []
         root_modules = []

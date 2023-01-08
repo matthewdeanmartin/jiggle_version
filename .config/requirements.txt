@@ -13,5 +13,6 @@
 chardet
 docopt-ng
 parver
+pre-commit
 semantic-version
 versio

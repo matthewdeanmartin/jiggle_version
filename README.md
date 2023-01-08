@@ -2,8 +2,11 @@
 Version bumper that finds version numbers in source code and increases the build number by modifying source.
 
 With jiggle-version, the source code is authoritative, as compared to some tools where the source control
-tag is authoritative, or the pyproject.toml is authoritative. You should consider instead using `poetry version patch` and looking up the `__version__` from the 
-package metadata.
+tag is authoritative, or the pyproject.toml is authoritative. 
+
+This tool was written before pyproject.toml was a well-supported standard. You should consider instead 
+using `poetry version patch` and looking up the `__version__` from the package metadata and not storing the
+version anywhere in source code.
 
 Special attention to making sure you don't have to write regex or do complex configuration.
 
