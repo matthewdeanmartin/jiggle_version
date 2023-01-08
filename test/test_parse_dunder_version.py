@@ -62,7 +62,7 @@ def test_regression_scenarios_old():
         "    version = re.search(r'^__version__\s*=\s*['\"]([^'\"]*)['\"]',"
     )
     assert result is None, result
-    result, _ = find_in_line("version = re.search(r'^__version__\s*=\s*[")
+    result, _ = find_in_line("version = re.search(r'^__version__\\s*=\\s*[")
     assert result is None, result
 
 
