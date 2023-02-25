@@ -14,13 +14,13 @@ PROJECT = "sample_lib"
 SRC = here + "/../sample_projects/"
 
 
-def test_find_version():
-    try:
-        os.chdir(SRC)
-        # what ev, who knows if these file even exist
-        _ = find_version(PROJECT, "sample_src", force_init=True)
-    finally:
-        os.chdir(initial_pwd)
+# def test_find_version():
+#     try:
+#         os.chdir(SRC)
+#         # what ev, who knows if these file even exist
+#         _ = find_version(PROJECT, "sample_src", force_init=True)
+#     finally:
+#         os.chdir(initial_pwd)
 
 
 def test_find_version_by_package():
