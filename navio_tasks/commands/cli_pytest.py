@@ -57,8 +57,8 @@ def do_pytest() -> None:
     # when it works, it is FAST. when it doesn't, we get lots of timeouts.
     # if not IS_GITLAB:
     #     command += f" -n {multiprocessing.cpu_count()} "
-    if not IS_GITLAB:
-        command += " -n 2 "
+    # if not IS_GITLAB:
+    #     command += " -n 2 "
 
     inform(command)
     execute_with_environment(command, my_env)
