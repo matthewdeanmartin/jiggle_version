@@ -36,24 +36,6 @@ def pkg_resources_version(package: str) -> str:
         return "unknown"
 
 
-# command lines
-
-
-# def version_by_pip(package: str) -> Optional[str]:
-#     """
-#     Don't use this for bumping code, unless it is dot installed,
-#     this is going to look at pip installed packages?
-#     :param package:
-#     :return:
-#     """
-#     command = f"pip show {package}"
-#     result = execute_get_text(command)
-#     for line in result.split("\n"):
-#         if line.startswith("Version"):
-#             return line.split(":")[0]
-#     return None
-
-
 # from pipdeptree.py
 def guess_version_by_running_live_package(pkg_key: str, default: str = "?") -> Any:
     """Guess the version of a pkg when pip doesn't provide it.

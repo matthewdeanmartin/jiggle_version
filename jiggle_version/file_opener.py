@@ -69,7 +69,6 @@ class FileOpener:
             # raise TypeError("this isn't absolute! We're siths, ya' know.")
             pass
         if file in self.found_encoding:
-
             encoding = self.found_encoding[file]
         else:
             with open(file, "rb") as file_handle_rb:

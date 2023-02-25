@@ -31,6 +31,7 @@ mypy = "*"
 types-setuptools = "*"
 types-chardet = "*"
 navio-builder-win = "*"
+tox = "*"
 
 [requires]
 python_version = "3.11"

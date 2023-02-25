@@ -17,14 +17,10 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 include = [
-    "jiggle_version/**/*.py",
-    # vendorizing until there is a wheel
-    "versio/**/*.py",
-    "versio/**/*.txt",
-    "versio/**/*.md",
-    "versio/**/*"
+    "jiggle_version/**/*.py"
 ]
 exclude = [
 ]
@@ -42,16 +38,15 @@ documentation ="https://github.com/matthewdeanmartin/jiggle_version"
 jiggle_version = 'jiggle_version.main:process_docopts'
 
 [tool.poetry.dependencies]
-python = ">=3.6, <4.0"
+python = ">=3.6"
 semantic-version = "*"
 parver = "*"
-# vendorizing until there is a wheel
-# versio = "*"
+versio = ">=0.5.0"
 chardet = "*"
 docopt-ng = "*"
 
 [tool.poetry.dev-dependencies]
-pytest = "==6.0.1"
+pytest = "=>6.0.1"
 pytest-cov = ">=2.10.1"
 flake8 = "*"
 pylint = "*"

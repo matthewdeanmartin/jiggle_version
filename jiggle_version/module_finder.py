@@ -161,7 +161,6 @@ class ModuleFinder:
                 else:
                     # noinspection PyBroadException
                     try:
-
                         find_package_args_source = row.split("(")[1].split(")")[0]
                         find_package_args = ast.literal_eval(find_package_args_source)
                         logger.debug(packages)

@@ -257,7 +257,6 @@ class FindVersion:
         files_to_check = self.file_inventory.source_files
         files_to_check.append(self.PROJECT + ".py")  # is this the 'central' module?
         for file in self.file_inventory.source_files:
-
             if not os.path.isfile(file):
                 continue
             vers: Optional[Dict[str, str]] = self.find_dunder_version_in_file(file)
@@ -482,26 +481,3 @@ class FindVersion:
                 f"Updating from version {str(self.version)} to {str(self.version)}"
             )
         return self.version
-
-    # def execute_setup(self) -> Optional[Dict[str, str]]:
-    #     """
-    #     for really surprising things like a dict foo in setup(**foo)
-    #     consider python3 setup.py --version
-    #     """
-    #
-    #     ver = execute_get_text("python setup.py --version")
-    #     if not ver:
-    #         return None
-    #
-    #     if "UserWarning" in ver:
-    #         logger.warning("python setup.py --version won't parse, got :" + str(ver))
-    #         # UserWarning- Ther version specified ... is an invalid...
-    #         return {}
-    #
-    #     if ver:
-    #         string = str(ver).strip(" \n")
-    #         if "\n" in string:
-    #             string = string.split("\n")[0]
-    #
-    #         return {"setup.py --version": string.strip(" \n")}
-    #     return {}
