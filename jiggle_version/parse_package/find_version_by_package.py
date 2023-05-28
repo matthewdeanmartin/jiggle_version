@@ -31,7 +31,7 @@ def pkg_resources_version(package: str) -> str:
 
     # noinspection PyBroadException
     try:
-        return pkg_resources.get_distribution(package).version
+        return str(pkg_resources.get_distribution(package).version)
     except Exception:
         return "unknown"
 
