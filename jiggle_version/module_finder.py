@@ -161,7 +161,6 @@ class ModuleFinder:
                 else:
                     # noinspection PyBroadException
                     try:
-
                         find_package_args_source = row.split("(")[1].split(")")[0]
                         find_package_args = ast.literal_eval(find_package_args_source)
                         logger.debug(packages)
@@ -193,7 +192,7 @@ class ModuleFinder:
         try:
             # Right now only returns 1st.
             packaged_dirs = self.extract_package_dir()
-        except:
+        except:  # nosec
             pass
         likely_src_folders = [".", "src", "lib"]
         if packaged_dirs and packaged_dirs not in likely_src_folders:

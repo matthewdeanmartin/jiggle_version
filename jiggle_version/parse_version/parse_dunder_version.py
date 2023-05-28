@@ -156,7 +156,6 @@ def find_in_line(line: str) -> Tuple[Optional[str], Optional[str]]:
     if not line:
         return None, None
     for version_token in version_tokens:
-
         by_ast = find_by_ast(line, version_token)
         by_ast = validate_string(by_ast)
         if by_ast:

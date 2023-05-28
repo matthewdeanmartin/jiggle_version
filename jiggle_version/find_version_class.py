@@ -58,7 +58,7 @@ class FindVersion:
 
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
-        self.setup_py_source = None
+        self.setup_py_source: Optional[str] = None
         self.schema: Optional[str] = None
 
         # if not project:
@@ -75,18 +75,20 @@ class FindVersion:
         self.PROJECT = project
         self.SRC = source
 
-        if self.PROJECT is None:
-            self.is_folder_project: bool = False
-        else:
-            candidate_folder = os.path.join(self.SRC, self.PROJECT)
-            self.is_folder_project = os.path.isdir(candidate_folder)
+        # unreachable?
+        # if self.PROJECT is None:
+        #     self.is_folder_project: bool = False
+        # else:
+        candidate_folder = os.path.join(self.SRC, self.PROJECT)
+        self.is_folder_project = os.path.isdir(candidate_folder)
 
-        if self.PROJECT is None:
-            self.is_file_project: bool = False
-        else:
-            self.is_file_project = os.path.isfile(
-                os.path.join(self.SRC, self.PROJECT) + ".py"
-            )
+        # unreachable
+        # if self.PROJECT is None:
+        #     self.is_file_project: bool = False
+        # else:
+        self.is_file_project = os.path.isfile(
+            os.path.join(self.SRC, self.PROJECT) + ".py"
+        )
 
         if not self.is_folder_project and not self.is_file_project:
             self.is_setup_only_project = os.path.isfile(
@@ -257,7 +259,6 @@ class FindVersion:
         files_to_check = self.file_inventory.source_files
         files_to_check.append(self.PROJECT + ".py")  # is this the 'central' module?
         for file in self.file_inventory.source_files:
-
             if not os.path.isfile(file):
                 continue
             vers: Optional[Dict[str, str]] = self.find_dunder_version_in_file(file)
@@ -292,18 +293,18 @@ class FindVersion:
 
                         _, good_versions = self.kick_out_bad_versions(maybe_good)
 
-        if not good_versions:
-            vers = ""  # self.execute_setup()
-            if vers:
-                # noinspection PyBroadException
-                try:
-                    for value in vers.values():
-                        _ = version_object_and_next(value)
-                except:
-                    print(vers)
-
-                maybe_good = merge_two_dicts(good_versions, vers)
-                _, good_versions = self.kick_out_bad_versions(maybe_good)
+        # if not good_versions:
+        #     vers = [] # ""  # self.execute_setup()
+        #     if vers:
+        #         # noinspection PyBroadException
+        #         try:
+        #             for value in vers.values():
+        #                 _ = version_object_and_next(value)
+        #         except:
+        #             print(vers)
+        #
+        #         maybe_good = merge_two_dicts(good_versions, vers)
+        #         _, good_versions = self.kick_out_bad_versions(maybe_good)
 
         # more_bad_versions, good_versions = self.kick_out_bad_versions(versions)
         if not good_versions:
@@ -354,15 +355,15 @@ class FindVersion:
         if len(versions) <= 1:
             return True
 
-        semver = None
+        # semver = None
         for key, version in versions.items():
-            if semver is None:
-                try:
-                    semver, _, __ = version_object_and_next(version)
-                except ValueError:
-                    logger.error("Invalid version at:" + str((key, version)))
-                    return False
-                continue
+            # if semver is None:
+            try:
+                semver, _, __ = version_object_and_next(version)
+            except ValueError:
+                logger.error("Invalid version at:" + str((key, version)))
+                return False
+            # continue
             # noinspection PyBroadException
             try:
                 version_as_version, _, __ = version_object_and_next(version)
@@ -482,26 +483,3 @@ class FindVersion:
                 f"Updating from version {str(self.version)} to {str(self.version)}"
             )
         return self.version
-
-    # def execute_setup(self) -> Optional[Dict[str, str]]:
-    #     """
-    #     for really surprising things like a dict foo in setup(**foo)
-    #     consider python3 setup.py --version
-    #     """
-    #
-    #     ver = execute_get_text("python setup.py --version")
-    #     if not ver:
-    #         return None
-    #
-    #     if "UserWarning" in ver:
-    #         logger.warning("python setup.py --version won't parse, got :" + str(ver))
-    #         # UserWarning- Ther version specified ... is an invalid...
-    #         return {}
-    #
-    #     if ver:
-    #         string = str(ver).strip(" \n")
-    #         if "\n" in string:
-    #             string = string.split("\n")[0]
-    #
-    #         return {"setup.py --version": string.strip(" \n")}
-    #     return {}

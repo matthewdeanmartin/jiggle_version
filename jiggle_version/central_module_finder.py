@@ -89,24 +89,6 @@ class CentralModuleFinder:
 
         return ""
 
-    # def execute_setup_name(self) -> Optional[str]:
-    #     """
-    #     Runs code, so this is a bit dangerous, especially if it isn't your own
-    #     :return:
-    #     """
-    #     try:
-    #         name = execute_get_text("python setup.py --name")
-    #     except subprocess.CalledProcessError:
-    #         # setup.py is not always in an executable state
-    #         return None
-    #     if not name:
-    #         return None
-    #     name = name.strip(" \n\t")
-    #     if " " in name or "\n" in name:
-    #         # likely includes print() that ruin results
-    #         return None
-    #     return name
-
     def find_central_module(self) -> Optional[str]:
         """
         Get the module that is the sole module, or the module
@@ -114,9 +96,9 @@ class CentralModuleFinder:
         :return:
         """
         # find modules.
-        mf = ModuleFinder(self.file_opener)
+        module_finder = ModuleFinder(self.file_opener)
 
-        candidates = mf.find_by_any_method()
+        candidates = module_finder.find_by_any_method()
 
         sub_modules = []
         root_modules = []

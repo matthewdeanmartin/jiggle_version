@@ -36,15 +36,15 @@ def test_process_docopts_fake_it():
         os.chdir(SRC)
         args = {
             "--debug": "False",
-            "--help": False,
+            "--help": "False",
             "--module": None,
             "--project": "sample_lib",
             "--source": None,
-            "--version": False,
-            "--init": False,
-            "find": True,
-            "here": False,
-            "--signature": False,
+            "--version": "False",
+            "--init": "False",
+            "find": "True",
+            "here": "False",
+            "--signature": "False",
         }
         main.process_docopts(args)
     except JiggleVersionException as jve:

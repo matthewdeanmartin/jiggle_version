@@ -1,7 +1,6 @@
 """
 Non-domain specific methods I don't want cluttering up other files.
 """
-import subprocess
 import sys
 from typing import Any, Dict, Optional
 
@@ -48,24 +47,6 @@ def merge_two_dicts(x: Dict[Any, Any], y: Dict[Any, Any]) -> Dict[Any, Any]:
     z = x.copy()  # start with x's keys and values
     z.update(y)  # modifies z with y's keys and values & returns None
     return z
-
-
-def execute_get_text(command: str, raise_errors: bool = False) -> str:
-    """
-    Execute a shell commmand
-    """
-    try:
-        result = subprocess.check_output(
-            command, stderr=subprocess.STDOUT
-        )  # , shell=True)
-        # print(result.decode())
-    except subprocess.CalledProcessError:
-        if raise_errors:
-            raise
-        return ""
-    if result:
-        return result.decode("utf-8")
-    return ""
 
 
 def ifnull(var: Optional[str], val: str) -> str:

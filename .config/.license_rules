@@ -36,7 +36,9 @@ authorized_licenses :
     license.txt
     GPL
     GNU General Public License (GPL)
-
+    GNU Lesser General Public License v2 or later (LGPLv2+)
+    Python Software Foundation
+    The Unlicense (Unlicense)
 
 unauthorized_licenses :
     foobar

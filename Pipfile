@@ -10,6 +10,7 @@ parver = "*"
 versio = "*"
 chardet = "*"
 docopt-ng = "*"
+pre-commit = "*"
 
 [dev-packages]
 checksumdir = "*"
@@ -27,8 +28,14 @@ liccheck = "*"
 wheel = "*"
 ifaddr = "*"
 mypy = "*"
+hatch-mypyc = "*"
+hatch = "*"
 types-setuptools = "*"
 types-chardet = "*"
+navio-builder-win = "*"
+tox = "*"
+types-docopt = "*"
+scriv = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.11"
