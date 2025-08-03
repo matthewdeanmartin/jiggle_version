@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from setuptools import setup
 import file_module
+from setuptools import setup
 
 setup(
     name="file_module",

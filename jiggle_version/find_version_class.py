@@ -9,6 +9,9 @@ TODO: use_scm_version=True,  -- If this is in the file, then the user is signall
 version string!
 
 """
+
+from __future__ import annotations
+
 import ast
 import configparser
 import logging
@@ -18,6 +21,7 @@ from typing import Dict, List, Optional, Tuple, Union, cast
 
 import parver
 from semantic_version import Version
+from versio import version as versio_version
 
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_opener import FileOpener
@@ -31,7 +35,6 @@ from jiggle_version.utils import (
     ifnull,
     merge_two_dicts,
 )
-from versio import version as versio_version
 
 logger = logging.getLogger(__name__)
 
@@ -214,10 +217,10 @@ class FindVersion:
         sb += "}"
         if sb == "{}":
             return {}
-        # noinspection PyBroadException
+
         try:
             thing = ast.literal_eval(sb)
-        except:
+        except Exception:
             return {}
         for version_token in dunder_version.version_tokens:
             if version_token in thing:
@@ -229,8 +232,6 @@ class FindVersion:
         This is slow & if running against random code, dangerous
 
         Sometimes apps call exit() in import if conditions not met.
-        :param module_name:
-        :return:
         """
         if not module_name:
             return {}
@@ -296,7 +297,7 @@ class FindVersion:
         # if not good_versions:
         #     vers = [] # ""  # self.execute_setup()
         #     if vers:
-        #         # noinspection PyBroadException
+        #
         #         try:
         #             for value in vers.values():
         #                 _ = version_object_and_next(value)
@@ -338,11 +339,11 @@ class FindVersion:
         copy: Dict[str, str] = {}
         bad_versions = {}
         for key, version in versions.items():
-            # noinspection PyBroadException
+
             try:
                 _ = version_object_and_next(version)
                 copy[key] = version
-            except:
+            except Exception:
                 bad_versions[key] = version
         return bad_versions, copy
 
@@ -364,10 +365,10 @@ class FindVersion:
                 logger.error("Invalid version at:" + str((key, version)))
                 return False
             # continue
-            # noinspection PyBroadException
+
             try:
                 version_as_version, _, __ = version_object_and_next(version)
-            except:
+            except Exception:
                 return False
             if version_as_version != semver:
                 return False
@@ -475,7 +476,7 @@ class FindVersion:
                     self.version,
                     self.schema,
                 ) = version_object_and_next(found.strip(" "))
-            except:
+            except Exception:
                 raise JiggleVersionException("Shouldn't throw here.")
 
         if first:

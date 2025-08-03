@@ -10,9 +10,10 @@ Get some sample version strings from the wild.
 
 # https://pypi.org/simple/epicurus/
 
-import requests
 import os
 import subprocess
+
+import requests
 
 
 def execute_get_text(command):

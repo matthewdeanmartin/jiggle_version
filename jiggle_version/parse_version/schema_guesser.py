@@ -15,15 +15,18 @@ cmp ver
 disutils.version
 
 """
+
+from __future__ import annotations
+
 import logging
 from typing import Tuple, Union
 
 import parver
 import semantic_version
-
-from jiggle_version.utils import JiggleVersionException
 from versio import version as versio_version
 from versio.version_scheme import Pep440VersionScheme, Simple4VersionScheme
+
+from jiggle_version.utils import JiggleVersionException
 
 logger = logging.getLogger(__name__)
 
@@ -51,22 +54,21 @@ def version_object_and_next(string: str, retries: int = 0) -> VersionThing:
     if string[0] == "v":
         string = string[1:]
 
-    # noinspection PyBroadException
     try:
         version = semantic_version.Version(string)
         next_version = version.next_patch()
         _ = semantic_version.Version(str(string))
         return version, next_version, "semantic_version"
-    except:
+    except Exception:
         logger.debug("Not sem_ver:" + str(string))
-        # noinspection PyBroadException
+
         try:
             version = parver.Version.parse(string)
             next_version = version.bump_dev()
             _ = parver.Version.parse(str(next_version))
             return version, next_version, "pep440 (parver)"
-        except:
-            # noinspection PyBroadException
+        except Exception:
+
             try:
                 logger.debug("Not par_ver:" + str(string))
                 # Version.supported_version_schemes = [Pep440VersionScheme, Simple4VersionScheme]

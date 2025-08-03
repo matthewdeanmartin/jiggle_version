@@ -1,9 +1,10 @@
 """
 Is that a version string, a tuple or a int or float? 'Cause in the wild people use all of those.
 """
+
 from jiggle_version.parse_version.parse_dunder_version import (
-    simplify_line,
     find_in_line,
+    simplify_line,
 )
 
 

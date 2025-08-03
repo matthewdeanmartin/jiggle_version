@@ -15,6 +15,8 @@ jiggle_version lint
 
 """
 
+from __future__ import annotations
+
 # List files to version
 
 # List files to create (setup.py, init)

@@ -14,6 +14,8 @@ A whole file dedicated to parsing __version__ in all it's weird possible ways
 6) Handle version as tuple
 """
 
+from __future__ import annotations
+
 import ast
 import re
 from typing import Any, Optional, Tuple
@@ -40,7 +42,7 @@ def find_by_ast(line: str, version_token: str = "__version__") -> Optional[str]:
     simplified_line = simplify_line(line)
 
     if simplified_line.startswith(version_token):
-        # noinspection PyBroadException
+
         try:
             tree: Any = ast.parse(simplified_line)
             if hasattr(tree.body[0].value, "s"):

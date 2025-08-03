@@ -8,6 +8,8 @@ version=...
 Hardest case is positional, not that I've seen it in the wild yet.
 """
 
+from __future__ import annotations
+
 import ast
 import re
 from typing import Any, Optional, cast
@@ -30,7 +32,7 @@ def find_by_ast(line: str) -> Optional[str]:
     simplified_line = simplify_line(line)
 
     if simplified_line.startswith("version="):
-        # noinspection PyBroadException
+
         try:
             tree: Any = ast.parse(simplified_line)
             if hasattr(tree.body[0].value, "s"):

@@ -1,6 +1,9 @@
 """
 Is that python source code we are about to write really python?
 """
+
+from __future__ import annotations
+
 import ast
 import logging
 import sys
@@ -23,7 +26,7 @@ def check(src: str, dst: str) -> None:
             f"with Python {major}.{minor}'s builtin AST. Switch to manual "
             f"or stop using deprecated Python 2 syntax. AST error message: {exc}"
         )
-    # noinspection PyBroadException
+
     try:
         _ = ast.parse(dst)
     except Exception as exc:

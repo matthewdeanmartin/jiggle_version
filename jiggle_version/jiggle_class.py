@@ -41,6 +41,8 @@ __version__ = "0.1.8" # Jiggle Version Was Here
 
 """
 
+from __future__ import annotations
+
 import configparser
 import logging
 import os.path

@@ -1,10 +1,10 @@
 """
 Tests
 """
-from jiggle_version.file_opener import FileOpener
 
 import os
 
+from jiggle_version.file_opener import FileOpener
 from jiggle_version.jiggle_class import JiggleVersion
 
 initial_pwd = os.getcwd()

@@ -5,6 +5,8 @@ command line -> command -> classes
 
 """
 
+from __future__ import annotations
+
 import logging
 
 from jiggle_version.file_opener import FileOpener
@@ -40,7 +42,6 @@ def bump_version(project: str, source: str, force_init: bool, signature: bool) -
 def find_version(project: str, source: str, force_init: bool) -> None:
     """
     Entry point to just find a version and print next
-    :return:
     """
     # quiet! no noise
     file_opener = FileOpener()

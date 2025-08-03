@@ -33,6 +33,7 @@ import functools
 import os
 import subprocess
 import sys
+
 from navio.builder import task
 
 try:
@@ -56,30 +57,26 @@ except ModuleNotFoundError:
     print("\n Pipenv install --dev or the equivallent for everything else")
 
     exit(-1)
-from navio_tasks.commands.cli_go_gitleaks import run_gitleaks
-from navio_tasks.dependency_commands.cli_installs import do_dependency_installs
-from navio_tasks.mutating_commands.cli_precommit import do_precommit
-from navio_tasks.commands.cli_npm_pyright import do_pyright
-from pebble import ProcessPool
-
-
 # on some shells print doesn't flush!
 # pylint: disable=redefined-builtin,invalid-name
 from navio_tasks.build_state import (
-    timed,
+    reset_build_state,
     skip_if_no_change,
     skip_if_this_file_does_not_change,
-    reset_build_state,
+    timed,
 )
 from navio_tasks.clean import clean_old_files
 from navio_tasks.cli_commands import check_command_exists, execute
 from navio_tasks.commands.cli_bandit import do_bandit
 from navio_tasks.commands.cli_detect_secrets import do_detect_secrets
 from navio_tasks.commands.cli_get_secrets import do_git_secrets
+from navio_tasks.commands.cli_go_gitleaks import run_gitleaks
 from navio_tasks.commands.cli_mypy import do_mypy, evaluated_mypy_results
+from navio_tasks.commands.cli_npm_pyright import do_pyright
 from navio_tasks.commands.cli_pylint import do_lint, evaluated_lint_results
 from navio_tasks.commands.cli_pytest import do_pytest, do_pytest_coverage
 from navio_tasks.commands.cli_tox import do_tox
+from navio_tasks.dependency_commands.cli_installs import do_dependency_installs
 from navio_tasks.dependency_commands.cli_pin_dependencies import (
     convert_pipenv_to_requirements,
 )
@@ -89,6 +86,7 @@ from navio_tasks.file_system import initialize_folders
 from navio_tasks.mutating_commands.cli_black import do_formatting
 from navio_tasks.mutating_commands.cli_isort import do_isort
 from navio_tasks.mutating_commands.cli_jiggle_version import do_jiggle_version
+from navio_tasks.mutating_commands.cli_precommit import do_precommit
 from navio_tasks.mutating_commands.cli_pyupgrade import do_pyupgrade
 from navio_tasks.non_breaking_commands.cli_mccabe import do_mccabe
 from navio_tasks.non_breaking_commands.cli_scspell import do_spell_check
@@ -101,22 +99,23 @@ from navio_tasks.pure_reports.cli_gitchangelog import do_gitchangelog
 from navio_tasks.pure_reports.cli_pygount import do_count_lines_of_code
 from navio_tasks.pure_reports.cli_sphinx import do_docs
 from navio_tasks.settings import (
-    PROJECT_NAME,
-    POETRY_ACTIVE,
-    PIPENV_ACTIVE,
-    VENV_SHELL,
-    PROBLEMS_FOLDER,
     IS_GITLAB,
-    PYTHON,
+    IS_INTERACTIVE,
     IS_INTERNAL_NETWORK,
-    SMALL_CODE_BASE_CUTOFF,
+    IS_SHELL_SCRIPT_LIKE,
     MAXIMUM_LINT,
     MAXIMUM_MYPY,
-    IS_INTERACTIVE,
     PACKAGE_WITH,
-    IS_SHELL_SCRIPT_LIKE,
+    PIPENV_ACTIVE,
+    POETRY_ACTIVE,
+    PROBLEMS_FOLDER,
+    PROJECT_NAME,
+    PYTHON,
     RUN_ALL_TESTS_REGARDLESS_TO_NETWORK,
+    SMALL_CODE_BASE_CUTOFF,
+    VENV_SHELL,
 )
+from pebble import ProcessPool
 
 print = functools.partial(print, flush=True)  # noqa
 
@@ -150,7 +149,7 @@ def check_python_version() -> None:
 
 @task()
 @timed()
-@skip_if_this_file_does_not_change("installs", file="Pipfile")
+@skip_if_this_file_does_not_change("installs", file="dead_code/Pipfile")
 def pipenv_installs() -> None:
     """
     Catch up on installs

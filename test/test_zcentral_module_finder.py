@@ -1,10 +1,11 @@
 """
 Module finder
 """
-import os
-from jiggle_version.file_opener import FileOpener
-from jiggle_version.central_module_finder import CentralModuleFinder
 
+import os
+
+from jiggle_version.central_module_finder import CentralModuleFinder
+from jiggle_version.file_opener import FileOpener
 
 initial_pwd = os.getcwd()
 

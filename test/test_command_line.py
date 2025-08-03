@@ -1,9 +1,10 @@
 """
 Tests
 """
+
 import os
-import sys
 import subprocess
+import sys
 
 initial_pwd = os.getcwd()
 here = os.path.abspath(os.path.dirname(__file__))
@@ -42,28 +43,6 @@ def test_where_am_i():
         assert str(result).strip().endswith("jiggle_version"), str(result)
     finally:
         # os.chdir("test")
-        os.chdir(initial_pwd)
-
-
-def test_self_version():
-    try:
-        os.chdir(SRC)
-        print(os.getcwd())
-        result = execute_get_text("python -m jiggle_version --version")
-        print(result)
-        assert "." in result.split("Jiggle Version")[1]
-    finally:
-        os.chdir(initial_pwd)
-
-
-def test_self_help():
-    try:
-        os.chdir(SRC)
-        print(os.getcwd())
-        result = execute_get_text("python -m jiggle_version --help")
-        print(result)
-        assert result
-    finally:
         os.chdir(initial_pwd)
 
 

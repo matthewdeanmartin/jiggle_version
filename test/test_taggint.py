@@ -1,3 +1,3 @@
 """
- git tag $(python -m jiggle_version find)
+git tag $(python -m jiggle_version find)
 """

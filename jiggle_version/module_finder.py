@@ -36,15 +36,16 @@ TODO: confounds two concepts:
         2+ - but 1 is the central module and the rest are unversionsed test/demo/examples/etc
 
 """
+
+from __future__ import annotations
+
 import ast
 import logging
 import os
 from typing import List, Optional
 
-# so formatter doesn't remove.
-from setuptools import find_packages
-
 from jiggle_version.file_opener import FileOpener
+from jiggle_version.find_modules_function import find_packages_recursively
 from jiggle_version.utils import (
     JiggleVersionException,
     first_value_in_dict,
@@ -66,8 +67,6 @@ class ModuleFinder:
     def _read_file(self, file: str) -> Optional[str]:
         """
         Read any file, deal with encoding.
-        :param file:
-        :return:
         """
         source = None
         if os.path.isfile(file):
@@ -126,12 +125,40 @@ class ModuleFinder:
                 )
         return None
 
+    def find_local_packages(self) -> List[str]:
+        """
+        Finds all modules and submodules by walking the directory tree,
+        looking for __init__.py files.
+        """
+        # Determine where to start the search. This mimics the behavior of
+        # find_packages() which can take a 'where' argument, often defined
+        # in setup.py via 'package_dir'.
+        package_dir = self.extract_package_dir()
+
+        search_paths = []
+        if package_dir and os.path.isdir(package_dir):
+            search_paths.append(package_dir)
+        else:
+            # If package_dir is not specified or invalid, check common locations.
+            if os.path.isdir("src"):
+                search_paths.append("src")
+            elif os.path.isdir("lib"):
+                search_paths.append("lib")
+            else:
+                # Fallback to the current directory
+                search_paths.append(".")
+
+        all_packages = set()
+        for path in search_paths:
+            found = find_packages_recursively(path)
+            for pkg in found:
+                all_packages.add(pkg)
+
+        return sorted(list(all_packages))
+
     def find_by_any_method(self) -> List[str]:
-        """
-        Ensemble algorithm for finding package/module
-        """
-        packages = self.via_find_packages()
-        print("found by find_packages() " + str(packages))
+        packages = self.find_local_packages()
+        print("found by custom package discovery: " + str(packages))
 
         if not packages:
             packages = self.find_top_level_modules_by_dunder_init()
@@ -140,42 +167,6 @@ class ModuleFinder:
         if not packages:
             packages = self.find_single_file_project()
             print("found by single file " + str(packages))
-
-        return packages
-
-    def via_find_packages(self) -> List[str]:
-        """
-        Use find_packages code to find modules. Can find LOTS of modules.
-        :return:
-        """
-        packages: List[str] = []
-        source = self.setup_py_source()
-        if not source:
-            return packages
-        find_package_args = ""
-        for row in source.split("\n"):
-            if "find_packages" in row:
-                logger.debug(row)
-                if "find_packages()" in row:
-                    packages = find_packages()
-                else:
-                    # noinspection PyBroadException
-                    try:
-                        find_package_args_source = row.split("(")[1].split(")")[0]
-                        find_package_args = ast.literal_eval(find_package_args_source)
-                        logger.debug(packages)
-                    except:
-                        logger.debug(source)
-                        # raise
-        if not find_package_args:
-            packages = find_packages()
-        else:
-            # noinspection PyBroadException
-            try:
-                # signature find(cls, where='.', exclude=(), include=('*',)):
-                packages = find_packages(find_package_args)
-            except:
-                packages = find_packages()
 
         return packages
 
@@ -188,11 +179,11 @@ class ModuleFinder:
         """
         # TODO: use package_dirs
         packaged_dirs: Optional[str] = ""
-        # noinspection PyBroadException
+
         try:
             # Right now only returns 1st.
             packaged_dirs = self.extract_package_dir()
-        except:  # nosec
+        except Exception:
             pass
         likely_src_folders = [".", "src", "lib"]
         if packaged_dirs and packaged_dirs not in likely_src_folders:
@@ -210,15 +201,10 @@ class ModuleFinder:
 
             for folder in folders:
                 if os.path.isfile(os.path.join(likely_src, folder, "__init__.py")):
-                    # dunder_source = self.file_opener.read_file(folder + "/__init__.py")
+
                     candidates.append(folder)
 
         return list({x for x in candidates if x})
-
-    # TODO: use setup.py line to find package
-    # packages=find_packages('src'),
-    # packages=['ajax_select'],
-    # python setup.py --provides
 
     def find_single_file_project(self) -> List[str]:
         """
@@ -227,11 +213,11 @@ class ModuleFinder:
         """
         # TODO: use package_dirs
         packaged_dirs: Optional[str] = ""
-        # noinspection PyBroadException
+
         try:
             # Right now only returns 1st.
             packaged_dirs = self.extract_package_dir()
-        except:
+        except Exception:
             pass
         likely_src_folders = [".", "src/"]
         if packaged_dirs:
@@ -246,7 +232,8 @@ class ModuleFinder:
             # BUG: doesn't deal with src/foo/bar.py
             for file in files:
                 if file.endswith("setup.py") or file == "setup":
-                    continue  # duh
+                    continue  ##
+
                 if file.endswith(".py"):
                     candidate = file.replace(".py", "")
                     if candidate != "setup":
@@ -255,23 +242,3 @@ class ModuleFinder:
                     if self.file_opener.is_python_inside(file):
                         candidates.append(file)
         return candidates
-
-    # def validate_found_project(self, candidates):  # type: (List[str]) -> None
-    #     """
-    #     Should be only 1 project
-    #     :param candidates:
-    #     :return:
-    #     """
-    #     if len(candidates) > 1:
-    #         message = "Found multiple possible projects : " + str(candidates)
-    #         logger.error(message)
-    #         die(-1, message)
-    #         return
-    #     if not candidates:
-    #         # we can still update setup.py
-    #         logger.warning(
-    #             "Found no project. Expected a folder in current directory to contain a __init__.py "
-    #             "file. Use --source, --project for other scenarios"
-    #         )
-    #         # die(-1)
-    #         # return

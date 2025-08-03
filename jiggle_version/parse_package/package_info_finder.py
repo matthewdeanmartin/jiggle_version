@@ -2,15 +2,15 @@
 Deals with package level concepts, not module level concepts.
 """
 
+from __future__ import annotations
+
 import ast
 import logging
 import os
 from typing import List, Optional
 
-# so formatter doesn't remove.
-from setuptools import find_packages
-
 from jiggle_version.file_opener import FileOpener
+from jiggle_version.find_modules_function import find_packages_recursively
 from jiggle_version.utils import (
     JiggleVersionException,
     die,
@@ -133,14 +133,14 @@ class PackageInfoFinder:
             if "find_packages" in row:
                 logger.debug(row)
                 if "find_packages()" in row:
-                    packages = find_packages()
+                    packages = find_packages_recursively(".")
                 else:
-                    # noinspection PyBroadException
+
                     try:
                         value = row.split("(")[1].split(")")[0]
-                        packages = find_packages(ast.literal_eval(value))
+                        packages = find_packages_recursively(ast.literal_eval(value))
                         logger.debug(str(packages))
-                    except:
+                    except Exception:
                         logger.debug(source)
                         # raise
 
@@ -241,7 +241,7 @@ class PackageInfoFinder:
 
             if "." not in file:
                 candidate = file
-                # noinspection PyBroadException
+
                 try:
                     with self.file_opener.open_this(file, "r") as file_handle:
                         firstline = file_handle.readline()
@@ -252,7 +252,7 @@ class PackageInfoFinder:
                     ):
                         candidates.append(candidate)
                         return candidates
-                except:  # nosec
+                except Exception:
                     pass
         # default.
         return candidates

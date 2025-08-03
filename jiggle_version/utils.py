@@ -1,6 +1,9 @@
 """
 Non-domain specific methods I don't want cluttering up other files.
 """
+
+from __future__ import annotations
+
 import sys
 from typing import Any, Dict, Optional
 

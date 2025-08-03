@@ -1,7 +1,9 @@
 """
 package info finder
 """
+
 import os
+
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.parse_package.package_info_finder import PackageInfoFinder
 

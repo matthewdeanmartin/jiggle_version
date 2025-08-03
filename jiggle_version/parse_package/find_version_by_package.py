@@ -7,33 +7,12 @@ Yes, you could have setup.py read from __version__.py and should.
 
 """
 
+from __future__ import annotations
+
 from importlib import import_module
 from typing import Any
 
-import pkg_resources
-
 _ = Any
-
-
-# These are not expected unless you unzip a package and do development on *that* code base.
-# TODO- Parent folder, e.g. mypackage-1.2.3
-# TODO- PKG-INFO
-
-
-def pkg_resources_version(package: str) -> str:
-    """
-    Look up version from current package. This will read from egg folder if not pip installed.
-    :param package:
-    :return:
-    """
-    # ref https://stackoverflow.com/questions/7079735/
-    # how-do-i-get-the-version-of-an-installed-module-in-python-programatically
-
-    # noinspection PyBroadException
-    try:
-        return str(pkg_resources.get_distribution(package).version)
-    except Exception:
-        return "unknown"
 
 
 # from pipdeptree.py
@@ -52,8 +31,3 @@ def guess_version_by_running_live_package(pkg_key: str, default: str = "?") -> A
         return default
     else:
         return getattr(m, "__version__", default)
-
-
-if __name__ == "__main__":
-    print(pkg_resources_version("setuptools"))
-    print(pkg_resources_version("jiggle_version"))

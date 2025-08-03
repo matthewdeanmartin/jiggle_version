@@ -30,7 +30,6 @@ import os
 import re
 import sys
 
-
 DEFAULT_VERSION_RE = re.compile(r"(?P<version>\d+\.\d+(?:\.\d+)?(?:(?:a|b|rc)\d+)?)")
 EMPTYSTRING = ""
 

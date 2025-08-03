@@ -1,8 +1,8 @@
 from versio.version import Version
 from versio.version_scheme import (
     Pep440VersionScheme,
-    VersionScheme,
     Simple4VersionScheme,
+    VersionScheme,
 )
 
 from jiggle_version.parse_version.schema_guesser import version_object_and_next

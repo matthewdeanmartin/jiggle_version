@@ -3,9 +3,8 @@ Stupider version of jiggle version that jiggle_version depends on.
 
 I didn't want a weird circular dependency.
 """
-from __future__ import print_function
-from __future__ import unicode_literals
-from __future__ import division
+from __future__ import division, print_function, unicode_literals
+
 import os.path
 
 from semantic_version import Version

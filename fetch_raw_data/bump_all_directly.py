@@ -7,10 +7,10 @@ import os
 import random
 import sys
 
+from jiggle_version.central_module_finder import CentralModuleFinder
 from jiggle_version.commands import bump_version
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.main import console_trace
-from jiggle_version.central_module_finder import CentralModuleFinder
 from jiggle_version.module_finder import ModuleFinder
 from jiggle_version.utils import JiggleVersionException
 

@@ -1,6 +1,7 @@
 """
 Upgrade damaged to sem.ver
 """
+
 from jiggle_version.parse_version.schema_guesser import version_object_and_next
 
 

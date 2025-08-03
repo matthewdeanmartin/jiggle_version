@@ -2,14 +2,13 @@
 Given a known package, find the 'central' module, the one whose version should sync with the package
 """
 
+from __future__ import annotations
 
 import logging
 import os
 from typing import List, Optional
 
 from jiggle_version.file_opener import FileOpener
-
-# so formatter doesn't remove.
 from jiggle_version.module_finder import ModuleFinder
 
 logger = logging.getLogger(__name__)
@@ -17,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 class CentralModuleFinder:
     """
-    Finds modules in a folder. No assumptions about existance of PKG_INFO
+    Finds modules in a folder. No assumptions about existence of PKG_INFO
     """
 
     def __init__(self, file_opener: FileOpener) -> None:

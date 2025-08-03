@@ -1,3 +1,15 @@
+2025 TODO
+--- 
+- Break dependency on setuptools, reimplement find_package
+- Use argparse, the bots understand it better
+- Fix command structure
+  - bump - increment version
+  - display - displays version(s)
+- Args to
+  - Increment (sub)modules (could have `__version__` per file)
+  - Increment package (one per collection, could be a "main module")
+
+---
 # Security features
 - Stop running setup.py or any shell commands
 
