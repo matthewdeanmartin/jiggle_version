@@ -158,7 +158,7 @@ class FindVersion:
         try:
             sem_ver_list: List[Version] = list({str(Version(x)) for x in version_list})
         except ValueError:
-            # I hope htat was a bad semver
+            # I hope that was a bad semver
             return None
 
         # should be good sem vers from here

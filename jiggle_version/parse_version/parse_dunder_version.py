@@ -29,40 +29,70 @@ version_tokens = [
 ]
 
 
+import ast
+from typing import Optional, Any
+
+
 def find_by_ast(line: str, version_token: str = "__version__") -> Optional[str]:
     """
-    Safer way to 'execute' python code to get a simple value
-    :param line:
-    :param version_token:
-    :return:
+    Parses a line of Python code to find a version string using the `ast` module.
+
+    This implementation is compatible with Python 3.8 through 3.14+ by using the
+    modern `ast.Constant` node, avoiding attributes like `.s` and `.n` that are
+    deprecated and will be removed in Python 3.14.
+
+    :param line: A line of Python code, e.g., '__version__ = "1.2.3"'
+    :param version_token: The variable name to look for, e.g., '__version__'
+    :return: The extracted version string, or None if parsing fails or the
+             pattern isn't found.
     """
     if not line:
+        # Maintain original behavior for empty input
         return ""
-    # clean up line.
+
     simplified_line = simplify_line(line)
 
+    # We proceed only if the line starts with the token we're looking for.
     if simplified_line.startswith(version_token):
-
         try:
-            tree: Any = ast.parse(simplified_line)
-            if hasattr(tree.body[0].value, "s"):
-                return str(tree.body[0].value.s)
-            if hasattr(tree.body[0].value, "elts"):
+            tree = ast.parse(simplified_line)
+
+            # A valid version file line should contain a single assignment statement.
+            if not tree.body or not isinstance(tree.body[0], ast.Assign):
+                return None
+
+            # The 'value' of an Assign node is the right-hand side of the '='.
+            if not tree.body[0]:
+                return None
+            value_node = tree.body[0].value
+
+            # Case 1: The version is a simple constant (e.g., "1.2.3", 1).
+            # In Python 3.8+, string, number, and boolean literals are all parsed
+            # as `ast.Constant`. We access the actual value with the `.value` attribute.
+            # This replaces the deprecated `.s` (for strings) and `.n` (for numbers).
+            if isinstance(value_node, ast.Constant):
+                return str(value_node.value)
+
+            # Case 2: The version is a tuple or list (e.g., (1, 2, 3)).
+            if isinstance(value_node, (ast.Tuple, ast.List)):
                 version_parts = []
-                for elt in tree.body[0].value.elts:
-                    if hasattr(elt, "n"):
-                        version_parts.append(str(elt.n))
+                for elt in value_node.elts:
+                    # Each element in the tuple/list must also be a constant.
+                    if isinstance(elt, ast.Constant):
+                        version_parts.append(str(elt.value))
                     else:
-                        version_parts.append(str(elt.s))
+                        # If an element is a variable or complex expression, we cannot
+                        # safely evaluate it, so we return None.
+                        return None
                 return ".".join(version_parts)
-            if hasattr(tree.body[0].value, "n"):
-                return str(tree.body[0].value.n)
-            # print(tree)
-        except Exception:
-            # raise
+
+        except (SyntaxError, IndexError, AttributeError):
+            # If parsing fails or the AST structure is unexpected, return None.
             return None
 
+    # If the line doesn't start with the version token, return None.
     return None
+
 
 
 def simplify_line(line: str, keep_comma: bool = False) -> str:
