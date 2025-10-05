@@ -30,7 +30,7 @@ version_tokens = [
 
 
 import ast
-from typing import Optional, Any
+from typing import Any, Optional
 
 
 def find_by_ast(line: str, version_token: str = "__version__") -> Optional[str]:
@@ -92,7 +92,6 @@ def find_by_ast(line: str, version_token: str = "__version__") -> Optional[str]:
 
     # If the line doesn't start with the version token, return None.
     return None
-
 
 
 def simplify_line(line: str, keep_comma: bool = False) -> str:

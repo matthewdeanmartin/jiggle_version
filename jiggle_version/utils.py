@@ -14,21 +14,6 @@ class JiggleVersionException(Exception):
     """
 
 
-def die(code: int, why: str) -> None:
-    """
-    In release, exit process. In development, throw with useful message.
-    :param code:
-    :param why:
-    :return:
-    """
-    if code != 0:
-        # Development
-        if "Have no versions to work with" not in why:
-            raise JiggleVersionException("Can't continue: " + why)
-        # prod
-        sys.exit(code)
-
-
 def first_value_in_dict(x: Dict[Any, Any]) -> Any:
     """
     foo[n] but for dictionaries
@@ -50,15 +35,6 @@ def merge_two_dicts(x: Dict[Any, Any], y: Dict[Any, Any]) -> Dict[Any, Any]:
     z = x.copy()  # start with x's keys and values
     z.update(y)  # modifies z with y's keys and values & returns None
     return z
-
-
-def ifnull(var: Optional[str], val: str) -> str:
-    """
-    Return second arg if first is null
-    """
-    if var is None:
-        return val
-    return var
 
 
 def parse_source_to_dict(source: str) -> str:

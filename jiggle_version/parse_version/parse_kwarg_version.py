@@ -47,9 +47,7 @@ def find_by_ast(line: str) -> Optional[str]:
                 return ".".join(version_parts)
             if hasattr(tree.body[0].value, "n"):
                 return str(tree.body[0].value.n)
-            # print(tree)
         except Exception:
-            # raise
             return None
 
     return None

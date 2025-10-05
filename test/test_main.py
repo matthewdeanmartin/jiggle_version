@@ -2,13 +2,11 @@
 Tests
 """
 
-# from docopt import DocoptExit
-
 import os
+from pathlib import Path
 
-import jiggle_version.__init__ as init
+import jiggle_version.__about__ as v2
 import jiggle_version.__main__ as main
-import jiggle_version._version as v2
 from jiggle_version.utils import JiggleVersionException
 
 # _ = jiggle_version.package_info_finder
@@ -21,7 +19,6 @@ SRC = here + "/../sample_projects/sample_src/"
 
 
 def test_print_versions():
-    print(init.__version__)
     print(v2)
 
 
@@ -29,7 +26,7 @@ def test_entry_point():
     # put app in dir with setup.py. Easier!
     try:
         os.chdir(SRC)
-        main.bump_version(PROJECT, "", force_init=True, signature=True)
+        main.bump_version(PROJECT, Path("."), force_init=True, signature=True)
     except JiggleVersionException as jve:
         print(os.getcwd())
         raise

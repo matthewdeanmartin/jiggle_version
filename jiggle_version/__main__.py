@@ -11,15 +11,19 @@ import logging
 import logging.config
 import os
 import sys
+from pathlib import Path
 from typing import Sequence
 
-from jiggle_version._version import __version__
+from jiggle_version.__about__ import __version__
 from jiggle_version.central_module_finder import CentralModuleFinder
 from jiggle_version.commands import bump_version, find_version
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.module_finder import ModuleFinder
-from jiggle_version.utils import die
+from jiggle_version.utils import JiggleVersionException
 
+# It's good practice to configure logging to see the output.
+# If the user of this class doesn't configure it, these messages will be silent.
+logging.basicConfig(level=logging.INFO, format="%(levelname)s:%(name)s:%(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -143,7 +147,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     # The finders operate on the current working directory, so we need to change to it.
     if not os.path.isdir(args.src_folder):
-        die(-1, f"Source folder not found at '{args.src_folder}'")
+        raise JiggleVersionException(f"Source folder not found at '{args.src_folder}'")
     os.chdir(args.src_folder)
 
     file_opener = FileOpener()
@@ -153,16 +157,22 @@ def main(argv: Sequence[str] | None = None) -> int:
         central_module_finder = CentralModuleFinder(file_opener)
         central_module = central_module_finder.find_central_module()
         if not central_module:
-            die(-1, "Could not automatically determine the central module.")
+            raise JiggleVersionException(
+                "Could not automatically determine the central module."
+            )
 
-        find_version(project=central_module or "", source="", force_init=args.init)
+        find_version(
+            project=Path(central_module or "."), source=Path("."), force_init=args.init
+        )
 
     elif args.command == "bump":
         if args.target == "package":
             central_module_finder = CentralModuleFinder(file_opener)
             central_module = central_module_finder.find_central_module()
             if not central_module:
-                die(-1, "Could not automatically determine the central package module.")
+                raise JiggleVersionException(
+                    "Could not automatically determine the central package module."
+                )
 
             logger.info(
                 f"Bumping '{central_module}' package with increment '{args.increment}'."
@@ -171,8 +181,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             # classes need to be updated to accept and use the `increment` parameter.
             # The current implementation only performs a patch bump.
             bump_version(
-                project=central_module or "",
-                source="",  # Already in the correct directory
+                project=Path(central_module or "."),
+                source=Path("."),  # Already in the correct directory
                 force_init=args.init,
                 signature=args.signature,
             )
@@ -184,15 +194,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             all_modules = module_finder.find_by_any_method()
 
             if not all_modules:
-                die(-1, "No modules found to bump.")
+                raise JiggleVersionException("No modules found to bump.")
 
             if args.all:
                 logger.info(f"Bumping all found modules: {all_modules}")
                 for module in all_modules:
                     logger.info(f"--- Bumping {module} ---")
                     bump_version(
-                        project=module,
-                        source="",
+                        project=Path(module),
+                        source=Path("."),
                         force_init=args.init,
                         signature=args.signature,
                     )
@@ -202,14 +212,13 @@ def main(argv: Sequence[str] | None = None) -> int:
                 central_module_finder = CentralModuleFinder(file_opener)
                 central_module = central_module_finder.find_central_module()
                 if not central_module:
-                    die(
-                        -1,
+                    raise JiggleVersionException(
                         "Could not automatically determine the central module to bump.",
                     )
                 logger.info(f"Bumping the central module: {central_module}")
                 bump_version(
-                    project=central_module or "",
-                    source="",
+                    project=Path(central_module or "."),
+                    source=Path("."),
                     force_init=args.init,
                     signature=args.signature,
                 )

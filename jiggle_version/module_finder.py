@@ -41,9 +41,10 @@ from __future__ import annotations
 
 import ast
 import logging
-import os
+from pathlib import Path
 from typing import List, Optional
 
+# Assuming these modules are part of the same package and are structured correctly.
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_modules_function import find_packages_recursively
 from jiggle_version.utils import (
@@ -61,33 +62,31 @@ class ModuleFinder:
     """
 
     def __init__(self, file_opener: FileOpener) -> None:
+        """Initializes the finder with a FileOpener instance."""
         self.file_opener = file_opener
-        self.setup_source: Optional[str] = ""
+        self.setup_source: Optional[str] = None
 
-    def _read_file(self, file: str) -> Optional[str]:
+    def _read_file(self, file_path: Path) -> Optional[str]:
         """
-        Read any file, deal with encoding.
+        Reads a file if it exists, using the FileOpener to handle encoding.
         """
-        source = None
-        if os.path.isfile(file):
-            with self.file_opener.open_this(file, "r") as setup_py:
-                source = setup_py.read()
-        return source
+        if file_path.is_file():
+            return self.file_opener.read_this(file_path)
+        return None
 
     def setup_py_source(self) -> Optional[str]:
         """
-        Read setup.py to string
+        Reads setup.py (or extensionless 'setup') to a string and caches it.
         """
-        if not self.setup_source:
-            self.setup_source = self._read_file("setup.py")
-        if not self.setup_source:
-            self.setup_source = self._read_file("setup")  # rare case
+        if self.setup_source is None:
+            self.setup_source = self._read_file(Path("setup.py"))
+            if not self.setup_source:
+                self.setup_source = self._read_file(Path("setup"))  # rare case
         return self.setup_source
 
     def extract_package_dir(self) -> Optional[str]:
         """
-        Get the package_dir dictionary from source
-        :return:
+        Get the package_dir dictionary from the setup.py source.
         """
         # package_dir={'': 'lib'},
         source = self.setup_py_source()
@@ -95,29 +94,27 @@ class ModuleFinder:
             # this happens when the setup.py file is missing
             return None
 
-        # sometime
-        # 'package_dir'      : {'': 'src'},
-        # sometimes
-        # package_dir={...}
+        # sometimes: 'package_dir'     : {'': 'src'},
+        # sometimes: package_dir={...}
         if "package_dir=" in source:
             dict_src = parse_source_to_dict(source)
             if not dict_src.endswith("}"):
                 raise JiggleVersionException(
-                    "Either this is hard to parse or we have 2+ src foldrs"
+                    "Either this is hard to parse or we have 2+ src folders"
                 )
             try:
                 paths_dict = ast.literal_eval(dict_src)
             except ValueError:
-                logger.error(source + ": " + dict_src)
+                logger.error(f"Could not parse package_dir from source: {dict_src}")
                 return ""
 
             if "" in paths_dict:
-                candidate = paths_dict[""]
-                if os.path.isdir(candidate):
+                candidate = Path(paths_dict[""])
+                if candidate.is_dir():
                     return str(candidate)
             if len(paths_dict) == 1:
-                candidate = first_value_in_dict(paths_dict)
-                if os.path.isdir(candidate):
+                candidate = Path(first_value_in_dict(paths_dict))
+                if candidate.is_dir():
                     return str(candidate)
             else:
                 raise JiggleVersionException(
@@ -125,7 +122,7 @@ class ModuleFinder:
                 )
         return None
 
-    def find_local_packages(self) -> List[str]:
+    def find_local_packages(self) -> List[Path]:
         """
         Finds all modules and submodules by walking the directory tree,
         looking for __init__.py files.
@@ -133,112 +130,107 @@ class ModuleFinder:
         # Determine where to start the search. This mimics the behavior of
         # find_packages() which can take a 'where' argument, often defined
         # in setup.py via 'package_dir'.
-        package_dir = self.extract_package_dir()
+        package_dir_str = self.extract_package_dir()
 
-        search_paths = []
-        if package_dir and os.path.isdir(package_dir):
-            search_paths.append(package_dir)
+        search_paths: List[Path] = []
+        if package_dir_str and Path(package_dir_str).is_dir():
+            search_paths.append(Path(package_dir_str))
         else:
             # If package_dir is not specified or invalid, check common locations.
-            if os.path.isdir("src"):
-                search_paths.append("src")
-            elif os.path.isdir("lib"):
-                search_paths.append("lib")
-            else:
+            for common_dir in ["src", "lib"]:
+                if Path(common_dir).is_dir():
+                    search_paths.append(Path(common_dir))
+            if not search_paths:
                 # Fallback to the current directory
-                search_paths.append(".")
+                search_paths.append(Path("."))
 
-        all_packages = set()
+        all_packages: set[Path] = set()
         for path in search_paths:
+            # Pass the string representation of the path to maintain compatibility
+            # with the external find_packages_recursively function.
             found = find_packages_recursively(path)
             for pkg in found:
                 all_packages.add(pkg)
 
-        return sorted(list(all_packages))
+        return list(all_packages)
 
-    def find_by_any_method(self) -> List[str]:
+    def find_by_any_method(self) -> List[Path]:
+        """Tries multiple strategies to find packages/modules."""
         packages = self.find_local_packages()
-        print("found by custom package discovery: " + str(packages))
+        logger.info(f"found by custom package discovery: {packages}")
 
         if not packages:
             packages = self.find_top_level_modules_by_dunder_init()
-            print("found by dunder_init folders " + str(packages))
+            logger.info(f"found by dunder_init folders: {packages}")
 
         if not packages:
             packages = self.find_single_file_project()
-            print("found by single file " + str(packages))
+            logger.info(f"found by single file: {packages}")
 
         return packages
 
-    def find_top_level_modules_by_dunder_init(self) -> List[str]:
+    def find_top_level_modules_by_dunder_init(self) -> List[Path]:
         """
-        Find modules along side setup.py (or in current folder)
-
-        Recreates what find_packages does.
-        :return:
+        Finds modules that are directories with an __init__.py file.
+        This recreates the basic behavior of setuptools.find_packages().
         """
-        # TODO: use package_dirs
-        packaged_dirs: Optional[str] = ""
-
+        # TODO: use package_dirs more robustly
+        packaged_dirs_str: Optional[str] = ""
         try:
-            # Right now only returns 1st.
-            packaged_dirs = self.extract_package_dir()
-        except Exception:
+            packaged_dirs_str = self.extract_package_dir()
+        except JiggleVersionException:
             pass
-        likely_src_folders = [".", "src", "lib"]
-        if packaged_dirs and packaged_dirs not in likely_src_folders:
-            likely_src_folders.append(packaged_dirs)
 
-        candidates = []
+        likely_src_folders = {Path("."), Path("src"), Path("lib")}
+        if packaged_dirs_str:
+            likely_src_folders.add(Path(packaged_dirs_str))
+
+        candidates: list[Path] = []
         for likely_src in likely_src_folders:
-            if not os.path.isdir(likely_src):
+            if not likely_src.is_dir():
                 continue
-            folders = [
-                f
-                for f in os.listdir(likely_src)
-                if os.path.isdir(os.path.join(likely_src, f))
-            ]
 
-            for folder in folders:
-                if os.path.isfile(os.path.join(likely_src, folder, "__init__.py")):
+            for item in likely_src.iterdir():
+                # Check if the item is a directory and contains an __init__.py
+                if item.is_dir() and (item / "__init__.py").is_file():
+                    candidates.append(Path(item.name))
 
-                    candidates.append(folder)
+        return list(set(candidates))
 
-        return list({x for x in candidates if x})
-
-    def find_single_file_project(self) -> List[str]:
+    def find_single_file_project(self) -> List[Path]:
         """
-        Take first non-setup.py python file. What a mess.
-        :return:
+        Finds projects that consist of a single Python file.
         """
-        # TODO: use package_dirs
-        packaged_dirs: Optional[str] = ""
-
+        # TODO: use package_dirs more robustly
+        packaged_dirs_str: Optional[str] = ""
         try:
-            # Right now only returns 1st.
-            packaged_dirs = self.extract_package_dir()
-        except Exception:
+            packaged_dirs_str = self.extract_package_dir()
+        except JiggleVersionException:
             pass
-        likely_src_folders = [".", "src/"]
-        if packaged_dirs:
-            likely_src_folders.append(packaged_dirs)
 
-        candidates = []
+        likely_src_folders = {Path("."), Path("src")}
+        if packaged_dirs_str:
+            likely_src_folders.add(Path(packaged_dirs_str))
+
+        candidates: list[Path] = []
         for likely_src in likely_src_folders:
-            if not os.path.isdir(likely_src):
+            if not likely_src.is_dir():
                 continue
-            files = [f for f in os.listdir(likely_src) if os.path.isfile(f)]
 
-            # BUG: doesn't deal with src/foo/bar.py
-            for file in files:
-                if file.endswith("setup.py") or file == "setup":
-                    continue  ##
+            # BUG: doesn't deal with src/foo/bar.py (original bug noted)
+            for item in likely_src.iterdir():
+                if not item.is_file():
+                    continue
 
-                if file.endswith(".py"):
-                    candidate = file.replace(".py", "")
-                    if candidate != "setup":
-                        candidates.append(candidate)
+                if item.name == "setup.py" or item.name == "setup":
+                    continue
+
+                # Check for .py extension
+                if item.suffix == ".py":
+                    # Use stem to get the filename without the extension
+                    candidates.append(Path(item.stem))
                 else:
-                    if self.file_opener.is_python_inside(file):
-                        candidates.append(file)
+                    # Check for python shebang in extensionless files
+                    if self.file_opener.is_python_inside(item):
+                        candidates.append(Path(item.name))
         return candidates

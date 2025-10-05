@@ -101,6 +101,4 @@ def version_object_and_next(string: str, retries: int = 0) -> VersionThing:
                     return version_object_and_next(string + ".0.0", retries)
 
                 logger.debug("Not versio:" + str(string))
-                # versio only does pep440 by default
-                # print(versio.version.Version.supported_version_schemes)
                 raise

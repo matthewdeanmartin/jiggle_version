@@ -14,6 +14,6 @@ __title__ = "jiggle_version"
 __version__ = "2.0.0"
 __description__ = "Increment version number found in source code without regex"
 __readme__ = "README.md"
-__keywords__ = ["version", "verision-numbers"]
+__keywords__ = ["version", "version-numbers"]
 __license__ = "MIT"
 __requires_python__ = ">=3.8"

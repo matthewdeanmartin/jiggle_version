@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import logging
 import os
+from pathlib import Path
 from typing import List, Optional
 
 from jiggle_version.file_opener import FileOpener
@@ -27,7 +28,7 @@ class CentralModuleFinder:
         self.file_opener = file_opener
         self.setup_source: Optional[str] = ""
 
-        self.setup_file_name = ""
+        self.setup_file_name: Path | None = None
         self.find_setup_file_name()
         self.read_setup_py_source()
         self.package_name = self.parse_package_name()
@@ -37,24 +38,22 @@ class CentralModuleFinder:
         Usually setup.py or setup
         """
         for file_path in [
-            x
+            Path(x)
             for x in os.listdir(".")
-            if os.path.isfile(x) and x in ["setup.py", "setup"]
+            if Path(x).is_file() and x in [Path("setup.py"), Path("setup")]
         ]:
             if self.file_opener.is_python_inside(file_path):
                 self.setup_file_name = file_path
                 break
 
-    def _read_file(self, file: str) -> Optional[str]:
+    def _read_file(self, file: Path) -> Optional[str]:
         """
         Read any file, deal with encoding.
-        :param file:
-        :return:
         """
         if not self.setup_file_name:
             return None
         source = None
-        if os.path.isfile(file):
+        if file.is_file():
             with self.file_opener.open_this(file, "r") as setup_py:
                 source = setup_py.read()
         return source
@@ -66,7 +65,7 @@ class CentralModuleFinder:
         """
         if not self.setup_file_name:
             self.setup_source = ""
-        if not self.setup_source:
+        if not self.setup_source and self.setup_file_name:
             self.setup_source = self._read_file(self.setup_file_name)
 
     def parse_package_name(self) -> Optional[str]:
@@ -88,7 +87,7 @@ class CentralModuleFinder:
 
         return ""
 
-    def find_central_module(self) -> Optional[str]:
+    def find_central_module(self) -> Optional[Path]:
         """
         Get the module that is the sole module, or the module
         that matches the package name/version
@@ -103,7 +102,7 @@ class CentralModuleFinder:
         root_modules = []
 
         for candidate in candidates:
-            if "." in candidate:
+            if str(Path(".")) in str(candidate):
                 sub_modules.append(candidate)
             else:
                 root_modules.append(candidate)
@@ -118,33 +117,33 @@ class CentralModuleFinder:
         # see if there is 1 out of the many with same name pkg_foo, module_foo
         if self.package_name:
             if self.package_name in candidates:
-                return self.package_name
+                return Path(self.package_name)
 
         # I don't understand the _ to - transformations.
         if self.package_name:
             if self.package_name.replace("-", "_") in candidates:
-                return self.package_name.replace("-", "_")
+                return Path(str(self.package_name).replace("-", "_"))
 
         if self.package_name:
             if self.package_name.replace("-", "") in candidates:
-                return self.package_name.replace("-", "")
+                return Path(str(self.package_name).replace("-", ""))
 
         if self.package_name:
             if self.package_name.replace("_", "") in candidates:
-                return self.package_name.replace("_", "")
+                return Path(str(self.package_name).replace("_", ""))
         # see if there is 1 out of the many with version in sync- pkg_foo v1.2.3, module_bar v1.2.3
         # TODO:
 
         return None
 
-    def remove_likely_non_central(self, candidates: List[str]) -> List[str]:
+    def remove_likely_non_central(self, candidates: List[Path]) -> List[Path]:
         """
         Stuff that is likely to be in find_packages(exclude...)
         :param candidates:
         :return:
         """
         if len(candidates) > 1:
-            for unlikely in [
+            for unlikely_str in [
                 "test",
                 "tests",
                 "example",
@@ -155,11 +154,12 @@ class CentralModuleFinder:
                 "doc",
                 "docs",
             ]:
+                unlikely = Path(unlikely_str)
                 if unlikely in candidates:
                     logger.warning(f"Assuming {unlikely} is not the project")
                     candidates.remove(unlikely)
                 for candidate in candidates:
-                    if candidate.startswith(unlikely):
+                    if candidate.name.startswith(str(unlikely)):
                         logger.warning(f"Assuming {candidate} is not the project")
                         candidates.remove(candidate)
         return candidates

@@ -1,60 +1,83 @@
-"""
-Creates missing files, no logic about deciding if they should exist.
-"""
-
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
 
 class FileMaker:
     """
-    Just writes files.
+    A utility class for creating common project files with default version information.
     """
 
-    def __init__(self, project: str) -> None:
+    def __init__(self, project: Path) -> None:
         """
-        Initialize
+        Initializes the FileMaker.
+
+        Args:
+            project: The name of the project, used when creating config files.
         """
         self.project = project
 
-    def create_init(self, path: str) -> None:
+    def create_version_file(
+        self,
+        path: Path,
+        version: str = "0.0.0",
+        docstring: str = "Auto-generated version file",
+    ) -> None:
         """
-        Create a minimal __init__ file with enough boiler plate to not add to lint messages
-        """
-        source = """# coding=utf-8
-\"\"\"
-Version
-\"\"\"
-__version__ = \"0.0.0\"
-"""
-        with open(path, "w", encoding="utf-8") as outfile:
-            outfile.write(source)
+        Creates a Python file containing a `__version__` dunder attribute.
 
-    def create_version(self, path: str) -> None:
-        """
-        Create a minimal __version__ file with enough boiler plate to not add to lint messages
-        :param path:
-        :return:
-        """
-        source = """# coding=utf-8
-\"\"\"
-Init
-\"\"\"
-__version__ = \"0.0.0\"
-"""
-        with open(path, "w", encoding="utf-8") as outfile:
-            outfile.write(source)
+        This method combines the logic of the original `create_init` and
+        `create_version` methods. It ensures the parent directory exists
+        before writing the file.
 
-    def create_setup_cfg(self, path: str) -> None:
+        Args:
+            path: The full Path object where the file will be created.
+            version: The initial version string to write into the file.
+            docstring: A docstring to include in the generated file.
         """
-        Just setup.cfg
+        try:
+            # Ensure the parent directory exists, creating it if necessary.
+            path.parent.mkdir(parents=True, exist_ok=True)
+
+            source = f"""# coding=utf-8
+\"\"\"
+{docstring}
+\"\"\"
+__version__ = "{version}"
+"""
+            # Use write_text for a simple and clean way to write the file.
+            path.write_text(source, encoding="utf-8")
+            logger.info(f"Successfully created version file at: {path}")
+
+        except OSError as e:
+            logger.error(f"Failed to create file at {path}: {e}")
+            # Optionally, re-raise or handle the exception as needed.
+            raise
+
+    def create_setup_cfg(self, path: Path, version: str = "0.0.1") -> None:
         """
-        source = f"""[metadata]
+        Creates a basic setup.cfg file with metadata.
+
+        This method ensures the parent directory exists before writing the file.
+
+        Args:
+            path: The full Path object where the file will be created.
+            version: The initial version string to write into the file.
+        """
+        try:
+            # Ensure the parent directory exists.
+            path.parent.mkdir(parents=True, exist_ok=True)
+
+            source = f"""[metadata]
 name = {self.project}
-version=0.0.1
+version = {version}
 """
-        with open(path, "w", encoding="utf-8") as outfile:
-            outfile.write(source)
+            path.write_text(source, encoding="utf-8")
+            logger.info(f"Successfully created setup.cfg at: {path}")
+
+        except OSError as e:
+            logger.error(f"Failed to create file at {path}: {e}")
+            raise

@@ -1,12 +1,14 @@
 """
-Detect encoding, read file, remember encoding
+A refactored script using pathlib to detect encoding, read files,
+and remember the encoding for subsequent operations.
 """
 
 from __future__ import annotations
 
 import configparser
 import logging
-from typing import IO, Any, Dict, cast
+from pathlib import Path
+from typing import IO, Any, Dict
 
 import chardet
 
@@ -15,92 +17,129 @@ logger = logging.getLogger(__name__)
 
 class FileOpener:
     """
-    Container for list of files that might have bumpable versions
+    A container for file operations that automatically handles file encoding.
+    It uses pathlib.Path for all file system interactions.
     """
 
     def __init__(self) -> None:
         """
-        Init object
+        Initializes the FileOpener, creating a cache for file encodings.
         """
-        self.found_encoding: Dict[str, str] = {}
+        # The cache uses resolved Path objects as keys to ensure that
+        # different relative paths to the same file are treated as one.
+        self.found_encoding: Dict[Path, str] = {}
 
-    def is_python_inside(self, file_path: str) -> bool:
+    def _get_encoding(self, file_path: Path) -> str:
         """
-        If .py, yes. If extensionless, open file and check shebang
+        Detects, caches, and returns the encoding for a given file.
+        If the encoding is already cached, it returns the cached value.
 
-
-        TODO: support variations on this: #!/usr/bin/env python
-
-        :param file_path:
-        :return:
+        :param file_path: A Path object for the file.
+        :return: The detected encoding as a string.
         """
-        if file_path.endswith(".py"):
-            return True  # duh.
+        resolved_path = file_path.resolve()
+        if resolved_path in self.found_encoding:
+            return self.found_encoding[resolved_path]
 
-        # not supporting surprising extensions, ege. .py2, .python, .corn_chowder
-
-        # extensionless
-        if "." not in file_path:
-
-            try:
-                with self.open_this(file_path, "r") as file_handle:
-                    firstline = file_handle.readline()
-                if firstline.startswith("#") and "python" in firstline:
-                    return True
-            except Exception:
-                pass
-        return False
-
-    def read_this(self, file: str) -> str:
-        """
-        Return file text.
-        :param file:
-        :return:
-        """
-        with self.open_this(file, "r") as file_handler:
-            return cast(str, file_handler.read())
-
-    def open_this(self, file: str, how: str) -> IO[Any]:
-        """
-        Open file while detecting encoding. Use cached when possible.
-        :param file:
-        :param how:
-        :return:
-        """
-        # BUG: risky code here, allowing relative
-        if not file.startswith("/"):
-            # raise TypeError("this isn't absolute! We're siths, ya' know.")
-            pass
-        if file in self.found_encoding:
-            encoding = self.found_encoding[file]
-        else:
-            with open(file, "rb") as file_handle_rb:
-                file_bytes = file_handle_rb.read()
+        try:
+            file_bytes = file_path.read_bytes()
             if not file_bytes:
+                # Default to UTF-8 for empty files.
                 encoding = "utf-8"
             else:
-                encoding_info = chardet.detect(file_bytes)
-                encoding = encoding_info["encoding"] or ""
-            logger.debug(str(encoding))
+                detection = chardet.detect(file_bytes)
+                encoding = detection["encoding"] or "utf-8"  # Fallback to utf-8
+                logger.debug(
+                    f"Detected encoding for {file_path}: {encoding} with {detection['confidence']:.2f} confidence."
+                )
+
+            # A quick verification that the encoding works to avoid errors later.
             try:
-                with open(file, how, encoding=encoding) as file_handle:
-                    file_handle.read()
-            except UnicodeDecodeError:
-                print(file)
-                print(file_bytes)
+                file_bytes.decode(encoding)
+            except (UnicodeDecodeError, TypeError):
+                logger.warning(
+                    f"Detected encoding '{encoding}' failed to decode {file_path}. "
+                    f"Falling back to 'utf-8'."
+                )
+                encoding = "utf-8"
 
-            self.found_encoding[file] = encoding
+            self.found_encoding[resolved_path] = encoding
+            return encoding
 
-        return open(file, how, encoding=encoding)
+        except IOError as e:
+            logger.error(f"Could not read file {file_path}: {e}")
+            # Re-raise or return a default? Re-raising is cleaner.
+            raise
 
-    def read_metadata(self, file_path: str) -> str:
+    def is_python_inside(self, file_path: Path) -> bool:
         """
-        Get version out of a .ini file (or .cfg)
-        :return:
+        Checks if a file is a Python script.
+        Returns True for .py files or extensionless files with a python shebang.
+
+        :param file_path: A Path object for the file.
+        :return: True if the file appears to be a Python script.
+        """
+        if not file_path.is_file():
+            return False
+
+        # Check by file extension first.
+        if file_path.suffix == ".py":
+            return True
+
+        # For extensionless files, check for a shebang in the first line.
+        if not file_path.suffix:
+            try:
+                # Read only the first line for efficiency.
+                with self.open_this(file_path, "r") as file_handle:
+                    first_line = file_handle.readline()
+                if first_line.startswith("#") and "python" in first_line:
+                    return True
+            except (IOError, IndexError) as e:
+                # Handles cases where the file can't be read or is empty.
+                logger.debug(f"Could not check shebang for {file_path}: {e}")
+
+        return False
+
+    def read_this(self, file_path: Path) -> str:
+        """
+        Reads and returns the entire content of a file as a string.
+        This method automatically handles the file's encoding.
+
+        :param file_path: A Path object for the file.
+        :return: The decoded text content of the file.
+        """
+        encoding = self._get_encoding(file_path)
+        return file_path.read_text(encoding=encoding)
+
+    def open_this(self, file_path: Path, mode: str = "r") -> IO[Any]:
+        """
+        Opens a file with the correct encoding.
+
+        :param file_path: A Path object for the file.
+        :param mode: The mode to open the file in (e.g., 'r', 'w', 'rb').
+        :return: A file handle.
+        """
+        # Binary modes do not take an encoding argument.
+        if "b" in mode:
+            return file_path.open(mode)
+
+        # For text modes, get the detected encoding.
+        encoding = self._get_encoding(file_path)
+        return file_path.open(mode, encoding=encoding)
+
+    def read_metadata(self, file_path: Path) -> str:
+        """
+        Reads the 'version' from the [metadata] section of a .ini or .cfg file.
+
+        :param file_path: A Path object for the configuration file.
+        :return: The version string, or an empty string if not found.
         """
         config = configparser.ConfigParser()
-        config.read(file_path)
         try:
-            return str(config["metadata"]["version"])
-        except KeyError:
+            # Read the file content using our method that handles encoding.
+            file_content = self.read_this(file_path)
+            config.read_string(file_content)
+            return config.get("metadata", "version", fallback="")
+        except (IOError, configparser.Error) as e:
+            logger.error(f"Failed to read or parse metadata from {file_path}: {e}")
             return ""

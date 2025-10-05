@@ -46,6 +46,7 @@ from __future__ import annotations
 import configparser
 import logging
 import os.path
+from pathlib import Path
 
 import chardet
 from semantic_version import Version
@@ -53,12 +54,12 @@ from semantic_version import Version
 from jiggle_version.file_inventory import FileInventory
 from jiggle_version.file_makers import FileMaker
 from jiggle_version.file_opener import FileOpener
-from jiggle_version.find_version_class import FindVersion
+from jiggle_version.find_version_class import VersionDiscoverer
 from jiggle_version.parse_python.is_this_okay import check
 from jiggle_version.parse_version import parse_dunder_version as dunder_version
 from jiggle_version.parse_version import parse_kwarg_version as kwarg_version
 from jiggle_version.parse_version.schema_guesser import version_object_and_next
-from jiggle_version.utils import JiggleVersionException, die
+from jiggle_version.utils import JiggleVersionException
 
 logger = logging.getLogger(__name__)
 
@@ -70,8 +71,8 @@ class JiggleVersion:
 
     def __init__(
         self,
-        project: str,
-        source: str,
+        project: Path,
+        source: Path,
         file_opener: FileOpener,
         force_init: bool,
         signature: bool = False,
@@ -102,42 +103,33 @@ class JiggleVersion:
         if not self.is_folder_project and not self.is_file_project:
             logger.warning(
                 "Can't find module, typically a packages has a .py file or folder with module name : "
-                + str(self.SRC + self.PROJECT)
+                + str(self.SRC / self.PROJECT)
                 + " - can only update setup.py and text files."
             )
 
         self.DEBUG = False
         # logger.debug("Will expect {0} at path {1}{0} ".format(self.PROJECT, self.SRC))
 
-        self.version_finder = FindVersion(
+        discoverer = VersionDiscoverer(
             self.PROJECT, self.SRC, self.file_opener, force_init=self.force_init
         )
-
-        any_valid = self.version_finder.find_any_valid_version()
+        current_version_str = discoverer.discover_version()
 
         try:
             self.current_version, self.version, self.schema = version_object_and_next(
-                any_valid
+                current_version_str
             )
         except Exception as ex:
-            # Can't find a version
-            candidates = self.version_finder.all_current_versions()
-            message = (
-                str(ex)
-                + " Can't parse this version, won't be able to bump anything. "
-                + str(candidates)
-            )
+            message = " Can't parse this version, won't be able to bump anything. "
             logger.error(message)
-            die(-1, message)
-            return
-            # self.current_version , self.version = None, None
+            raise JiggleVersionException(message)
 
         self.create_configs = False
 
         # for example, do we create __init__.py which changes behavior
         self.create_all = False
         self.file_maker = FileMaker(self.PROJECT)
-        self.version_finder = FindVersion(
+        self.version_finder = VersionDiscoverer(
             project, source, file_opener, force_init=self.force_init
         )
         self.file_inventory = FileInventory(project, source)
@@ -151,8 +143,6 @@ class JiggleVersion:
     def leading_whitespace(self, line: str) -> str:
         """
         For preserving indents
-        :param line:
-        :return:
         """
         string = ""
         for char in line:
@@ -210,33 +200,12 @@ class JiggleVersion:
                 changed += 1
         return changed
 
-    # This is just a bad idea. You can't do this without user input & __version__.py is a bad convention.
-    # def create_missing(self, file_name, filepath):  # type: (str,str)->None
-    #     """
-    #     Check for file, decide if needed, call to create
-    #     :param file_name:
-    #     :param filepath:
-    #     :return:
-    #     """
-    #     if not os.path.isfile(filepath):
-    #         if self.create_all and "__init__" in file_name and not self.is_file_project:
-    #             logger.info("Creating " + unicode(filepath))
-    #             self.file_maker.create_init(filepath)
-    #             if not os.path.isfile(filepath):
-    #                 raise JiggleVersionException("Missing file " + filepath)
-    #         if "__version__" in filepath and not self.is_file_project and self.PROJECT:
-    #             logger.info("Creating " + unicode(filepath))
-    #             self.file_maker.create_version(filepath)
-    #             if not os.path.isfile(filepath):
-    #                 raise JiggleVersionException("Missing file " + filepath)
-
     def jiggle_setup_py(self) -> int:
         """
         Edit a version = "1.2.3" or version="1.2.3",
-        :return:
         """
         changed = 0
-        setup_py = os.path.join(self.SRC, "setup.py")
+        setup_py = self.SRC / "setup.py"
         if not os.path.isfile(setup_py):
             return changed
         lines_to_write = []
@@ -263,10 +232,6 @@ class JiggleVersion:
                     comma = ""
                     if simplified_line.strip(" \t\n").endswith(","):
                         comma = ","
-                    # could happen, say on last.
-                    # if not comma and not start_comma:
-                    #     print(simplified_line)
-                    #     raise TypeError("$$$$$")
                     source = f'{leading_white}{start_comma}version = "{str(self.version_to_write())}"{comma}{self.signature_txt}\n'
                     need_rewrite = True
                     lines_to_write.append(source)
@@ -331,10 +296,10 @@ class JiggleVersion:
         changed = 0
         # setup.py related. setup.py itself should read __init__.py or __version__.py
 
-        other_files = ["setup.cfg"]
+        other_files = [Path("setup.cfg")]
 
         for file_name in other_files:
-            filepath = os.path.join(self.SRC, file_name)
+            filepath = self.SRC / file_name
 
             # only create setup.cfg if we have setup.py
             if (
@@ -371,10 +336,10 @@ class JiggleVersion:
                 files_to_update.append(version_txt)
 
         if not files_to_update and self.create_configs:
-            files_to_update = self.file_inventory.default_text_file
+            files_to_update = [self.file_inventory.default_text_file]
 
         for version_txt in files_to_update:
-            if os.path.isfile(version_txt):
+            if version_txt.is_file():
                 with open(version_txt, "w", encoding="utf-8") as outfile:
                     if self.version is None or self.version == "":
                         raise JiggleVersionException("Can't write version")

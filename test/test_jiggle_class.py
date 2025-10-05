@@ -3,6 +3,7 @@ Tests
 """
 
 import os
+from pathlib import Path
 
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.jiggle_class import JiggleVersion
@@ -34,7 +35,7 @@ def test_empty_projects():
     for key, value in empty_projects.items():
         try:
             os.chdir(value)
-            jiggler = JiggleVersion(key[1], key[0], f, force_init=True)
+            jiggler = JiggleVersion(Path(key[1]), Path(key[0]), f, force_init=True)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
             assert changed > 0
@@ -50,7 +51,7 @@ def test_new_probs():
     for key, value in various.items():
         try:
             os.chdir(value)
-            jiggler = JiggleVersion(key[1], key[0], f, force_init=False)
+            jiggler = JiggleVersion(Path(key[1]), Path(key[0]), f, force_init=False)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
             assert changed > 0
@@ -66,7 +67,7 @@ def test_old_probs():
     for key, value in various.items():
         try:
             os.chdir(value)
-            jiggler = JiggleVersion(key[0], key[1], f, force_init=False)
+            jiggler = JiggleVersion(Path(key[0]), Path(key[1]), f, force_init=False)
             jiggler.create_configs = True
             changed = jiggler.jiggle_all()
             assert changed > 0
@@ -76,9 +77,9 @@ def test_old_probs():
 
 def test_no_files():
     for file in [
-        SRC + PROJECT + "/__init__.py",
-        SRC + PROJECT + "/__version__.py",
-        SRC + "setup.cfg",
+        Path(SRC + PROJECT + "/__init__.py"),
+        Path(SRC + PROJECT + "/__version__.py"),
+        Path(SRC + "setup.cfg"),
     ]:
         try:
             os.remove(file)
@@ -91,13 +92,13 @@ def test_no_files():
     try:
         os.chdir(SRC)
         # doesn't exist
-        jiggler = JiggleVersion(PROJECT, "", f, force_init=False)
+        jiggler = JiggleVersion(Path(PROJECT), Path(""), f, force_init=False)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()
 
         # and already exist
-        jiggler = JiggleVersion(PROJECT, "", f, force_init=False)
+        jiggler = JiggleVersion(Path(PROJECT), Path(""), f, force_init=False)
         jiggler.create_configs = True
         jiggler.create_all = True
         jiggler.jiggle_all()

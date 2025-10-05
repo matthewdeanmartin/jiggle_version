@@ -1,10 +1,10 @@
 [project]
 name = "jiggle_version"
-version = "2.0.0"
+version = "1.2.0"
 description = "Increment version number found in source code without regex"
 readme = "README.md"
 authors = [{ name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" }]
-keywords = ["version", "verision-numbers"]
+keywords = ["version", "version-numbers"]
 license = "MIT"
 requires-python = ">=3.8"
 

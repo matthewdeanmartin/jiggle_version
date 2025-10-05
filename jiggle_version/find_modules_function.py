@@ -1,14 +1,15 @@
 import os
+from pathlib import Path
 
 
-def find_packages_recursively(start_dir: str) -> list[str]:
+def find_packages_recursively(start_dir: Path) -> list[Path]:
     """
     Walks a directory from a starting path and finds all packages.
     A package is any directory with an __init__.py file.
     This is a simplified replacement for setuptools.find_packages.
     """
     packages = []
-    for root, dirs, files in os.walk(start_dir, topdown=True):
+    for root, dirs, files in os.walk(str(start_dir), topdown=True):
         # Prune common non-code directories to avoid walking them
         dirs[:] = [
             d
@@ -37,4 +38,4 @@ def find_packages_recursively(start_dir: str) -> list[str]:
 
             package_name = relative_path.replace(os.sep, ".")
             packages.append(package_name)
-    return packages
+    return [Path(_) for _ in packages]

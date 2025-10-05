@@ -7,15 +7,14 @@ from __future__ import annotations
 import ast
 import logging
 import os
+from pathlib import Path
 from typing import List, Optional
 
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_modules_function import find_packages_recursively
 from jiggle_version.utils import (
     JiggleVersionException,
-    die,
     first_value_in_dict,
-    ifnull,
     parse_source_to_dict,
 )
 
@@ -31,14 +30,14 @@ class PackageInfoFinder:
         self.file_opener = file_opener
         self.setup_source: Optional[str] = ""
 
-    def _read_file(self, file: str) -> Optional[str]:
+    def _read_file(self, file: Path) -> Optional[str]:
         """
         Read any file, deal with encoding.
         :param file:
         :return:
         """
         source = None
-        if os.path.isfile(file):
+        if file.is_file():
             with self.file_opener.open_this(file, "r") as setup_py:
                 source = setup_py.read()
         return source
@@ -46,13 +45,12 @@ class PackageInfoFinder:
     def setup_py_source(self) -> Optional[str]:
         """
         Read setup.py to string
-        :return:
         """
         if not self.setup_source:
-            self.setup_source = self._read_file("setup.py")  # rare case
+            self.setup_source = self._read_file(Path("setup.py"))  # rare case
 
         if not self.setup_source:
-            self.setup_source = self._read_file("setup")  # rare case
+            self.setup_source = self._read_file(Path("setup"))  # rare case
         return self.setup_source
 
     def name_from_setup_py(self) -> str:
@@ -84,7 +82,7 @@ class PackageInfoFinder:
         # package_dir={'': 'lib'},
         source = self.setup_py_source()
         if not source:
-            print("No setup.py")
+            logger.warning("No setup.py")
             # this happens when the setup.py file is missing
             return None
 
@@ -117,15 +115,14 @@ class PackageInfoFinder:
                     "Have path_dict, but has more than one path."
                 )
         else:
-            print("package_dir not in setup.py")
+            logger.warning("package_dir not in setup.py")
         return None
 
-    def via_find_packages(self) -> List[str]:
+    def via_find_packages(self) -> List[Path]:
         """
         Use find_packages code to find modules. Can find LOTS of modules.
-        :return:
         """
-        packages: List[str] = []
+        packages: List[Path] = []
         source = self.setup_py_source()
         if not source:
             return packages
@@ -133,7 +130,7 @@ class PackageInfoFinder:
             if "find_packages" in row:
                 logger.debug(row)
                 if "find_packages()" in row:
-                    packages = find_packages_recursively(".")
+                    packages = find_packages_recursively(Path("."))
                 else:
 
                     try:
@@ -146,18 +143,18 @@ class PackageInfoFinder:
 
         return packages
 
-    def find_project(self) -> List[str]:
+    def find_project(self) -> List[Path]:
         """
         Get all candidate projects
         :return:
         """
-        folders = [f for f in os.listdir(".") if os.path.isdir(f)]
+        folders = [Path(f) for f in os.listdir(".") if Path(f).is_dir()]
 
         candidates = []
         setup = self.setup_py_source()
         for folder in folders:
-            if os.path.isfile(folder + "/__init__.py"):
-                dunder_source = self._read_file(folder + "/__init__.py")
+            if os.path.isfile(folder / "/__init__.py"):
+                dunder_source = self._read_file(folder / "/__init__.py")
                 project = folder
                 if setup:
                     # prevents test folders & other junk
@@ -199,7 +196,7 @@ class PackageInfoFinder:
             ]:
                 if unlikely in candidates:
                     logger.warning(f"Assuming {unlikely} is not the project")
-                    candidates.remove(unlikely)
+                    candidates.remove(Path(unlikely))
                 if len(candidates) == 1:
                     break
 
@@ -207,39 +204,39 @@ class PackageInfoFinder:
         if len(candidates) != 1:
             likely_name = self.name_from_setup_py()
             if likely_name in candidates:
-                return [likely_name]
+                return [Path(likely_name)]
         return list({x for x in candidates if x})
 
     # TODO: use setup.py line to find package
     # packages=find_packages('src'),
     # packages=['ajax_select'],
 
-    def find_malformed_single_file_project(self) -> List[str]:
+    def find_malformed_single_file_project(self) -> List[Path]:
         """
         Take first non-setup.py python file. What a mess.
         :return:
         """
-        files = [f for f in os.listdir(".") if os.path.isfile(f)]
+        files = [Path(f) for f in os.listdir(".") if Path(f).is_file()]
 
-        candidates = []
+        candidates: list[Path] = []
         # project misnamed & not in setup.py
 
         for file in files:
-            if file.endswith("setup.py") or not file.endswith(".py"):
+            if file.name.endswith("setup.py") or not file.name.endswith(".py"):
                 continue  # duh
 
-            candidate = file.replace(".py", "")
-            if candidate != "setup":
-                candidates.append(candidate)
-                # return first
-                return candidates
+            # candidate = file.replace(".py", "")
+            # if candidate != "setup":
+            #     candidates.append(candidate)
+            #     # return first
+            #     return candidates
 
         # files with shebang
         for file in files:
-            if file.endswith("setup.py"):
+            if file.name.endswith("setup.py"):
                 continue  # duh
 
-            if "." not in file:
+            if "." not in str(file):
                 candidate = file
 
                 try:
@@ -248,7 +245,7 @@ class PackageInfoFinder:
                     if (
                         firstline.startswith("#")
                         and "python" in firstline
-                        and candidate in ifnull(self.setup_py_source(), "")
+                        and str(candidate) in (self.setup_py_source() or "")
                     ):
                         candidates.append(candidate)
                         return candidates
@@ -257,25 +254,24 @@ class PackageInfoFinder:
         # default.
         return candidates
 
-    def find_single_file_project(self) -> List[str]:
+    def find_single_file_project(self) -> List[Path]:
         """
-        Find well formed singler file project
-        :return:
+        Find well-formed singler file project
         """
-        files = [f for f in os.listdir(".") if os.path.isfile(f)]
+        files = [Path(f) for f in os.listdir(".") if Path(f).is_file()]
 
-        candidates = []
+        candidates: list[Path] = []
         setup_source = self.setup_py_source()
 
         for file in files:
-            if file.endswith("setup.py") or not file.endswith(".py"):
+            if file.name.endswith("setup.py") or not file.name.endswith(".py"):
                 continue  # duh
 
             if setup_source:
-                if file.replace(".py", "") in setup_source:
-                    candidate = file.replace(".py", "")
+                if file.name.replace(".py", "") in setup_source:
+                    candidate = file.name.replace(".py", "")
                     if candidate != "setup":
-                        candidates.append(candidate)
+                        candidates.append(Path(candidate))
 
         return candidates
 
@@ -286,8 +282,7 @@ class PackageInfoFinder:
         if len(candidates) > 1:
             message = "Found multiple possible projects : " + str(candidates)
             logger.error(message)
-            die(-1, message)
-            return
+            raise JiggleVersionException(message)
         if not candidates:
             # we can still update setup.py
             logger.warning(
