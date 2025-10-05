@@ -7,6 +7,6 @@ PROJECT_NAME = "sample_lib"
 
 here = os.path.abspath(os.path.dirname(__file__))
 about = {}
-version = "0.0.644"
+version = "0.0.647"
 
 setup(name=PROJECT_NAME, version="0.0.407")  # Jiggle Version Was Here
