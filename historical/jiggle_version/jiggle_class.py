@@ -119,7 +119,7 @@ class JiggleVersion:
             self.current_version, self.version, self.schema = version_object_and_next(
                 current_version_str
             )
-        except Exception as ex:
+        except Exception:
             message = " Can't parse this version, won't be able to bump anything. "
             logger.error(message)
             raise JiggleVersionException(message)

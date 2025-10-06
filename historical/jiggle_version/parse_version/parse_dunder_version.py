@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import ast
 import re
-from typing import Any, Optional, Tuple
+from typing import Optional, Tuple
 
 version_tokens = [
     "__version__",  # canonical
@@ -29,8 +29,6 @@ version_tokens = [
 ]
 
 
-import ast
-from typing import Any, Optional
 
 
 def find_by_ast(line: str, version_token: str = "__version__") -> Optional[str]:

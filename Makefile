@@ -32,7 +32,7 @@ test: clean uv.lock install_plugins
 	# $(VENV) pytest --doctest-modules jiggle_version
 	# $(VENV) python -m unittest discover
 	$(VENV) py.test test -vv -n 2 --cov=jiggle_version --cov-report=html --cov-fail-under 35 --cov-branch --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
-	$(VENV) bash basic_checks.sh
+	$(VENV) bash scripts/basic_checks.sh
 #	$(VENV) bash basic_test_with_logging.sh
 
 

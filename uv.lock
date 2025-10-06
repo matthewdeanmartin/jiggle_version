@@ -304,15 +304,6 @@ wheels = [
 ]
 
 [[package]]
-name = "arpeggio"
-version = "2.0.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/12/c4/516bb54456f85ad1947702ea4cef543a59de66d31a9887dbc3d9df36e3e1/Arpeggio-2.0.2.tar.gz", hash = "sha256:c790b2b06e226d2dd468e4fbfb5b7f506cec66416031fde1441cf1de2a0ba700", size = 766643, upload-time = "2023-07-09T12:30:04.737Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f7/4f/d28bf30a19d4649b40b501d531b44e73afada99044df100380fd9567e92f/Arpeggio-2.0.2-py2.py3-none-any.whl", hash = "sha256:f7c8ae4f4056a89e020c24c7202ac8df3e2bc84e416746f20b0da35bb1de0250", size = 55287, upload-time = "2023-07-09T12:30:01.87Z" },
-]
-
-[[package]]
 name = "astroid"
 version = "3.2.4"
 source = { registry = "https://pypi.org/simple" }
@@ -469,15 +460,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b3/76/52c535bcebe74590f296d6c77c86dabf761c41980e1347a2422e4aa2ae41/certifi-2025.7.14.tar.gz", hash = "sha256:8ea99dbdfaaf2ba2f9bac77b9249ef62ec5218e7c2b2e903378ed5fccf765995", size = 163981, upload-time = "2025-07-14T03:29:28.449Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4f/52/34c6cf5bb9285074dc3531c437b3919e825d976fde097a7a73f79e726d03/certifi-2025.7.14-py3-none-any.whl", hash = "sha256:6b31f564a415d79ee77df69d757bb49a5bb53bd9f756cbbe24394ffd6fc1f4b2", size = 162722, upload-time = "2025-07-14T03:29:26.863Z" },
-]
-
-[[package]]
-name = "chardet"
-version = "5.2.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/f3/0d/f7b6ab21ec75897ed80c17d79b15951a719226b9fababf1e40ea74d69079/chardet-5.2.0.tar.gz", hash = "sha256:1b3b6ff479a8c414bc3fa2c0852995695c4a026dcd6d0633b2dd092ca39c1cf7", size = 2069618, upload-time = "2023-08-01T19:23:02.662Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/38/6f/f5fbc992a329ee4e0f288c1fe0e2ad9485ed064cac731ed2fe47dcc38cbf/chardet-5.2.0-py3-none-any.whl", hash = "sha256:e1cf59446890a00105fe7b7912492ea04b6e6f06d4b742b2c788469e34c82970", size = 199385, upload-time = "2023-08-01T19:23:00.661Z" },
 ]
 
 [[package]]
@@ -1212,18 +1194,6 @@ wheels = [
 ]
 
 [[package]]
-name = "importlib-resources"
-version = "6.4.5"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "zipp", version = "3.20.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/98/be/f3e8c6081b684f176b761e6a2fef02a0be939740ed6f54109a2951d806f3/importlib_resources-6.4.5.tar.gz", hash = "sha256:980862a1d16c9e147a59603677fa2aa5fd82b87f223b6cb870695bcfce830065", size = 43372, upload-time = "2024-09-09T17:03:14.677Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e1/6a/4604f9ae2fa62ef47b9de2fa5ad599589d28c9fd1d335f32759813dfa91e/importlib_resources-6.4.5-py3-none-any.whl", hash = "sha256:ac29d5f956f01d5e4bb63102a5a19957f1b9175e45649977264a1416783bb717", size = 36115, upload-time = "2024-09-09T17:03:13.39Z" },
-]
-
-[[package]]
 name = "iniconfig"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1279,14 +1249,12 @@ wheels = [
 
 [[package]]
 name = "jiggle-version"
-version = "1.2.0"
+version = "2.0.0"
 source = { editable = "." }
 dependencies = [
-    { name = "chardet" },
-    { name = "importlib-resources", marker = "python_full_version < '3.9'" },
-    { name = "parver" },
-    { name = "semantic-version" },
-    { name = "versio" },
+    { name = "pathspec" },
+    { name = "rich-argparse" },
+    { name = "tomli", marker = "python_full_version < '3.11'" },
 ]
 
 [package.dev-dependencies]
@@ -1335,11 +1303,9 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "chardet" },
-    { name = "importlib-resources", marker = "python_full_version < '3.9'" },
-    { name = "parver" },
-    { name = "semantic-version" },
-    { name = "versio", specifier = ">=0.5.0" },
+    { name = "pathspec", specifier = ">=0.12" },
+    { name = "rich-argparse" },
+    { name = "tomli", marker = "python_full_version < '3.11'" },
 ]
 
 [package.metadata.requires-dev]
@@ -2214,21 +2180,6 @@ wheels = [
 ]
 
 [[package]]
-name = "parver"
-version = "0.5"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "arpeggio" },
-    { name = "attrs" },
-    { name = "typing-extensions", version = "4.13.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
-    { name = "typing-extensions", version = "4.14.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/cc/e5/1c774688a90f0b76e872e30f6f1ba3f5e14056cd0d96a684047d4a986226/parver-0.5.tar.gz", hash = "sha256:b9fde1e6bb9ce9f07e08e9c4bea8d8825c5e78e18a0052d02e02bf9517eb4777", size = 26908, upload-time = "2023-10-03T21:06:54.506Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/0f/4c/f98024021bef4d44dce3613feebd702c7ad8883f777ff8488384c59e9774/parver-0.5-py3-none-any.whl", hash = "sha256:2281b187276c8e8e3c15634f62287b2fb6fe0efe3010f739a6bd1e45fa2bf2b2", size = 15172, upload-time = "2023-10-03T21:06:52.796Z" },
-]
-
-[[package]]
 name = "pathspec"
 version = "0.12.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2983,6 +2934,18 @@ wheels = [
 ]
 
 [[package]]
+name = "rich-argparse"
+version = "1.7.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "rich" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/71/a6/34460d81e5534f6d2fc8e8d91ff99a5835fdca53578eac89e4f37b3a7c6d/rich_argparse-1.7.1.tar.gz", hash = "sha256:d7a493cde94043e41ea68fb43a74405fa178de981bf7b800f7a3bd02ac5c27be", size = 38094, upload-time = "2025-05-25T20:20:35.335Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/31/f6/5fc0574af5379606ffd57a4b68ed88f9b415eb222047fe023aefcc00a648/rich_argparse-1.7.1-py3-none-any.whl", hash = "sha256:a8650b42e4a4ff72127837632fba6b7da40784842f08d7395eb67a9cbd7b4bf9", size = 25357, upload-time = "2025-05-25T20:20:33.793Z" },
+]
+
+[[package]]
 name = "ruff"
 version = "0.12.7"
 source = { registry = "https://pypi.org/simple" }
@@ -3005,15 +2968,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/77/ab/aca2e756ad7b09b3d662a41773f3edcbd262872a4fc81f920dc1ffa44541/ruff-0.12.7-py3-none-win32.whl", hash = "sha256:c928f1b2ec59fb77dfdf70e0419408898b63998789cc98197e15f560b9e77f77", size = 11756687, upload-time = "2025-07-29T22:32:29.381Z" },
     { url = "https://files.pythonhosted.org/packages/b4/71/26d45a5042bc71db22ddd8252ca9d01e9ca454f230e2996bb04f16d72799/ruff-0.12.7-py3-none-win_amd64.whl", hash = "sha256:9c18f3d707ee9edf89da76131956aba1270c6348bfee8f6c647de841eac7194f", size = 12912365, upload-time = "2025-07-29T22:32:31.517Z" },
     { url = "https://files.pythonhosted.org/packages/4c/9b/0b8aa09817b63e78d94b4977f18b1fcaead3165a5ee49251c5d5c245bb2d/ruff-0.12.7-py3-none-win_arm64.whl", hash = "sha256:dfce05101dbd11833a0776716d5d1578641b7fddb537fe7fa956ab85d1769b69", size = 11982083, upload-time = "2025-07-29T22:32:33.881Z" },
-]
-
-[[package]]
-name = "semantic-version"
-version = "2.10.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/7d/31/f2289ce78b9b473d582568c234e104d2a342fd658cc288a7553d83bb8595/semantic_version-2.10.0.tar.gz", hash = "sha256:bdabb6d336998cbb378d4b9db3a4b56a1e3235701dc05ea2690d9a997ed5041c", size = 52289, upload-time = "2022-05-26T13:35:23.454Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/6a/23/8146aad7d88f4fcb3a6218f41a60f6c2d4e3a72de72da1825dc7c8f7877c/semantic_version-2.10.0-py2.py3-none-any.whl", hash = "sha256:de78a3b8e0feda74cabc54aab2da702113e33ac9d9eb9d2389bcf1f58b7d9177", size = 15552, upload-time = "2022-05-26T13:35:21.206Z" },
 ]
 
 [[package]]
@@ -3196,15 +3150,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/3d/26/7b871396c33006c445c25ef7da605ecbd6cef830d577b496d2b73a554f9d/vermin-1.6.0.tar.gz", hash = "sha256:6266ca02f55d1c2aa189a610017c132eb2d1934f09e72a955b1eb3820ee6d4ef", size = 93181, upload-time = "2023-11-25T20:58:25.406Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2e/98/1a2ca43e6d646421eea16ec19977e2e6d1ea9079bd9d873bfae513d43f1c/vermin-1.6.0-py2.py3-none-any.whl", hash = "sha256:f1fa9ee40f59983dc40e0477eb2b1fa8061a3df4c3b2bcf349add462a5610efb", size = 90845, upload-time = "2023-11-25T20:58:22.69Z" },
-]
-
-[[package]]
-name = "versio"
-version = "0.5.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/89/83/7a7d329cb8939b3b8c05c45cbf2c2af73499a417aa6306da2ccbf2be8638/Versio-0.5.0.tar.gz", hash = "sha256:64b3bb4cc285b5c7cf3afb3ea63bc6b0df1e7cb1db14e77a8b7ec81b8c8b058e", size = 31327, upload-time = "2022-01-11T22:43:05.657Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/cd/12/2b9ca783aea66cb246b2997448a0842e11953037427e39731541cf439692/Versio-0.5.0-py3-none-any.whl", hash = "sha256:68fde9c516bf352d9912a401202555dd9d7c4e2626f578fe41a7079159e43003", size = 12920, upload-time = "2022-01-11T22:43:04.013Z" },
 ]
 
 [[package]]

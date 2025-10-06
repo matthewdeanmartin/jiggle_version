@@ -4,7 +4,7 @@ import configparser
 import logging
 import os
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, cast
+from typing import Dict, List, Optional, Tuple
 
 # Assuming these imports are from the original project structure
 from semantic_version import Version
@@ -16,8 +16,6 @@ from jiggle_version.parse_version import parse_kwarg_version as kwarg_version
 from jiggle_version.parse_version.schema_guesser import version_object_and_next
 from jiggle_version.utils import (
     JiggleVersionException,
-    first_value_in_dict,
-    merge_two_dicts,
 )
 
 logger = logging.getLogger(__name__)

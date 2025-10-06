@@ -1,6 +1,6 @@
 [project]
 name = "jiggle_version"
-version = "1.2.0"
+version = "2.0.0"
 description = "Increment version number found in source code without regex"
 readme = "README.md"
 authors = [{ name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" }]
@@ -10,11 +10,10 @@ requires-python = ">=3.8"
 
 
 dependencies = [
-    "semantic-version",
-    "parver",
-    "versio>=0.5.0",
-    "chardet",
-    "importlib-resources; python_version < '3.9'",
+    "rich-argparse",
+    "tomli; python_version < '3.11'",
+    "pathspec>=0.12"
+    # "importlib-resources; python_version < '3.9'",
 ]
 
 [dependency-groups]
@@ -216,3 +215,9 @@ exclude = [
     "node_modules",
     "venv",
 ]
+
+
+[tool.jiggle_version]
+scheme = "pep440"
+default_increment = "patch"
+ignore = ["test", "sample_projects", "dead_code", "historical"]

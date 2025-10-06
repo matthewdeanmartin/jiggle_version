@@ -19,7 +19,7 @@ import requests
 def execute_get_text(command):
     try:
         result = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
-    except subprocess.CalledProcessError as err:
+    except subprocess.CalledProcessError:
         raise
 
     return result
@@ -48,7 +48,7 @@ def package_info(rows):
             if ".zip" in url or ".gz" in url:
                 print(url)
                 last = url
-        except:
+        except: # noqa
             pass
     return last
 
@@ -74,12 +74,12 @@ def read_packages():
                 print(package_name + " done")
                 continue
             print(url)
-        except:
+        except: # noqa
             continue
 
         response = requests.get(url)
 
-        with open("meta/" + url.split("/")[-2], "w") as file:
+        with open("meta/" + url.split("/")[-2], "w"):
             download_package(response.text.split("\n"))
             # file.write(response.text)
 

@@ -10,7 +10,8 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-
+from setup_helpers import get_version
+import atexit
 import os
 import sys
 
@@ -52,7 +53,7 @@ copyright = u"2015-2016, aiosmtpd hackers"
 # The short X.Y version.
 version = "1.0"
 # The full version, including alpha/beta/rc tags.
-from setup_helpers import get_version
+
 
 release = get_version("aiosmtpd/smtp.py")
 
@@ -280,6 +281,6 @@ def index_html():
         os.chdir(cwd)
 
 
-import atexit
+
 
 atexit.register(index_html)

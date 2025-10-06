@@ -15,7 +15,7 @@ def execute_get_text(command, dir):
             stdout=subprocess.PIPE,
             cwd="packages/{0}".format(dir),
         )
-    except subprocess.CalledProcessError as err:
+    except subprocess.CalledProcessError:
         # dupe.
         # print(err.stdout)
         raise
@@ -36,5 +36,5 @@ for dir in things:
     print("---{0}---".format(dir))
     try:
         _ = execute_get_text(command, dir)
-    except subprocess.CalledProcessError as cpe:
+    except subprocess.CalledProcessError:
         continue

@@ -1,0 +1,3 @@
+"""
+Opinionated version incrementing
+"""

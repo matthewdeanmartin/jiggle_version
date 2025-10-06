@@ -3,7 +3,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import venv
 from pathlib import Path
 
 
@@ -87,20 +86,20 @@ def try_out_package(package_path: Path) -> tuple[str, str, str | None]:
     print(f"--- Testing Package: {package_name} ---")
 
     # 1. Test the 'current' command on the original directory
-    print(f"  -> Running 'current' command...")
+    print("  -> Running 'current' command...")
     current_command = ["uv", "run", "jiggle_version","current", str(package_path)]
 
     success, stdout, stderr = run_jiggle_command(current_command)
 
     if not success:
         details = f"Failed to find version in '{package_name}'."
-        print(f"  [FAIL] 'current' command failed.")
+        print("  [FAIL] 'current' command failed.")
         return "CURRENT_FAIL", details, stderr
 
     print(f"  [OK] 'current' command succeeded. Found version info:\n{stdout.strip()}")
 
     # 2. Test the 'bump' command in a temporary, isolated directory
-    print(f"  -> Running 'bump' command in a temporary directory...")
+    print("  -> Running 'bump' command in a temporary directory...")
     with tempfile.TemporaryDirectory(prefix=f"jiggle-test-{package_name}-") as temp_dir_str:
         temp_dir = Path(temp_dir_str)
 
@@ -109,7 +108,7 @@ def try_out_package(package_path: Path) -> tuple[str, str, str | None]:
             shutil.copytree(package_path, temp_dir, dirs_exist_ok=True)
         except Exception as e:
             details = f"Failed to copy '{package_name}' to a temporary directory."
-            print(f"  [FAIL] Could not prepare for bump test.")
+            print("  [FAIL] Could not prepare for bump test.")
             return "BUMP_FAIL", details, str(e)
 
         bump_command = ["jiggle_version", "bump", "package", str(temp_dir), "--init"]
@@ -117,10 +116,10 @@ def try_out_package(package_path: Path) -> tuple[str, str, str | None]:
 
         if not success:
             details = f"Failed to bump version for '{package_name}' in isolated test."
-            print(f"  [FAIL] 'bump' command failed.")
+            print("  [FAIL] 'bump' command failed.")
             return "BUMP_FAIL", details, stderr
 
-    print(f"  [OK] 'bump' command succeeded.")
+    print("  [OK] 'bump' command succeeded.")
     return "SUCCESS", f"Successfully processed '{package_name}'.", None
 
 
@@ -132,7 +131,7 @@ def main():
 
     site_packages = get_site_packages_path()
     if not site_packages or not site_packages.is_dir():
-        print(f"Error: site-packages directory not found or is not a directory.")
+        print("Error: site-packages directory not found or is not a directory.")
         sys.exit(1)
 
     print(f"Found site-packages at: {site_packages}\n")

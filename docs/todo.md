@@ -1,3 +1,16 @@
+# v2.0.0 TODO
+------
+- init will mess up pyproject.toml, only 1 library preserves formatting and comments
+- maybe keep `currrent` as alias? we already got many
+- package detecting is bad
+- 
+
+
+
+
+
+
+
 2025 TODO
 --- 
 - Break dependency on setuptools, reimplement find_package
