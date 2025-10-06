@@ -1249,12 +1249,13 @@ wheels = [
 
 [[package]]
 name = "jiggle-version"
-version = "2.0.0"
+version = "2.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "pathspec" },
     { name = "rich-argparse" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
+    { name = "tomlkit" },
 ]
 
 [package.dev-dependencies]
@@ -1306,6 +1307,7 @@ requires-dist = [
     { name = "pathspec", specifier = ">=0.12" },
     { name = "rich-argparse" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
+    { name = "tomlkit" },
 ]
 
 [package.metadata.requires-dev]
