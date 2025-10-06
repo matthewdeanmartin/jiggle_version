@@ -63,10 +63,26 @@ class CustomFormatter(RichHelpFormatter):
 # ----------------------------------------------------------------------------
 LOGGER = logging.getLogger(__name__)
 
-
 # ----------------------------------------------------------------------------
 # Command handlers (augmented with logging)
 # ----------------------------------------------------------------------------
+
+
+# It's not you, it's me, probably
+UNEXPECTED_ERROR = 1
+DISCOVERY_ERROR = 2
+AUTOINCREMENT_ERROR = 3
+VERSION_BUMP_ERROR = 4
+FILE_UPDATE_ERROR = 5
+AUTOGIT_ERROR = 6
+HASH_ERROR = 7
+ARGPARSE_ERROR = 8
+
+# It's not me, it's you, probably
+NO_VERSION_FOUND = 100
+VERSION_DISAGREEMENT = 102
+DIRTY_GIT_REPO = 103
+NO_CONFIG_FOUND = 104
 
 
 def handle_check(args: argparse.Namespace) -> int:
@@ -90,7 +106,7 @@ def handle_check(args: argparse.Namespace) -> int:
     except Exception as e:
         LOGGER.error("Discovery failed: %s", e, exc_info=args.verbose > 0)
         print(f"❌ Discovery failed: {e}", file=sys.stderr)
-        return 1
+        return DISCOVERY_ERROR
 
     print(f"Found {len(source_files)} potential source file(s).")
     LOGGER.debug("Discovered files: %s", [str(p) for p in source_files])
@@ -129,7 +145,7 @@ def handle_check(args: argparse.Namespace) -> int:
     if not found_versions:
         print("❌ No version declarations were found.")
         LOGGER.error("No version declarations found in project.")
-        return 1
+        return NO_VERSION_FOUND
 
     for item in found_versions:
         print(f"Source: {item['source']:<25} Version: {item['version']}")
@@ -146,7 +162,7 @@ def handle_check(args: argparse.Namespace) -> int:
         for v in sorted(list(unique_versions)):
             print(f"  - {v}")
         LOGGER.error("Version conflict: %s", sorted(unique_versions))
-        return 2  # Exit code 2 for disagreement
+        return VERSION_DISAGREEMENT  # Exit code 2 for disagreement
 
     print("✅ All discovered versions are in agreement.")
 
@@ -174,7 +190,7 @@ def handle_bump(args: argparse.Namespace) -> int:
                     "❌ Git repository is dirty. Use --allow-dirty to proceed.",
                     file=sys.stderr,
                 )
-                return 1
+                return DIRTY_GIT_REPO
         except Exception as e:
             LOGGER.warning(
                 "Failed to check repo dirtiness: %s", e, exc_info=args.verbose > 1
@@ -193,7 +209,7 @@ def handle_bump(args: argparse.Namespace) -> int:
                 "Auto-increment analysis failed: %s", e, exc_info=args.verbose > 0
             )
             print(f"❌ Error during auto-increment analysis: {e}", file=sys.stderr)
-            return 1
+            return AUTOINCREMENT_ERROR
 
     found_versions: list[str] = []
     parser_map = {
@@ -207,7 +223,7 @@ def handle_bump(args: argparse.Namespace) -> int:
     except Exception as e:
         LOGGER.error("Discovery failed: %s", e, exc_info=args.verbose > 0)
         print(f"❌ Discovery failed: {e}", file=sys.stderr)
-        return 1
+        return DISCOVERY_ERROR
 
     source_files_with_versions: list[Path] = []
     for file_path in source_files:
@@ -226,7 +242,7 @@ def handle_bump(args: argparse.Namespace) -> int:
     if not found_versions:
         LOGGER.error("No version declarations found to bump.")
         print("❌ No version declarations found to bump.")
-        return 1
+        return NO_VERSION_FOUND
 
     unique_versions = set(found_versions)
     if len(unique_versions) > 1 and not args.force_write:
@@ -236,7 +252,7 @@ def handle_bump(args: argparse.Namespace) -> int:
         print(
             f"❌ Version conflict detected! Cannot bump. Found: {', '.join(sorted(unique_versions))}"
         )
-        return 2
+        return VERSION_DISAGREEMENT
 
     current_version = (
         unique_versions.pop() if len(unique_versions) == 1 else found_versions[0]
@@ -261,7 +277,7 @@ def handle_bump(args: argparse.Namespace) -> int:
     except ValueError as e:
         LOGGER.error("Version bump failed: %s", e, exc_info=args.verbose > 0)
         print(f"❌ Error bumping version: {e}", file=sys.stderr)
-        return 1
+        return VERSION_BUMP_ERROR
 
     # --- 3. Write changes ---
     if args.dry_run:
@@ -284,7 +300,7 @@ def handle_bump(args: argparse.Namespace) -> int:
                     "Failed to update %s: %s", file_path, e, exc_info=args.verbose > 0
                 )
                 print(f"❌ Failed to update {relative_path}: {e}", file=sys.stderr)
-                return 1
+                return FILE_UPDATE_ERROR
         if args.increment == "auto":
             print("\nUpdating API digest file…")
             try:
@@ -326,7 +342,7 @@ def handle_bump(args: argparse.Namespace) -> int:
         except (RuntimeError, subprocess.CalledProcessError) as e:
             LOGGER.error("Autogit failed: %s", e, exc_info=args.verbose > 0)
             print(f"❌ Autogit failed: {e}", file=sys.stderr)
-            return 1
+            return AUTOGIT_ERROR
 
     elif args.autogit != "off" and args.dry_run:
         print(f"\n--dry-run enabled, skipping autogit '{args.autogit}'.")
@@ -350,7 +366,7 @@ def handle_print(args: argparse.Namespace) -> int:
     except Exception as e:
         LOGGER.error("Discovery failed: %s", e, exc_info=args.verbose > 0)
         print(f"Error: Discovery failed: {e}", file=sys.stderr)
-        return 1
+        return DISCOVERY_ERROR
 
     for file_path in source_files:
         parser_func = parser_map.get(file_path.name, parse_python_module)
@@ -368,7 +384,7 @@ def handle_print(args: argparse.Namespace) -> int:
     if not found_versions:
         LOGGER.error("No version found for print.")
         print("Error: No version found.", file=sys.stderr)
-        return 1
+        return NO_VERSION_FOUND
     unique_versions = set(item["version"] for item in found_versions)
     if len(unique_versions) > 1:
         LOGGER.error("Version conflict on print: %s", sorted(unique_versions))
@@ -376,7 +392,7 @@ def handle_print(args: argparse.Namespace) -> int:
             f"Error: Version conflict detected. Found: {', '.join(sorted(unique_versions))}",
             file=sys.stderr,
         )
-        return 2
+        return VERSION_DISAGREEMENT
     print(unique_versions.pop())
     return 0
 
@@ -392,7 +408,7 @@ def handle_inspect(args: argparse.Namespace) -> int:
     except Exception as e:
         LOGGER.error("Discovery failed: %s", e, exc_info=args.verbose > 0)
         print(f"Error: Discovery failed: {e}", file=sys.stderr)
-        return 1
+        return DISCOVERY_ERROR
 
     print(f"\nFound {len(source_files)} potential source file(s):")
     for file in source_files:
@@ -418,7 +434,7 @@ def handle_hash_all(args: argparse.Namespace) -> int:
     except Exception as e:
         LOGGER.error("hash-all failed: %s", e, exc_info=args.verbose > 0)
         print(f"❌ Failed to generate digest file: {e}", file=sys.stderr)
-        return 1
+        return HASH_ERROR
 
 
 def handle_init(args: argparse.Namespace) -> int:
@@ -428,7 +444,7 @@ def handle_init(args: argparse.Namespace) -> int:
     if not pyproject_path.is_file():
         LOGGER.error("pyproject.toml not found: %s", pyproject_path)
         print(f"Error: pyproject.toml not found at {pyproject_path}", file=sys.stderr)
-        return 1
+        return NO_CONFIG_FOUND
     config_str = pyproject_path.read_text(encoding="utf-8")
     if "[tool.jiggle_version]" in config_str:
         print("jiggle_version config already exists in pyproject.toml.")
@@ -681,7 +697,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     except SystemExit:
         # Extremely unlikely, but log it.
         print("❌ Early exit while reading --config", file=sys.stderr)
-        return 1
+        return ARGPARSE_ERROR
 
     config_path = Path(pre_ns.config)
     config_from_file = load_config_from_path(config_path)
@@ -698,10 +714,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         args = parser.parse_args(cli_args)
         apply_bump_overrides(args, config_from_file)
         apply_global_overrides(args, config_from_file)
-    except SystemExit as e:
+    except SystemExit as _e:
         # Argparse printed help/errors itself; add a debug breadcrumb and exit.
-        sys.stderr.write(f"[DEBUG] argparse SystemExit code={e.code} args={cli_args}")
-        return 1
+        # sys.stderr.write(f"[DEBUG] argparse SystemExit code={e.code} args={cli_args}")
+        return ARGPARSE_ERROR
 
     # 2.5) Load config (now that we trust --config path) and apply late overrides for bump
     config_from_file = load_config_from_path(Path(args.config))
@@ -726,12 +742,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         # This should be unreachable due to required=True
         LOGGER.error("No subcommand handler set; this indicates a parser wiring bug.")
         parser.print_help(sys.stderr)
-        return 2
+        return ARGPARSE_ERROR
     except Exception as e:
         # Provide concise error, rich trace only with -vv
         LOGGER.error("Unhandled exception: %s", e, exc_info=args.verbose > 1)
         print(f"An error occurred: {e}", file=sys.stderr)
-        return 1
+        return ARGPARSE_ERROR
 
 
 if __name__ == "__main__":

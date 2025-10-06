@@ -4,7 +4,6 @@ Module finder
 
 import os
 
-
 initial_pwd = os.getcwd()
 
 

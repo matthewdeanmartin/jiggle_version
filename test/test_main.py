@@ -94,7 +94,7 @@ def test_check_conflict_returns_2(tmp_path: Path):
             "check",
         ]
     )
-    assert rc == 2
+    assert rc == 102
 
 
 # ----------------------- bump -----------------------

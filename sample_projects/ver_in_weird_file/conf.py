@@ -10,10 +10,11 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-from setup_helpers import get_version
 import atexit
 import os
 import sys
+
+from setup_helpers import get_version
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the

@@ -14,9 +14,7 @@ from jiggle_version.file_opener import FileOpener
 from jiggle_version.parse_version import parse_dunder_version as dunder_version
 from jiggle_version.parse_version import parse_kwarg_version as kwarg_version
 from jiggle_version.parse_version.schema_guesser import version_object_and_next
-from jiggle_version.utils import (
-    JiggleVersionException,
-)
+from jiggle_version.utils import JiggleVersionException
 
 logger = logging.getLogger(__name__)
 
