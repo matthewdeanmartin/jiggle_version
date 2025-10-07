@@ -116,6 +116,7 @@ def test_bump_dry_run_patch_from_cli(
             "--scheme",
             "pep440",
             "--dry-run",
+            "--no-check-pypi",
         ]
     )
     assert rc == 0
@@ -149,6 +150,7 @@ def test_bump_uses_config_increment_when_not_given(
             str(root / "pyproject.toml"),
             "bump",
             "--dry-run",
+            "--no-check-pypi",
         ]
     )
     assert rc == 0
@@ -184,6 +186,7 @@ def test_bump_force_write_allows_disagreement(
             "pep440",
             "--dry-run",
             "--force-write",
+            "--no-check-pypi",
         ]
     )
     # Without --force-write the code returns 2, so ensure it now proceeds.

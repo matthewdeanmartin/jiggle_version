@@ -41,6 +41,11 @@ from jiggle_version.config import load_config_from_path
 from jiggle_version.discover import find_source_files
 from jiggle_version.parsers.ast_parser import parse_python_module, parse_setup_py
 from jiggle_version.parsers.config_parser import parse_pyproject_toml, parse_setup_cfg
+from jiggle_version.pypi import (
+    UnpublishedVersionError,
+    check_pypi_publication,
+    get_package_name,
+)
 from jiggle_version.update import (
     update_pyproject_toml,
     update_python_file,
@@ -83,6 +88,7 @@ NO_VERSION_FOUND = 100
 VERSION_DISAGREEMENT = 102
 DIRTY_GIT_REPO = 103
 NO_CONFIG_FOUND = 104
+PYPI_CHECK_FAILED = 105
 
 
 def handle_check(args: argparse.Namespace) -> int:
@@ -278,6 +284,40 @@ def handle_bump(args: argparse.Namespace) -> int:
         LOGGER.error("Version bump failed: %s", e, exc_info=args.verbose > 0)
         print(f"❌ Error bumping version: {e}", file=sys.stderr)
         return VERSION_BUMP_ERROR
+
+    # --- 2.5. PyPI Publication Pre-flight Check ---
+    if not args.no_check_pypi and not args.dry_run:
+        try:
+            package_name = get_package_name(project_root)
+            if package_name:
+                print("\nConducting PyPI publication check…")
+                check_pypi_publication(
+                    package_name=package_name,
+                    current_version=current_version,
+                    new_version=target_version,
+                    # >>> PASS THE CONFIG PATH
+                    config_path=digest_path,
+                )
+            else:
+                LOGGER.info("Skipping PyPI check: no package name in pyproject.toml.")
+                print(
+                    "\n⚪ Skipping PyPI check: could not find [project].name in pyproject.toml."
+                )
+        except UnpublishedVersionError as e:
+            LOGGER.error("PyPI pre-flight check failed: %s", e)
+            print(f"\n❌ {e}", file=sys.stderr)
+            # >>> MORE HELPFUL HINT
+            print(
+                "Hint: If this is a private package, use --no-check-pypi to bypass this check.",
+                file=sys.stderr,
+            )
+            return PYPI_CHECK_FAILED
+        except Exception as e:
+            # Catch other potential errors like network issues
+            LOGGER.warning(
+                "PyPI check could not complete: %s", e, exc_info=args.verbose > 1
+            )
+            print(f"\n🟡 Warning: Could not complete PyPI check: {e}", file=sys.stderr)
 
     # --- 3. Write changes ---
     if args.dry_run:
@@ -504,6 +544,13 @@ def build_bump_subparser(
         action="store_true",
         default=False,
         help="Write even on disagreement.",
+    )
+
+    p.add_argument(
+        "--no-check-pypi",
+        action="store_true",
+        default=False,
+        help="Disable the pre-flight check against pypi.org.",
     )
 
     # Autogit group (all optional; config may override later)

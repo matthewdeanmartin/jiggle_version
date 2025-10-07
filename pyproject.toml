@@ -7,6 +7,18 @@ authors = [{ name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" }]
 keywords = ["version", "version-numbers"]
 license = "MIT"
 requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+]
 
 
 dependencies = [
@@ -14,7 +26,9 @@ dependencies = [
     "tomli; python_version < '3.11'",
     "pathspec>=0.12",
     # "importlib-resources; python_version < '3.9'",
-    "tomlkit"
+    "tomlkit",
+    "requests",
+    "packaging"
 ]
 
 [dependency-groups]
@@ -39,6 +53,7 @@ dev = [
     # mpy
     "mypy; python_version >= '3.8'",
     "types-toml; python_version >= '3.8'",
+    "types-requests",
 
     # reports
 
