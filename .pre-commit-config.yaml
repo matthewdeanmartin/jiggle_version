@@ -21,8 +21,8 @@ repos:
       - id: forbid-new-submodules
       # - id: check-vcs-permalinks
       - id: mixed-line-ending
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.12.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.13.3
     hooks:
       - id: ruff
         exclude: ^dead_code/
