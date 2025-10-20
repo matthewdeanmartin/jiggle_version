@@ -1,6 +1,6 @@
 [project]
 name = "jiggle_version"
-version = "2.0.1"
+version = "2.1.0"
 description = "Increment version number found in source code without regex"
 readme = "README.md"
 authors = [{ name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" }]
@@ -9,26 +9,27 @@ license = "MIT"
 requires-python = ">=3.8"
 classifiers = [
     "Development Status :: 3 - Alpha",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
-  "Programming Language :: Python :: 3.15",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
 
 
 dependencies = [
-    "rich-argparse",
+    "rich-argpars>=1.7.1",
     "tomli; python_version < '3.11'",
     "pathspec>=0.12",
     # "importlib-resources; python_version < '3.9'",
-    "tomlkit",
-    "requests",
-    "packaging"
+    "tomlkit>=0.13.3",
+    "requests>=2.32.5",
+    "packaging>=25.0"
 ]
 
 [dependency-groups]
@@ -36,25 +37,19 @@ dev = [
     "pytest>=6.0.1",
     "pytest-cov>=2.10.1",
     "pylint",
-
     "git2md; python_version >= '3.10'",
     "pyclean; python_version >= '3.12'",
     "strip-docs>=1.0; python_version >= '3.12'",
-
     "gha-update; python_version >= '3.12'",
     "mkdocstrings[python]",
     "mkdocs; python_version >= '3.12'",
     "mdformat",
-
-
     # plugin finder
     "packaging; python_version >= '3.8'",
-
     # mpy
     "mypy; python_version >= '3.8'",
     "types-toml; python_version >= '3.8'",
     "types-requests",
-
     # reports
 
     # build
@@ -63,7 +58,6 @@ dev = [
     "hatchling; python_version >= '3.8'",
     "ruff>=0.12.0; python_version >= '3.8'",
     "pylint; python_version >= '3.8'",
-
     # testing tools
     "pytest; python_version >= '3.8'",
     "pytest-cov; python_version >= '3.8'",
@@ -74,7 +68,6 @@ dev = [
     "pytest-unused-fixtures; python_version >= '3.10'",
     "hypothesis[cli]; python_version >= '3.8'",
     "detect-test-pollution",
-
     # docs
     "interrogate>=1.5.0; python_version >= '3.8'",
     "pydoctest==0.2.1; python_version >= '3.8'",
@@ -105,23 +98,23 @@ path = "jiggle_version/_version.py"
 #]
 require-runtime-dependencies = true
 exclude = [
-  # There's no good reason for blackd to be compiled.
-  # "/src/blackd",
-  # Not performance sensitive, so save bytes + compilation time:
-  # "/src/blib2to3/__init__.py",
-  # Breaks the test suite when compiled (and is also useless):
-  # "/src/black/debug.py",
-  # Compiled modules can't be run directly and that's a problem here:
-  "/jiggle_version/__main__.py",
-  # Messes with docopts
-  "/jiggle_version/main.py",
+    # There's no good reason for blackd to be compiled.
+    # "/src/blackd",
+    # Not performance sensitive, so save bytes + compilation time:
+    # "/src/blib2to3/__init__.py",
+    # Breaks the test suite when compiled (and is also useless):
+    # "/src/black/debug.py",
+    # Compiled modules can't be run directly and that's a problem here:
+    "/jiggle_version/__main__.py",
+    # Messes with docopts
+    "/jiggle_version/main.py",
 ]
 options = { debug_level = "0" }
 
 
 
 [tool.setuptools]
-find = {}
+find = { }
 #py-modules = ["jiggle_version",
 #    "jiggle_version.commands",
 #    "jiggle_version.file_makers",
