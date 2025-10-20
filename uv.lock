@@ -1395,12 +1395,12 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "packaging" },
+    { name = "packaging", specifier = ">=25.0" },
     { name = "pathspec", specifier = ">=0.12" },
-    { name = "requests" },
-    { name = "rich-argparse" },
+    { name = "requests", specifier = ">=2.32.4" },
+    { name = "rich-argparse", specifier = ">=1.7.1" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
-    { name = "tomlkit" },
+    { name = "tomlkit", specifier = ">=0.13.3" },
 ]
 
 [package.metadata.requires-dev]
