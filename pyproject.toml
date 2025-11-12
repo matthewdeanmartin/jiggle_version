@@ -180,7 +180,7 @@ ONLY_NAMED_AND_SUBS = false
 output_dir = "doc/docs_portray"
 
 
-line-length = 1000
+line-length = 320
 
 # Enable Pyflakes `E` and `F` codes by default.
 lint.select = ["E", "F",
