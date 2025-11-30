@@ -118,3 +118,9 @@ dist
 dist/
 .idea
 .idea/
+/.build_history/isort
+/jiggle_version.flat.md
+/junit.xml
+/.build_history/pre-commit
+/pyproject.toml.org
+/SOURCE.md
