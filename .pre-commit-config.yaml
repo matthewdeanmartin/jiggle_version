@@ -22,7 +22,7 @@ repos:
       # - id: check-vcs-permalinks
       - id: mixed-line-ending
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.11
+    rev: v0.14.14
     hooks:
       - id: ruff
         exclude: ^dead_code/
