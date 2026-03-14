@@ -5,7 +5,7 @@ from pathlib import Path
 
 from jiggle_version.bump import bump_version
 from jiggle_version.parsers.ast_parser import parse_python_module, parse_setup_py
-from jiggle_version.parsers.config_parser import parse_pyproject_toml, parse_setup_cfg
+from jiggle_version.parsers.config_parser import parse_pyproject_toml
 from jiggle_version.update import (
     update_pyproject_toml,
     update_python_file,
