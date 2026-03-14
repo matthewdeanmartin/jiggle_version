@@ -316,8 +316,7 @@ def test_help_does_not_crash_when_stderr_is_ascii_only(
     assert rc == 8
     stdout.flush()
     stderr.flush()
-    help_text = (
-        stdout.buffer.getvalue().decode("ascii")
-        + stderr.buffer.getvalue().decode("ascii")
-    )
+    help_text = stdout.buffer.getvalue().decode(
+        "ascii"
+    ) + stderr.buffer.getvalue().decode("ascii")
     assert "usage:" in help_text.lower()

@@ -52,3 +52,30 @@ def test_explicit_ignore_paths_override(tmp_path: Path):
     files = find_source_files(root, ignore_paths=["pkg"])
     names = {p.relative_to(root).as_posix() for p in files}
     assert not any(n.startswith("pkg/") for n in names)
+
+
+def test_gitignore_negation_reincludes_matching_file(tmp_path: Path):
+    root = tmp_path
+    write(root / ".gitignore", "*.py\n!pkg/__version__.py\n")
+    write(root / "pkg" / "__version__.py", "__version__='0.1.0'")
+    write(root / "pkg" / "_version.py", "__version__='0.1.0'")
+
+    files = find_source_files(root)
+    names = {p.relative_to(root).as_posix() for p in files}
+
+    assert "pkg/__version__.py" in names
+    assert "pkg/_version.py" not in names
+
+
+def test_explicit_ignore_can_target_single_file(tmp_path: Path):
+    root = tmp_path
+    write(root / "pkg" / "__init__.py", "")
+    write(root / "pkg" / "__version__.py", "__version__='0.1.0'")
+    write(root / "pkg" / "_version.py", "__version__='0.1.0'")
+
+    files = find_source_files(root, ignore_paths=["pkg/__version__.py"])
+    names = {p.relative_to(root).as_posix() for p in files}
+
+    assert "pkg/__version__.py" not in names
+    assert "pkg/_version.py" in names
+    assert "pkg/__init__.py" in names

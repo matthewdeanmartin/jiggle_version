@@ -11,6 +11,7 @@ from pathlib import Path
 import requests
 import tomlkit
 from packaging.version import Version
+
 from jiggle_version.utils.files import read_utf8_text
 
 # Handle Python < 3.11 needing tomli

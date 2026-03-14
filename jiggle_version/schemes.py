@@ -35,6 +35,8 @@ def bump_pep440(version_string: str, increment: str) -> str:
             patch = 0
         elif increment == "patch":
             patch += 1
+        else:
+            raise ValueError(f"Unsupported increment: '{increment}'")
 
         # By default, pre-release, dev, and post-release tags are dropped on a standard bump.
         return f"{major}.{minor}.{patch}"
@@ -73,6 +75,8 @@ def bump_semver(version_string: str, increment: str) -> str:
             patch = 0
         elif increment == "patch":
             patch += 1
+        else:
+            raise ValueError(f"Unsupported increment: '{increment}'")
 
         return f"{major}.{minor}.{patch}"
 

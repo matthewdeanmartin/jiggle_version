@@ -8,9 +8,7 @@ from jiggle_version.parsers.ast_parser import parse_dunder_all, parse_python_mod
 def test_parse_python_module_honors_pep263_encoding_cookie(tmp_path: Path):
     f = tmp_path / "module.py"
     source = (
-        "# -*- coding: cp1252 -*-\n"
-        '__version__ = "1.0.0"\n'
-        'LABEL = "caf\xe9"\n'
+        "# -*- coding: cp1252 -*-\n" '__version__ = "1.0.0"\n' 'LABEL = "caf\xe9"\n'
     )
     f.write_bytes(source.encode("cp1252"))
 

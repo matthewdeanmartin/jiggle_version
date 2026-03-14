@@ -70,7 +70,13 @@ def _walk_and_discover(
     explicit_ignore_set: set[Path],
 ) -> None:
     """Recursively walk directories to find source files."""
-    for item in current_dir.iterdir():
+    try:
+        items = list(current_dir.iterdir())
+    except OSError as exc:
+        LOGGER.warning("Skipping unreadable directory %s: %s", current_dir, exc)
+        return
+
+    for item in items:
         # Check against default, .gitignore (via PathSpec), and user-specified ignore paths
         if (
             item.name in DEFAULT_IGNORE_DIRS
@@ -79,10 +85,23 @@ def _walk_and_discover(
         ):
             continue
 
-        if item.is_dir():
+        try:
+            is_dir = item.is_dir()
+            is_file = item.is_file()
+        except OSError as exc:
+            LOGGER.warning("Skipping unreadable path %s: %s", item, exc)
+            continue
+
+        if is_dir:
             # If top-level package dir has __init__.py, include it
             init_file = item / "__init__.py"
-            if init_file.is_file() and current_dir == project_root:
+            try:
+                has_init = init_file.is_file()
+            except OSError as exc:
+                LOGGER.warning("Skipping unreadable path %s: %s", init_file, exc)
+                has_init = False
+
+            if has_init and current_dir == project_root:
                 found_files.add(init_file)
 
             _walk_and_discover(
@@ -93,7 +112,7 @@ def _walk_and_discover(
                 explicit_ignore_set=explicit_ignore_set,
             )
 
-        elif item.is_file():
+        elif is_file:
             # Root-only statics
             if item.name in STATIC_SEARCH_FILES and item.parent == project_root:
                 found_files.add(item)
