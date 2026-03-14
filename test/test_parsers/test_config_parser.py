@@ -131,3 +131,15 @@ def test_parse_setup_cfg_no_version_returns_none(tmp_path: Path):
         """,
     )
     assert parse_setup_cfg(f) is None
+
+
+def test_parse_pyproject_toml_accepts_utf8_bom(tmp_path: Path):
+    f = tmp_path / "pyproject.toml"
+    f.write_text('[project]\nversion = "3.2.1"\n', encoding="utf-8-sig")
+    assert parse_pyproject_toml(f) == "3.2.1"
+
+
+def test_parse_setup_cfg_accepts_utf8_bom(tmp_path: Path):
+    f = tmp_path / "setup.cfg"
+    f.write_text("[metadata]\nversion = 7.8.9\n", encoding="utf-8-sig")
+    assert parse_setup_cfg(f) == "7.8.9"

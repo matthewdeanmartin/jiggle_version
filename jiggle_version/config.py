@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from jiggle_version.utils.files import read_utf8_text
+
 # For Python < 3.11, we need tomli
 if sys.version_info < (3, 11):
     import tomli as tomllib
@@ -33,7 +35,7 @@ def load_config_from_path(config_path: Path) -> dict[str, Any]:
         return {}
 
     try:
-        config_data = tomllib.loads(config_path.read_text(encoding="utf-8"))
+        config_data = tomllib.loads(read_utf8_text(config_path))
         jiggle_config: dict[str, Any] = (
             config_data.get("tool", {}).get("jiggle_version", {}) or {}
         )

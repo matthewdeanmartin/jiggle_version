@@ -11,6 +11,7 @@ from pathlib import Path
 import requests
 import tomlkit
 from packaging.version import Version
+from jiggle_version.utils.files import read_utf8_text
 
 # Handle Python < 3.11 needing tomli
 if sys.version_info < (3, 11):
@@ -36,7 +37,7 @@ def get_package_name(project_root: Path) -> str | None:
     if not pyproject_path.is_file():
         return None
     try:
-        config = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+        config = tomllib.loads(read_utf8_text(pyproject_path))
         return config.get("project", {}).get("name")
     except tomllib.TOMLDecodeError:
         return None
@@ -49,7 +50,7 @@ def get_latest_published_version(package_name: str, config_path: Path) -> str | 
     """
     # --- Read from TOML cache ---
     doc = (
-        tomlkit.parse(config_path.read_text(encoding="utf-8"))
+        tomlkit.parse(read_utf8_text(config_path))
         if config_path.is_file()
         else tomlkit.document()
     )

@@ -52,6 +52,7 @@ from jiggle_version.update import (
     update_setup_cfg,
 )
 from jiggle_version.utils.cli_suggestions import SmartParser
+from jiggle_version.utils.console import harden_standard_streams
 from jiggle_version.utils.logging_config import configure_logging
 
 
@@ -734,6 +735,7 @@ def apply_bump_overrides(args: argparse.Namespace, cfg: dict[str, str]) -> None:
 
 def main(argv: Sequence[str] | None = None) -> int:
     """Main CLI entry point."""
+    harden_standard_streams()
     cli_args = sys.argv[1:] if argv is None else list(argv)
 
     # 0) Pre-parse ONLY --config using a minimal parser to avoid early exits

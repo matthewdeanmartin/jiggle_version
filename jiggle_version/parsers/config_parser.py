@@ -8,6 +8,8 @@ import configparser
 import sys
 from pathlib import Path
 
+from jiggle_version.utils.files import read_utf8_text
+
 # Handle Python < 3.11 needing tomli
 if sys.version_info < (3, 11):
     import tomli as tomllib
@@ -33,7 +35,7 @@ def parse_pyproject_toml(file_path: Path) -> str | None:
         return None
 
     try:
-        config = tomllib.loads(file_path.read_text(encoding="utf-8"))
+        config = tomllib.loads(read_utf8_text(file_path))
 
         # 1. Check for PEP 621 project metadata
         if version := config.get("project", {}).get("version"):
@@ -68,7 +70,7 @@ def parse_setup_cfg(file_path: Path) -> str | None:
 
     try:
         config = configparser.ConfigParser()
-        config.read(file_path, encoding="utf-8")
+        config.read_string(read_utf8_text(file_path), source=str(file_path))
         return config.get("metadata", "version", fallback=None)
     except configparser.Error:
         # Handle cases with invalid INI format

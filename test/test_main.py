@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import io
 import textwrap
 from pathlib import Path
 
@@ -26,6 +27,10 @@ def make_basic_project(tmp: Path, version: str = "0.1.0") -> Path:
         """,
     )
     return root
+
+
+def make_ascii_stream() -> io.TextIOWrapper:
+    return io.TextIOWrapper(io.BytesIO(), encoding="ascii", errors="strict")
 
 
 # ----------------------- print -----------------------
@@ -261,3 +266,58 @@ def test_inspect_lists_files_and_runs_check(tmp_path: Path):
     )
     # Expect non-error exit even if check reports; we only verify it runs end-to-end
     assert rc in (0, 1, 2)
+
+
+def test_check_does_not_crash_when_stdout_is_ascii_only(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    root = make_basic_project(tmp_path, "1.2.3")
+    stdout = make_ascii_stream()
+    stderr = make_ascii_stream()
+    monkeypatch.setattr("sys.stdout", stdout)
+    monkeypatch.setattr("sys.stderr", stderr)
+
+    rc = main(
+        [
+            "--project-root",
+            str(root),
+            "--config",
+            str(root / "pyproject.toml"),
+            "check",
+        ]
+    )
+
+    assert rc == 0
+    stdout.flush()
+    output = stdout.buffer.getvalue().decode("utf-8")
+    assert "✅" in output
+    assert "Found version: 1.2.3" in output
+
+
+def test_help_does_not_crash_when_stderr_is_ascii_only(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    root = make_basic_project(tmp_path)
+    stdout = make_ascii_stream()
+    stderr = make_ascii_stream()
+    monkeypatch.setattr("sys.stdout", stdout)
+    monkeypatch.setattr("sys.stderr", stderr)
+
+    rc = main(
+        [
+            "--project-root",
+            str(root),
+            "--config",
+            str(root / "pyproject.toml"),
+            "--help",
+        ]
+    )
+
+    assert rc == 8
+    stdout.flush()
+    stderr.flush()
+    help_text = (
+        stdout.buffer.getvalue().decode("ascii")
+        + stderr.buffer.getvalue().decode("ascii")
+    )
+    assert "usage:" in help_text.lower()

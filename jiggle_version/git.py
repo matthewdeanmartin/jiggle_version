@@ -8,6 +8,8 @@ import shutil
 import subprocess  # nosec
 from pathlib import Path
 
+from jiggle_version.utils.files import decode_text_output
+
 
 def _run_git_command(args: list[str], cwd: Path) -> str:
     """Helper to run a Git command and return its output."""
@@ -20,10 +22,9 @@ def _run_git_command(args: list[str], cwd: Path) -> str:
         ["git", *args],
         cwd=cwd,
         capture_output=True,
-        text=True,
         check=True,  # Raise an exception if the command fails
     )
-    return result.stdout.strip()
+    return decode_text_output(result.stdout).strip()
 
 
 def is_repo_dirty(project_root: Path) -> bool:

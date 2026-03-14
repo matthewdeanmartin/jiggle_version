@@ -18,10 +18,10 @@ from jiggle_version.git import (
 
 
 class FakeCompleted:
-    def __init__(self, stdout: str = "", returncode: int = 0):
+    def __init__(self, stdout: bytes = b"", returncode: int = 0):
         self.stdout = stdout
         self.returncode = returncode
-        self.stderr = ""
+        self.stderr = b""
 
 
 # ---------- _run_git_command ----------
@@ -43,9 +43,8 @@ def test_run_git_command_invokes_git_with_args_and_returns_stdout(
         # typical kwargs expectations
         assert kwargs.get("cwd") == tmp_path
         assert kwargs.get("capture_output") is True
-        assert kwargs.get("text") is True
         assert kwargs.get("check") is True
-        return FakeCompleted(stdout="ok out\n")
+        return FakeCompleted(stdout=b"ok out\n")
 
     monkeypatch.setattr("jiggle_version.git.shutil.which", fake_which)
     monkeypatch.setattr("jiggle_version.git.subprocess.run", fake_run)
@@ -119,6 +118,20 @@ def test_get_current_branch_returns_stripped_stdout(
         "jiggle_version.git._run_git_command", lambda args, cwd: "main\n"
     )
     assert get_current_branch(tmp_path).strip() == "main"
+
+
+def test_run_git_command_decodes_non_utf8_output_without_crashing(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.setattr("jiggle_version.git.shutil.which", lambda _: "/usr/bin/git")
+
+    def fake_run(argv, **kwargs):
+        return FakeCompleted(stdout=b"feature-\x96branch\n")
+
+    monkeypatch.setattr("jiggle_version.git.subprocess.run", fake_run)
+
+    out = _run_git_command(["branch", "--show-current"], tmp_path)
+    assert "feature-" in out
 
 
 # ---------- stage/commit/push wiring ----------

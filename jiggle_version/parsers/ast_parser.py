@@ -8,6 +8,8 @@ import ast
 import sys
 from pathlib import Path
 
+from jiggle_version.utils.files import read_python_source
+
 
 class SetupCallVisitor(ast.NodeVisitor):
     """
@@ -109,7 +111,7 @@ def parse_setup_py(file_path: Path) -> str | None:
         return None
 
     try:
-        source_code = file_path.read_text(encoding="utf-8")
+        source_code = read_python_source(file_path)
         tree = ast.parse(source_code, filename=str(file_path))
 
         visitor = SetupCallVisitor()
@@ -135,7 +137,7 @@ def parse_python_module(file_path: Path) -> str | None:
         return None
 
     try:
-        source_code = file_path.read_text(encoding="utf-8")
+        source_code = read_python_source(file_path)
         tree = ast.parse(source_code, filename=str(file_path))
 
         visitor = VersionVisitor()
@@ -155,7 +157,7 @@ def parse_dunder_all(file_path: Path) -> set[str]:
         return set()
 
     try:
-        source_code = file_path.read_text(encoding="utf-8")
+        source_code = read_python_source(file_path)
         tree = ast.parse(source_code, filename=str(file_path))
         visitor = AllVisitor()
         visitor.visit(tree)
