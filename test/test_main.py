@@ -102,6 +102,26 @@ def test_check_conflict_returns_2(tmp_path: Path):
     assert rc == 102
 
 
+def test_check_quiet_success_collapses_to_one_line(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+):
+    root = make_basic_project(tmp_path, "1.2.3")
+    rc = main(
+        [
+            "--project-root",
+            str(root),
+            "--config",
+            str(root / "pyproject.toml"),
+            "--quiet",
+            "check",
+        ]
+    )
+    assert rc == 0
+    captured = capsys.readouterr()
+    assert captured.err == ""
+    assert captured.out.strip() == "OK 1.2.3"
+
+
 # ----------------------- bump -----------------------
 
 
@@ -203,6 +223,58 @@ def test_bump_force_write_allows_disagreement(
     assert "Current version:" in out and "New version:" in out
 
 
+def test_bump_quiet_dry_run_prints_single_transition(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+):
+    root = make_basic_project(tmp_path, "0.1.0")
+    rc = main(
+        [
+            "--project-root",
+            str(root),
+            "--config",
+            str(root / "pyproject.toml"),
+            "--quiet",
+            "bump",
+            "--increment",
+            "patch",
+            "--scheme",
+            "pep440",
+            "--dry-run",
+            "--no-check-pypi",
+        ]
+    )
+    assert rc == 0
+    captured = capsys.readouterr()
+    assert captured.err == ""
+    assert captured.out.strip() == "0.1.0 -> 0.1.1"
+
+
+def test_bump_quiet_write_succeeds_without_stdout(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+):
+    root = make_basic_project(tmp_path, "0.1.0")
+    rc = main(
+        [
+            "--project-root",
+            str(root),
+            "--config",
+            str(root / "pyproject.toml"),
+            "--quiet",
+            "bump",
+            "--increment",
+            "patch",
+            "--scheme",
+            "pep440",
+            "--no-check-pypi",
+        ]
+    )
+    assert rc == 0
+    captured = capsys.readouterr()
+    assert captured.err == ""
+    assert captured.out == ""
+    assert 'version = "0.1.1"' in (root / "pyproject.toml").read_text(encoding="utf-8")
+
+
 # ----------------------- hash-all -----------------------
 
 
@@ -229,6 +301,28 @@ def test_hash_all_writes_digest(tmp_path: Path, capsys: pytest.CaptureFixture[st
     assert "symbols" in data
 
 
+def test_hash_all_quiet_suppresses_success_output(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+):
+    root = make_basic_project(tmp_path)
+    (root / "pkg").mkdir()
+    w(root / "pkg" / "__init__.py", "__all__ = ['A']")
+    rc = main(
+        [
+            "--project-root",
+            str(root),
+            "--config",
+            str(root / "pyproject.toml"),
+            "--quiet",
+            "hash-all",
+        ]
+    )
+    assert rc == 0
+    captured = capsys.readouterr()
+    assert captured.err == ""
+    assert captured.out == ""
+
+
 # ----------------------- init -----------------------
 
 
@@ -246,6 +340,26 @@ def test_init_appends_config_section(tmp_path: Path):
     assert rc == 0
     txt = (root / "pyproject.toml").read_text(encoding="utf-8")
     assert "[tool.jiggle_version]" in txt
+
+
+def test_init_quiet_suppresses_success_output(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+):
+    root = make_basic_project(tmp_path)
+    rc = main(
+        [
+            "--project-root",
+            str(root),
+            "--config",
+            str(root / "pyproject.toml"),
+            "--quiet",
+            "init",
+        ]
+    )
+    assert rc == 0
+    captured = capsys.readouterr()
+    assert captured.err == ""
+    assert captured.out == ""
 
 
 # ----------------------- inspect -----------------------
@@ -266,6 +380,30 @@ def test_inspect_lists_files_and_runs_check(tmp_path: Path):
     )
     # Expect non-error exit even if check reports; we only verify it runs end-to-end
     assert rc in (0, 1, 2)
+
+
+def test_inspect_quiet_collapses_to_two_lines(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+):
+    root = make_basic_project(tmp_path, "1.2.3")
+    w(root / "pkg" / "__init__.py", "__all__ = []")
+    rc = main(
+        [
+            "--project-root",
+            str(root),
+            "--config",
+            str(root / "pyproject.toml"),
+            "--quiet",
+            "inspect",
+        ]
+    )
+    assert rc == 0
+    captured = capsys.readouterr()
+    assert captured.err == ""
+    lines = captured.out.strip().splitlines()
+    assert len(lines) == 2
+    assert lines[0] == "OK 1.2.3"
+    assert lines[1].startswith("inspect: ")
 
 
 def test_check_does_not_crash_when_stdout_is_ascii_only(

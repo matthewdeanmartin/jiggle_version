@@ -137,3 +137,6 @@ install_plugins:
 .PHONY: issues
 issues:
 	echo "N/A"
+
+pin_actions:
+	pinact run --update .github/workflows/build.yml .github/workflows/publish_to_pypi.yml .github/workflows/zizmor.yml

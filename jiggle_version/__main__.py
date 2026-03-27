@@ -69,6 +69,23 @@ class CustomFormatter(RichHelpFormatter):
 # ----------------------------------------------------------------------------
 LOGGER = logging.getLogger(__name__)
 
+
+def quiet_enabled(args: argparse.Namespace) -> bool:
+    """Return whether quiet output mode is enabled."""
+    return bool(getattr(args, "quiet", False))
+
+
+def out(args: argparse.Namespace, message: str = "") -> None:
+    """Print a normal stdout message unless quiet mode suppresses it."""
+    if quiet_enabled(args):
+        return
+    print(message)
+
+
+def err(message: str) -> None:
+    """Print a stderr message."""
+    print(message, file=sys.stderr)
+
 # ----------------------------------------------------------------------------
 # Command handlers (augmented with logging)
 # ----------------------------------------------------------------------------
@@ -112,16 +129,16 @@ def handle_check(args: argparse.Namespace) -> int:
         source_files = find_source_files(project_root, args.ignore)
     except Exception as e:
         LOGGER.error("Discovery failed: %s", e, exc_info=args.verbose > 0)
-        print(f"❌ Discovery failed: {e}", file=sys.stderr)
+        err(f"❌ Discovery failed: {e}")
         return DISCOVERY_ERROR
 
-    print(f"Found {len(source_files)} potential source file(s).")
+    out(args, f"Found {len(source_files)} potential source file(s).")
     LOGGER.debug("Discovered files: %s", [str(p) for p in source_files])
 
     # 2. Parse each discovered file
     for file_path in source_files:
         relative_path = file_path.relative_to(project_root)
-        print(f"-> Checking for version in '{relative_path}'…")
+        out(args, f"-> Checking for version in '{relative_path}'…")
 
         # Choose the correct parser for the file
         parser_func = parser_map.get(file_path.name, parse_python_module)
@@ -139,39 +156,42 @@ def handle_check(args: argparse.Namespace) -> int:
             LOGGER.warning(
                 "Failed to parse %s: %s", file_path, e, exc_info=args.verbose > 1
             )
-            print(f"⚪ Parse failed for {relative_path}: {e}")
+            out(args, f"⚪ Parse failed for {relative_path}: {e}")
             continue
 
         if version:
-            print(f"✅ Found version: {version}")
+            out(args, f"✅ Found version: {version}")
             found_versions.append({"source": str(relative_path), "version": version})
         else:
-            print("⚪ No version found.")
+            out(args, "⚪ No version found.")
 
-    print("\n--- Discovery Summary ---")
     if not found_versions:
-        print("❌ No version declarations were found.")
+        err("❌ No version declarations were found.")
         LOGGER.error("No version declarations found in project.")
         return NO_VERSION_FOUND
 
-    for item in found_versions:
-        print(f"Source: {item['source']:<25} Version: {item['version']}")
-
-    print("\n--- Agreement Check ---")
+    if not quiet_enabled(args):
+        print("\n--- Discovery Summary ---")
+        for item in found_versions:
+            print(f"Source: {item['source']:<25} Version: {item['version']}")
+        print("\n--- Agreement Check ---")
 
     # TODO: Add scheme-based normalization (PEP 440, SemVer) before comparison.
     unique_versions = set(item["version"] for item in found_versions)
 
     if len(unique_versions) > 1:
-        print(
-            f"❌ Version conflict detected! Found {len(unique_versions)} different versions:"
+        versions = ", ".join(sorted(unique_versions))
+        err(
+            f"❌ Version conflict detected: {len(unique_versions)} versions found ({versions})"
         )
-        for v in sorted(list(unique_versions)):
-            print(f"  - {v}")
         LOGGER.error("Version conflict: %s", sorted(unique_versions))
         return VERSION_DISAGREEMENT  # Exit code 2 for disagreement
 
-    print("✅ All discovered versions are in agreement.")
+    agreed_version = next(iter(unique_versions))
+    if quiet_enabled(args):
+        print(f"OK {agreed_version}")
+    else:
+        print("✅ All discovered versions are in agreement.")
 
     return 0
 
@@ -193,10 +213,7 @@ def handle_bump(args: argparse.Namespace) -> int:
         try:
             if git.is_repo_dirty(project_root) and not args.allow_dirty:
                 LOGGER.error("Git repository dirty and --allow-dirty not set.")
-                print(
-                    "❌ Git repository is dirty. Use --allow-dirty to proceed.",
-                    file=sys.stderr,
-                )
+                err("❌ Git repository is dirty. Use --allow-dirty to proceed.")
                 return DIRTY_GIT_REPO
         except Exception as e:
             LOGGER.warning(
@@ -215,7 +232,7 @@ def handle_bump(args: argparse.Namespace) -> int:
             LOGGER.error(
                 "Auto-increment analysis failed: %s", e, exc_info=args.verbose > 0
             )
-            print(f"❌ Error during auto-increment analysis: {e}", file=sys.stderr)
+            err(f"❌ Error during auto-increment analysis: {e}")
             return AUTOINCREMENT_ERROR
 
     found_versions: list[str] = []
@@ -229,7 +246,7 @@ def handle_bump(args: argparse.Namespace) -> int:
         source_files = find_source_files(project_root, args.ignore)
     except Exception as e:
         LOGGER.error("Discovery failed: %s", e, exc_info=args.verbose > 0)
-        print(f"❌ Discovery failed: {e}", file=sys.stderr)
+        err(f"❌ Discovery failed: {e}")
         return DISCOVERY_ERROR
 
     source_files_with_versions: list[Path] = []
@@ -248,7 +265,7 @@ def handle_bump(args: argparse.Namespace) -> int:
 
     if not found_versions:
         LOGGER.error("No version declarations found to bump.")
-        print("❌ No version declarations found to bump.")
+        err("❌ No version declarations found to bump.")
         return NO_VERSION_FOUND
 
     unique_versions = set(found_versions)
@@ -256,7 +273,7 @@ def handle_bump(args: argparse.Namespace) -> int:
         LOGGER.error(
             "Version conflict prevents bump. versions=%s", sorted(unique_versions)
         )
-        print(
+        err(
             f"❌ Version conflict detected! Cannot bump. Found: {', '.join(sorted(unique_versions))}"
         )
         return VERSION_DISAGREEMENT
@@ -264,7 +281,8 @@ def handle_bump(args: argparse.Namespace) -> int:
     current_version = (
         unique_versions.pop() if len(unique_versions) == 1 else found_versions[0]
     )
-    print(f"Current version: {current_version}")
+    if not quiet_enabled(args):
+        print(f"Current version: {current_version}")
 
     # --- 2. Calculate the new version ---
     try:
@@ -273,7 +291,8 @@ def handle_bump(args: argparse.Namespace) -> int:
             if args.set_version
             else bump_version(current_version, increment, args.scheme)
         )
-        print(f"New version:     {target_version}")
+        if not quiet_enabled(args):
+            print(f"New version:     {target_version}")
         LOGGER.debug(
             "Bump result: %s -> %s [scheme=%s, inc=%s]",
             current_version,
@@ -283,7 +302,7 @@ def handle_bump(args: argparse.Namespace) -> int:
         )
     except ValueError as e:
         LOGGER.error("Version bump failed: %s", e, exc_info=args.verbose > 0)
-        print(f"❌ Error bumping version: {e}", file=sys.stderr)
+        err(f"❌ Error bumping version: {e}")
         return VERSION_BUMP_ERROR
 
     # --- 2.5. PyPI Publication Pre-flight Check ---
@@ -291,7 +310,7 @@ def handle_bump(args: argparse.Namespace) -> int:
         try:
             package_name = get_package_name(project_root)
             if package_name:
-                print("\nConducting PyPI publication check…")
+                out(args, "\nConducting PyPI publication check…")
                 check_pypi_publication(
                     package_name=package_name,
                     current_version=current_version,
@@ -301,16 +320,16 @@ def handle_bump(args: argparse.Namespace) -> int:
                 )
             else:
                 LOGGER.info("Skipping PyPI check: no package name in pyproject.toml.")
-                print(
-                    "\n⚪ Skipping PyPI check: could not find [project].name in pyproject.toml."
+                out(
+                    args,
+                    "\n⚪ Skipping PyPI check: could not find [project].name in pyproject.toml.",
                 )
         except UnpublishedVersionError as e:
             LOGGER.error("PyPI pre-flight check failed: %s", e)
-            print(f"\n❌ {e}", file=sys.stderr)
+            err(f"\n❌ {e}")
             # >>> MORE HELPFUL HINT
-            print(
-                "Hint: If this is a private package, use --no-check-pypi to bypass this check.",
-                file=sys.stderr,
+            err(
+                "Hint: If this is a private package, use --no-check-pypi to bypass this check."
             )
             return PYPI_CHECK_FAILED
         except Exception as e:
@@ -318,13 +337,16 @@ def handle_bump(args: argparse.Namespace) -> int:
             LOGGER.warning(
                 "PyPI check could not complete: %s", e, exc_info=args.verbose > 1
             )
-            print(f"\n🟡 Warning: Could not complete PyPI check: {e}", file=sys.stderr)
+            err(f"\n🟡 Warning: Could not complete PyPI check: {e}")
 
     # --- 3. Write changes ---
     if args.dry_run:
-        print("\n--dry-run enabled, no files will be changed.")
+        if quiet_enabled(args):
+            print(f"{current_version} -> {target_version}")
+        else:
+            print("\n--dry-run enabled, no files will be changed.")
     else:
-        print("\nUpdating files…")
+        out(args, "\nUpdating files…")
         updater_map = {
             "pyproject.toml": update_pyproject_toml,
             "setup.cfg": update_setup_cfg,
@@ -335,19 +357,19 @@ def handle_bump(args: argparse.Namespace) -> int:
             updater_func = updater_map.get(file_path.name, update_python_file)
             try:
                 updater_func(file_path, target_version)
-                print(f"✅ Updated {relative_path}")
+                out(args, f"✅ Updated {relative_path}")
             except Exception as e:
                 LOGGER.error(
                     "Failed to update %s: %s", file_path, e, exc_info=args.verbose > 0
                 )
-                print(f"❌ Failed to update {relative_path}: {e}", file=sys.stderr)
+                err(f"❌ Failed to update {relative_path}: {e}")
                 return FILE_UPDATE_ERROR
         if args.increment == "auto":
-            print("\nUpdating API digest file…")
+            out(args, "\nUpdating API digest file…")
             try:
                 current_symbols = get_current_symbols(project_root, args.ignore)
                 write_digest_data(digest_path, current_symbols)
-                print("✅ Updated .jiggle_version.config")
+                out(args, "✅ Updated .jiggle_version.config")
             except Exception as e:
                 LOGGER.warning(
                     "Failed updating digest: %s", e, exc_info=args.verbose > 0
@@ -355,38 +377,38 @@ def handle_bump(args: argparse.Namespace) -> int:
 
     # --- 4. Autogit ---
     if args.autogit != "off" and not args.dry_run:
-        print("\nRunning autogit…")
+        out(args, "\nRunning autogit…")
         try:
             # Stage
             if args.autogit in ["stage", "commit", "push"]:
-                print(f"Staging {len(source_files_with_versions)} file(s)…")
+                out(args, f"Staging {len(source_files_with_versions)} file(s)…")
                 git.stage_files(project_root, source_files_with_versions)
-                print("✅ Files staged.")
+                out(args, "✅ Files staged.")
 
             # Commit
             if args.autogit in ["commit", "push"]:
                 commit_message = args.commit_message.format(
                     version=target_version, scheme=args.scheme, increment=increment
                 )
-                print(f"Committing with message: '{commit_message}'…")
+                out(args, f"Committing with message: '{commit_message}'…")
                 git.commit_changes(project_root, commit_message)
-                print("✅ Changes committed.")
+                out(args, "✅ Changes committed.")
 
             # Push
             if args.autogit == "push":
                 current_branch = git.get_current_branch(project_root)
                 remote = "origin"  # Default from PEP
-                print(f"Pushing to {remote}/{current_branch}…")
+                out(args, f"Pushing to {remote}/{current_branch}…")
                 git.push_changes(project_root, remote, current_branch)
-                print("✅ Changes pushed.")
+                out(args, "✅ Changes pushed.")
 
         except (RuntimeError, subprocess.CalledProcessError) as e:
             LOGGER.error("Autogit failed: %s", e, exc_info=args.verbose > 0)
-            print(f"❌ Autogit failed: {e}", file=sys.stderr)
+            err(f"❌ Autogit failed: {e}")
             return AUTOGIT_ERROR
 
     elif args.autogit != "off" and args.dry_run:
-        print(f"\n--dry-run enabled, skipping autogit '{args.autogit}'.")
+        out(args, f"\n--dry-run enabled, skipping autogit '{args.autogit}'.")
 
     return 0
 
@@ -406,7 +428,7 @@ def handle_print(args: argparse.Namespace) -> int:
         source_files = find_source_files(project_root, args.ignore)
     except Exception as e:
         LOGGER.error("Discovery failed: %s", e, exc_info=args.verbose > 0)
-        print(f"Error: Discovery failed: {e}", file=sys.stderr)
+        err(f"Error: Discovery failed: {e}")
         return DISCOVERY_ERROR
 
     for file_path in source_files:
@@ -424,15 +446,12 @@ def handle_print(args: argparse.Namespace) -> int:
             )
     if not found_versions:
         LOGGER.error("No version found for print.")
-        print("Error: No version found.", file=sys.stderr)
+        err("Error: No version found.")
         return NO_VERSION_FOUND
     unique_versions = set(item["version"] for item in found_versions)
     if len(unique_versions) > 1:
         LOGGER.error("Version conflict on print: %s", sorted(unique_versions))
-        print(
-            f"Error: Version conflict detected. Found: {', '.join(sorted(unique_versions))}",
-            file=sys.stderr,
-        )
+        err(f"Error: Version conflict detected. Found: {', '.join(sorted(unique_versions))}")
         return VERSION_DISAGREEMENT
     print(unique_versions.pop())
     return 0
@@ -442,20 +461,26 @@ def handle_inspect(args: argparse.Namespace) -> int:
     """Handler for the 'inspect' command."""
     LOGGER.info("Running inspect… project_root=%s", args.project_root)
     project_root = Path(args.project_root)
-    print(f"Inspecting project at: {project_root.resolve()}")
+    if not quiet_enabled(args):
+        print(f"Inspecting project at: {project_root.resolve()}")
     # Pass the ignore argument to the discovery function
     try:
         source_files = find_source_files(project_root, args.ignore)
     except Exception as e:
         LOGGER.error("Discovery failed: %s", e, exc_info=args.verbose > 0)
-        print(f"Error: Discovery failed: {e}", file=sys.stderr)
+        err(f"Error: Discovery failed: {e}")
         return DISCOVERY_ERROR
+
+    if quiet_enabled(args):
+        check_rc = handle_check(args)
+        if check_rc == 0:
+            print(f"inspect: {len(source_files)} files")
+        return check_rc
 
     print(f"\nFound {len(source_files)} potential source file(s):")
     for file in source_files:
         print(f"  - {file.relative_to(project_root)}")
-    handle_check(args)
-    return 0
+    return handle_check(args)
 
 
 def handle_hash_all(args: argparse.Namespace) -> int:
@@ -465,16 +490,16 @@ def handle_hash_all(args: argparse.Namespace) -> int:
     digest_path = project_root / ".jiggle_version.config"
 
     try:
-        print("Discovering public API symbols (`__all__`)…")
+        out(args, "Discovering public API symbols (`__all__`)…")
         # Note: auto-increment's discovery also needs to be aware of ignores.
         # This is handled inside get_current_symbols by calling find_source_files.
         current_symbols = get_current_symbols(project_root, args.ignore)
         write_digest_data(digest_path, current_symbols)
-        print(f"✅ Successfully wrote {len(current_symbols)} symbols to {digest_path}")
+        out(args, f"✅ Successfully wrote {len(current_symbols)} symbols to {digest_path}")
         return 0
     except Exception as e:
         LOGGER.error("hash-all failed: %s", e, exc_info=args.verbose > 0)
-        print(f"❌ Failed to generate digest file: {e}", file=sys.stderr)
+        err(f"❌ Failed to generate digest file: {e}")
         return HASH_ERROR
 
 
@@ -484,11 +509,12 @@ def handle_init(args: argparse.Namespace) -> int:
     pyproject_path = Path(args.project_root) / "pyproject.toml"
     if not pyproject_path.is_file():
         LOGGER.error("pyproject.toml not found: %s", pyproject_path)
-        print(f"Error: pyproject.toml not found at {pyproject_path}", file=sys.stderr)
+        err(f"Error: pyproject.toml not found at {pyproject_path}")
         return NO_CONFIG_FOUND
     config_str = pyproject_path.read_text(encoding="utf-8")
     if "[tool.jiggle_version]" in config_str:
-        print("jiggle_version config already exists in pyproject.toml.")
+        if not quiet_enabled(args):
+            print("jiggle_version config already exists in pyproject.toml.")
         return 0
 
     default_config = """
@@ -499,7 +525,7 @@ default_increment = "patch"
 """
     with open(pyproject_path, "a", encoding="utf-8") as f:
         f.write(default_config)
-    print("✅ Added default [tool.jiggle_version] section to pyproject.toml.")
+    out(args, "✅ Added default [tool.jiggle_version] section to pyproject.toml.")
     return 0
 
 
@@ -626,6 +652,12 @@ def _build_parser(
     )
     parser.add_argument(
         "--no-color", action="store_true", help="Disable colored output"
+    )
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        action="store_true",
+        help="Reduce command output to concise summaries or silence action progress.",
     )
 
     subparsers = parser.add_subparsers(
