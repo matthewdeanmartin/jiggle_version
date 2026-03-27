@@ -77,6 +77,7 @@ dev = [
     "linkcheckmd>=1.4.0; python_version >= '3.8'",
     "codespell>=2.2.6; python_version >= '3.8'",
     "pyenchant>=3.2.2; python_version >= '3.8'",
+    "hatch",
 ]
 
 [project.scripts]
