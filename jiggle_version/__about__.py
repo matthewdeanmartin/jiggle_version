@@ -12,7 +12,7 @@ __all__ = [
 ]
 
 __title__ = "jiggle_version"
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 __description__ = "Increment version number found in source code without regex"
 __readme__ = "README.md"
 __keywords__ = ["version", "version-numbers"]

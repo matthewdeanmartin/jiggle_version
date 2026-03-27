@@ -86,6 +86,7 @@ def err(message: str) -> None:
     """Print a stderr message."""
     print(message, file=sys.stderr)
 
+
 # ----------------------------------------------------------------------------
 # Command handlers (augmented with logging)
 # ----------------------------------------------------------------------------
@@ -451,7 +452,9 @@ def handle_print(args: argparse.Namespace) -> int:
     unique_versions = set(item["version"] for item in found_versions)
     if len(unique_versions) > 1:
         LOGGER.error("Version conflict on print: %s", sorted(unique_versions))
-        err(f"Error: Version conflict detected. Found: {', '.join(sorted(unique_versions))}")
+        err(
+            f"Error: Version conflict detected. Found: {', '.join(sorted(unique_versions))}"
+        )
         return VERSION_DISAGREEMENT
     print(unique_versions.pop())
     return 0
@@ -495,7 +498,10 @@ def handle_hash_all(args: argparse.Namespace) -> int:
         # This is handled inside get_current_symbols by calling find_source_files.
         current_symbols = get_current_symbols(project_root, args.ignore)
         write_digest_data(digest_path, current_symbols)
-        out(args, f"✅ Successfully wrote {len(current_symbols)} symbols to {digest_path}")
+        out(
+            args,
+            f"✅ Successfully wrote {len(current_symbols)} symbols to {digest_path}",
+        )
         return 0
     except Exception as e:
         LOGGER.error("hash-all failed: %s", e, exc_info=args.verbose > 0)

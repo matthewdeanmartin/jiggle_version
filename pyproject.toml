@@ -1,6 +1,6 @@
 [project]
 name = "jiggle_version"
-version = "2.1.0"
+version = "2.1.1"
 description = "Increment version number found in source code without regex"
 readme = "README.md"
 authors = [{ name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" }]
