@@ -22,7 +22,7 @@ or ask you to hand-write regex. This one does neither.
     * `setup.py` → static AST of `setup(version="...")`
     * Python modules → top-level `__version__ = "..."`, plus `_version.py`, `__version__.py`, `__about__.py`, package
       `__init__.py`
-* **Agreement check** (CI-friendly, no writes)
+* **Agreement check** (CI-friendly, no writes) with optional **git tag validation**
 * **Bump**: `major | minor | patch | auto` with `--scheme pep440|semver`
 * **Auto mode**: diffs the union of `__all__` symbols to infer major/minor/patch; persists digest in
   `.jiggle_version.config`
@@ -95,8 +95,13 @@ Notes:
 Discover versions across sources and verify agreement. No writes.
 
 ```bash
-jiggle_version check [--project-root .] [--ignore path ...]
+jiggle_version check [--project-root .] [--ignore path ...] [--git-tag]
 ```
+
+`--git-tag` additionally compares the agreed source version against the most
+recent git tag reachable from `HEAD` (via `git describe --tags --abbrev=0`).
+A leading `v`/`V` is stripped before comparison.  Exits `102` on mismatch.
+Exits `0` (with a note) when no tags exist yet.
 
 ### `print`
 
@@ -172,6 +177,9 @@ You can pre-seed the digest with `jiggle_version hash-all`.
     * `<root>/.gitignore`
     * `<root>/.git/info/exclude`
     * `~/.config/git/ignore` or `~/.gitignore`
+* `check --git-tag` calls `git describe --tags --abbrev=0` to find the nearest
+  tag and compares it (after stripping a leading `v`/`V`) to the agreed source
+  version.  Opt-in; existing pipelines are unaffected.
 * Autogit uses `subprocess.run(..., check=True)`:
 
     * `stage` → `git add <changed files>`

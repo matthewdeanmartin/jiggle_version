@@ -22,7 +22,19 @@ RECURSIVE_SEARCH_FILES = ["_version.py", "__version__.py", "__about__.py"]
 STATIC_SEARCH_FILES = ["pyproject.toml", "setup.cfg", "setup.py"]
 
 # Default directories to always ignore.
-DEFAULT_IGNORE_DIRS = {".git", ".tox", ".venv", "__pycache__"}
+DEFAULT_IGNORE_DIRS = {
+    ".git",
+    ".tox",
+    ".venv",
+    "__pycache__",
+    "site-packages",
+    "node_modules",
+}
+
+# Marker files whose presence means the directory is a virtual environment root.
+# We skip walking into venv roots entirely (they contain installed packages, not
+# the project's own version declarations).
+VENV_MARKER_FILES = {"pyvenv.cfg"}
 
 LOGGER = logging.getLogger(__name__)
 
@@ -93,6 +105,11 @@ def _walk_and_discover(
             continue
 
         if is_dir:
+            # Skip virtual environment roots (contain installed packages, not project versions).
+            if any((item / marker).is_file() for marker in VENV_MARKER_FILES):
+                LOGGER.debug("Skipping venv root: %s", item)
+                continue
+
             # If top-level package dir has __init__.py, include it
             init_file = item / "__init__.py"
             try:

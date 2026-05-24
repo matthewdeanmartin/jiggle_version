@@ -39,6 +39,7 @@ from jiggle_version.auto import (
 from jiggle_version.bump import bump_version
 from jiggle_version.config import load_config_from_path
 from jiggle_version.discover import find_source_files
+from jiggle_version.git import get_latest_tag
 from jiggle_version.parsers.ast_parser import parse_python_module, parse_setup_py
 from jiggle_version.parsers.config_parser import parse_pyproject_toml, parse_setup_cfg
 from jiggle_version.pypi import (
@@ -193,6 +194,23 @@ def handle_check(args: argparse.Namespace) -> int:
         print(f"OK {agreed_version}")
     else:
         print("✅ All discovered versions are in agreement.")
+
+    if getattr(args, "git_tag", False):
+        if not quiet_enabled(args):
+            print("\n--- Git Tag Check ---")
+        tag = get_latest_tag(project_root)
+        if tag is None:
+            out(args, "⚪ No git tags found; skipping tag check.")
+        else:
+            normalized_tag = tag.lstrip("vV")
+            if normalized_tag != agreed_version:
+                err(
+                    f"❌ Git tag mismatch: tag '{tag}' resolves to '{normalized_tag}'"
+                    f" but source version is '{agreed_version}'"
+                )
+                LOGGER.error("Git tag mismatch: tag=%s source=%s", tag, agreed_version)
+                return VERSION_DISAGREEMENT
+            out(args, f"✅ Git tag '{tag}' matches source version '{agreed_version}'.")
 
     return 0
 
@@ -673,6 +691,13 @@ def _build_parser(
     # check
     parser_check = subparsers.add_parser(
         "check", help="Check that discovered version declarations agree."
+    )
+    parser_check.add_argument(
+        "--git-tag",
+        action="store_true",
+        default=False,
+        dest="git_tag",
+        help="Also compare the agreed version against the most recent git tag.",
     )
     parser_check.set_defaults(func=handle_check)
 

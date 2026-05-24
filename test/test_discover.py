@@ -79,3 +79,28 @@ def test_explicit_ignore_can_target_single_file(tmp_path: Path):
     assert "pkg/__version__.py" not in names
     assert "pkg/_version.py" in names
     assert "pkg/__init__.py" in names
+
+
+def test_skips_venv_roots(tmp_path: Path):
+    """Directories containing pyvenv.cfg are venv roots and must be skipped."""
+    root = tmp_path
+    write(root / "pyproject.toml", '[project]\nversion = "1.0.0"\n')
+    # Simulate a named venv that was not added to .gitignore (e.g. .blerg)
+    write(root / ".blerg" / "pyvenv.cfg", "home = /usr/bin\n")
+    write(
+        root / ".blerg" / "Lib" / "site-packages" / "requests" / "__version__.py",
+        "__version__ = '2.32.5'\n",
+    )
+    # Standard .venv with pyvenv.cfg
+    write(root / ".venv" / "pyvenv.cfg", "home = /usr/bin\n")
+    write(
+        root / ".venv" / "Lib" / "site-packages" / "somelib" / "_version.py",
+        "__version__ = '1.26.20'\n",
+    )
+
+    files = find_source_files(root)
+    names = {p.relative_to(root).as_posix() for p in files}
+
+    assert "pyproject.toml" in names
+    assert not any(".blerg" in n for n in names), f"venv files leaked: {names}"
+    assert not any(".venv" in n for n in names), f"venv files leaked: {names}"

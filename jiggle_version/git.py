@@ -56,3 +56,11 @@ def commit_changes(project_root: Path, message: str) -> None:
 def push_changes(project_root: Path, remote: str, branch: str) -> None:
     """Pushes changes to the specified remote and branch."""
     _run_git_command(["push", remote, branch], project_root)
+
+
+def get_latest_tag(project_root: Path) -> str | None:
+    """Return the most recent tag reachable from HEAD, or None if no tags exist."""
+    try:
+        return _run_git_command(["describe", "--tags", "--abbrev=0"], project_root)
+    except subprocess.CalledProcessError:
+        return None

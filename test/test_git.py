@@ -11,6 +11,7 @@ from jiggle_version.git import (
     _run_git_command,
     commit_changes,
     get_current_branch,
+    get_latest_tag,
     is_repo_dirty,
     push_changes,
     stage_files,
@@ -192,3 +193,35 @@ def test_push_changes_passes_remote_and_branch(
     push_changes(tmp_path, "origin", "main")
     assert captured["cmd"] == ["push", "origin", "main"]
     assert captured["cwd"] == tmp_path
+
+
+# ---------- get_latest_tag ----------
+
+
+def test_get_latest_tag_returns_tag_string(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.setattr(
+        "jiggle_version.git._run_git_command", lambda args, cwd: "v1.2.3"
+    )
+    assert get_latest_tag(tmp_path) == "v1.2.3"
+
+
+def test_get_latest_tag_returns_none_when_no_tags(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    def raiser(args: list[str], cwd: Path) -> str:
+        raise subprocess.CalledProcessError(returncode=128, cmd=["git", "describe"])
+
+    monkeypatch.setattr("jiggle_version.git._run_git_command", raiser)
+    assert get_latest_tag(tmp_path) is None
+
+
+def test_get_latest_tag_strips_nothing_itself(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    """get_latest_tag returns the raw tag; normalization is the caller's job."""
+    monkeypatch.setattr(
+        "jiggle_version.git._run_git_command", lambda args, cwd: "2.0.0"
+    )
+    assert get_latest_tag(tmp_path) == "2.0.0"
