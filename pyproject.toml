@@ -234,3 +234,5 @@ exclude = [
 scheme = "pep440"
 default_increment = "patch"
 ignore = ["test", "sample_projects", "dead_code", "historical"]
+[tool.uv]
+universal = true
