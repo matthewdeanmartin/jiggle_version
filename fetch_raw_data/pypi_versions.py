@@ -1,6 +1,7 @@
 """
 Get some sample version strings from the wild.
 """
+
 # https://python-forum.io/Thread-pip-list-available-packages
 
 # download file
@@ -48,7 +49,7 @@ def package_info(rows):
             if ".zip" in url or ".gz" in url:
                 print(url)
                 last = url
-        except: # noqa
+        except:  # noqa
             pass
     return last
 
@@ -74,7 +75,7 @@ def read_packages():
                 print(package_name + " done")
                 continue
             print(url)
-        except: # noqa
+        except:  # noqa
             continue
 
         response = requests.get(url)

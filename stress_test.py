@@ -13,7 +13,7 @@ def get_site_packages_path() -> Path | None:
     This is more robust than assuming a '.venv' folder structure.
     """
     # In a virtual environment, sys.prefix points to the venv directory
-    if hasattr(sys, 'prefix'):
+    if hasattr(sys, "prefix"):
         if platform.system() == "Windows":
             return Path(sys.prefix) / "Lib" / "site-packages"
         else:
@@ -28,6 +28,7 @@ def get_site_packages_path() -> Path | None:
     # Fallback for other configurations, though less common for this script's purpose
     try:
         import site
+
         return Path(site.getsitepackages()[0])
     except (ImportError, IndexError):
         print("Could not automatically determine the site-packages directory.")
@@ -53,17 +54,19 @@ def run_jiggle_command(command: list[str]) -> tuple[bool, str, str]:
             capture_output=True,
             text=True,
             check=True,  # Don't raise an exception on non-zero exit codes
-            encoding='utf-8',
-            errors='replace'
+            encoding="utf-8",
+            errors="replace",
         )
         success = process.returncode == 0
         print(process.stdout)
         print(process.stderr)
         return success, process.stdout, process.stderr
     except FileNotFoundError:
-        msg = "Error: 'jiggle_version' command not found.\n" \
-              "Please ensure that the tool is installed in your environment and that the\n" \
-              "virtual environment's scripts directory is in your system's PATH."
+        msg = (
+            "Error: 'jiggle_version' command not found.\n"
+            "Please ensure that the tool is installed in your environment and that the\n"
+            "virtual environment's scripts directory is in your system's PATH."
+        )
         return False, "", msg
     except Exception as e:
         return False, "", f"An unexpected error occurred: {e}"
@@ -87,7 +90,7 @@ def try_out_package(package_path: Path) -> tuple[str, str, str | None]:
 
     # 1. Test the 'current' command on the original directory
     print("  -> Running 'current' command...")
-    current_command = ["uv", "run", "jiggle_version","current", str(package_path)]
+    current_command = ["uv", "run", "jiggle_version", "current", str(package_path)]
 
     success, stdout, stderr = run_jiggle_command(current_command)
 
@@ -100,7 +103,9 @@ def try_out_package(package_path: Path) -> tuple[str, str, str | None]:
 
     # 2. Test the 'bump' command in a temporary, isolated directory
     print("  -> Running 'bump' command in a temporary directory...")
-    with tempfile.TemporaryDirectory(prefix=f"jiggle-test-{package_name}-") as temp_dir_str:
+    with tempfile.TemporaryDirectory(
+        prefix=f"jiggle-test-{package_name}-"
+    ) as temp_dir_str:
         temp_dir = Path(temp_dir_str)
 
         # Copy the package to the temporary directory to avoid modifying the venv
@@ -139,8 +144,11 @@ def main():
     # Find all top-level directories in site-packages that are likely packages
     # Excludes .dist-info, .egg-info, and private directories like __pycache__
     packages_to_test = [
-        p for p in site_packages.iterdir()
-        if p.is_dir() and not p.name.startswith('_') and not p.name.endswith(('.dist-info', '.egg-info'))
+        p
+        for p in site_packages.iterdir()
+        if p.is_dir()
+        and not p.name.startswith("_")
+        and not p.name.endswith((".dist-info", ".egg-info"))
     ]
 
     if not packages_to_test:
@@ -171,22 +179,22 @@ def main():
     print(f"Total Packages Tested: {len(packages_to_test)}")
 
     print(f"\n✅ Successful ({len(results['SUCCESS'])} packages):")
-    if results['SUCCESS']:
-        for pkg in sorted(results['SUCCESS']):
+    if results["SUCCESS"]:
+        for pkg in sorted(results["SUCCESS"]):
             print(f"  - {pkg}")
     else:
         print("  None")
 
     print(f"\n❌ Failed on 'current' ({len(results['CURRENT_FAIL'])} packages):")
-    if results['CURRENT_FAIL']:
-        for pkg in sorted(results['CURRENT_FAIL']):
+    if results["CURRENT_FAIL"]:
+        for pkg in sorted(results["CURRENT_FAIL"]):
             print(f"  - {pkg}")
     else:
         print("  None")
 
     print(f"\n❌ Failed on 'bump' ({len(results['BUMP_FAIL'])} packages):")
-    if results['BUMP_FAIL']:
-        for pkg in sorted(results['BUMP_FAIL']):
+    if results["BUMP_FAIL"]:
+        for pkg in sorted(results["BUMP_FAIL"]):
             print(f"  - {pkg}")
     else:
         print("  None")
@@ -195,7 +203,7 @@ def main():
         print("\n" + "=" * 50)
         print("Error Details")
         print("=" * 50)
-        all_failed = sorted(results['CURRENT_FAIL'] + results['BUMP_FAIL'])
+        all_failed = sorted(results["CURRENT_FAIL"] + results["BUMP_FAIL"])
         for pkg_name in all_failed:
             print(f"\n--- Errors for: {pkg_name} ---")
             print(errors.get(pkg_name, "No error output captured.").strip())

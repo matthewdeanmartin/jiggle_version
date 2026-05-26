@@ -334,8 +334,6 @@ def bandit() -> None:
     do_bandit(IS_SHELL_SCRIPT_LIKE)
 
 
-
-
 @task()
 @skip_if_no_change("mccabe")
 @timed()
@@ -573,6 +571,7 @@ def package() -> None:
     """
     subprocess.run(["poetry", "build"])
 
+
 @task()
 @timed()
 @skip_if_no_change("parallel_checks")
@@ -587,7 +586,7 @@ def parallel_checks() -> None:
         vulture,
         do_lint,
         do_bandit,
-        do_mccabe
+        do_mccabe,
     ]
     if IS_GITLAB:
         # other tasks assume there will be a LOC file by now.
@@ -682,7 +681,6 @@ def upload_package() -> None:
     Send to private package repo
     """
     do_upload_package()
-
 
 
 # FAST. FATAL ERRORS. DON'T CHANGE THINGS THAT CHECK IN

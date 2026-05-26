@@ -44,8 +44,8 @@ source_suffix = ".rst"
 master_doc = "README"
 
 # General information about the project.
-project = u"aiosmtpd"
-copyright = u"2015-2016, aiosmtpd hackers"
+project = "aiosmtpd"
+copyright = "2015-2016, aiosmtpd hackers"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -197,7 +197,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ("index", "aiosmtpd.tex", u"aiosmtpd Documentation", u"aiosmtpd hackers", "manual")
+    ("index", "aiosmtpd.tex", "aiosmtpd Documentation", "aiosmtpd hackers", "manual")
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -225,7 +225,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [("index", "aiosmtpd", u"aiosmtpd Documentation", [u"aiosmtpd hackers"], 1)]
+man_pages = [("index", "aiosmtpd", "aiosmtpd Documentation", ["aiosmtpd hackers"], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -240,8 +240,8 @@ texinfo_documents = [
     (
         "index",
         "aiosmtpd",
-        u"aiosmtpd Documentation",
-        u"aiosmtpd hackers",
+        "aiosmtpd Documentation",
+        "aiosmtpd hackers",
         "aiosmtpd",
         "One line description of project.",
         "Miscellaneous",
@@ -280,8 +280,6 @@ def index_html():
                 raise
     finally:
         os.chdir(cwd)
-
-
 
 
 atexit.register(index_html)

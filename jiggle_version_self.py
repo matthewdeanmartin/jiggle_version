@@ -3,6 +3,7 @@ Stupider version of jiggle version that jiggle_version depends on.
 
 I didn't want a weird circular dependency.
 """
+
 from __future__ import division, print_function, unicode_literals
 
 import os.path

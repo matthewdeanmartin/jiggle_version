@@ -29,8 +29,6 @@ version_tokens = [
 ]
 
 
-
-
 def find_by_ast(line: str, version_token: str = "__version__") -> Optional[str]:
     """
     Parses a line of Python code to find a version string using the `ast` module.
