@@ -298,3 +298,10 @@ This is a CLI-first tool. Internal modules may change. If you import, prefer:
 
 * `jiggle_version.__about__.__version__`
 * Running via `python -m jiggle_version`
+
+## Project Links
+
+- [GitHub](https://github.com/matthewdeanmartin/jiggle_version)
+- [PyPI](https://pypi.org/project/jiggle-version/)
+- [Bug Tracker](https://github.com/matthewdeanmartin/jiggle_version/issues)
+- [Change Log](https://github.com/matthewdeanmartin/jiggle_version/blob/main/CHANGELOG.md)
