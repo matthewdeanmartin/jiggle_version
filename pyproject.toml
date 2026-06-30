@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [{ name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" }]
 keywords = ["version", "version-numbers"]
 license = "MIT"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Programming Language :: Python",
@@ -80,7 +80,7 @@ dev = [
     "codespell>=2.2.6; python_version >= '3.8'",
     "pyenchant>=3.2.2; python_version >= '3.8'",
     "hatch",
-    "keepachangelog-manager-fork>=6.1.1,<7",
+    "keepachangelog-manager-fork[all]>=6.5.0",
 ]
 
 [project.scripts]
