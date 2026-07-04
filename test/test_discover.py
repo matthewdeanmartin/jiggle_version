@@ -81,6 +81,56 @@ def test_explicit_ignore_can_target_single_file(tmp_path: Path):
     assert "pkg/__init__.py" in names
 
 
+def test_skips_uv_cache_via_nested_gitignore(tmp_path: Path):
+    """uv drops `./.uv/.gitignore` (`*`); the cached package files must not leak."""
+    root = tmp_path
+    write(root / "pyproject.toml", '[project]\nversion = "0.1.9"\n')
+    write(root / "examexam" / "__about__.py", "__version__ = '0.1.9'\n")
+    # uv's project-local cache, ignored by its own nested .gitignore
+    write(root / ".uv" / ".gitignore", "*\n")
+    write(
+        root / ".uv" / "archive-v0" / "Uzja" / "hatchling" / "__about__.py",
+        "__version__ = '1.27.0'\n",
+    )
+
+    files = find_source_files(root)
+    names = {p.relative_to(root).as_posix() for p in files}
+
+    assert "examexam/__about__.py" in names
+    assert not any(".uv" in n for n in names), f"uv cache leaked: {names}"
+
+
+def test_skips_cachedir_tag_directory(tmp_path: Path):
+    """A directory tagged with a valid CACHEDIR.TAG is a cache and is skipped."""
+    root = tmp_path
+    write(root / "pyproject.toml", '[project]\nversion = "0.1.0"\n')
+    write(
+        root / "somecache" / "CACHEDIR.TAG",
+        "Signature: 8a477f597d28d172789f06886806bc55\n",
+    )
+    write(root / "somecache" / "pkg" / "__about__.py", "__version__ = '9.9.9'\n")
+
+    files = find_source_files(root)
+    names = {p.relative_to(root).as_posix() for p in files}
+
+    assert "pyproject.toml" in names
+    assert not any("somecache" in n for n in names), f"cache leaked: {names}"
+
+
+def test_nested_gitignore_deeper_than_root(tmp_path: Path):
+    """A nested .gitignore below the root prunes its subtree (regression guard)."""
+    root = tmp_path
+    write(root / "pkg" / "_version.py", "__version__ = '0.1.0'\n")
+    write(root / "pkg" / "vendored" / ".gitignore", "*\n")
+    write(root / "pkg" / "vendored" / "dep" / "_version.py", "__version__ = '2.0.0'\n")
+
+    files = find_source_files(root)
+    names = {p.relative_to(root).as_posix() for p in files}
+
+    assert "pkg/_version.py" in names
+    assert not any("vendored" in n for n in names), f"vendored leaked: {names}"
+
+
 def test_skips_venv_roots(tmp_path: Path):
     """Directories containing pyvenv.cfg are venv roots and must be skipped."""
     root = tmp_path

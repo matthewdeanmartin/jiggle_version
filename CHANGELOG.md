@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Pin to Python 3.13 support
 
+### Fixed
+
+- Version discovery now honors nested `.gitignore` files and skips directories tagged with a `CACHEDIR.TAG` marker, so project-local caches (e.g. uv's `./.uv/`) no longer leak installed-package version files and cause false version-conflict errors.
+
 ## [2.2.0] - 2026-05-24
 
 ### Added

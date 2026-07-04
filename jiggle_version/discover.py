@@ -9,10 +9,14 @@ import logging
 from pathlib import Path
 
 # Use the new gitignore API
+from pathspec import PathSpec
+from pathspec.patterns import GitWildMatchPattern
+
 from .gitignore import (
-    collect_default_spec,
+    build_gitignore_spec,
     is_path_explicitly_ignored,
     is_path_gitignored,
+    nested_gitignore_patterns,
 )
 
 # Files to search for recursively in the project root.
@@ -36,6 +40,12 @@ DEFAULT_IGNORE_DIRS = {
 # the project's own version declarations).
 VENV_MARKER_FILES = {"pyvenv.cfg"}
 
+# Cache Directory Tagging Standard (https://bford.info/cachedir/). A directory
+# containing a CACHEDIR.TAG with this signature is a cache (uv, pip, mypy, ruff,
+# hatch, ...) and should be skipped entirely.
+CACHEDIR_TAG_FILE = "CACHEDIR.TAG"
+CACHEDIR_TAG_SIGNATURE = "Signature: 8a477f597d28d172789f06886806bc55"
+
 LOGGER = logging.getLogger(__name__)
 
 
@@ -56,8 +66,9 @@ def find_source_files(
     LOGGER.debug("project root %s, ignore_paths %s", project_root, ignore_paths)
     found_files: set[Path] = set()
 
-    # Build a single PathSpec with repo/global ignores and any future extras
-    spec = collect_default_spec(project_root)
+    # Build the base spec with repo/global ignores. Nested .gitignore files are
+    # layered on top as the walk descends into the directories that contain them.
+    base_spec = build_gitignore_spec(project_root)
 
     # Resolve user-provided ignore paths to absolute form for reliable comparison
     explicit_ignore_set = {(project_root / p).resolve() for p in (ignore_paths or [])}
@@ -66,11 +77,25 @@ def find_source_files(
         current_dir=project_root,
         project_root=project_root,
         found_files=found_files,
-        spec=spec,
+        spec=base_spec,
         explicit_ignore_set=explicit_ignore_set,
     )
 
     return sorted(found_files)
+
+
+def _is_cache_dir(directory: Path) -> bool:
+    """Return True if `directory` contains a valid CACHEDIR.TAG marker file."""
+    tag = directory / CACHEDIR_TAG_FILE
+    try:
+        if not tag.is_file():
+            return False
+        with tag.open("r", encoding="utf-8", errors="replace") as fh:
+            first_line = fh.readline().rstrip("\n").rstrip("\r")
+        return first_line == CACHEDIR_TAG_SIGNATURE
+    except OSError as exc:
+        LOGGER.warning("Skipping unreadable cache tag %s: %s", tag, exc)
+        return False
 
 
 def _walk_and_discover(
@@ -82,6 +107,14 @@ def _walk_and_discover(
     explicit_ignore_set: set[Path],
 ) -> None:
     """Recursively walk directories to find source files."""
+    # Layer any nested .gitignore in this directory onto the active spec, matching
+    # git's cascading semantics (e.g. uv drops `./.uv/.gitignore` containing `*`).
+    nested = nested_gitignore_patterns(current_dir, project_root)
+    if nested:
+        spec = PathSpec(
+            list(spec.patterns) + list(PathSpec.from_lines(GitWildMatchPattern, nested).patterns)
+        )
+
     try:
         items = list(current_dir.iterdir())
     except OSError as exc:
@@ -108,6 +141,11 @@ def _walk_and_discover(
             # Skip virtual environment roots (contain installed packages, not project versions).
             if any((item / marker).is_file() for marker in VENV_MARKER_FILES):
                 LOGGER.debug("Skipping venv root: %s", item)
+                continue
+
+            # Skip cache directories tagged per the Cache Directory Tagging Standard.
+            if _is_cache_dir(item):
+                LOGGER.debug("Skipping tagged cache dir: %s", item)
                 continue
 
             # If top-level package dir has __init__.py, include it

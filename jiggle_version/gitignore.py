@@ -112,6 +112,53 @@ def build_gitignore_spec(
 # ----------------------------- queries -----------------------------
 
 
+def nested_gitignore_patterns(directory: Path, project_root: Path) -> list[str]:
+    """Read `<directory>/.gitignore` and return patterns anchored to `directory`.
+
+    Git applies a nested `.gitignore` relative to the directory that contains it.
+    Since our specs match paths relative to `project_root`, we re-anchor each
+    pattern by prefixing it with the directory's path relative to the root, so the
+    combined root-level `PathSpec` reproduces git's cascading semantics.
+
+    Returns an empty list if the directory has no `.gitignore`.
+    """
+    lines = _read_lines(directory / ".gitignore")
+    if not lines:
+        return []
+
+    prefix = directory.resolve().relative_to(project_root.resolve()).as_posix()
+    if prefix == ".":
+        prefix = ""
+
+    anchored: list[str] = []
+    for raw in lines:
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+
+        negate = ""
+        if line.startswith("!"):
+            negate = "!"
+            line = line[1:]
+
+        if not prefix:
+            anchored.append(negate + line)
+            continue
+
+        # A pattern with a leading '/' (or containing a mid slash) is anchored to
+        # the .gitignore's directory; otherwise it matches at any depth below it.
+        if line.startswith("/"):
+            body = line.lstrip("/")
+            anchored.append(f"{negate}/{prefix}/{body}")
+        elif "/" in line.rstrip("/"):
+            anchored.append(f"{negate}/{prefix}/{line}")
+        else:
+            anchored.append(f"{negate}/{prefix}/**/{line}")
+            anchored.append(f"{negate}/{prefix}/{line}")
+
+    return anchored
+
+
 def is_path_gitignored(
     path: Path,
     project_root: Path,
