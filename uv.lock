@@ -2353,7 +2353,7 @@ wheels = [
 
 [[package]]
 name = "jiggle-version"
-version = "2.2.0"
+version = "2.2.1"
 source = { editable = "." }
 dependencies = [
     { name = "packaging" },
@@ -2437,11 +2437,11 @@ dev = [
     { name = "hatchling", marker = "python_full_version >= '3.8'" },
     { name = "hypothesis", extras = ["cli"], marker = "python_full_version >= '3.8'" },
     { name = "interrogate", marker = "python_full_version >= '3.8'", specifier = ">=1.5.0" },
-    { name = "keepachangelog-manager-fork", extras = ["all"], specifier = ">=6.5.0" },
+    { name = "keepachangelog-manager-fork", extras = ["all"], specifier = ">=6.6.0,<7" },
     { name = "linkcheckmd", marker = "python_full_version >= '3.8'", specifier = ">=1.4.0" },
     { name = "mdformat" },
     { name = "mdformat", marker = "python_full_version >= '3.8'", specifier = ">=0.5.0" },
-    { name = "metametameta", marker = "python_full_version >= '3.9'", specifier = ">=0.1.3" },
+    { name = "metametameta", marker = "python_full_version >= '3.9'", specifier = ">=0.1.14" },
     { name = "mkdocs", marker = "python_full_version >= '3.12'" },
     { name = "mkdocstrings", extras = ["python"] },
     { name = "mypy", marker = "python_full_version >= '3.8'" },
@@ -2673,7 +2673,7 @@ wheels = [
 
 [[package]]
 name = "keepachangelog-manager-fork"
-version = "6.5.0"
+version = "6.6.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "inquirer", version = "3.4.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9.2'" },
@@ -2687,9 +2687,9 @@ dependencies = [
     { name = "urllib3", version = "2.6.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
     { name = "urllib3", version = "2.7.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9d/3a/3e017a06b0a2533294dc036073ee2a13bf1fc41ceeee229fd18f5fd8e929/keepachangelog_manager_fork-6.5.0.tar.gz", hash = "sha256:efeb2063be46b1eb1bfab521c2ae7be91f3d67985988f9a28160a91149b37a0a", size = 1331186, upload-time = "2026-06-29T22:34:40.475Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9e/f5/6461361cb54028a5aa6a35cdc61f492b6f1bc2c9b0e36b70f04c78c07b50/keepachangelog_manager_fork-6.6.0.tar.gz", hash = "sha256:4d1c05dcb2558847ad3a102e85df2fc51e1ddaba3652b063a1e1fff4530ae0cf", size = 1336568, upload-time = "2026-07-05T14:17:19.521Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/64/3c/3d1e168c7e7e34a18f4535b09874c38948c1fb15ff45ec710189c0f669b8/keepachangelog_manager_fork-6.5.0-py3-none-any.whl", hash = "sha256:e01ef70c74d84fedd3f803b70c672eb1018e9dfbcfbcfb6b92903606ae015cf9", size = 185297, upload-time = "2026-06-29T22:34:39.091Z" },
+    { url = "https://files.pythonhosted.org/packages/6a/17/f9817db0c46851fe109897ac9d9f64b6f74a68174db87fbc3d23592067ba/keepachangelog_manager_fork-6.6.0-py3-none-any.whl", hash = "sha256:a4152c4f9a8f0d8698a580ff1680b7a60265d60fff299b482cc3c8d1220cb7fd", size = 191399, upload-time = "2026-07-05T14:17:17.911Z" },
 ]
 
 [package.optional-dependencies]
@@ -3090,7 +3090,7 @@ wheels = [
 
 [[package]]
 name = "metametameta"
-version = "0.1.13"
+version = "0.1.14"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorlog" },
@@ -3098,9 +3098,9 @@ dependencies = [
     { name = "toml" },
     { name = "totalhelp" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/74/fa/5669f2f1f7bf891f4d3cf801b831593133b9715489e7938a7d8790dc7462/metametameta-0.1.13.tar.gz", hash = "sha256:a99393ebe83bb5255f710f99a9a25f11d335d16a9800d15b7d58115883c36577", size = 33395, upload-time = "2026-05-24T23:13:49.098Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6a/e1/3adee847a9f0e8ad19d2b97adde18e1dc45883b1007000b2a23503d9b7c5/metametameta-0.1.14.tar.gz", hash = "sha256:a76d81383bd1c159fd12ddb3d3af45236bfd48a90c9f617debe293bcbe4ec03b", size = 35054, upload-time = "2026-07-04T21:28:41.981Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b6/5c/e8a7a9d1679eefc8b5a2a014dd5344bf53b088b3a770a8ac91394c1bc1b3/metametameta-0.1.13-py3-none-any.whl", hash = "sha256:ced688f4a46057c0c5e1e2da423662b08c09a4bb4cf3c3757aa8b2804555e267", size = 41927, upload-time = "2026-05-24T23:13:47.469Z" },
+    { url = "https://files.pythonhosted.org/packages/32/be/9fb9be93101ce71458652f16e71d12797f7747858007e117e6d5916e5b92/metametameta-0.1.14-py3-none-any.whl", hash = "sha256:fde0ce2c2ac41b6e335e049526a8af496e7b2748cd12e6456d031515a00398df", size = 43491, upload-time = "2026-07-04T21:28:40.626Z" },
 ]
 
 [[package]]
