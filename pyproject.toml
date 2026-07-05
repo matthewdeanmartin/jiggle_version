@@ -80,7 +80,7 @@ dev = [
     "codespell>=2.2.6; python_version >= '3.8'",
     "pyenchant>=3.2.2; python_version >= '3.8'",
     "hatch",
-    "keepachangelog-manager-fork[all]>=6.5.0",
+    "keepachangelog-manager-fork[all]>=6.6.0,<7",
 ]
 
 [project.scripts]
