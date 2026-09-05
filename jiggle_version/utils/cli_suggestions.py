@@ -27,6 +27,7 @@ Example:
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from difflib import get_close_matches
 
@@ -77,7 +78,14 @@ class SmartParser(argparse.ArgumentParser):
         """
         # Detect "invalid choice: 'foo' (choose from ...)"
         if "invalid choice" in message and "choose from" in message:
-            bad = message.split("invalid choice:")[1].split("(")[0].strip().strip("'\"")
+            # Python 3.15 appends its own hint: "invalid choice: 'foo', maybe you
+            # meant 'food'? (choose from ...)". Splitting on "(" would swallow that
+            # suffix into the bad token, so extract the quoted value with a regex.
+            match = re.search(r"invalid choice:\s*'([^']+)'", message)
+            if match:
+                bad = match.group(1)
+            else:
+                bad = message.split("invalid choice:")[1].split("(")[0].strip().strip("'\"")
             choices_str = message.split("choose from")[1]
             choices = [
                 c.strip().strip(",)'") for c in choices_str.split() if c.strip(",)")
