@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Changed
+- Requires Python 3.11 or newer; Python 3.9-3.10 are no longer supported.
+
 ## [2.2.1] - 2026-07-04
 ### Fixed
 - Version discovery now honors nested `.gitignore` files and skips directories tagged with a `CACHEDIR.TAG` marker, so project-local caches (e.g. uv's `./.uv/`) no longer leak installed-package version files and cause false version-conflict errors.
