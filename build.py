@@ -45,8 +45,7 @@ except ModuleNotFoundError:
         print("I can see we are in a poetry environment, but dependencies are missing.")
     if "VIRTUAL_ENV" in os.environ:
         print(
-            "I can see we are in a virtual environment,"
-            " but dependencies are missing."
+            "I can see we are in a virtual environment, but dependencies are missing."
         )
 
     print(
@@ -137,12 +136,6 @@ def check_python_version() -> None:
     Possibly should look up min value in Pipenv or .pynt
     """
     print(sys.version_info)
-    if sys.version_info[0] < 3:
-        print("Must be using Python 3.7")
-        sys.exit(-1)
-    if sys.version_info[1] < 7:
-        print("Must be using Python 3.7 or greater")
-        sys.exit(-1)
 
 
 @task()
@@ -271,9 +264,10 @@ def docker_lint() -> None:
     """
     Lint the dockerfile
     """
-    with open("Dockerfile") as my_input, open(
-        f"{PROBLEMS_FOLDER}/docker_lint.txt", "w"
-    ) as my_output:
+    with (
+        open("Dockerfile") as my_input,
+        open(f"{PROBLEMS_FOLDER}/docker_lint.txt", "w") as my_output,
+    ):
         # ignore = ""  # "--ignore DL3003 --ignore DL3006"
         command = "docker run --rm -i hadolint/hadolint hadolint -".strip()
         _ = subprocess.run(command, stdin=my_input, stdout=my_output, check=True)
@@ -624,7 +618,7 @@ def parallel_checks() -> None:
 
 
 @task(
-    mypy,  #
+    mypy,
     detect_secrets,
     git_secrets,
     vulture,

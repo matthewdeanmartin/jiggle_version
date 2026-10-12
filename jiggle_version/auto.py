@@ -2,6 +2,7 @@
 """
 Implements the logic for the 'auto' increment feature.
 """
+
 from __future__ import annotations
 
 import hashlib

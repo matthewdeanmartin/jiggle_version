@@ -2,6 +2,7 @@
 """
 Implements the version bumping logic for different versioning schemes.
 """
+
 from __future__ import annotations
 
 from packaging.version import InvalidVersion, Version

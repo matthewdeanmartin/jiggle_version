@@ -4,7 +4,6 @@ import configparser
 import logging
 import os
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
 
 # Assuming these imports are from the original project structure
 from semantic_version import Version
@@ -24,7 +23,7 @@ logger = logging.getLogger(__name__)
 # ==============================================================================
 
 
-def parse_version_from_setup_py(content: str) -> Optional[str]:
+def parse_version_from_setup_py(content: str) -> str | None:
     """Parses version from setup.py content, checking for kwarg and dunder."""
     if "use_scm_version=True" in content:
         raise JiggleVersionException(
@@ -40,7 +39,7 @@ def parse_version_from_setup_py(content: str) -> Optional[str]:
     return None
 
 
-def parse_version_from_dunder(content: str) -> Optional[str]:
+def parse_version_from_dunder(content: str) -> str | None:
     """Parses `__version__` from a Python file's content."""
     for line in content.splitlines():
         version = dunder_version.find_in_line(line)[0]
@@ -49,7 +48,7 @@ def parse_version_from_dunder(content: str) -> Optional[str]:
     return None
 
 
-def parse_version_from_cfg(content: str) -> Optional[str]:
+def parse_version_from_cfg(content: str) -> str | None:
     """Parses version from a .cfg or .ini file's [metadata] section."""
     config = configparser.ConfigParser()
     try:
@@ -59,7 +58,7 @@ def parse_version_from_cfg(content: str) -> Optional[str]:
         return None
 
 
-def parse_version_from_text(content: str) -> Optional[str]:
+def parse_version_from_text(content: str) -> str | None:
     """Parses version from a plain text file (e.g., version.txt)."""
     return content.strip() if content else None
 
@@ -76,11 +75,11 @@ class VersionConsolidator:
     """
 
     def _filter_valid_versions(
-        self, versions: Dict[Path, str | None]
-    ) -> Tuple[Dict[Path, str | None], Dict[Path, str | None]]:
+        self, versions: dict[Path, str | None]
+    ) -> tuple[dict[Path, str | None], dict[Path, str | None]]:
         """Separates valid semantic versions from invalid ones."""
-        valid_versions: Dict[Path, str | None] = {}
-        invalid_versions: Dict[Path, str | None] = {}
+        valid_versions: dict[Path, str | None] = {}
+        invalid_versions: dict[Path, str | None] = {}
         for source, version_str in versions.items():
             try:
                 # Use schema guesser to validate the version format
@@ -90,7 +89,7 @@ class VersionConsolidator:
                 invalid_versions[source] = version_str
         return valid_versions, invalid_versions
 
-    def _find_highest_patch(self, versions: List[str]) -> Optional[str]:
+    def _find_highest_patch(self, versions: list[str]) -> str | None:
         """If two versions differ only by a patch, returns the higher one."""
         if len(versions) != 2:
             return None
@@ -108,7 +107,7 @@ class VersionConsolidator:
                 return str(max(v1, v2))
         return None
 
-    def consolidate(self, versions: Dict[Path, str | None], force_init: bool) -> str:
+    def consolidate(self, versions: dict[Path, str | None], force_init: bool) -> str:
         """
         Consolidates found versions into a single, trusted version string.
 
@@ -142,7 +141,7 @@ class VersionConsolidator:
             return unique_versions.pop() or ""
 
         # Handle acceptable inconsistencies, like a minor patch difference
-        higher_version = self._find_highest_patch(list(_ for _ in unique_versions if _))
+        higher_version = self._find_highest_patch([_ for _ in unique_versions if _])
         if higher_version:
             logger.warning(
                 f"Versions differ only by a patch level {unique_versions}. "
@@ -202,7 +201,7 @@ class VersionDiscoverer:
         Returns:
             The canonical version string for the project.
         """
-        versions: Dict[Path, str | None] = {}
+        versions: dict[Path, str | None] = {}
 
         # 1. Check setup.py
         if Path("setup.py").exists():

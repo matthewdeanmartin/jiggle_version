@@ -7,7 +7,6 @@ from __future__ import annotations
 import logging
 import os
 from pathlib import Path
-from typing import List, Optional
 
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.module_finder import ModuleFinder
@@ -26,7 +25,7 @@ class CentralModuleFinder:
         :param file_opener:
         """
         self.file_opener = file_opener
-        self.setup_source: Optional[str] = ""
+        self.setup_source: str | None = ""
 
         self.setup_file_name: Path | None = None
         self.find_setup_file_name()
@@ -46,7 +45,7 @@ class CentralModuleFinder:
                 self.setup_file_name = file_path
                 break
 
-    def _read_file(self, file: Path) -> Optional[str]:
+    def _read_file(self, file: Path) -> str | None:
         """
         Read any file, deal with encoding.
         """
@@ -68,7 +67,7 @@ class CentralModuleFinder:
         if not self.setup_source and self.setup_file_name:
             self.setup_source = self._read_file(self.setup_file_name)
 
-    def parse_package_name(self) -> Optional[str]:
+    def parse_package_name(self) -> str | None:
         """
         Extract likley module name from setup.py args
         :return:
@@ -87,7 +86,7 @@ class CentralModuleFinder:
 
         return ""
 
-    def find_central_module(self) -> Optional[Path]:
+    def find_central_module(self) -> Path | None:
         """
         Get the module that is the sole module, or the module
         that matches the package name/version
@@ -136,7 +135,7 @@ class CentralModuleFinder:
 
         return None
 
-    def remove_likely_non_central(self, candidates: List[Path]) -> List[Path]:
+    def remove_likely_non_central(self, candidates: list[Path]) -> list[Path]:
         """
         Stuff that is likely to be in find_packages(exclude...)
         :param candidates:

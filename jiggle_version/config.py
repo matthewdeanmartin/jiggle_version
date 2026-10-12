@@ -3,20 +3,18 @@
 Handles loading and parsing of the [tool.jiggle_version] section
 from a pyproject.toml file.
 """
+
 from __future__ import annotations
 
 import logging
 import sys
+
+# For Python < 3.11, we need tomli
+import tomllib
 from pathlib import Path
 from typing import Any
 
 from jiggle_version.utils.files import read_utf8_text
-
-# For Python < 3.11, we need tomli
-if sys.version_info < (3, 11):
-    import tomli as tomllib
-else:
-    import tomllib
 
 LOGGER = logging.getLogger(__name__)
 

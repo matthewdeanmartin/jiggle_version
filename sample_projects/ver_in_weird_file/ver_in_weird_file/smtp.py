@@ -1,2 +1,2 @@
 __version__ = "1.3.1"
-__ident__ = "Python SMTP {}".format(__version__)
+__ident__ = f"Python SMTP {__version__}"

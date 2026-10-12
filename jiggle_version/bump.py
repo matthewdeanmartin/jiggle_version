@@ -2,6 +2,7 @@
 """
 Main controller for bumping a version string.
 """
+
 from __future__ import annotations
 
 from .schemes import bump_pep440, bump_semver

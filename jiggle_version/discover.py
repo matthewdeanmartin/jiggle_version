@@ -3,6 +3,7 @@
 Logic for discovering all potential version source files in a project,
 while respecting .gitignore and default ignore patterns.
 """
+
 from __future__ import annotations
 
 import logging
@@ -112,7 +113,8 @@ def _walk_and_discover(
     nested = nested_gitignore_patterns(current_dir, project_root)
     if nested:
         spec = PathSpec(
-            list(spec.patterns) + list(PathSpec.from_lines(GitWildMatchPattern, nested).patterns)
+            list(spec.patterns)
+            + list(PathSpec.from_lines(GitWildMatchPattern, nested).patterns)
         )
 
     try:
@@ -169,8 +171,9 @@ def _walk_and_discover(
 
         elif is_file:
             # Root-only statics
-            if item.name in STATIC_SEARCH_FILES and item.parent == project_root:
-                found_files.add(item)
-            # Recursive targets
-            elif item.name in RECURSIVE_SEARCH_FILES:
+            if (
+                item.name in STATIC_SEARCH_FILES
+                and item.parent == project_root
+                or item.name in RECURSIVE_SEARCH_FILES
+            ):
                 found_files.add(item)

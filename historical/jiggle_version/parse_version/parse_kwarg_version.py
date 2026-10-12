@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import ast
 import re
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 from jiggle_version.parse_version.parse_dunder_version import (
     simplify_line,
@@ -20,7 +20,7 @@ from jiggle_version.parse_version.parse_dunder_version import (
 )
 
 
-def find_by_ast(line: str) -> Optional[str]:
+def find_by_ast(line: str) -> str | None:
     """
     Safer way to 'execute' python code to get a simple value
     :param line:
@@ -32,7 +32,6 @@ def find_by_ast(line: str) -> Optional[str]:
     simplified_line = simplify_line(line)
 
     if simplified_line.startswith("version="):
-
         try:
             tree: Any = ast.parse(simplified_line)
             if hasattr(tree.body[0].value, "s"):
@@ -53,19 +52,21 @@ def find_by_ast(line: str) -> Optional[str]:
     return None
 
 
-def find_version_by_regex(file_source: str) -> Optional[str]:
+def find_version_by_regex(file_source: str) -> str | None:
     """
     Regex for dunder version
     """
     if not file_source:
         return None
-    version_match = re.search(r"^version=['\"]([^'\"]*)['\"]", file_source, re.M)
+    version_match = re.search(
+        r"^version=['\"]([^'\"]*)['\"]", file_source, re.MULTILINE
+    )
     if version_match:
         return version_match.group(1)
     return None
 
 
-def find_version_by_string_lib(line: str) -> Optional[str]:
+def find_version_by_string_lib(line: str) -> str | None:
     """
     No regex parsing. Or at least, mostly, not regex.
     """
@@ -90,7 +91,7 @@ def find_version_by_string_lib(line: str) -> Optional[str]:
     return version
 
 
-def find_in_line(line: str) -> Optional[str]:
+def find_in_line(line: str) -> str | None:
     """
     Find a version in a line.
     :param line:

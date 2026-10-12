@@ -19,7 +19,6 @@ disutils.version
 from __future__ import annotations
 
 import logging
-from typing import Tuple, Union
 
 import parver
 import semantic_version
@@ -35,9 +34,9 @@ versio_version.Version.supported_version_schemes = [
     Simple4VersionScheme,
 ]
 
-VersionThing = Tuple[
-    Union[semantic_version.Version, parver.Version, versio_version.Version],
-    Union[semantic_version.Version, parver.Version, versio_version.Version],
+VersionThing = tuple[
+    semantic_version.Version | parver.Version | versio_version.Version,
+    semantic_version.Version | parver.Version | versio_version.Version,
     str,
 ]
 
@@ -68,7 +67,6 @@ def version_object_and_next(string: str, retries: int = 0) -> VersionThing:
             _ = parver.Version.parse(str(next_version))
             return version, next_version, "pep440 (parver)"
         except Exception:
-
             try:
                 logger.debug("Not par_ver:" + str(string))
                 # Version.supported_version_schemes = [Pep440VersionScheme, Simple4VersionScheme]

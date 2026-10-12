@@ -6,7 +6,6 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import List, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -21,9 +20,9 @@ class FileInventory:
         self,
         project: Path,
         src: Path,
-        custom_source_files: Optional[List[str]] = None,
-        custom_config_files: Optional[List[str]] = None,
-        custom_text_files: Optional[List[str]] = None,
+        custom_source_files: list[str] | None = None,
+        custom_config_files: list[str] | None = None,
+        custom_text_files: list[str] | None = None,
     ) -> None:
         """
         Initializes the file inventory, defining potential locations for version strings.
@@ -57,7 +56,7 @@ class FileInventory:
 
         # Use a list comprehension to build the full paths.
         # This will only generate paths if the project root directory actually exists.
-        self.source_files: List[Path] = [
+        self.source_files: list[Path] = [
             self.project_root / file
             for file in source_filenames
             if self.project_root.is_dir()
@@ -68,7 +67,7 @@ class FileInventory:
         if custom_config_files:
             config_filenames.extend(custom_config_files)
 
-        self.config_files: List[Path] = [
+        self.config_files: list[Path] = [
             self.src_path / file for file in config_filenames
         ]
 
@@ -88,7 +87,7 @@ class FileInventory:
         if custom_text_files:
             text_filenames.extend(custom_text_files)
 
-        self.text_files: List[Path] = [self.src_path / file for file in text_filenames]
+        self.text_files: list[Path] = [self.src_path / file for file in text_filenames]
 
         # --- Default text file to create if one doesn't exist ---
         self.default_text_file: Path = self.src_path / "VERSION.txt"

@@ -1,14 +1,14 @@
 """Metadata for jiggle_version."""
 
 __all__ = [
-    "__title__",
-    "__version__",
     "__description__",
-    "__readme__",
     "__keywords__",
     "__license__",
+    "__readme__",
     "__requires_python__",
     "__status__",
+    "__title__",
+    "__version__",
 ]
 
 __title__ = "jiggle_version"

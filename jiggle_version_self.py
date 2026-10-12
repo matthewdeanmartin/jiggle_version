@@ -4,8 +4,6 @@ Stupider version of jiggle version that jiggle_version depends on.
 I didn't want a weird circular dependency.
 """
 
-from __future__ import division, print_function, unicode_literals
-
 import os.path
 
 from semantic_version import Version
@@ -34,7 +32,7 @@ for file_name in files:
                     if version is None:
                         version = Version(parts[1])
                         next_version = version.next_patch()
-                to_write.append('__version__ = "{0}"'.format(str(next_version)))
+                to_write.append(f'__version__ = "{next_version!s}"')
             else:
                 to_write.append(line)
 
@@ -63,7 +61,7 @@ for file_name in other_files:
                     if version is None:
                         version = Version(parts[1].strip(" "))
                         next_version = version.next_patch()
-                    to_write.append("version={0}\n".format(str(next_version)))
+                    to_write.append(f"version={next_version!s}\n")
                 else:
                     to_write.append(line)
 

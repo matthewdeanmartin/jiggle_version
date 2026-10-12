@@ -13,7 +13,7 @@ def execute_get_text(command, dir):
             check=True,
             shell=True,
             stdout=subprocess.PIPE,
-            cwd="packages/{0}".format(dir),
+            cwd=f"packages/{dir}",
         )
     except subprocess.CalledProcessError:
         # dupe.
@@ -33,7 +33,7 @@ for dir in things:
         continue
 
     command = "python3 -m jiggle_version here"
-    print("---{0}---".format(dir))
+    print(f"---{dir}---")
     try:
         _ = execute_get_text(command, dir)
     except subprocess.CalledProcessError:

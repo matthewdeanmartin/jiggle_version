@@ -12,11 +12,12 @@ from jiggle_version.commands import bump_version
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.main import console_trace
 from jiggle_version.module_finder import ModuleFinder
+
 from jiggle_version.utils import JiggleVersionException
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-things = [x for x in os.listdir("packages") if os.path.isdir("packages/{0}".format(x))]
+things = [x for x in os.listdir("packages") if os.path.isdir(f"packages/{x}")]
 random.shuffle(things)
 console_trace(logging.DEBUG)
 
@@ -42,10 +43,10 @@ for directory in things:
     if ".DS_Store" in directory:
         continue
 
-    print("---{0}---".format(directory))
+    print(f"---{directory}---")
     candidate = None
     try:
-        os.chdir("packages/{0}".format(directory))
+        os.chdir(f"packages/{directory}")
         try:
             f = FileOpener()  # don't re-used encodings until it is absolute paths
             central_module_finder = CentralModuleFinder(f)

@@ -16,7 +16,6 @@
 
 """setup.py helper functions."""
 
-
 __all__ = [
     "description",
     "find_doctests",
@@ -57,14 +56,10 @@ def require_python(minimum):
             parts.append(int("".join((split.pop(0), split.pop(0))), 16))
         major, minor, micro, release = parts
         if release == 0xF0:
-            print(
-                "Python {0}.{1}.{2} or better is required".format(major, minor, micro)
-            )
+            print(f"Python {major}.{minor}.{micro} or better is required")
         else:
             print(
-                "Python {0}.{1}.{2} ({3}) or better is required".format(
-                    major, minor, micro, hex(release)[2:]
-                )
+                f"Python {major}.{minor}.{micro} ({hex(release)[2:]}) or better is required"
             )
         sys.exit(1)
 
@@ -89,10 +84,7 @@ def get_version(filename, pattern=None):
     :return: The version that was extracted.
     :rtype: string
     """
-    if pattern is None:
-        cre = DEFAULT_VERSION_RE
-    else:
-        cre = re.compile(pattern)
+    cre = DEFAULT_VERSION_RE if pattern is None else re.compile(pattern)
     with open(filename) as fp:
         for line in fp:
             if line.startswith("__version__"):

@@ -1,5 +1,4 @@
 import pytest
-
 from jiggle_version.parse_version.parse_dunder_version import find_by_ast
 
 

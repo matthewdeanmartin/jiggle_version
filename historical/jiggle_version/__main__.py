@@ -11,8 +11,8 @@ import logging
 import logging.config
 import os
 import sys
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
 
 from jiggle_version.__about__ import __version__
 from jiggle_version.central_module_finder import CentralModuleFinder

@@ -188,7 +188,7 @@ class JiggleVersion:
 
                         to_write.append(
                             f"{start_comma}{leading_white}{version_token} "
-                            f'= "{str(self.version_to_write())}"{comma}{self.signature_txt}\n'
+                            f'= "{self.version_to_write()!s}"{comma}{self.signature_txt}\n'
                         )
                     else:
                         to_write.append(line)
@@ -232,7 +232,7 @@ class JiggleVersion:
                     comma = ""
                     if simplified_line.strip(" \t\n").endswith(","):
                         comma = ","
-                    source = f'{leading_white}{start_comma}version = "{str(self.version_to_write())}"{comma}{self.signature_txt}\n'
+                    source = f'{leading_white}{start_comma}version = "{self.version_to_write()!s}"{comma}{self.signature_txt}\n'
                     need_rewrite = True
                     lines_to_write.append(source)
                     continue
@@ -246,14 +246,11 @@ class JiggleVersion:
                         start_comma = ""
 
                     # the other simplify removes ","
-                    if simplified_line.strip(" \t\n").endswith(","):
-                        comma = ","
-                    else:
-                        comma = ""
+                    comma = "," if simplified_line.strip(" \t\n").endswith(",") else ""
 
                     lines_to_write.append(
                         f"{leading_white}{start_comma}{version_token} ="
-                        f' "{str(self.version_to_write())}"{comma}{self.signature_txt}\n'
+                        f' "{self.version_to_write()!s}"{comma}{self.signature_txt}\n'
                     )
                     need_rewrite = True
                     continue

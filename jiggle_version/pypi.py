@@ -2,10 +2,12 @@
 """
 Implements a pre-flight check against PyPI to prevent bumping an unpublished version.
 """
+
 from __future__ import annotations
 
-import sys
-from datetime import datetime, timedelta, timezone
+# Handle Python < 3.11 needing tomli
+import tomllib
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import requests
@@ -13,12 +15,6 @@ import tomlkit
 from packaging.version import Version
 
 from jiggle_version.utils.files import read_utf8_text
-
-# Handle Python < 3.11 needing tomli
-if sys.version_info < (3, 11):
-    import tomli as tomllib
-else:
-    import tomllib
 
 
 # --- Custom Exception ---
@@ -61,7 +57,7 @@ def get_latest_published_version(package_name: str, config_path: Path) -> str | 
 
     if last_checked_str:
         last_checked = datetime.fromisoformat(last_checked_str)
-        if datetime.now(timezone.utc) - last_checked < CACHE_TTL:
+        if datetime.now(UTC) - last_checked < CACHE_TTL:
             print(
                 f"   (from cache created at {last_checked.strftime('%Y-%m-%d %H:%M')})"
             )
@@ -82,7 +78,7 @@ def get_latest_published_version(package_name: str, config_path: Path) -> str | 
 
         # --- Update TOML cache ---
         cache_table = tomlkit.table()
-        cache_table.add("timestamp", datetime.now(timezone.utc).isoformat())
+        cache_table.add("timestamp", datetime.now(UTC).isoformat())
         cache_table.add("latest_version", latest_version)
 
         if "tool" not in doc:

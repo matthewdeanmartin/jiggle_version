@@ -40,9 +40,9 @@ TODO: confounds two concepts:
 from __future__ import annotations
 
 import ast
+import contextlib
 import logging
 from pathlib import Path
-from typing import List, Optional
 
 # Assuming these modules are part of the same package and are structured correctly.
 from jiggle_version.file_opener import FileOpener
@@ -64,9 +64,9 @@ class ModuleFinder:
     def __init__(self, file_opener: FileOpener) -> None:
         """Initializes the finder with a FileOpener instance."""
         self.file_opener = file_opener
-        self.setup_source: Optional[str] = None
+        self.setup_source: str | None = None
 
-    def _read_file(self, file_path: Path) -> Optional[str]:
+    def _read_file(self, file_path: Path) -> str | None:
         """
         Reads a file if it exists, using the FileOpener to handle encoding.
         """
@@ -74,7 +74,7 @@ class ModuleFinder:
             return self.file_opener.read_this(file_path)
         return None
 
-    def setup_py_source(self) -> Optional[str]:
+    def setup_py_source(self) -> str | None:
         """
         Reads setup.py (or extensionless 'setup') to a string and caches it.
         """
@@ -84,7 +84,7 @@ class ModuleFinder:
                 self.setup_source = self._read_file(Path("setup"))  # rare case
         return self.setup_source
 
-    def extract_package_dir(self) -> Optional[str]:
+    def extract_package_dir(self) -> str | None:
         """
         Get the package_dir dictionary from the setup.py source.
         """
@@ -122,7 +122,7 @@ class ModuleFinder:
                 )
         return None
 
-    def find_local_packages(self) -> List[Path]:
+    def find_local_packages(self) -> list[Path]:
         """
         Finds all modules and submodules by walking the directory tree,
         looking for __init__.py files.
@@ -132,7 +132,7 @@ class ModuleFinder:
         # in setup.py via 'package_dir'.
         package_dir_str = self.extract_package_dir()
 
-        search_paths: List[Path] = []
+        search_paths: list[Path] = []
         if package_dir_str and Path(package_dir_str).is_dir():
             search_paths.append(Path(package_dir_str))
         else:
@@ -154,7 +154,7 @@ class ModuleFinder:
 
         return list(all_packages)
 
-    def find_by_any_method(self) -> List[Path]:
+    def find_by_any_method(self) -> list[Path]:
         """Tries multiple strategies to find packages/modules."""
         packages = self.find_local_packages()
         logger.info(f"found by custom package discovery: {packages}")
@@ -169,17 +169,15 @@ class ModuleFinder:
 
         return packages
 
-    def find_top_level_modules_by_dunder_init(self) -> List[Path]:
+    def find_top_level_modules_by_dunder_init(self) -> list[Path]:
         """
         Finds modules that are directories with an __init__.py file.
         This recreates the basic behavior of setuptools.find_packages().
         """
         # TODO: use package_dirs more robustly
-        packaged_dirs_str: Optional[str] = ""
-        try:
+        packaged_dirs_str: str | None = ""
+        with contextlib.suppress(JiggleVersionException):
             packaged_dirs_str = self.extract_package_dir()
-        except JiggleVersionException:
-            pass
 
         likely_src_folders = {Path("."), Path("src"), Path("lib")}
         if packaged_dirs_str:
@@ -197,16 +195,14 @@ class ModuleFinder:
 
         return list(set(candidates))
 
-    def find_single_file_project(self) -> List[Path]:
+    def find_single_file_project(self) -> list[Path]:
         """
         Finds projects that consist of a single Python file.
         """
         # TODO: use package_dirs more robustly
-        packaged_dirs_str: Optional[str] = ""
-        try:
+        packaged_dirs_str: str | None = ""
+        with contextlib.suppress(JiggleVersionException):
             packaged_dirs_str = self.extract_package_dir()
-        except JiggleVersionException:
-            pass
 
         likely_src_folders = {Path("."), Path("src")}
         if packaged_dirs_str:

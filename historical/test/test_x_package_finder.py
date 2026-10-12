@@ -37,5 +37,4 @@ def test_find_package_dir():
         package_dir = pif.extract_package_dir()
         assert package_dir is None
     finally:
-
         os.chdir(initial_pwd)

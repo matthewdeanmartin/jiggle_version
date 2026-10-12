@@ -4,7 +4,7 @@ Non-domain specific methods I don't want cluttering up other files.
 
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any
 
 
 class JiggleVersionException(Exception):
@@ -13,7 +13,7 @@ class JiggleVersionException(Exception):
     """
 
 
-def first_value_in_dict(x: Dict[Any, Any]) -> Any:
+def first_value_in_dict(x: dict[Any, Any]) -> Any:
     """
     foo[n] but for dictionaries
     :param x:
@@ -24,7 +24,7 @@ def first_value_in_dict(x: Dict[Any, Any]) -> Any:
     raise KeyError()
 
 
-def merge_two_dicts(x: Dict[Any, Any], y: Dict[Any, Any]) -> Dict[Any, Any]:
+def merge_two_dicts(x: dict[Any, Any], y: dict[Any, Any]) -> dict[Any, Any]:
     """
     Merge dictionaries. This is for python 2 compat.
     :param x:

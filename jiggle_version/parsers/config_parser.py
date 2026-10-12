@@ -2,19 +2,17 @@
 """
 Parsers for configuration files like pyproject.toml and setup.cfg.
 """
+
 from __future__ import annotations
 
 import configparser
 import sys
+
+# Handle Python < 3.11 needing tomli
+import tomllib
 from pathlib import Path
 
 from jiggle_version.utils.files import read_utf8_text
-
-# Handle Python < 3.11 needing tomli
-if sys.version_info < (3, 11):
-    import tomli as tomllib
-else:
-    import tomllib
 
 
 def parse_pyproject_toml(file_path: Path) -> str | None:

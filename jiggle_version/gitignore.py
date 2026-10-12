@@ -29,10 +29,11 @@ Public functions
 - `is_path_gitignored(path: Path, project_root: Path, spec_or_patterns: PathSpec | list[str] | None) -> bool`
 - `is_path_explicitly_ignored(path: Path, ignored_paths: set[Path]) -> bool`
 """
+
 from __future__ import annotations
 
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 from pathspec import PathSpec
 from pathspec.patterns import GitWildMatchPattern

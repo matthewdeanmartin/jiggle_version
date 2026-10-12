@@ -1,7 +1,6 @@
+from jiggle_version.parse_version.schema_guesser import version_object_and_next
 from versio.version import Version
 from versio.version_scheme import Pep440VersionScheme, Simple4VersionScheme
-
-from jiggle_version.parse_version.schema_guesser import version_object_and_next
 
 
 def test_four_part():

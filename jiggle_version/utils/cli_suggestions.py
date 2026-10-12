@@ -85,7 +85,12 @@ class SmartParser(argparse.ArgumentParser):
             if match:
                 bad = match.group(1)
             else:
-                bad = message.split("invalid choice:")[1].split("(")[0].strip().strip("'\"")
+                bad = (
+                    message.split("invalid choice:")[1]
+                    .split("(")[0]
+                    .strip()
+                    .strip("'\"")
+                )
             choices_str = message.split("choose from")[1]
             choices = [
                 c.strip().strip(",)'") for c in choices_str.split() if c.strip(",)")

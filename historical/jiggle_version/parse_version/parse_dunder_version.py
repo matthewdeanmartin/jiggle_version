@@ -18,7 +18,6 @@ from __future__ import annotations
 
 import ast
 import re
-from typing import Optional, Tuple
 
 version_tokens = [
     "__version__",  # canonical
@@ -29,7 +28,7 @@ version_tokens = [
 ]
 
 
-def find_by_ast(line: str, version_token: str = "__version__") -> Optional[str]:
+def find_by_ast(line: str, version_token: str = "__version__") -> str | None:
     """
     Parses a line of Python code to find a version string using the `ast` module.
 
@@ -118,14 +117,14 @@ def simplify_line(line: str, keep_comma: bool = False) -> str:
 
 def find_version_by_regex(
     file_source: str, version_token: str = "__version__"
-) -> Optional[str]:
+) -> str | None:
     """
     Regex for dunder version
     """
     if not file_source:
         return None
     version_match = re.search(
-        r"^" + version_token + r" = ['\"]([^'\"]*)['\"]", file_source, re.M
+        r"^" + version_token + r" = ['\"]([^'\"]*)['\"]", file_source, re.MULTILINE
     )
     if version_match:
         candidate = version_match.group(1)
@@ -137,7 +136,7 @@ def find_version_by_regex(
 
 def find_version_by_string_lib(
     line: str, version_token: str = "__version__"
-) -> Optional[str]:
+) -> str | None:
     """
     No regex parsing. Or at least, mostly, not regex.
     """
@@ -161,7 +160,7 @@ def find_version_by_string_lib(
     return version
 
 
-def validate_string(version: Optional[str]) -> Optional[str]:
+def validate_string(version: str | None) -> str | None:
     """
     Trying to catch expressions here
     :param version:
@@ -176,7 +175,7 @@ def validate_string(version: Optional[str]) -> Optional[str]:
     return version
 
 
-def find_in_line(line: str) -> Tuple[Optional[str], Optional[str]]:
+def find_in_line(line: str) -> tuple[str | None, str | None]:
     """
     Use three strategies to parse version string
     """

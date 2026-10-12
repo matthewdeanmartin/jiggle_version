@@ -8,7 +8,7 @@ from __future__ import annotations
 import configparser
 import logging
 from pathlib import Path
-from typing import IO, Any, Dict
+from typing import IO, Any
 
 import chardet
 
@@ -27,7 +27,7 @@ class FileOpener:
         """
         # The cache uses resolved Path objects as keys to ensure that
         # different relative paths to the same file are treated as one.
-        self.found_encoding: Dict[Path, str] = {}
+        self.found_encoding: dict[Path, str] = {}
 
     def _get_encoding(self, file_path: Path) -> str:
         """
@@ -66,7 +66,7 @@ class FileOpener:
             self.found_encoding[resolved_path] = encoding
             return encoding
 
-        except IOError as e:
+        except OSError as e:
             logger.error(f"Could not read file {file_path}: {e}")
             # Re-raise or return a default? Re-raising is cleaner.
             raise
@@ -94,7 +94,7 @@ class FileOpener:
                     first_line = file_handle.readline()
                 if first_line.startswith("#") and "python" in first_line:
                     return True
-            except (IOError, IndexError) as e:
+            except (OSError, IndexError) as e:
                 # Handles cases where the file can't be read or is empty.
                 logger.debug(f"Could not check shebang for {file_path}: {e}")
 
@@ -140,6 +140,6 @@ class FileOpener:
             file_content = self.read_this(file_path)
             config.read_string(file_content)
             return config.get("metadata", "version", fallback="")
-        except (IOError, configparser.Error) as e:
+        except (OSError, configparser.Error) as e:
             logger.error(f"Failed to read or parse metadata from {file_path}: {e}")
             return ""

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import contextlib
 import io
 import sys
 from typing import TextIO
@@ -26,10 +27,10 @@ def _reconfigure_stream(stream: TextIO, *, prefer_utf8: bool) -> None:
     except (LookupError, TypeError, ValueError, io.UnsupportedOperation):
         pass
 
-    try:
+    with contextlib.suppress(
+        LookupError, TypeError, ValueError, io.UnsupportedOperation
+    ):
         reconfigure(errors="backslashreplace")
-    except (LookupError, TypeError, ValueError, io.UnsupportedOperation):
-        pass
 
 
 def harden_standard_streams() -> None:

@@ -2,6 +2,7 @@
 """
 Parsers for Python source files using the `ast` module.
 """
+
 from __future__ import annotations
 
 import ast

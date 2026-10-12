@@ -165,7 +165,7 @@ def main():
     errors = {}
 
     for package_path in packages_to_test:
-        status, details, error_output = try_out_package(package_path)
+        status, _details, error_output = try_out_package(package_path)
         results[status].append(package_path.name)
         if error_output:
             errors[package_path.name] = error_output

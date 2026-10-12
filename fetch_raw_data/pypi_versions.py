@@ -32,10 +32,10 @@ def download_package(rows):
         print("no zips")
         return
     base = os.path.basename(url).split("#")[0]
-    if os.path.isfile("packages/{0}".format(base)):
-        print("Already have packages/{0}".format(base))
+    if os.path.isfile(f"packages/{base}"):
+        print(f"Already have packages/{base}")
         return
-    command = "curl -0 {0} -o packages/{1}".format(url, base)
+    command = f"curl -0 {url} -o packages/{base}"
     print(command)
     result = execute_get_text(command)
     print(result)

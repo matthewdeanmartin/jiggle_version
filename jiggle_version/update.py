@@ -2,6 +2,7 @@
 """
 Logic for updating version strings in various source files.
 """
+
 from __future__ import annotations
 
 import re
@@ -23,7 +24,11 @@ def update_pyproject_toml(file_path: Path, new_version: str) -> None:
     if "project" in doc and "version" in doc["project"]:  # type: ignore[operator]
         doc["project"]["version"] = new_version  # type: ignore[index]
         updated = True
-    elif "tool" in doc and "setuptools" in doc["tool"] and "version" in doc["tool"]["setuptools"]:  # type: ignore[operator,index]
+    elif (
+        "tool" in doc
+        and "setuptools" in doc["tool"]
+        and "version" in doc["tool"]["setuptools"]
+    ):  # type: ignore[operator,index]
         doc["tool"]["setuptools"]["version"] = new_version  # type: ignore[index]
         updated = True
 

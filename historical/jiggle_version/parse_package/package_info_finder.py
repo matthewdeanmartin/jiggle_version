@@ -8,7 +8,6 @@ import ast
 import logging
 import os
 from pathlib import Path
-from typing import List, Optional
 
 from jiggle_version.file_opener import FileOpener
 from jiggle_version.find_modules_function import find_packages_recursively
@@ -28,9 +27,9 @@ class PackageInfoFinder:
 
     def __init__(self, file_opener: FileOpener) -> None:
         self.file_opener = file_opener
-        self.setup_source: Optional[str] = ""
+        self.setup_source: str | None = ""
 
-    def _read_file(self, file: Path) -> Optional[str]:
+    def _read_file(self, file: Path) -> str | None:
         """
         Read any file, deal with encoding.
         :param file:
@@ -42,7 +41,7 @@ class PackageInfoFinder:
                 source = setup_py.read()
         return source
 
-    def setup_py_source(self) -> Optional[str]:
+    def setup_py_source(self) -> str | None:
         """
         Read setup.py to string
         """
@@ -62,7 +61,6 @@ class PackageInfoFinder:
         if not source:
             return ""
         for row in source.split("\n"):
-            #
             if "packages=" in row:
                 simplified_row = row.replace(" ", "").replace("'", '"').strip(" \t\n")
                 if '"' in simplified_row:
@@ -74,7 +72,7 @@ class PackageInfoFinder:
                     return simplified_row.split('"')[1]
         return ""
 
-    def extract_package_dir(self) -> Optional[str]:
+    def extract_package_dir(self) -> str | None:
         """
         Get the package_dir dictionary from source
         :return:
@@ -118,11 +116,11 @@ class PackageInfoFinder:
             logger.warning("package_dir not in setup.py")
         return None
 
-    def via_find_packages(self) -> List[Path]:
+    def via_find_packages(self) -> list[Path]:
         """
         Use find_packages code to find modules. Can find LOTS of modules.
         """
-        packages: List[Path] = []
+        packages: list[Path] = []
         source = self.setup_py_source()
         if not source:
             return packages
@@ -132,7 +130,6 @@ class PackageInfoFinder:
                 if "find_packages()" in row:
                     packages = find_packages_recursively(Path("."))
                 else:
-
                     try:
                         value = row.split("(")[1].split(")")[0]
                         packages = find_packages_recursively(ast.literal_eval(value))
@@ -143,7 +140,7 @@ class PackageInfoFinder:
 
         return packages
 
-    def find_project(self) -> List[Path]:
+    def find_project(self) -> list[Path]:
         """
         Get all candidate projects
         :return:
@@ -211,7 +208,7 @@ class PackageInfoFinder:
     # packages=find_packages('src'),
     # packages=['ajax_select'],
 
-    def find_malformed_single_file_project(self) -> List[Path]:
+    def find_malformed_single_file_project(self) -> list[Path]:
         """
         Take first non-setup.py python file. What a mess.
         :return:
@@ -254,7 +251,7 @@ class PackageInfoFinder:
         # default.
         return candidates
 
-    def find_single_file_project(self) -> List[Path]:
+    def find_single_file_project(self) -> list[Path]:
         """
         Find well-formed singler file project
         """
@@ -275,7 +272,7 @@ class PackageInfoFinder:
 
         return candidates
 
-    def validate_found_project(self, candidates: List[str]) -> None:
+    def validate_found_project(self, candidates: list[str]) -> None:
         """
         Should be only 1 project
         """

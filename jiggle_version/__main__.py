@@ -789,11 +789,11 @@ def apply_bump_overrides(args: argparse.Namespace, cfg: dict[str, str]) -> None:
 
     # Hardcoded fallbacks
     if getattr(args, "increment", None) in (None, ""):
-        setattr(args, "increment", "patch")
+        args.increment = "patch"
     if getattr(args, "scheme", None) in (None, ""):
-        setattr(args, "scheme", "pep440")
+        args.scheme = "pep440"
     if getattr(args, "autogit", None) in (None, ""):
-        setattr(args, "autogit", "off")
+        args.autogit = "off"
 
 
 def main(argv: Sequence[str] | None = None) -> int:
