@@ -157,15 +157,11 @@ def test_bump_uses_config_increment_when_not_given(
     root = make_basic_project(tmp_path, "0.1.0")
     # add tool config setting default_increment -> minor
     with (root / "pyproject.toml").open("a", encoding="utf-8") as f:
-        f.write(
-            textwrap.dedent(
-                """
+        f.write(textwrap.dedent("""
                 [tool.jiggle_version]
                 default_increment = "minor"
                 scheme = "pep440"
-                """
-            ).lstrip()
-        )
+                """).lstrip())
 
     rc = main(
         [
