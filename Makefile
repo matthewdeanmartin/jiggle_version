@@ -191,3 +191,6 @@ dont-be-lazy:
 .PHONY: pydoc-docs
 pydoc-docs:
 	@uv run pydoc_fork jiggle_version -o ./pydoc/
+
+# `test` is also a directory in this repo; without .PHONY make can call the target up to date and skip it.
+.PHONY: test
