@@ -1,0 +1,10 @@
+baseURL = "https://matthewdeanmartin.github.io/jiggle_version/"
+locale = "en-us"
+title = "jiggle_version"
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[params]
+  description = "Discover, check, and bump Python project versions without importing your package or writing regex."
+  docs = "https://jiggle-version.readthedocs.io/en/latest/"
+  github = "https://github.com/matthewdeanmartin/jiggle_version"
+  pypi = "https://pypi.org/project/jiggle-version/"

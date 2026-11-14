@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d2b">
+  <title>jiggle_version — keep version declarations in step</title>
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta property="og:type" content="website"><meta property="og:title" content="jiggle_version — keep version declarations in step">
+  <meta property="og:description" content="{{ .Site.Params.description }}"><meta property="og:url" content="{{ .Site.BaseURL }}">
+  {{ $css := resources.Get "css/site.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+</head><body>{{ block "main" . }}{{ end }}</body></html>

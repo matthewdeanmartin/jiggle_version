@@ -1,0 +1,17 @@
+site_name: jiggle_version
+site_url: https://jiggle-version.readthedocs.io/
+site_description: Discover, check, and bump project versions without importing target code.
+repo_url: https://github.com/matthewdeanmartin/jiggle_version
+edit_uri: edit/main/docs/
+
+theme:
+  name: readthedocs
+
+nav:
+  - Overview: index.md
+  - CLI guide: cli.md
+  - Design notes (historical): design_philosophy.md
+  - Prior art (historical): prior_art.md
+
+plugins:
+  - search

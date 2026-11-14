@@ -126,7 +126,7 @@ make_docs:
 	pdoc jiggle_version --html -o docs --force
 
 check_md:
-	$(VENV) linkcheckMarkdown README.md
+	$(VENV) python -X utf8 scripts/check_local_links.py README.md docs
 	$(VENV) markdownlint README.md --config .markdownlintrc
 	$(VENV) mdformat README.md docs/*.md
 

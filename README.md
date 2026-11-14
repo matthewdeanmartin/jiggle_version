@@ -41,10 +41,9 @@ pipx install jiggle_version
 python -m pip install --user jiggle_version
 ```
 
-**Python**: `>=3.8`
+**Python**: `>=3.11`
 
-**Runtime deps** (runtime or conditional): `packaging`, `tomlkit`, `pathspec`, `rich-argparse` (help styling), `tomli`
-on Python <3.11.
+**Runtime deps**: `packaging`, `tomlkit`, `pathspec`, `rich-argparse` (help styling), and `requests`.
 
 ---
 
@@ -302,13 +301,8 @@ This is a CLI-first tool. Internal modules may change. If you import, prefer:
 ## Project Links
 
 - [GitHub](https://github.com/matthewdeanmartin/jiggle_version)
+- [Homepage](https://matthewdeanmartin.github.io/jiggle_version/)
+- [Documentation](https://jiggle-version.readthedocs.io/)
 - [PyPI](https://pypi.org/project/jiggle-version/)
 - [Bug Tracker](https://github.com/matthewdeanmartin/jiggle_version/issues)
 - [Change Log](https://github.com/matthewdeanmartin/jiggle_version/blob/main/CHANGELOG.md)
-
-
-## Python 3.15 RC3 verification (2026-10-04)
-
-Refreshed dependencies with `uv lock --upgrade`; lock check passes. 153 tests pass / 1 skip with stable and prerelease-allowed dependencies on Python 3.15.0rc3 and on 3.14.7, using published wheels only. The experimental environments selected no dependency prereleases. Full development setup remains wheel-blocked by linkcheckmd; broad quality gates requiring it were not run.
-
-No dependency source builds or GitHub jobs. Changes local; human operators decide releases and upstream reporting.
