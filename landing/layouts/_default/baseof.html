@@ -4,6 +4,7 @@
   <meta name="theme-color" content="#101d2b">
   <title>jiggle_version — keep version declarations in step</title>
   <meta name="description" content="{{ .Site.Params.description }}">
+<link rel="canonical" href="{{ .Permalink }}">
   <meta property="og:type" content="website"><meta property="og:title" content="jiggle_version — keep version declarations in step">
   <meta property="og:description" content="{{ .Site.Params.description }}"><meta property="og:url" content="{{ .Site.BaseURL }}">
   {{ $css := resources.Get "css/site.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">
